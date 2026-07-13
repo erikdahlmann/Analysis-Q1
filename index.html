@@ -1,0 +1,1868 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Analysis · Mathe LK · Q1</title>
+
+<!-- KaTeX -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"></script>
+<!-- JSXGraph -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jsxgraph@1.10.1/distrib/jsxgraph.css">
+<script src="https://cdn.jsdelivr.net/npm/jsxgraph@1.10.1/distrib/jsxgraphcore.js"></script>
+
+<style>
+  :root{
+    --bg:#f4f1ea;
+    --surface:#ffffff;
+    --ink:#22201c;
+    --muted:#6b665d;
+    --line:#e3ddd0;
+    --accent:#3a5a78;
+    --accent-soft:#e8eef4;
+    --paper:#faf8f3;
+
+    --basal:#2e8b57;
+    --mittel:#c9821a;
+    --anspruch:#c0392b;
+    --abi:#3a5a78;
+
+    --ok:#2e8b57;
+    --bad:#c0392b;
+    --radius:14px;
+    --shadow:0 1px 3px rgba(0,0,0,.06),0 8px 24px rgba(0,0,0,.05);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    font-family:"Iowan Old Style","Palatino Linotype",Georgia,serif;
+    background:var(--bg);
+    color:var(--ink);
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,h4{line-height:1.25;font-weight:600}
+  h2{font-size:1.7rem;margin:0 0 .25em}
+  h3{font-size:1.22rem;margin:1.5em 0 .4em}
+  p{margin:.6em 0}
+  a{color:var(--accent)}
+  .wrap{max-width:880px;margin:0 auto;padding:0 22px}
+  .katex{font-size:1.04em}
+
+  /* Navigation */
+  nav{position:sticky;top:0;z-index:50;background:rgba(244,241,234,.93);
+    backdrop-filter:saturate(140%) blur(8px);border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;flex-wrap:wrap;align-items:center;gap:4px;padding-top:10px;padding-bottom:10px}
+  nav .brand{font-weight:700;margin-right:auto;font-size:.98rem;letter-spacing:.02em}
+  nav a{font-family:system-ui,sans-serif;font-size:.8rem;text-decoration:none;color:var(--muted);
+    padding:6px 11px;border-radius:999px;transition:.15s}
+  nav a:hover{background:var(--accent-soft);color:var(--accent)}
+
+  /* Hero */
+  header.hero{padding:54px 0 30px;text-align:center}
+  header.hero .kicker{font-family:system-ui,sans-serif;text-transform:uppercase;letter-spacing:.18em;
+    font-size:.72rem;color:var(--muted)}
+  header.hero h1{font-size:2.6rem;margin:.25em 0 .15em}
+  header.hero p.lead{font-size:1.15rem;color:var(--muted);max-width:640px;margin:.4em auto 0}
+  .chapter-pill{display:inline-block;margin-top:18px;font-family:system-ui,sans-serif;font-size:.8rem;
+    font-weight:700;letter-spacing:.04em;background:var(--accent);color:#fff;padding:7px 16px;border-radius:999px}
+
+  section{padding:26px 0}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:24px 26px;box-shadow:var(--shadow);margin:18px 0}
+  .section-tag{display:inline-block;font-family:system-ui,sans-serif;font-size:.72rem;font-weight:700;
+    text-transform:uppercase;letter-spacing:.12em;padding:4px 11px;border-radius:999px;
+    background:var(--accent-soft);color:var(--accent);margin-bottom:14px}
+
+  /* Info-/Hinweisboxen */
+  .hint{font-family:system-ui,sans-serif;font-size:.92rem;color:var(--muted);background:var(--paper);
+    border-left:3px solid var(--line);padding:11px 15px;border-radius:0 8px 8px 0;margin:14px 0}
+  .merk{background:linear-gradient(0deg,#eef4f9,#f3f7fb);border:1px solid #cdddea;border-radius:12px;
+    padding:16px 20px;margin:18px 0}
+  .merk h4{font-family:system-ui,sans-serif;font-size:.8rem;text-transform:uppercase;letter-spacing:.1em;
+    color:var(--accent);margin:0 0 8px;display:flex;align-items:center;gap:8px}
+  .merk ul{margin:.3em 0 .2em;padding-left:1.2em}
+  .merk li{margin:.35em 0}
+  .fehler{background:#fdf3f1;border:1px solid #f1c9c1;border-radius:12px;padding:14px 18px;margin:18px 0}
+  .fehler h4{font-family:system-ui,sans-serif;font-size:.8rem;text-transform:uppercase;letter-spacing:.1em;
+    color:var(--anspruch);margin:0 0 6px;display:flex;align-items:center;gap:8px}
+  .fehler ul{margin:.3em 0;padding-left:1.2em;font-size:.96rem}
+  .fehler li{margin:.3em 0}
+
+  /* JSXGraph-Container */
+  .figure{margin:18px 0}
+  .jxgbox{width:100%;height:380px;border:1px solid var(--line);border-radius:12px;background:#fff;touch-action:none}
+  .figcap{font-family:system-ui,sans-serif;font-size:.82rem;color:var(--muted);margin-top:8px;text-align:center}
+  .ctrl{font-family:system-ui,sans-serif;font-size:.86rem;color:var(--muted);margin:6px 0 0;text-align:center}
+
+  /* Aufgaben */
+  .task{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:20px 22px;box-shadow:var(--shadow);margin:16px 0}
+  .task-head{display:flex;align-items:center;gap:11px;flex-wrap:wrap;margin-bottom:6px}
+  .task-num{font-family:system-ui,sans-serif;font-weight:800;font-size:.8rem;color:#fff;background:var(--accent);
+    width:30px;height:30px;border-radius:50%;display:grid;place-items:center;flex:none}
+  .level{font-family:system-ui,sans-serif;font-size:.7rem;font-weight:700;text-transform:uppercase;
+    letter-spacing:.07em;padding:3px 10px;border-radius:999px;color:#fff}
+  .level.basal{background:var(--basal)}
+  .level.mittel{background:var(--mittel)}
+  .level.anspruch{background:var(--anspruch)}
+  .level.abi{background:var(--abi)}
+  .level.abi::before{content:"★ "}
+  .done{margin-left:auto;font-family:system-ui,sans-serif;font-size:.8rem;color:var(--muted);
+    display:flex;align-items:center;gap:6px;cursor:pointer;user-select:none}
+  .done input{width:16px;height:16px;cursor:pointer;accent-color:var(--basal)}
+
+  .answer-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:14px 0 2px}
+  input.num{font-family:system-ui,sans-serif;font-size:.98rem;padding:9px 12px;border-radius:9px;
+    border:1.5px solid var(--line);background:#fff;color:var(--ink);min-width:150px}
+  input.num:focus{outline:2px solid var(--accent)}
+  .unit{font-family:system-ui,sans-serif;color:var(--muted);font-size:.95rem}
+  .mark{font-size:1.2rem;width:1.3em;text-align:center;flex:none}
+
+  .mc{display:flex;flex-direction:column;gap:7px;margin:12px 0 4px}
+  .mc .opt{display:flex;align-items:flex-start;gap:10px;font-size:1.02rem;padding:8px 12px;
+    border:1.5px solid var(--line);border-radius:10px;cursor:pointer;transition:.12s;background:#fff}
+  .mc .opt:hover{border-color:var(--accent);background:var(--paper)}
+  .mc .opt input{margin-top:5px;accent-color:var(--accent);cursor:pointer}
+  .mc .opt.correct{border-color:var(--ok);background:#eef8f1}
+  .mc .opt.incorrect{border-color:var(--bad);background:#fbeeec}
+
+  .btnrow{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;align-items:center}
+  button.act{font-family:system-ui,sans-serif;font-size:.9rem;font-weight:600;padding:9px 18px;border-radius:10px;
+    border:1.5px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer;transition:.15s}
+  button.act:hover{filter:brightness(1.08)}
+  button.ghost{background:#fff;color:var(--accent)}
+  .feedback{font-family:system-ui,sans-serif;font-size:.92rem;padding:8px 13px;border-radius:9px;display:none}
+  .feedback.show{display:inline-block}
+  .feedback.good{background:#eef8f1;color:#1f6e43;border:1px solid #b9e0c8}
+  .feedback.bad{background:#fbeeec;color:#a23227;border:1px solid #eecac4}
+
+  .solution{display:none;margin-top:14px;border-left:3px solid var(--accent);padding:6px 0 6px 16px;
+    background:linear-gradient(90deg,var(--paper),transparent);border-radius:0 8px 8px 0}
+  .solution.show{display:block}
+  .solution h4{font-family:system-ui,sans-serif;font-size:.82rem;text-transform:uppercase;letter-spacing:.08em;
+    color:var(--accent);margin:0 0 8px}
+  .solution .step{margin:.45em 0}
+  .solution .why{font-family:system-ui,sans-serif;font-size:.92rem;color:var(--muted);
+    background:var(--paper);border-radius:8px;padding:9px 13px;margin-top:10px}
+  .worked{background:var(--paper);border:1px dashed var(--line);border-radius:12px;padding:16px 20px;margin:16px 0}
+  .worked h4{margin:0 0 8px;font-family:system-ui,sans-serif;font-size:.8rem;text-transform:uppercase;
+    letter-spacing:.1em;color:var(--accent)}
+
+  /* Kapitel-Band */
+  .chapter-head{background:linear-gradient(135deg,#33506e,#2b3f54);color:#fff;border-radius:18px;
+    padding:26px 30px;margin:30px 0 6px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+  .chapter-head::after{content:"";position:absolute;right:-40px;top:-40px;width:180px;height:180px;
+    background:radial-gradient(circle,rgba(255,255,255,.10),transparent 60%)}
+  .chapter-head .knum{font-family:system-ui,sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.18em;
+    text-transform:uppercase;opacity:.8}
+  .chapter-head h2{font-size:1.9rem;margin:.15em 0 .15em;color:#fff}
+  .chapter-head p{margin:.2em 0 0;color:#dfe7f0;font-size:1.02rem}
+  .chapter-toc{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+  .chapter-toc a{font-family:system-ui,sans-serif;font-size:.8rem;text-decoration:none;color:#fff;
+    background:rgba(255,255,255,.14);padding:6px 13px;border-radius:999px;transition:.15s}
+  .chapter-toc a:hover{background:rgba(255,255,255,.28)}
+
+  footer{padding:44px 0;text-align:center;color:var(--muted);font-family:system-ui,sans-serif;font-size:.85rem}
+  .progress-wrap{position:fixed;left:0;top:0;height:3px;width:100%;background:transparent;z-index:60}
+  #progress{height:100%;width:0;background:var(--accent);transition:width .1s}
+
+  @media(max-width:560px){header.hero h1{font-size:2rem}.jxgbox{height:320px}.done{margin-left:0;width:100%}}
+</style>
+</head>
+<body>
+<div class="progress-wrap"><div id="progress"></div></div>
+
+<nav>
+  <div class="wrap">
+    <span class="brand">∫ Analysis · Mathe LK</span>
+    <a href="#start">Start</a>
+    <a href="#kap1">1 · Differentialrechnung</a>
+    <a href="#kap2">2 · Integralrechnung</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="kicker">Mathematik · Leistungskurs · Q1 · NRW</div>
+    <h1>Analysis</h1>
+    <p class="lead">Deine Zusammenfassung der Q1-Analysis — jedes Thema erklärt, interaktiv visualisiert und mit gestuften Übungen von basal bis Abitur. Lösungen lassen sich jederzeit einblenden.</p>
+    <div class="chapter-pill">Q1 · 4 Kapitel · interaktiv</div>
+  </div>
+</header>
+
+<!-- ============ KAPITEL 1 BAND ============ -->
+<section>
+  <div class="wrap">
+    <div class="chapter-head" id="kap1">
+      <div class="knum">Kapitel 1</div>
+      <h2>Differentialrechnung</h2>
+      <p>Krümmung, vollständige Funktionsuntersuchung, Steckbriefaufgaben, Extremwertprobleme und Funktionenscharen — durchgehend ganzrationale Funktionen.</p>
+      <div class="chapter-toc">
+        <a href="#start">Überblick</a>
+        <a href="#kruemmung">Krümmung</a>
+        <a href="#untersuchung">Funktionsuntersuchung</a>
+        <a href="#steckbrief">Steckbrief</a>
+        <a href="#extremwert">Extremwerte</a>
+        <a href="#scharen">Scharen</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ÜBERBLICK / MERK ============ -->
+<section id="start">
+  <div class="wrap">
+    <span class="section-tag">0 · Worum geht es</span>
+    <div class="card">
+      <h2>Die Differentialrechnung weitergedacht</h2>
+      <p>Du kennst bereits die <strong>erste Ableitung</strong> \(f'\) als Maß für die <em>Steigung</em> eines Graphen. In Kapitel 1 baust du darauf auf: Mit der <strong>zweiten Ableitung</strong> \(f''\) untersuchst du die <em>Krümmung</em>, führst vollständige Funktionsuntersuchungen durch, rekonstruierst Funktionsterme aus Bedingungen (<em>Steckbriefaufgaben</em>), löst <em>Extremwertprobleme</em> mit Nebenbedingung und untersuchst ganze <em>Funktionenscharen</em>.</p>
+      <p>Alle Beispiele beschränken sich auf <strong>ganzrationale Funktionen</strong> (Polynome) — das Werkzeug, mit dem in der Q1 alles beginnt.</p>
+      <div class="merk">
+        <h4>🧰 Werkzeugkasten: Ableitungsregeln (Wiederholung)</h4>
+        <ul>
+          <li><strong>Potenzregel:</strong> \(f(x)=x^n \;\Rightarrow\; f'(x)=n\cdot x^{\,n-1}\)</li>
+          <li><strong>Faktorregel:</strong> \(\big(c\cdot f(x)\big)' = c\cdot f'(x)\)</li>
+          <li><strong>Summenregel:</strong> \(\big(f(x)+g(x)\big)' = f'(x)+g'(x)\)</li>
+          <li><strong>Konstante:</strong> \(f(x)=c \;\Rightarrow\; f'(x)=0\)</li>
+        </ul>
+      </div>
+      <div class="hint">💡 Beispiel: \(f(x)=\tfrac14 x^4 - 2x^2 + 5 \;\Rightarrow\; f'(x)=x^3-4x \;\Rightarrow\; f''(x)=3x^2-4\).</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 1 · KRÜMMUNG ============ -->
+<section id="kruemmung">
+  <div class="wrap">
+    <span class="section-tag">1 · Krümmung & 2. Ableitung</span>
+    <div class="card">
+      <h2>Wie der Graph sich biegt</h2>
+      <p>Die zweite Ableitung \(f''\) entsteht durch nochmaliges Ableiten von \(f'\). Sie beschreibt, <strong>wie sich die Steigung ändert</strong> — also die <strong>Krümmung</strong> des Graphen:</p>
+      <div class="merk">
+        <h4>📐 Krümmung erkennen</h4>
+        <ul>
+          <li>\(f''(x) > 0\): Der Graph ist <strong>linksgekrümmt</strong> (konvex, „Tal" \(\smile\)) — die Steigung <em>wächst</em>.</li>
+          <li>\(f''(x) < 0\): Der Graph ist <strong>rechtsgekrümmt</strong> (konkav, „Berg" \(\frown\)) — die Steigung <em>fällt</em>.</li>
+          <li><strong>Wendepunkt:</strong> Dort <em>wechselt</em> die Krümmung. Notwendig: \(f''(x)=0\); hinreichend: zusätzlich Vorzeichenwechsel von \(f''\) (oder \(f'''(x)\neq 0\)).</li>
+          <li>Ist an einem Wendepunkt zusätzlich \(f'(x)=0\), so heißt er <strong>Sattel-</strong> bzw. <strong>Terrassenpunkt</strong>.</li>
+        </ul>
+      </div>
+
+      <div class="figure">
+        <div id="jxg1" class="jxgbox"></div>
+        <p class="ctrl">Ziehe den roten Punkt entlang der Kurve.</p>
+        <p class="figcap">Abb. 1 — \(f(x)=\tfrac16 x^3 - x\) mit \(f''(x)=x\). Links vom Wendepunkt \((0\mid 0)\) ist der Graph rechtsgekrümmt, rechts davon linksgekrümmt.</p>
+      </div>
+
+      <div class="fehler">
+        <h4>⚠️ Häufige Stolperfallen</h4>
+        <ul>
+          <li>\(f''(x)=0\) <em>allein</em> beweist noch keinen Wendepunkt — der Vorzeichenwechsel (bzw. \(f'''\neq 0\)) muss geprüft werden. Beispiel: \(f(x)=x^4\) hat bei \(0\) ein Minimum, keinen Wendepunkt, obwohl \(f''(0)=0\).</li>
+          <li>„Linksgekrümmt" gehört zu \(f''>0\), nicht zu fallenden Funktionswerten — Krümmung und Monotonie sind verschiedene Dinge.</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>Übungen — Krümmung</h3>
+
+    <div class="task" data-id="k1">
+      <div class="task-head"><span class="task-num">1</span><span class="level basal">Basal</span>
+        <label class="done"><input type="checkbox"> erledigt</label></div>
+      <p>Gegeben ist \(f(x)=x^3-3x^2\). Berechne \(f''(2)\).</p>
+      <div class="answer-row">
+        <input class="num" data-answer="6" data-tol="0.001" placeholder="f''(2) =" aria-label="Antwort">
+        <button class="act check">Prüfen</button><span class="mark"></span>
+        <span class="feedback"></span>
+      </div>
+      <div class="btnrow"><button class="act ghost" data-sol>Lösung &amp; Erklärung</button></div>
+      <div class="solution">
+        <h4>Lösung</h4>
+        <p class="step">\(f'(x)=3x^2-6x\)</p>
+        <p class="step">\(f''(x)=6x-6\)</p>
+        <p class="step">\(f''(2)=6\cdot 2-6 = 6\)</p>
+        <div class="why">Zweimal ableiten: Bei jedem Schritt sinkt der Exponent um 1 und wird als Faktor vorgezogen.</div>
+      </div>
+    </div>
+
+    <div class="task" data-id="k2">
+      <div class="task-head"><span class="task-num">2</span><span class="level basal">Basal</span>
+        <label class="done"><input type="checkbox"> erledigt</label></div>
+      <p>Für eine Funktion gilt \(f''(x)=6x-6\). In welchem Bereich ist der Graph <strong>linksgekrümmt</strong>?</p>
+      <div class="mc" data-answer="2">
+        <label class="opt"><input type="radio" name="mc-k2"><span>\(x < 1\)</span></label>
+        <label class="opt"><input type="radio" name="mc-k2"><span>\(x > 1\)</span></label>
+        <label class="opt"><input type="radio" name="mc-k2"><span>\(x > 0\)</span></label>
+        <label class="opt"><input type="radio" name="mc-k2"><span>für alle \(x\)</span></label>
+      </div>
+      <div class="btnrow"><button class="act check-mc">Prüfen</button><span class="mark"></span>
+        <span class="feedback"></span>
+        <button class="act ghost" data-sol>Lösung &amp; Erklärung</button></div>
+      <div class="solution">
+        <h4>Lösung</h4>
+        <p class="step">Linksgekrümmt bedeutet \(f''(x)>0\):</p>
+        <p class="step">\(6x-6>0 \;\Leftrightarrow\; x>1\)</p>
+        <div class="why">Für \(x>1\) wird die Steigung immer größer — der Graph öffnet sich nach oben (\(\smile\)).</div>
+      </div>
+    </div>
+
+    <div class="task" data-id="k3">
+      <div class="task-head"><span class="task-num">3</span><span class="level mittel">Mittel</span>
+        <label class="done"><input type="checkbox"> erledigt</label></div>
+      <p>Bestimme den Wendepunkt von \(f(x)=x^3-3x^2\) und gib seine <strong>\(y\)-Koordinate</strong> ein.</p>
+      <div class="answer-row">
+        <input class="num" data-answer="-2" data-tol="0.001" placeholder="y =" aria-label="Antwort">
+        <button class="act check">Prüfen</button><span class="mark"></span>
+        <span class="feedback"></span>
+      </div>
+      <div class="btnrow"><button class="act ghost" data-sol>Lösung &amp; Erklärung</button></div>
+      <div class="solution">
+        <h4>Lösung</h4>
+        <p class="step">\(f'(x)=3x^2-6x,\quad f''(x)=6x-6\)</p>
+        <p class="step">Notwendig: \(f''(x)=0 \Rightarrow 6x-6=0 \Rightarrow x=1\)</p>
+        <p class="step">Hinreichend: \(f'''(x)=6\neq 0\) \(\Rightarrow\) Wendepunkt.</p>
+        <p class="step">\(f(1)=1-3=-2 \;\Rightarrow\; W(1\mid -2)\)</p>
+        <div class="why">Vorgehen merken: \(f''=0\) setzen → Stelle prüfen → \(x\) in <em>\(f\)</em> (nicht in \(f''\)!) einsetzen, um die \(y\)-Koordinate zu erhalten.</div>
+      </div>
+    </div>
+
+    <div class="task" data-id="k4">
+      <div class="task-head"><span class="task-num">4</span><span class="level mittel">Mittel</span>
+        <label class="done"><input type="checkbox"> erledigt</label></div>
+      <p>Wie viele Wendepunkte hat \(f(x)=\tfrac{1}{12}x^4 - x^2\)? Gib die <strong>Anzahl</strong> ein.</p>
+      <div class="answer-row">
+        <input class="num" data-answer="2" data-tol="0.001" placeholder="Anzahl =" aria-label="Antwort">
+        <button class="act check">Prüfen</button><span class="mark"></span>
+        <span class="feedback"></span>
+      </div>
+      <div class="btnrow"><button class="act ghost" data-sol>Lösung &amp; Erklärung</button></div>
+      <div class="solution">
+        <h4>Lösung</h4>
+        <p class="step">\(f'(x)=\tfrac13 x^3-2x,\quad f''(x)=x^2-2\)</p>
+        <p class="step">\(f''(x)=0 \Rightarrow x^2=2 \Rightarrow x=\pm\sqrt{2}\)</p>
+        <p class="step">\(f''\) wechselt an beiden Stellen das Vorzeichen (Parabel, nach oben geöffnet) \(\Rightarrow\) <strong>zwei</strong> Wendepunkte.</p>
+        <p class="step">\(f(\pm\sqrt2)=\tfrac{1}{12}\cdot 4 - 2 = \tfrac13-2=-\tfrac53\), also \(W_{1,2}\big(\pm\sqrt2 \mid -\tfrac53\big)\).</p>
+        <div class="why">Bei einer nach oben geöffneten Parabel \(f''\) liegt zwischen den Nullstellen ein negativer, außerhalb ein positiver Bereich — an jeder Nullstelle ein echter Vorzeichenwechsel.</div>
+      </div>
+    </div>
+
+    <div class="task" data-id="k5">
+      <div class="task-head"><span class="task-num">5</span><span class="level anspruch">Anspruchsvoll</span>
+        <label class="done"><input type="checkbox"> erledigt</label></div>
+      <p>Der Graph von \(f(x)=x^3\) hat im Ursprung eine Besonderheit. Welche Aussage ist <strong>korrekt</strong>?</p>
+      <div class="mc" data-answer="3">
+        <label class="opt"><input type="radio" name="mc-k5"><span>Hochpunkt, da \(f'(0)=0\)</span></label>
+        <label class="opt"><input type="radio" name="mc-k5"><span>kein besonderer Punkt, da \(f''(0)=0\)</span></label>
+        <label class="opt"><input type="radio" name="mc-k5"><span>Sattelpunkt: Wendepunkt mit waagerechter Tangente</span></label>
+        <label class="opt"><input type="radio" name="mc-k5"><span>Tiefpunkt, da \(f\) streng monoton steigt</span></label>
+      </div>
+      <div class="btnrow"><button class="act check-mc">Prüfen</button><span class="mark"></span>
+        <span class="feedback"></span>
+        <button class="act ghost" data-sol>Lösung &amp; Erklärung</button></div>
+      <div class="solution">
+        <h4>Lösung</h4>
+        <p class="step">\(f'(x)=3x^2\Rightarrow f'(0)=0\) (waagerechte Tangente).</p>
+        <p class="step">\(f''(x)=6x\Rightarrow f''(0)=0\) und \(f'''(x)=6\neq 0\) \(\Rightarrow\) Wendepunkt.</p>
+        <p class="step">Wendepunkt <em>plus</em> waagerechte Tangente \(=\) <strong>Sattelpunkt</strong> (Terrassenpunkt).</p>
+        <div class="why">Obwohl \(f'(0)=0\) ist, liegt kein Extrempunkt vor: \(f'(x)=3x^2\ge 0\) wechselt das Vorzeichen <em>nicht</em>, die Funktion steigt durchgehend.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 2 · FUNKTIONSUNTERSUCHUNG ============ -->
+<section id="untersuchung">
+  <div class="wrap">
+    <span class="section-tag">2 · Vollständige Funktionsuntersuchung</span>
+    <div class="card">
+      <h2>Den Graphen Schritt für Schritt entschlüsseln</h2>
+      <p>Eine vollständige Funktionsuntersuchung beantwortet immer dieselben Fragen — in fester Reihenfolge:</p>
+      <div class="merk">
+        <h4>🗺️ Der Fahrplan</h4>
+        <ul>
+          <li><strong>Definitionsbereich</strong> (bei Polynomen stets \(\mathbb{R}\)).</li>
+          <li><strong>Symmetrie:</strong> nur gerade Exponenten \(\Rightarrow\) achsensymmetrisch (\(f(-x)=f(x)\)); nur ungerade \(\Rightarrow\) punktsymmetrisch zum Ursprung (\(f(-x)=-f(x)\)).</li>
+          <li><strong>Nullstellen:</strong> \(f(x)=0\) lösen (ausklammern, Substitution bei biquadratischen Gleichungen).</li>
+          <li><strong>Verhalten im Unendlichen:</strong> höchster Exponent bestimmt das Verhalten für \(x\to\pm\infty\).</li>
+          <li><strong>Extrempunkte:</strong> \(f'(x)=0\), Art über \(f''\) bestimmen.</li>
+          <li><strong>Wendepunkte:</strong> \(f''(x)=0\) mit Vorzeichenwechsel.</li>
+        </ul>
+      </div>
+
+      <div class="worked">
+        <h4>Durchgerechnetes Beispiel</h4>
+        <p><strong>Untersuche \(f(x)=\tfrac14 x^4 - 2x^2\) vollständig.</strong></p>
+        <p class="step"><strong>Definitionsbereich:</strong> \(D=\mathbb{R}\).</p>
+        <p class="step"><strong>Symmetrie:</strong> Nur gerade Exponenten \(\Rightarrow f(-x)=f(x)\), also achsensymmetrisch zur \(y\)-Achse.</p>
+        <p class="step"><strong>Nullstellen:</strong> \(\tfrac14 x^4-2x^2 = x^2\big(\tfrac14 x^2 - 2\big)=0 \Rightarrow x=0\) oder \(x^2=8\Rightarrow x=\pm 2\sqrt2\approx\pm 2{,}83\).</p>
+        <p class="step"><strong>Verhalten im Unendlichen:</strong> Leitterm \(\tfrac14 x^4 \Rightarrow f(x)\to +\infty\) für \(x\to\pm\infty\).</p>
+        <p class="step"><strong>Ableitungen:</strong> \(f'(x)=x^3-4x=x(x-2)(x+2),\quad f''(x)=3x^2-4\).</p>
+        <p class="step"><strong>Extrempunkte:</strong> \(f'(x)=0\Rightarrow x\in\{-2,\,0,\,2\}\).
+          \(f''(0)=-4<0\Rightarrow\) Hochpunkt \(H(0\mid 0)\);
+          \(f''(\pm 2)=8>0\Rightarrow\) Tiefpunkte \(T_{1,2}(\pm 2\mid -4)\).</p>
+        <p class="step"><strong>Wendepunkte:</strong> \(f''(x)=0\Rightarrow x=\pm\tfrac{2}{\sqrt3}\approx\pm1{,}15\);
+          \(f\big(\pm\tfrac{2}{\sqrt3}\big)=-\tfrac{20}{9}\approx-2{,}22\), also \(W_{1,2}\big(\pm\tfrac{2}{\sqrt3}\mid -\tfrac{20}{9}\big)\).</p>
+      </div>
+
+      <div class="figure">
+        <div id="jxg2" class="jxgbox"></div>
+        <p class="figcap">Abb. 2 — \(f(x)=\tfrac14 x^4-2x^2\): Hochpunkt (blau), Tiefpunkte (grün), Wendepunkte (orange) und Nullstellen.</p>
+      </div>
+
+      <div class="fehler">
+        <h4>⚠️ Häufige Stolperfallen</h4>
+        <ul>
+          <li>Bei der Symmetrie zählt jeder Term: Schon ein einziger ungerader Exponent zerstört die Achsensymmetrie.</li>
+          <li>Biquadratische Gleichungen wie \(x^4-5x^2+4=0\) zuerst <strong>substituieren</strong> (\(u=x^2\)), nicht „die Wurzel ziehen".</li>
+          <li>\(y\)-Koordinaten von Extrem-/Wendepunkten immer mit \(f\) berechnen, nie mit \(f'\) oder \(f''\).</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>Übungen — Funktionsuntersuchung</h3>
+
+    <div class="task" data-id="u1">
+      <div class="task-head"><span class="task-num">1</span><span class="level basal">Basal</span>
+        <label class="done"><input type="checkbox"> erledigt</label></div>
+      <p>Welche Symmetrie besitzt der Graph von \(f(x)=x^4-3x^2+1\)?</p>
+      <div class="mc" data-answer="1">
+        <label class="opt"><input type="radio" name="mc-u1"><span>achsensymmetrisch zur \(y\)-Achse</span></label>
+        <label class="opt"><input type="radio" name="mc-u1"><span>punktsymmetrisch zum Ursprung</span></label>
+        <label class="opt"><input type="radio" name="mc-u1"><span>keine der beiden Symmetrien</span></label>
+      </div>
+      <div class="btnrow"><button class="act check-mc">Prüfen</button><span class="mark"></span>
+        <span class="feedback"></span>
+        <button class="act ghost" data-sol>Lösung &amp; Erklärung</button></div>
+      <div class="solution">
+        <h4>Lösung</h4>
+        <p class="step">Alle Exponenten (\(4,\,2,\,0\)) sind gerade \(\Rightarrow f(-x)=f(x)\) \(\Rightarrow\) achsensymmetrisch zur \(y\)-Achse.</p>
+        <div class="why">Die konstante \(+1\) entspricht \(x^0\) — ebenfalls ein gerader Exponent, stört die Symmetrie also nicht.</div>
+      </div>
+    </div>
+
+    <div class="task" data-id="u2">
+      <div class="task-head"><span class="task-num">2</span><span class="level basal">Basal</span>
+        <label class="done"><input type="checkbox"> erledigt</label></div>
+      <p>Wie viele Nullstellen hat \(f(x)=x^4-5x^2+4\)? Gib die <strong>Anzahl</strong> ein.</p>
+      <div class="answer-row">
+        <input class="num" data-answer="4" data-tol="0.001" placeholder="Anzahl =" aria-label="Antwort">
+        <button class="act check">Prüfen</button><span class="mark"></span>
+        <span class="feedback"></span>
+      </div>
+      <div class="btnrow"><button class="act ghost" data-sol>Lösung &amp; Erklärung</button></div>
+      <div class="solution">
+        <h4>Lösung</h4>
+        <p class="step">Substitution \(u=x^2\): \(u^2-5u+4=0 \Rightarrow (u-1)(u-4)=0 \Rightarrow u=1\) oder \(u=4\).</p>
+        <p class="step">Rücksubstitution: \(x^2=1\Rightarrow x=\pm1\); \(x^2=4\Rightarrow x=\pm2\).</p>
+        <p class="step">\(\Rightarrow\) <strong>4</strong> Nullstellen: \(-2,\,-1,\,1,\,2\).</p>
+        <div class="why">Jeder positive \(u\)-Wert liefert über \(x^2=u\) zwei \(x\)-Werte — deshalb hier vier Nullstellen.</div>
+      </div>
+    </div>
+
+    <div class="task" data-id="u3">
+      <div class="task-head"><span class="task-num">3</span><span class="level mittel">Mittel</span>
+        <label class="done"><input type="checkbox"> erledigt</label></div>
+      <p>Untersuche \(f(x)=x^3-3x\) auf Symmetrie, Nullstellen, Extrem- und Wendepunkte. Vergleiche anschließend mit der Musterlösung.</p>
+      <div class="btnrow"><button class="act ghost" data-sol>Lösung &amp; Erklärung</button></div>
+      <div class="solution">
+        <h4>Lösung</h4>
+        <p class="step"><strong>Symmetrie:</strong> nur ungerade Exponenten \(\Rightarrow f(-x)=-f(x)\), punktsymmetrisch zum Ursprung.</p>
+        <p class="step"><strong>Nullstellen:</strong> \(x^3-3x=x(x^2-3)=0\Rightarrow x=0;\ x=\pm\sqrt3\).</p>
+        <p class="step"><strong>Ableitungen:</strong> \(f'(x)=3x^2-3,\quad f''(x)=6x\).</p>
+        <p class="step"><strong>Extrempunkte:</strong> \(f'(x)=0\Rightarrow x=\pm1\). \(f''(1)=6>0\Rightarrow\) Tiefpunkt \(T(1\mid -2)\); \(f''(-1)=-6<0\Rightarrow\) Hochpunkt \(H(-1\mid 2)\).</p>
+        <p class="step"><strong>Wendepunkt:</strong> \(f''(x)=0\Rightarrow x=0\); \(f(0)=0\Rightarrow W(0\mid 0)\) (kein Sattel, da \(f'(0)=-3\neq 0\)).</p>
+        <div class="why">Bei punktsymmetrischen Funktionen liegen Hoch- und Tiefpunkt stets spiegelbildlich zum Ursprung — eine gute Kontrolle deiner Rechnung.</div>
+      </div>
+    </div>
+
+    <div class="task" data-id="u4">
+      <div class="task-head"><span class="task-num">4</span><span class="level mittel">Mittel</span>
+        <label class="done"><input type="checkbox"> erledigt</label></div>
+      <p>Gegeben \(f(x)=\tfrac14 x^4-2x^2\) (siehe Beispiel oben). Gib die <strong>\(y\)-Koordinate eines Tiefpunkts</strong> ein.</p>
+      <div class="answer-row">
+        <input class="num" data-answer="-4" data-tol="0.001" placeholder="y =" aria-label="Antwort">
+        <button class="act check">Prüfen</button><span class="mark"></span>
+        <span class="feedback"></span>
+      </div>
+      <div class="btnrow"><button class="act ghost" data-sol>Lösung &amp; Erklärung</button></div>
+      <div class="solution">
+        <h4>Lösung</h4>
+        <p class="step">Tiefpunkte bei \(x=\pm2\): \(f(2)=\tfrac14\cdot 16 - 2\cdot 4 = 4-8 = -4\).</p>
+        <p class="step">\(\Rightarrow T_{1,2}(\pm2\mid -4)\).</p>
+        <div class="why">Wegen der Achsensymmetrie haben beide Tiefpunkte dieselbe \(y\)-Koordinate.</div>
+      </div>
+    </div>
+
+    <div class="task" data-id="u5">
+      <div class="task-head"><span class="task-num">5</span><span class="level abi">Abitur-Niveau</span>
+        <label class="done"><input type="checkbox"> erledigt</label></div>
+      <p><em>(nach Abitur NRW, Stil/Thema)</em> Der Längsschnitt eines Hügels wird im Bereich \(0\le x\le 3\) (Angaben in 100 m) durch \(f(x)=-x^3+3x^2\) modelliert. Bestimme den <strong>höchsten Punkt</strong> des Hügels sowie die Stelle des stärksten Anstiegs. Vergleiche dann mit der Musterlösung.</p>
+      <div class="btnrow"><button class="act ghost" data-sol>Lösung &amp; Erklärung</button></div>
+      <div class="solution">
+        <h4>Lösung</h4>
+        <p class="step"><strong>Ableitungen:</strong> \(f'(x)=-3x^2+6x=-3x(x-2),\quad f''(x)=-6x+6\).</p>
+        <p class="step"><strong>Höchster Punkt:</strong> \(f'(x)=0\Rightarrow x=0\) oder \(x=2\). \(f''(2)=-6<0\Rightarrow\) Hochpunkt \(H(2\mid 4)\). (Bei \(x=0\): \(f''(0)=6>0\Rightarrow\) Tiefpunkt.)</p>
+        <p class="step">Also liegt der höchste Punkt bei \(x=2\) (also 200 m), Höhe \(f(2)=-8+12=4\) (400 m).</p>
+        <p class="step"><strong>Stärkster Anstieg:</strong> maximale Steigung dort, wo \(f'\) maximal ist, also \(f''(x)=0\Rightarrow x=1\). Das ist der Wendepunkt \(W(1\mid 2)\).</p>
+        <div class="why">„Stärkster Anstieg" \(=\) Maximum der Steigungsfunktion \(f'\) \(=\) Wendestelle. Genau das wird in Sachaufgaben gern gefragt — Wendepunkt als <em>Punkt des stärksten Wachstums</em>.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3 · STECKBRIEF ============ -->
+<section id="steckbrief">
+  <div class="wrap">
+    <span class="section-tag">3 · Steckbriefaufgaben (Rekonstruktion)</span>
+    <div class="card">
+      <h2>Vom Steckbrief zum Funktionsterm</h2>
+      <p>Bei <strong>Steckbriefaufgaben</strong> ist der Funktionstyp gegeben (z. B. „ganzrational 3. Grades"), aber die Koeffizienten sind unbekannt. Aus den genannten <em>Bedingungen</em> stellst du Gleichungen auf und löst das entstehende <strong>lineare Gleichungssystem (LGS)</strong>.</p>
+      <div class="merk">
+        <h4>🔑 Bedingungen in Gleichungen übersetzen</h4>
+        <ul>
+          <li>„Graph verläuft durch \(P(a\mid b)\)" \(\Rightarrow f(a)=b\)</li>
+          <li>„waagerechte Tangente / Extrempunkt bei \(x=a\)" \(\Rightarrow f'(a)=0\)</li>
+          <li>„Wendepunkt bei \(x=a\)" \(\Rightarrow f''(a)=0\)</li>
+          <li>„Steigung \(m\) an der Stelle \(a\)" \(\Rightarrow f'(a)=m\)</li>
+          <li>Symmetrie nutzen, um von vornherein Terme wegzulassen (spart Unbekannte!).</li>
+        </ul>
+      </div>
+
+      <div class="worked">
+        <h4>Durchgerechnetes Beispiel</h4>
+        <p><strong>Gesucht ist eine ganzrationale Funktion 3. Grades, deren Graph punktsymmetrisch zum Ursprung ist, bei \(x=1\) eine waagerechte Tangente hat und durch \(P(1\mid -2)\) verläuft.</strong></p>
+        <p class="step"><strong>Ansatz mit Symmetrie:</strong> Punktsymmetrie \(\Rightarrow\) nur ungerade Exponenten: \(f(x)=ax^3+cx\), \(f'(x)=3ax^2+c\).</p>
+        <p class="step"><strong>Bedingungen:</strong></p>
+        <p class="step">\(\;\)① waagerechte Tangente: \(f'(1)=0\Rightarrow 3a+c=0\)</p>
+        <p class="step">\(\;\)② Punkt: \(f(1)=-2\Rightarrow a+c=-2\)</p>
+        <p class="step"><strong>LGS lösen:</strong> Aus ① folgt \(c=-3a\). Einsetzen in ②: \(a-3a=-2\Rightarrow -2a=-2\Rightarrow a=1,\ c=-3\).</p>
+        <p class="step"><strong>Ergebnis:</strong> \(f(x)=x^3-3x\). Probe: \(f'(1)=3-3=0\) ✓, \(f(1)=1-3=-2\) ✓.</p>
+      </div>
+
+      <div class="figure">
+        <div id="jxg3" class="jxgbox"></div>
+        <p class="figcap">Abb. 3 — \(f(x)=x^3-3x\): die waagerechte Tangente bei \(x=1\) (grün) berührt den geforderten Punkt \(P(1\mid-2)\).</p>
+      </div>
+
+      <div class="fehler">
+        <h4>⚠️ Häufige Stolperfallen</h4>
+        <ul>
+          <li>Anzahl der Bedingungen muss zur Anzahl der Unbekannten passen (Grad \(n\) \(\Rightarrow\) \(n+1\) Koeffizienten).</li>
+          <li>Symmetrie <em>vor</em> dem Aufstellen nutzen — das halbiert oft die Unbekannten.</li>
+          <li>„Wendepunkt bei \(x=a\)" liefert \(f''(a)=0\); liegt der Punkt zusätzlich auf dem Graphen, ist das eine <em>zweite</em> Gleichung \(f(a)=\dots\).</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>Übungen — Steckbriefaufgaben</h3>
+
+    <div class="task" data-id="s1">
+      <div class="task-head"><span class="task-num">1</span><span class="level basal">Basal</span>
+        <label class="done"><input type="checkbox"> erledigt</label></div>
+      <p>Der Graph von \(f(x)=ax^2+bx+c\) verläuft durch \(P(0\mid 3)\). Welchen Wert hat \(c\)?</p>
+      <div class="answer-row">
+        <input class="num" data-answer="3" data-tol="0.001" placeholder="c =" aria-label="Antwort">
+        <button class="act check">Prüfen</button><span class="mark"></span>
+        <span class="feedback"></span>
+      </div>
+      <div class="btnrow"><button class="act ghost" data-sol>Lösung &amp; Erklärung</button></div>
+      <div class="solution">
+        <h4>Lösung</h4>
+        <p class="step">\(f(0)=a\cdot 0 + b\cdot 0 + c = c\). Aus \(f(0)=3\) folgt \(c=3\).</p>
+        <div class="why">Der \(y\)-Achsenabschnitt ist immer der konstante Term \(c\) — ein Punkt auf der \(y\)-Achse liefert \(c\) direkt.</div>
+      </div>
+    </div>
+
+    <div class="task" data-id="s2">
+      <div class="task-head"><span class="task-num">2</span><span class="level mittel">Mittel</span>
+        <label class="done"><input type="checkbox"> erledigt</label></div>
+      <p>Eine Parabel \(f(x)=ax^2+bx+c\) verläuft durch \(A(0\mid 1)\), \(B(1\mid 0)\) und \(C(2\mid 3)\). Bestimme \(f\) und gib den Wert von <strong>\(a\)</strong> ein.</p>
+      <div class="answer-row">
+        <input class="num" data-answer="2" data-tol="0.001" placeholder="a =" aria-label="Antwort">
+        <button class="act check">Prüfen</button><span class="mark"></span>
+        <span class="feedback"></span>
+      </div>
+      <div class="btnrow"><button class="act ghost" data-sol>Lösung &amp; Erklärung</button></div>
+      <div class="solution">
+        <h4>Lösung</h4>
+        <p class="step">\(A:\ c=1\)</p>
+        <p class="step">\(B:\ a+b+c=0 \Rightarrow a+b=-1\)</p>
+        <p class="step">\(C:\ 4a+2b+c=3 \Rightarrow 4a+2b=2 \Rightarrow 2a+b=1\)</p>
+        <p class="step">Subtraktion: \((2a+b)-(a+b)=1-(-1)\Rightarrow a=2\), dann \(b=-3\).</p>
+        <p class="step">\(\Rightarrow f(x)=2x^2-3x+1\).</p>
+        <div class="why">Drei Punkte \(\to\) drei Gleichungen \(\to\) drei Unbekannte. Den \(y\)-Achsenpunkt zuerst nutzen, dann bleibt ein einfaches \(2\times 2\)-LGS.</div>
+      </div>
+    </div>
+
+    <div class="task" data-id="s3">
+      <div class="task-head"><span class="task-num">3</span><span class="level mittel">Mittel</span>
+        <label class="done"><input type="checkbox"> erledigt</label></div>
+      <p>Gesucht ist eine ganzrationale Funktion 3. Grades mit einem <strong>Sattelpunkt</strong> im Ursprung \((0\mid 0)\), deren Graph durch \(P(1\mid 1)\) verläuft. Vergleiche mit der Musterlösung.</p>
+      <div class="btnrow"><button class="act ghost" data-sol>Lösung &amp; Erklärung</button></div>
+      <div class="solution">
+        <h4>Lösung</h4>
+        <p class="step"><strong>Ansatz:</strong> \(f(x)=ax^3+bx^2+cx+d\), \(f'(x)=3ax^2+2bx+c\), \(f''(x)=6ax+2b\).</p>
+        <p class="step">Sattelpunkt in \((0\mid 0)\): \(f(0)=0\Rightarrow d=0\); \(f'(0)=0\Rightarrow c=0\); \(f''(0)=0\Rightarrow 2b=0\Rightarrow b=0\).</p>
+        <p class="step">Es bleibt \(f(x)=ax^3\). Punkt \(P\): \(f(1)=a=1\).</p>
+        <p class="step">\(\Rightarrow f(x)=x^3\).</p>
+        <div class="why">Ein Sattelpunkt vereint drei Bedingungen an einer Stelle (\(f=f'=f''=0\)) — das räumt viele Koeffizienten auf einen Schlag ab.</div>
+      </div>
+    </div>
+
+    <div class="task" data-id="s4">
+      <div class="task-head"><span class="task-num">4</span><span class="level abi">Abitur-Niveau</span>
+        <label class="done"><input type="checkbox"> erledigt</label></div>
+      <p><em>(nach Abitur NRW, Stil/Thema)</em> Ein Tunnelquerschnitt ist symmetrisch zur \(y\)-Achse, an der höchsten Stelle \(4\text{ m}\) hoch (Scheitel in \((0\mid 4)\)) und an der Basis \(8\text{ m}\) breit (Nullstellen bei \(x=\pm 4\)). Bestimme eine quadratische Funktion \(f\) und gib den Wert von <strong>\(a\)</strong> ein.</p>
+      <div class="answer-row">
+        <input class="num" data-answer="-0.25" data-tol="0.0001" placeholder="a =" aria-label="Antwort">
+        <button class="act check">Prüfen</button><span class="mark"></span>
+        <span class="feedback"></span>
+      </div>
+      <div class="btnrow"><button class="act ghost" data-sol>Lösung &amp; Erklärung</button></div>
+      <div class="solution">
+        <h4>Lösung</h4>
+        <p class="step"><strong>Symmetrie:</strong> achsensymmetrisch \(\Rightarrow b=0\), also \(f(x)=ax^2+c\).</p>
+        <p class="step"><strong>Scheitel:</strong> \(f(0)=4\Rightarrow c=4\).</p>
+        <p class="step"><strong>Nullstelle:</strong> \(f(4)=0\Rightarrow 16a+4=0\Rightarrow a=-\tfrac14=-0{,}25\).</p>
+        <p class="step">\(\Rightarrow f(x)=-\tfrac14 x^2+4\).</p>
+        <div class="why">Tipp: \(-\tfrac14\) als \(-0{,}25\) oder \(-1/4\) eingeben — das Prüffeld akzeptiert beides. Die Symmetrie spart hier den Term \(bx\) komplett.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4 · EXTREMWERTE ============ -->
+<section id="extremwert">
+  <div class="wrap">
+    <span class="section-tag">4 · Extremwertprobleme mit Nebenbedingung</span>
+    <div class="card">
+      <h2>Das Beste herausholen — Optimieren</h2>
+      <p>Bei <strong>Extremwertproblemen</strong> soll eine Größe maximal oder minimal werden (die <em>Zielgröße</em>), während eine <em>Nebenbedingung</em> einschränkt. Der Trick: Mit der Nebenbedingung eine Variable ersetzen, sodass die Zielfunktion <strong>nur noch von einer Variablen</strong> abhängt.</p>
+      <div class="merk">
+        <h4>🎯 Der Lösungsweg</h4>
+        <ul>
+          <li><strong>Zielfunktion</strong> aufstellen (was wird maximal/minimal?) — meist mit zwei Variablen.</li>
+          <li><strong>Nebenbedingung</strong> aufstellen und nach einer Variablen auflösen.</li>
+          <li><strong>Einsetzen</strong> \(\Rightarrow\) Zielfunktion mit nur einer Variablen; sinnvollen <strong>Definitionsbereich</strong> angeben.</li>
+          <li><strong>Extremum bestimmen</strong> (\(=0\) setzen, mit \(f''\) prüfen, Randwerte beachten).</li>
+          <li><strong>Antwortsatz</strong> mit den gesuchten Größen.</li>
+        </ul>
+      </div>
+
+      <div class="worked">
+        <h4>Durchgerechnetes Beispiel</h4>
+        <p><strong>Aus einem Draht der Länge \(20\text{ cm}\) soll ein Rechteck mit größtmöglichem Flächeninhalt gebogen werden.</strong></p>
+        <p class="step"><strong>Zielfunktion:</strong> \(A=x\cdot y\) (Seiten \(x,y\)).</p>
+        <p class="step"><strong>Nebenbedingung:</strong> Umfang \(2x+2y=20\Rightarrow y=10-x\).</p>
+        <p class="step"><strong>Einsetzen:</strong> \(A(x)=x(10-x)=10x-x^2\), sinnvoll für \(0<x<10\).</p>
+        <p class="step"><strong>Extremum:</strong> \(A'(x)=10-2x=0\Rightarrow x=5\); \(A''(x)=-2<0\Rightarrow\) Maximum.</p>
+        <p class="step"><strong>Antwort:</strong> \(y=10-5=5\) — das Rechteck ist ein <strong>Quadrat</strong> mit Seite \(5\text{ cm}\) und maximaler Fläche \(A=25\text{ cm}^2\).</p>
+      </div>
+
+      <div class="figure">
+        <div id="jxg4" class="jxgbox"></div>
+        <p class="ctrl">Bewege den Schieberegler \(x\) und beobachte den Flächeninhalt.</p>
+        <p class="figcap">Abb. 4 — Einem Parabelbogen \(g(x)=4-x^2\) einbeschriebenes Rechteck. Die Fläche \(A(x)=2x(4-x^2)\) wird für \(x=\tfrac{2}{\sqrt3}\) maximal (Aufgabe 4).</p>
+      </div>
+
+      <div class="fehler">
+        <h4>⚠️ Häufige Stolperfallen</h4>
+        <ul>
+          <li>Den <strong>Definitionsbereich</strong> nicht vergessen — oft scheidet eine rechnerische Lösung aus geometrischen Gründen aus.</li>
+          <li>Mit \(f''\) (oder Vorzeichenwechsel) prüfen, ob wirklich ein <em>Maximum</em> vorliegt — nicht jeder Kandidat ist das Gesuchte.</li>
+          <li>Am Ende die <strong>gefragte Größe</strong> angeben (z. B. das Volumen, nicht nur die Stelle \(x\)).</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>Übungen — Extremwertprobleme</h3>
+
+    <div class="task" data-id="e1">
+      <div class="task-head"><span class="task-num">1</span><span class="level basal">Basal</span>
+        <label class="done"><input type="checkbox"> erledigt</label></div>
+      <p>Zwei Zahlen haben die Summe \(10\). Wie groß ist ihr <strong>größtmögliches Produkt</strong>?</p>
+      <div class="answer-row">
+        <input class="num" data-answer="25" data-tol="0.001" placeholder="Produkt =" aria-label="Antwort">
+        <button class="act check">Prüfen</button><span class="mark"></span>
+        <span class="feedback"></span>
+      </div>
+      <div class="btnrow"><button class="act ghost" data-sol>Lösung &amp; Erklärung</button></div>
+      <div class="solution">
+        <h4>Lösung</h4>
+        <p class="step">\(x+y=10\Rightarrow y=10-x\). Produkt: \(P(x)=x(10-x)=10x-x^2\).</p>
+        <p class="step">\(P'(x)=10-2x=0\Rightarrow x=5\), \(P''<0\Rightarrow\) Maximum. \(P=5\cdot 5=25\).</p>
+        <div class="why">Das maximale Produkt bei fester Summe ergibt sich stets, wenn beide Zahlen gleich sind.</div>
+      </div>
+    </div>
+
+    <div class="task" data-id="e2">
+      <div class="task-head"><span class="task-num">2</span><span class="level mittel">Mittel</span>
+        <label class="done"><input type="checkbox"> erledigt</label></div>
+      <p>Ein Rechteck hat den Umfang \(24\text{ cm}\). Welchen <strong>maximalen Flächeninhalt</strong> (in \(\text{cm}^2\)) kann es haben?</p>
+      <div class="answer-row">
+        <input class="num" data-answer="36" data-tol="0.001" placeholder="A =" aria-label="Antwort">
+        <button class="act check">Prüfen</button><span class="mark"></span><span class="unit">cm²</span>
+        <span class="feedback"></span>
+      </div>
+      <div class="btnrow"><button class="act ghost" data-sol>Lösung &amp; Erklärung</button></div>
+      <div class="solution">
+        <h4>Lösung</h4>
+        <p class="step">\(2x+2y=24\Rightarrow y=12-x\). \(A(x)=x(12-x)=12x-x^2\).</p>
+        <p class="step">\(A'(x)=12-2x=0\Rightarrow x=6\), \(A''<0\Rightarrow\) Maximum. \(A=6\cdot 6=36\).</p>
+        <div class="why">Auch hier ist das Optimum ein Quadrat (\(6\times 6\)) — typisch für „festes Umfang, maximale Fläche".</div>
+      </div>
+    </div>
+
+    <div class="task" data-id="e3">
+      <div class="task-head"><span class="task-num">3</span><span class="level anspruch">Anspruchsvoll</span>
+        <label class="done"><input type="checkbox"> erledigt</label></div>
+      <p>Aus quadratischer Pappe der Seite \(12\text{ cm}\) wird eine oben offene Schachtel gefaltet: An den vier Ecken werden Quadrate der Seite \(x\) ausgeschnitten, die Ränder hochgeklappt. Für welches \(x\) wird das <strong>Volumen maximal</strong>, und wie groß ist es (in \(\text{cm}^3\))?</p>
+      <div class="answer-row">
+        <input class="num" data-answer="128" data-tol="0.001" placeholder="V_max =" aria-label="Antwort">
+        <button class="act check">Prüfen</button><span class="mark"></span><span class="unit">cm³</span>
+        <span class="feedback"></span>
+      </div>
+      <div class="btnrow"><button class="act ghost" data-sol>Lösung &amp; Erklärung</button></div>
+      <div class="solution">
+        <h4>Lösung</h4>
+        <p class="step"><strong>Volumen:</strong> Grundseite \((12-2x)\), Höhe \(x\): \(V(x)=(12-2x)^2\cdot x\), sinnvoll für \(0<x<6\).</p>
+        <p class="step">Ausmultipliziert: \(V(x)=4x^3-48x^2+144x\).</p>
+        <p class="step">\(V'(x)=12x^2-96x+144=12(x^2-8x+12)=12(x-2)(x-6)\).</p>
+        <p class="step">\(V'(x)=0\Rightarrow x=2\) oder \(x=6\). \(x=6\) entfällt (Grundseite \(=0\)).</p>
+        <p class="step">\(V''(x)=24x-96\), \(V''(2)=-48<0\Rightarrow\) Maximum bei \(x=2\).</p>
+        <p class="step">\(V(2)=(12-4)^2\cdot 2 = 64\cdot 2 = 128\text{ cm}^3\).</p>
+        <div class="why">Den Randwert \(x=6\) immer auf Sinnhaftigkeit prüfen: Bei \(x=6\) bliebe keine Grundfläche übrig — geometrisch ausgeschlossen.</div>
+      </div>
+    </div>
+
+    <div class="task" data-id="e4">
+      <div class="task-head"><span class="task-num">4</span><span class="level abi">Abitur-Niveau</span>
+        <label class="done"><input type="checkbox"> erledigt</label></div>
+      <p><em>(nach Abitur NRW, Stil/Thema)</em> Unter dem Graphen von \(g(x)=4-x^2\) (oberhalb der \(x\)-Achse, \(-2\le x\le 2\)) wird ein achsensymmetrisches Rechteck einbeschrieben; seine untere Seite liegt auf der \(x\)-Achse, die oberen Ecken auf dem Graphen. Für welche Breite wird die Fläche maximal? Vergleiche mit der Musterlösung. <em>(Tipp: das ist die Situation aus Abb. 4.)</em></p>
+      <div class="btnrow"><button class="act ghost" data-sol>Lösung &amp; Erklärung</button></div>
+      <div class="solution">
+        <h4>Lösung</h4>
+        <p class="step"><strong>Aufstellen:</strong> Obere Ecken bei \((\pm x\mid 4-x^2)\). Breite \(=2x\), Höhe \(=4-x^2\).</p>
+        <p class="step"><strong>Zielfunktion:</strong> \(A(x)=2x(4-x^2)=8x-2x^3\), sinnvoll für \(0<x<2\).</p>
+        <p class="step">\(A'(x)=8-6x^2=0\Rightarrow x^2=\tfrac43\Rightarrow x=\tfrac{2}{\sqrt3}\approx 1{,}15\).</p>
+        <p class="step">\(A''(x)=-12x<0\Rightarrow\) Maximum.</p>
+        <p class="step"><strong>Antwort:</strong> Breite \(2x=\tfrac{4}{\sqrt3}\approx 2{,}31\); Höhe \(4-\tfrac43=\tfrac83\); maximale Fläche \(A=\tfrac{32}{3\sqrt3}=\tfrac{32\sqrt3}{9}\approx 6{,}16\).</p>
+        <div class="why">Die Zielfunktion \(A(x)=8x-2x^3\) ist selbst ganzrational — Extremwertprobleme führen oft auf genau die Polynome, die du in Abschnitt 1–2 untersucht hast.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 5 · SCHAREN ============ -->
+<section id="scharen">
+  <div class="wrap">
+    <span class="section-tag">5 · Funktionenscharen</span>
+    <div class="card">
+      <h2>Eine Funktion — unendlich viele Graphen</h2>
+      <p>Eine <strong>Funktionenschar</strong> enthält neben \(x\) noch einen <strong>Parameter</strong> (oft \(a\), \(t\) oder \(k\)). Jeder Parameterwert liefert einen eigenen Graphen. Beim Ableiten und Untersuchen wird der Parameter wie eine <em>Konstante</em> behandelt; die Ergebnisse hängen dann von ihm ab.</p>
+      <div class="merk">
+        <h4>🧭 Scharen untersuchen</h4>
+        <ul>
+          <li>Parameter beim Ableiten als Konstante behandeln: \(\frac{d}{dx}\big(x^3-3a^2x\big)=3x^2-3a^2\).</li>
+          <li>Extrem-/Wendestellen ergeben sich <em>in Abhängigkeit vom Parameter</em>.</li>
+          <li><strong>Ortskurve:</strong> Bahn, auf der z. B. alle Tiefpunkte liegen — Parameter aus den Koordinaten eliminieren.</li>
+          <li>Oft gefragt: gemeinsame Punkte aller Scharkurven, Fallunterscheidungen nach dem Vorzeichen des Parameters.</li>
+        </ul>
+      </div>
+
+      <div class="worked">
+        <h4>Durchgerechnetes Beispiel</h4>
+        <p><strong>Untersuche die Schar \(f_a(x)=x^3-3a^2x\) (\(a>0\)) auf Extrempunkte und bestimme die Ortskurve der Tiefpunkte.</strong></p>
+        <p class="step"><strong>Ableitungen:</strong> \(f_a'(x)=3x^2-3a^2,\quad f_a''(x)=6x\).</p>
+        <p class="step"><strong>Extremstellen:</strong> \(f_a'(x)=0\Rightarrow x^2=a^2\Rightarrow x=\pm a\).</p>
+        <p class="step">\(f_a''(a)=6a>0\Rightarrow\) Tiefpunkt; \(f_a''(-a)=-6a<0\Rightarrow\) Hochpunkt.</p>
+        <p class="step"><strong>Punkte:</strong> \(f_a(a)=a^3-3a^3=-2a^3\Rightarrow T(a\mid -2a^3)\); analog \(H(-a\mid 2a^3)\).</p>
+        <p class="step"><strong>Ortskurve der Tiefpunkte:</strong> Aus \(x=a\) folgt \(a=x\), eingesetzt in \(y=-2a^3\): \(y=-2x^3\).</p>
+      </div>
+
+      <div class="figure">
+        <div id="jxg5" class="jxgbox"></div>
+        <p class="ctrl">Verändere den Parameter \(a\) mit dem Schieberegler.</p>
+        <p class="figcap">Abb. 5 — Schar \(f_a(x)=x^3-3a^2x\). Der Tiefpunkt (grün) wandert auf der Ortskurve \(y=-2x^3\) (gestrichelt).</p>
+      </div>
+
+      <div class="fehler">
+        <h4>⚠️ Häufige Stolperfallen</h4>
+        <ul>
+          <li>Beim Ableiten nicht den Parameter „mitableiten" — \(a\) ist eine Konstante, kein \(x\).</li>
+          <li>Für die Ortskurve den Parameter aus den <em>Koordinaten</em> eliminieren, nicht aus der Funktionsgleichung.</li>
+          <li>Bei „\(a>0\)" oder „\(a\neq 0\)" auf die <strong>Fallunterscheidung</strong> achten — das Vorzeichen entscheidet oft über Hoch- vs. Tiefpunkt.</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>Übungen — Funktionenscharen</h3>
+
+    <div class="task" data-id="f1">
+      <div class="task-head"><span class="task-num">1</span><span class="level basal">Basal</span>
+        <label class="done"><input type="checkbox"> erledigt</label></div>
+      <p>Für welche Werte des Parameters \(a\) besitzt \(f_a(x)=ax^2\) einen <strong>Tiefpunkt</strong> im Scheitel?</p>
+      <div class="mc" data-answer="1">
+        <label class="opt"><input type="radio" name="mc-f1"><span>\(a>0\)</span></label>
+        <label class="opt"><input type="radio" name="mc-f1"><span>\(a<0\)</span></label>
+        <label class="opt"><input type="radio" name="mc-f1"><span>\(a=0\)</span></label>
+        <label class="opt"><input type="radio" name="mc-f1"><span>für alle \(a\)</span></label>
+      </div>
+      <div class="btnrow"><button class="act check-mc">Prüfen</button><span class="mark"></span>
+        <span class="feedback"></span>
+        <button class="act ghost" data-sol>Lösung &amp; Erklärung</button></div>
+      <div class="solution">
+        <h4>Lösung</h4>
+        <p class="step">\(f_a''(x)=2a\). Ein Tiefpunkt verlangt \(f_a''>0\), also \(2a>0\Rightarrow a>0\).</p>
+        <div class="why">Für \(a>0\) ist die Parabel nach oben geöffnet (\(\smile\)) — der Scheitel ist dann der tiefste Punkt.</div>
+      </div>
+    </div>
+
+    <div class="task" data-id="f2">
+      <div class="task-head"><span class="task-num">2</span><span class="level mittel">Mittel</span>
+        <label class="done"><input type="checkbox"> erledigt</label></div>
+      <p>Bestimme die Extremstelle der Schar \(f_t(x)=x^2-2tx\) in Abhängigkeit von \(t\). Vergleiche mit der Musterlösung.</p>
+      <div class="btnrow"><button class="act ghost" data-sol>Lösung &amp; Erklärung</button></div>
+      <div class="solution">
+        <h4>Lösung</h4>
+        <p class="step">\(f_t'(x)=2x-2t\). \(f_t'(x)=0\Rightarrow x=t\).</p>
+        <p class="step">\(f_t''(x)=2>0\Rightarrow\) Tiefpunkt an der Stelle \(x=t\).</p>
+        <p class="step">\(f_t(t)=t^2-2t^2=-t^2\Rightarrow T(t\mid -t^2)\).</p>
+        <div class="why">Die Extremstelle „wandert" mit \(t\): Für jedes \(t\) liegt der Tiefpunkt eine Einheit weiter. (Die Ortskurve wäre hier \(y=-x^2\).)</div>
+      </div>
+    </div>
+
+    <div class="task" data-id="f3">
+      <div class="task-head"><span class="task-num">3</span><span class="level mittel">Mittel</span>
+        <label class="done"><input type="checkbox"> erledigt</label></div>
+      <p>Gegeben die Schar \(f_a(x)=x^3-3a^2x\) mit \(a>0\). Bestimme Hoch- und Tiefpunkt in Abhängigkeit von \(a\). Vergleiche mit der Musterlösung.</p>
+      <div class="btnrow"><button class="act ghost" data-sol>Lösung &amp; Erklärung</button></div>
+      <div class="solution">
+        <h4>Lösung</h4>
+        <p class="step">\(f_a'(x)=3x^2-3a^2=0\Rightarrow x=\pm a\).</p>
+        <p class="step">\(f_a''(x)=6x\): \(f_a''(-a)=-6a<0\Rightarrow\) Hochpunkt; \(f_a''(a)=6a>0\Rightarrow\) Tiefpunkt.</p>
+        <p class="step">\(H(-a\mid 2a^3)\), \(T(a\mid -2a^3)\).</p>
+        <div class="why">Da \(f_a\) punktsymmetrisch ist, liegen Hoch- und Tiefpunkt spiegelbildlich zum Ursprung — die \(y\)-Werte unterscheiden sich nur im Vorzeichen.</div>
+      </div>
+    </div>
+
+    <div class="task" data-id="f4">
+      <div class="task-head"><span class="task-num">4</span><span class="level anspruch">Anspruchsvoll</span>
+        <label class="done"><input type="checkbox"> erledigt</label></div>
+      <p>Bestimme die <strong>Ortskurve</strong> aller Tiefpunkte der Schar \(f_a(x)=x^3-3a^2x\) (\(a>0\)). Vergleiche mit der Musterlösung.</p>
+      <div class="btnrow"><button class="act ghost" data-sol>Lösung &amp; Erklärung</button></div>
+      <div class="solution">
+        <h4>Lösung</h4>
+        <p class="step">Tiefpunkt: \(T(a\mid -2a^3)\), d. h. \(x=a\) und \(y=-2a^3\).</p>
+        <p class="step">Parameter eliminieren: \(a=x\) einsetzen in \(y=-2a^3\Rightarrow y=-2x^3\).</p>
+        <p class="step">Die Tiefpunkte liegen alle auf der Kurve \(y=-2x^3\) (für \(x>0\)).</p>
+        <div class="why">Rezept für Ortskurven: Koordinaten des wandernden Punktes als \(x=\dots(a)\), \(y=\dots(a)\) schreiben, \(a\) aus der ersten Gleichung freistellen und in die zweite einsetzen.</div>
+      </div>
+    </div>
+
+    <div class="task" data-id="f5">
+      <div class="task-head"><span class="task-num">5</span><span class="level abi">Abitur-Niveau</span>
+        <label class="done"><input type="checkbox"> erledigt</label></div>
+      <p><em>(nach Abitur NRW, Stil/Thema)</em> Gegeben die Schar \(f_a(x)=x^3-3a^2x\) mit \(a>0\). Für welchen Parameter \(a\) liegt der Tiefpunkt auf der Geraden \(y=-16\)? Gib den Wert von <strong>\(a\)</strong> ein.</p>
+      <div class="answer-row">
+        <input class="num" data-answer="2" data-tol="0.001" placeholder="a =" aria-label="Antwort">
+        <button class="act check">Prüfen</button><span class="mark"></span>
+        <span class="feedback"></span>
+      </div>
+      <div class="btnrow"><button class="act ghost" data-sol>Lösung &amp; Erklärung</button></div>
+      <div class="solution">
+        <h4>Lösung</h4>
+        <p class="step">Tiefpunkt: \(T(a\mid -2a^3)\). Bedingung: \(y\)-Koordinate \(=-16\).</p>
+        <p class="step">\(-2a^3=-16\Rightarrow a^3=8\Rightarrow a=2\) (mit \(a>0\)).</p>
+        <p class="step">Probe: \(T(2\mid -2\cdot 8)=T(2\mid -16)\) ✓.</p>
+        <div class="why">Solche Aufgaben verbinden Scharuntersuchung mit einer Zusatzbedingung — erst den allgemeinen Punkt bestimmen, dann die Bedingung als Gleichung im Parameter lösen.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ KAPITEL 2 BAND ============ -->
+<section>
+  <div class="wrap">
+    <div class="chapter-head" id="kap2">
+      <div class="knum">Kapitel 2</div>
+      <h2>Integralrechnung</h2>
+      <p>Von der Änderungsrate zum Bestand, der Integralbegriff als Grenzwert von Produktsummen, der Hauptsatz, Stammfunktionen, Flächen &amp; Mittelwerte sowie uneigentliche Integrale und Rotationskörper.</p>
+      <div class="chapter-toc">
+        <a href="#bestand">Änderungsrate → Bestand</a>
+        <a href="#stammfunktion">Stammfunktionen</a>
+        <a href="#hauptsatz">Hauptsatz</a>
+        <a href="#flaechen">Flächen &amp; Mittelwert</a>
+        <a href="#uneigentlich">Uneigentlich &amp; Rotation</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 2.1 · BESTAND ============ -->
+<section id="bestand">
+  <div class="wrap">
+    <span class="section-tag">1 · Von der Änderungsrate zum Bestand</span>
+    <div class="card">
+      <h2>Aufsummieren statt ableiten</h2>
+      <p>Die Differentialrechnung fragt: „Wie schnell ändert sich etwas?" Die Integralrechnung dreht den Spieß um: <strong>Aus einer Änderungsrate den Bestand rekonstruieren.</strong> Kennst du die Zuflussrate zu einem See, kannst du die zugeflossene Wassermenge bestimmen — geometrisch ist das die <strong>Fläche</strong> unter dem Graphen der Rate. Die Idee dahinter: den Zeitraum in schmale Streifen zerlegen, jeden durch ein Rechteck „Rate × Streifenbreite" nähern und aufsummieren. Für immer schmalere Streifen strebt diese <strong>Produktsumme</strong> gegen das <strong>Integral</strong>.</p>
+      <div class="merk">
+        <h4>∫ Der Integralbegriff</h4>
+        <ul>
+          <li>Das bestimmte Integral \(\displaystyle\int_a^b f(x)\,dx\) ist der <strong>Grenzwert von Produktsummen</strong> \(\sum f(x_i)\cdot\Delta x\).</li>
+          <li>Ist \(f(x)\ge 0\), so ist es der <strong>Flächeninhalt</strong> zwischen Graph und \(x\)-Achse über \([a,b]\).</li>
+          <li>Steht \(f\) für eine <em>Rate</em> (z. B. Zufluss pro Zeit), so ist das Integral der <strong>rekonstruierte Bestand</strong> (z. B. die Gesamtmenge).</li>
+        </ul>
+      </div>
+
+      <div class="figure">
+        <div id="jxg6" class="jxgbox"></div>
+        <p class="ctrl">Erhöhe die Streifenanzahl \(n\) mit dem Schieberegler und beobachte, wie die Produktsumme dem Integral näherkommt.</p>
+        <p class="figcap">Abb. 6 — Produktsumme (Rechtecke) zur Näherung von \(\int_0^4 (\tfrac14 x^2+1)\,dx=\tfrac{28}{3}\approx 9{,}33\). Je mehr Streifen, desto genauer.</p>
+      </div>
+
+      <div class="fehler">
+        <h4>⚠️ Häufige Stolperfallen</h4>
+        <ul>
+          <li>Eine <em>Rate</em> (z. B. Liter <strong>pro</strong> Minute) ist nicht der Bestand selbst — erst das Integral der Rate liefert die Menge.</li>
+          <li>Notation immer vollständig schreiben: \(\displaystyle\int_a^b f(x)\,dx\) — <strong>mit Grenzen und \(dx\)</strong>. Ein Integralzeichen ohne \(dx\) ist unvollständig.</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>Übungen — Änderungsrate &amp; Bestand</h3>
+
+    <div class="task" data-id="bg1">
+      <div class="task-head"><span class="task-num">1</span><span class="level basal">Basal</span>
+        <label class="done"><input type="checkbox"> erledigt</label></div>
+      <p>Ein Behälter wird mit konstanter Rate \(3\ \tfrac{\text{l}}{\text{min}}\) befüllt. Welche Wassermenge (in Litern) ist nach \(5\) Minuten zugeflossen?</p>
+      <div class="answer-row">
+        <input class="num" data-answer="15" data-tol="0.001" placeholder="Menge =" aria-label="Antwort">
+        <button class="act check">Prüfen</button><span class="mark"></span><span class="unit">l</span>
+        <span class="feedback"></span>
+      </div>
+      <div class="btnrow"><button class="act ghost" data-sol>Lösung &amp; Erklärung</button></div>
+      <div class="solution">
+        <h4>Lösung</h4>
+        <p class="step">Konstante Rate \(\Rightarrow\) Menge \(=\) Rate \(\times\) Zeit \(=3\cdot 5=15\) Liter.</p>
+        <p class="step">Geometrisch: Fläche des Rechtecks mit Höhe \(3\) und Breite \(5\): \(\int_0^5 3\,dt=15\).</p>
+        <div class="why">Bei konstanter Rate ist das Integral trivial die Rechteckfläche — der einfachste Spezialfall der Bestandsrekonstruktion.</div>
+      </div>
+    </div>
+
+    <div class="task" data-id="bg2">
+      <div class="task-head"><span class="task-num">2</span><span class="level basal">Basal</span>
+        <label class="done"><input type="checkbox"> erledigt</label></div>
+      <p>Was beschreibt \(\displaystyle\int_a^b f(x)\,dx\) geometrisch, wenn \(f(x)\ge 0\) auf \([a,b]\) gilt?</p>
+      <div class="mc" data-answer="2">
+        <label class="opt"><input type="radio" name="mc-bg2"><span>die Steigung des Graphen an der Stelle \(b\)</span></label>
+        <label class="opt"><input type="radio" name="mc-bg2"><span>den Flächeninhalt zwischen Graph und \(x\)-Achse von \(a\) bis \(b\)</span></label>
+        <label class="opt"><input type="radio" name="mc-bg2"><span>die Länge des Graphen von \(a\) bis \(b\)</span></label>
+      </div>
+      <div class="btnrow"><button class="act check-mc">Prüfen</button><span class="mark"></span>
+        <span class="feedback"></span>
+        <button class="act ghost" data-sol>Lösung &amp; Erklärung</button></div>
+      <div class="solution">
+        <h4>Lösung</h4>
+        <p class="step">Für \(f\ge 0\) ist das bestimmte Integral der <strong>Flächeninhalt</strong> zwischen Graph und \(x\)-Achse über \([a,b]\).</p>
+        <div class="why">Die Steigung liefert die Ableitung, nicht das Integral — Differenzieren und Integrieren sind Gegenspieler.</div>
+      </div>
+    </div>
+
+    <div class="task" data-id="bg3">
+      <div class="task-head"><span class="task-num">3</span><span class="level mittel">Mittel</span>
+        <label class="done"><input type="checkbox"> erledigt</label></div>
+      <p>Die Zuflussrate ist \(f(t)=2t\) (in \(\tfrac{\text{l}}{\text{min}}\)). Welche Wassermenge (in Litern) fließt in den ersten \(3\) Minuten zu?</p>
+      <div class="answer-row">
+        <input class="num" data-answer="9" data-tol="0.001" placeholder="Menge =" aria-label="Antwort">
+        <button class="act check">Prüfen</button><span class="mark"></span><span class="unit">l</span>
+        <span class="feedback"></span>
+      </div>
+      <div class="btnrow"><button class="act ghost" data-sol>Lösung &amp; Erklärung</button></div>
+      <div class="solution">
+        <h4>Lösung</h4>
+        <p class="step">Die Fläche unter \(f(t)=2t\) über \([0,3]\) ist ein Dreieck: \(\tfrac12\cdot 3\cdot 6=9\).</p>
+        <p class="step">Mit Integral: \(\displaystyle\int_0^3 2t\,dt=\big[t^2\big]_0^3=9\) Liter.</p>
+        <div class="why">Lineare Raten führen auf Dreiecks-/Trapezflächen — du kannst sie geometrisch <em>oder</em> per Integral lösen; beide Wege müssen übereinstimmen.</div>
+      </div>
+    </div>
+
+    <div class="task" data-id="bg5">
+      <div class="task-head"><span class="task-num">4</span><span class="level abi">Abitur-Niveau</span>
+        <label class="done"><input type="checkbox"> erledigt</label></div>
+      <p><em>(nach Abitur NRW, Stil/Thema)</em> Die Zuflussrate zu einem Speichersee ist \(z(t)=-t^2+4t\) (in \(\tfrac{\text{Mio m}^3}{\text{Monat}}\)) für \(0\le t\le 4\). Welche Wassermenge fließt in diesen \(4\) Monaten insgesamt zu? Vergleiche mit der Musterlösung.</p>
+      <div class="btnrow"><button class="act ghost" data-sol>Lösung &amp; Erklärung</button></div>
+      <div class="solution">
+        <h4>Lösung</h4>
+        <p class="step">Gesamtmenge \(=\displaystyle\int_0^4 (-t^2+4t)\,dt\).</p>
+        <p class="step">Stammfunktion: \(Z(t)=-\tfrac{t^3}{3}+2t^2\).</p>
+        <p class="step">\(Z(4)-Z(0)=\big(-\tfrac{64}{3}+32\big)-0=\tfrac{32}{3}\approx 10{,}67\) Mio m³.</p>
+        <div class="why">Erst die Rate erkennen, dann integrieren. Die Einheit der Fläche ist \(\tfrac{\text{Mio m}^3}{\text{Monat}}\cdot\text{Monat}=\text{Mio m}^3\) — eine Menge, kein Tempo.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 2.2 · STAMMFUNKTIONEN ============ -->
+<section id="stammfunktion">
+  <div class="wrap">
+    <span class="section-tag">2 · Stammfunktionen</span>
+    <div class="card">
+      <h2>Ableiten rückwärts</h2>
+      <p>Eine <strong>Stammfunktion</strong> \(F\) von \(f\) ist eine Funktion, deren Ableitung wieder \(f\) ergibt: \(F'(x)=f(x)\). Da die Ableitung einer Konstanten \(0\) ist, gibt es immer <em>unendlich viele</em> Stammfunktionen, die sich nur um eine Konstante \(C\) unterscheiden. Man schreibt das <strong>unbestimmte Integral</strong> \(\displaystyle\int f(x)\,dx=F(x)+C\).</p>
+      <div class="merk">
+        <h4>📋 Grundregeln (ganzrational)</h4>
+        <ul>
+          <li><strong>Potenzregel rückwärts:</strong> \(\displaystyle\int x^n\,dx=\frac{x^{\,n+1}}{n+1}+C\) (für \(n\neq -1\)).</li>
+          <li><strong>Faktor &amp; Summe:</strong> \(\displaystyle\int c\cdot f\,dx=c\int f\,dx\) und \(\displaystyle\int (f+g)\,dx=\int f\,dx+\int g\,dx\).</li>
+          <li><strong>Konstante:</strong> \(\displaystyle\int c\,dx=c\cdot x+C\).</li>
+          <li><strong>Probe:</strong> immer \(F\) ableiten — kommt \(f\) heraus, stimmt's.</li>
+        </ul>
+      </div>
+
+      <div class="figure">
+        <div id="jxg7" class="jxgbox"></div>
+        <p class="ctrl">Ziehe den Punkt \(x\): die schraffierte Fläche von \(0\) bis \(x\) ist der Wert der Stammfunktion \(A(x)\).</p>
+        <p class="figcap">Abb. 7 — Die <strong>Flächeninhaltsfunktion</strong> \(A(x)=\int_0^x f(t)\,dt\) zu \(f(x)=\tfrac12 x+1\). Die wandernde Fläche „misst" gerade \(A(x)=\tfrac14 x^2+x\) — eine Stammfunktion von \(f\).</p>
+      </div>
+
+      <div class="fehler">
+        <h4>⚠️ Häufige Stolperfallen</h4>
+        <ul>
+          <li>Beim unbestimmten Integral das \(+C\) nicht vergessen.</li>
+          <li>Exponent \(+1\) und durch den <em>neuen</em> Exponenten teilen — nicht durch den alten.</li>
+          <li>\(\int x^{-1}\,dx\) folgt <em>nicht</em> der Potenzregel (Sonderfall \(\ln\), kommt in Kapitel 3).</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>Übungen — Stammfunktionen</h3>
+
+    <div class="task" data-id="sf1">
+      <div class="task-head"><span class="task-num">1</span><span class="level basal">Basal</span>
+        <label class="done"><input type="checkbox"> erledigt</label></div>
+      <p>Welche Funktion ist eine Stammfunktion von \(f(x)=4x^3\)?</p>
+      <div class="mc" data-answer="1">
+        <label class="opt"><input type="radio" name="mc-sf1"><span>\(F(x)=x^4\)</span></label>
+        <label class="opt"><input type="radio" name="mc-sf1"><span>\(F(x)=12x^2\)</span></label>
+        <label class="opt"><input type="radio" name="mc-sf1"><span>\(F(x)=4x^4\)</span></label>
+        <label class="opt"><input type="radio" name="mc-sf1"><span>\(F(x)=\tfrac14 x^4\)</span></label>
+      </div>
+      <div class="btnrow"><button class="act check-mc">Prüfen</button><span class="mark"></span>
+        <span class="feedback"></span>
+        <button class="act ghost" data-sol>Lösung &amp; Erklärung</button></div>
+      <div class="solution">
+        <h4>Lösung</h4>
+        <p class="step">Probe: \((x^4)'=4x^3=f(x)\) ✓.</p>
+        <p class="step">Formal: \(\int 4x^3\,dx=4\cdot\tfrac{x^4}{4}=x^4\,(+C)\).</p>
+        <div class="why">Im Zweifel jede Antwortoption ableiten — diejenige, deren Ableitung \(f\) ergibt, ist die Stammfunktion.</div>
+      </div>
+    </div>
+
+    <div class="task" data-id="sf2">
+      <div class="task-head"><span class="task-num">2</span><span class="level basal">Basal</span>
+        <label class="done"><input type="checkbox"> erledigt</label></div>
+      <p>\(F(x)=x^3\) ist eine Stammfunktion von \(f\). Berechne \(f(2)\).</p>
+      <div class="answer-row">
+        <input class="num" data-answer="12" data-tol="0.001" placeholder="f(2) =" aria-label="Antwort">
+        <button class="act check">Prüfen</button><span class="mark"></span>
+        <span class="feedback"></span>
+      </div>
+      <div class="btnrow"><button class="act ghost" data-sol>Lösung &amp; Erklärung</button></div>
+      <div class="solution">
+        <h4>Lösung</h4>
+        <p class="step">\(f(x)=F'(x)=3x^2\), also \(f(2)=3\cdot 4=12\).</p>
+        <div class="why">Stammfunktion und Funktion hängen über die Ableitung zusammen: \(f=F'\). Hier also einfach \(F\) ableiten.</div>
+      </div>
+    </div>
+
+    <div class="task" data-id="sf3">
+      <div class="task-head"><span class="task-num">3</span><span class="level mittel">Mittel</span>
+        <label class="done"><input type="checkbox"> erledigt</label></div>
+      <p>Bestimme die Stammfunktion \(F\) von \(f(x)=3x^2-4x\) mit \(F(0)=1\) und gib \(F(2)\) ein.</p>
+      <div class="answer-row">
+        <input class="num" data-answer="1" data-tol="0.001" placeholder="F(2) =" aria-label="Antwort">
+        <button class="act check">Prüfen</button><span class="mark"></span>
+        <span class="feedback"></span>
+      </div>
+      <div class="btnrow"><button class="act ghost" data-sol>Lösung &amp; Erklärung</button></div>
+      <div class="solution">
+        <h4>Lösung</h4>
+        <p class="step">\(F(x)=x^3-2x^2+C\).</p>
+        <p class="step">\(F(0)=C=1\Rightarrow F(x)=x^3-2x^2+1\).</p>
+        <p class="step">\(F(2)=8-8+1=1\).</p>
+        <div class="why">Die Bedingung \(F(0)=1\) legt die Integrationskonstante \(C\) fest — so wird aus den unendlich vielen Stammfunktionen genau eine.</div>
+      </div>
+    </div>
+
+    <div class="task" data-id="sf4">
+      <div class="task-head"><span class="task-num">4</span><span class="level mittel">Mittel</span>
+        <label class="done"><input type="checkbox"> erledigt</label></div>
+      <p>Welche Funktion ist eine Stammfunktion von \(f(x)=x^3-x\)?</p>
+      <div class="mc" data-answer="3">
+        <label class="opt"><input type="radio" name="mc-sf4"><span>\(F(x)=3x^2-1\)</span></label>
+        <label class="opt"><input type="radio" name="mc-sf4"><span>\(F(x)=x^4-x^2\)</span></label>
+        <label class="opt"><input type="radio" name="mc-sf4"><span>\(F(x)=\tfrac14 x^4-\tfrac12 x^2\)</span></label>
+        <label class="opt"><input type="radio" name="mc-sf4"><span>\(F(x)=\tfrac13 x^4-\tfrac12 x^2\)</span></label>
+      </div>
+      <div class="btnrow"><button class="act check-mc">Prüfen</button><span class="mark"></span>
+        <span class="feedback"></span>
+        <button class="act ghost" data-sol>Lösung &amp; Erklärung</button></div>
+      <div class="solution">
+        <h4>Lösung</h4>
+        <p class="step">\(\int(x^3-x)\,dx=\tfrac{x^4}{4}-\tfrac{x^2}{2}+C\).</p>
+        <p class="step">Probe: \(\big(\tfrac14 x^4-\tfrac12 x^2\big)'=x^3-x\) ✓.</p>
+        <div class="why">Jeden Summanden einzeln integrieren: Exponent erhöhen, durch den neuen Exponenten teilen.</div>
+      </div>
+    </div>
+
+    <div class="task" data-id="sf5">
+      <div class="task-head"><span class="task-num">5</span><span class="level anspruch">Anspruchsvoll</span>
+        <label class="done"><input type="checkbox"> erledigt</label></div>
+      <p>Eine Funktion \(f\) hat die Ableitung \(f'(x)=6x-2\) und es gilt \(f(1)=5\). Bestimme \(f(x)\) und gib \(f(0)\) ein.</p>
+      <div class="answer-row">
+        <input class="num" data-answer="4" data-tol="0.001" placeholder="f(0) =" aria-label="Antwort">
+        <button class="act check">Prüfen</button><span class="mark"></span>
+        <span class="feedback"></span>
+      </div>
+      <div class="btnrow"><button class="act ghost" data-sol>Lösung &amp; Erklärung</button></div>
+      <div class="solution">
+        <h4>Lösung</h4>
+        <p class="step">\(f(x)=\int(6x-2)\,dx=3x^2-2x+C\).</p>
+        <p class="step">\(f(1)=3-2+C=1+C=5\Rightarrow C=4\), also \(f(x)=3x^2-2x+4\).</p>
+        <p class="step">\(f(0)=4\).</p>
+        <div class="why">Aus der Ableitung die Funktion „zurückgewinnen" ist Integrieren — die Bedingung \(f(1)=5\) fixiert \(C\). Genau dasselbe Prinzip wie bei der Bestandsrekonstruktion.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 2.3 · HAUPTSATZ ============ -->
+<section id="hauptsatz">
+  <div class="wrap">
+    <span class="section-tag">3 · Hauptsatz &amp; bestimmtes Integral</span>
+    <div class="card">
+      <h2>Die Brücke zwischen Ableiten und Integrieren</h2>
+      <p>Der <strong>Hauptsatz der Differential- und Integralrechnung (HDI)</strong> verbindet beide Welten: Ein bestimmtes Integral berechnet man, indem man eine <em>beliebige</em> Stammfunktion an den Grenzen auswertet und die Werte subtrahiert.</p>
+      <div class="merk">
+        <h4>⭐ Der Hauptsatz</h4>
+        <ul>
+          <li>\(\displaystyle\int_a^b f(x)\,dx=\Big[F(x)\Big]_a^b=F(b)-F(a)\), wobei \(F'=f\).</li>
+          <li>Das Ergebnis ist <strong>unabhängig</strong> von der Wahl der Konstanten \(C\) (sie kürzt sich weg).</li>
+          <li><strong>Vorzeichen:</strong> Flächen <em>unterhalb</em> der \(x\)-Achse gehen <strong>negativ</strong> in das Integral ein.</li>
+          <li>Eigenschaften: \(\int_a^a f=0\) und \(\int_a^b f=-\int_b^a f\).</li>
+        </ul>
+      </div>
+
+      <div class="figure">
+        <div id="jxg8" class="jxgbox"></div>
+        <p class="ctrl">Verschiebe die obere Grenze \(b\): der angezeigte Integralwert ist \(F(b)-F(0)\).</p>
+        <p class="figcap">Abb. 8 — Das bestimmte Integral \(\int_0^b f(x)\,dx\) als (orientierte) Fläche unter \(f(x)=-\tfrac14 x^2+2\). Wo \(f<0\) ist, wird die Fläche abgezogen.</p>
+      </div>
+
+      <div class="fehler">
+        <h4>⚠️ Häufige Stolperfallen</h4>
+        <ul>
+          <li>Reihenfolge beachten: \(F(b)-F(a)\), nicht umgekehrt.</li>
+          <li>Ein Integralwert von \(0\) heißt <em>nicht</em>, dass keine Fläche da ist — positive und negative Anteile können sich aufheben (siehe Flächenberechnung, Abschnitt 4).</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>Übungen — Hauptsatz</h3>
+
+    <div class="task" data-id="hs1">
+      <div class="task-head"><span class="task-num">1</span><span class="level basal">Basal</span>
+        <label class="done"><input type="checkbox"> erledigt</label></div>
+      <p>Berechne \(\displaystyle\int_0^2 x\,dx\).</p>
+      <div class="answer-row">
+        <input class="num" data-answer="2" data-tol="0.001" placeholder="Wert =" aria-label="Antwort">
+        <button class="act check">Prüfen</button><span class="mark"></span>
+        <span class="feedback"></span>
+      </div>
+      <div class="btnrow"><button class="act ghost" data-sol>Lösung &amp; Erklärung</button></div>
+      <div class="solution">
+        <h4>Lösung</h4>
+        <p class="step">\(\displaystyle\int_0^2 x\,dx=\Big[\tfrac{x^2}{2}\Big]_0^2=\tfrac{4}{2}-0=2\).</p>
+        <div class="why">Kontrolle: Dreieck mit Grundseite \(2\) und Höhe \(2\): \(\tfrac12\cdot 2\cdot 2=2\) ✓.</div>
+      </div>
+    </div>
+
+    <div class="task" data-id="hs2">
+      <div class="task-head"><span class="task-num">2</span><span class="level basal">Basal</span>
+        <label class="done"><input type="checkbox"> erledigt</label></div>
+      <p>Berechne \(\displaystyle\int_1^3 2x\,dx\).</p>
+      <div class="answer-row">
+        <input class="num" data-answer="8" data-tol="0.001" placeholder="Wert =" aria-label="Antwort">
+        <button class="act check">Prüfen</button><span class="mark"></span>
+        <span class="feedback"></span>
+      </div>
+      <div class="btnrow"><button class="act ghost" data-sol>Lösung &amp; Erklärung</button></div>
+      <div class="solution">
+        <h4>Lösung</h4>
+        <p class="step">\(\displaystyle\int_1^3 2x\,dx=\Big[x^2\Big]_1^3=9-1=8\).</p>
+        <div class="why">Obere minus untere Grenze einsetzen — die Konstante \(C\) bräuchte man gar nicht, sie fiele heraus.</div>
+      </div>
+    </div>
+
+    <div class="task" data-id="hs3">
+      <div class="task-head"><span class="task-num">3</span><span class="level mittel">Mittel</span>
+        <label class="done"><input type="checkbox"> erledigt</label></div>
+      <p>Berechne \(\displaystyle\int_{-1}^{1} x^3\,dx\).</p>
+      <div class="answer-row">
+        <input class="num" data-answer="0" data-tol="0.001" placeholder="Wert =" aria-label="Antwort">
+        <button class="act check">Prüfen</button><span class="mark"></span>
+        <span class="feedback"></span>
+      </div>
+      <div class="btnrow"><button class="act ghost" data-sol>Lösung &amp; Erklärung</button></div>
+      <div class="solution">
+        <h4>Lösung</h4>
+        <p class="step">\(\displaystyle\int_{-1}^{1} x^3\,dx=\Big[\tfrac{x^4}{4}\Big]_{-1}^{1}=\tfrac14-\tfrac14=0\).</p>
+        <div class="why">\(x^3\) ist punktsymmetrisch: Die Fläche links der \(y\)-Achse (negativ) hebt die rechts (positiv) exakt auf. Der Integralwert \(0\) bedeutet hier <em>nicht</em> „keine Fläche".</div>
+      </div>
+    </div>
+
+    <div class="task" data-id="hs4">
+      <div class="task-head"><span class="task-num">4</span><span class="level mittel">Mittel</span>
+        <label class="done"><input type="checkbox"> erledigt</label></div>
+      <p>Berechne \(\displaystyle\int_0^3 (x^2-2x)\,dx\).</p>
+      <div class="answer-row">
+        <input class="num" data-answer="0" data-tol="0.001" placeholder="Wert =" aria-label="Antwort">
+        <button class="act check">Prüfen</button><span class="mark"></span>
+        <span class="feedback"></span>
+      </div>
+      <div class="btnrow"><button class="act ghost" data-sol>Lösung &amp; Erklärung</button></div>
+      <div class="solution">
+        <h4>Lösung</h4>
+        <p class="step">Stammfunktion: \(F(x)=\tfrac{x^3}{3}-x^2\).</p>
+        <p class="step">\(F(3)-F(0)=(9-9)-0=0\).</p>
+        <div class="why">Zwischen \(0\) und \(2\) liegt der Graph unter der Achse (negativer Beitrag), zwischen \(2\) und \(3\) darüber — beides hebt sich hier auf. Für den <em>Flächeninhalt</em> müsste man an der Nullstelle \(x=2\) aufteilen (Abschnitt 4).</div>
+      </div>
+    </div>
+
+    <div class="task" data-id="hs5">
+      <div class="task-head"><span class="task-num">5</span><span class="level abi">Abitur-Niveau</span>
+        <label class="done"><input type="checkbox"> erledigt</label></div>
+      <p><em>(nach Abitur NRW, Stil/Thema)</em> Gegeben \(f(x)=-x^2+4\). Bestimme \(\displaystyle\int_{-2}^{2} f(x)\,dx\) und deute das Ergebnis (der Graph liegt auf \([-2,2]\) ganz oberhalb der \(x\)-Achse). Gib den Wert ein.</p>
+      <div class="answer-row">
+        <input class="num" data-answer="10.6667" data-tol="0.01" placeholder="Wert (≈) =" aria-label="Antwort">
+        <button class="act check">Prüfen</button><span class="mark"></span>
+        <span class="feedback"></span>
+      </div>
+      <div class="btnrow"><button class="act ghost" data-sol>Lösung &amp; Erklärung</button></div>
+      <div class="solution">
+        <h4>Lösung</h4>
+        <p class="step">Stammfunktion: \(F(x)=-\tfrac{x^3}{3}+4x\).</p>
+        <p class="step">\(F(2)=-\tfrac{8}{3}+8=\tfrac{16}{3}\); \(F(-2)=\tfrac{8}{3}-8=-\tfrac{16}{3}\).</p>
+        <p class="step">\(\displaystyle\int_{-2}^{2} f\,dx=\tfrac{16}{3}-\big(-\tfrac{16}{3}\big)=\tfrac{32}{3}\approx 10{,}67\).</p>
+        <div class="why">Da \(f\ge 0\) auf \([-2,2]\), ist der Integralwert direkt der Flächeninhalt zwischen Parabel und \(x\)-Achse. (Eingabe: \(32/3\) oder \(10{,}67\) wird akzeptiert.)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 2.4 · FLÄCHEN ============ -->
+<section id="flaechen">
+  <div class="wrap">
+    <span class="section-tag">4 · Flächen &amp; Mittelwert</span>
+    <div class="card">
+      <h2>Echte Flächen — Vorzeichen im Griff</h2>
+      <p>Weil Flächen unter der \(x\)-Achse negativ ins Integral eingehen, muss man beim <strong>Flächeninhalt</strong> aufpassen: An jeder Nullstelle im Intervall wird <em>aufgeteilt</em> und jeder Teil als Betrag genommen. Bei der Fläche <strong>zwischen zwei Kurven</strong> integriert man die Differenz „oben minus unten".</p>
+      <div class="merk">
+        <h4>📐 Flächen &amp; Mittelwert</h4>
+        <ul>
+          <li><strong>Fläche zur \(x\)-Achse:</strong> An jeder <em>inneren</em> Nullstelle \(x_1\) aufteilen und die Teilintegrale betragsmäßig addieren: \(\displaystyle A=\Big|\int_a^{x_1} f(x)\,dx\Big|+\Big|\int_{x_1}^{b} f(x)\,dx\Big|\) (bei mehreren Nullstellen entsprechend weiter aufteilen).</li>
+          <li><strong>Fläche zwischen \(f\) und \(g\)</strong> (mit \(f(x)\ge g(x)\) auf \([a,b]\)): \(\displaystyle A=\int_a^b\big(f(x)-g(x)\big)\,dx\) — „<em>obere minus untere</em> Kurve"; die Grenzen \(a,b\) sind die Schnittstellen (aus \(f(x)=g(x)\)).</li>
+          <li><strong>Mittelwert</strong> von \(f\) auf \([a,b]\): \(\displaystyle \bar f=\frac{1}{b-a}\int_a^b f(x)\,dx\).</li>
+        </ul>
+      </div>
+
+      <div class="worked">
+        <h4>Durchgerechnetes Beispiel — Fläche zur x-Achse</h4>
+        <p><strong>Welchen Flächeninhalt schließt der Graph von \(f(x)=x^2-2x\) mit der \(x\)-Achse über \([0,3]\) ein?</strong></p>
+        <p class="step"><strong>Nullstellen bestimmen:</strong> \(x^2-2x=x(x-2)=0\Rightarrow x=0\) und \(x=2\). Im Innern von \([0,3]\) liegt \(x=2\) — dort wird aufgeteilt.</p>
+        <p class="step"><strong>Teilintegrale berechnen</strong> (Stammfunktion \(F(x)=\tfrac{x^3}{3}-x^2\)):</p>
+        <p class="step">\(\displaystyle\int_0^2 \big(x^2-2x\big)\,dx=F(2)-F(0)=-\tfrac43\qquad\quad \displaystyle\int_2^3 \big(x^2-2x\big)\,dx=F(3)-F(2)=+\tfrac43\)</p>
+        <p class="step"><strong>Beträge addieren:</strong> \(A=\Big|-\tfrac43\Big|+\Big|+\tfrac43\Big|=\tfrac83\approx 2{,}67\).</p>
+        <p class="step"><strong>Zum Vergleich:</strong> \(\displaystyle\int_0^3 \big(x^2-2x\big)\,dx=0\) — die Flächenstücke unter- und oberhalb der Achse heben sich auf. <em>Integralwert \(\neq\) Flächeninhalt!</em></p>
+      </div>
+
+      <div class="worked">
+        <h4>Durchgerechnetes Beispiel — Fläche zwischen zwei Kurven</h4>
+        <p><strong>Bestimme den Inhalt der Fläche, die die Graphen von \(f(x)=2x-x^2\) und \(g(x)=x^2\) einschließen.</strong></p>
+        <p class="step"><strong>Schnittstellen</strong> (Ansatz \(f(x)=g(x)\)): \(2x-x^2=x^2 \Rightarrow 2x-2x^2=0 \Rightarrow 2x(1-x)=0 \Rightarrow x_1=0,\ x_2=1\).</p>
+        <p class="step"><strong>Wer liegt oben?</strong> Testwert \(x=\tfrac12\): \(f\big(\tfrac12\big)=\tfrac34 > g\big(\tfrac12\big)=\tfrac14\) — also liegt \(f\) oben.</p>
+        <p class="step"><strong>Differenz „oben minus unten" integrieren:</strong></p>
+        <p class="step">\(\displaystyle A=\int_0^1\big(f(x)-g(x)\big)\,dx=\int_0^1\big(2x-2x^2\big)\,dx=\Big[x^2-\tfrac23x^3\Big]_0^1=1-\tfrac23=\tfrac13\)</p>
+      </div>
+
+      <div class="figure">
+        <div id="jxg9" class="jxgbox"></div>
+        <p class="figcap">Abb. 9 — Fläche zwischen der Geraden \(f(x)=x+2\) und der Parabel \(g(x)=x^2\). Schnittstellen bei \(x=-1\) und \(x=2\); eingeschlossene Fläche \(A=\int_{-1}^{2}(x+2-x^2)\,dx=\tfrac92\).</p>
+      </div>
+
+      <div class="fehler">
+        <h4>⚠️ Häufige Stolperfallen</h4>
+        <ul>
+          <li>Für den <strong>Flächeninhalt</strong> nicht einfach das Integral nehmen — erst an den Nullstellen aufteilen, sonst heben sich Teile auf.</li>
+          <li>Bei Flächen zwischen Kurven zuerst die <strong>Schnittstellen</strong> bestimmen (\(f=g\) setzen) und klären, welche Kurve oben liegt.</li>
+          <li>Den Mittelwert nicht mit dem bloßen Integral verwechseln — er ist das Integral <em>geteilt durch die Intervalllänge</em>.</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>Übungen — Flächen &amp; Mittelwert</h3>
+
+    <div class="task" data-id="fl1">
+      <div class="task-head"><span class="task-num">1</span><span class="level basal">Basal</span>
+        <label class="done"><input type="checkbox"> erledigt</label></div>
+      <p>Welchen Flächeninhalt schließt der Graph von \(f(x)=2\) mit der \(x\)-Achse über \([0,5]\) ein?</p>
+      <div class="answer-row">
+        <input class="num" data-answer="10" data-tol="0.001" placeholder="A =" aria-label="Antwort">
+        <button class="act check">Prüfen</button><span class="mark"></span>
+        <span class="feedback"></span>
+      </div>
+      <div class="btnrow"><button class="act ghost" data-sol>Lösung &amp; Erklärung</button></div>
+      <div class="solution">
+        <h4>Lösung</h4>
+        <p class="step">Rechteck: \(A=\displaystyle\int_0^5 2\,dx=\big[2x\big]_0^5=10\).</p>
+        <div class="why">Konstante Funktion \(\Rightarrow\) Rechteckfläche Höhe \(\times\) Breite \(=2\cdot 5=10\).</div>
+      </div>
+    </div>
+
+    <div class="task" data-id="fl2">
+      <div class="task-head"><span class="task-num">2</span><span class="level mittel">Mittel</span>
+        <label class="done"><input type="checkbox"> erledigt</label></div>
+      <p>Bestimme den Inhalt der Fläche, die die Gerade \(f(x)=x+2\) und die Parabel \(g(x)=x^2\) einschließen (siehe Abb. 9).</p>
+      <div class="answer-row">
+        <input class="num" data-answer="4.5" data-tol="0.001" placeholder="A =" aria-label="Antwort">
+        <button class="act check">Prüfen</button><span class="mark"></span>
+        <span class="feedback"></span>
+      </div>
+      <div class="btnrow"><button class="act ghost" data-sol>Lösung &amp; Erklärung</button></div>
+      <div class="solution">
+        <h4>Lösung</h4>
+        <p class="step"><strong>Schnittstellen:</strong> \(x+2=x^2\Rightarrow x^2-x-2=0\Rightarrow (x-2)(x+1)=0\Rightarrow x=-1;\,2\).</p>
+        <p class="step">Auf \([-1,2]\) liegt die Gerade oben: \(A=\displaystyle\int_{-1}^{2}\big(x+2-x^2\big)\,dx\).</p>
+        <p class="step">Stammfunktion: \(\tfrac{x^2}{2}+2x-\tfrac{x^3}{3}\). Einsetzen: \(\big(2+4-\tfrac83\big)-\big(\tfrac12-2+\tfrac13\big)=\tfrac{10}{3}-\big(-\tfrac76\big)=\tfrac{9}{2}\).</p>
+        <p class="step">\(A=\tfrac92=4{,}5\).</p>
+        <div class="why">„Oben minus unten" integrieren — so ist der Integrand auf dem ganzen Intervall \(\ge 0\), und das Vorzeichen-Problem entfällt automatisch.</div>
+      </div>
+    </div>
+
+    <div class="task" data-id="fl3">
+      <div class="task-head"><span class="task-num">3</span><span class="level mittel">Mittel</span>
+        <label class="done"><input type="checkbox"> erledigt</label></div>
+      <p>Welchen Flächeninhalt schließt der Graph von \(f(x)=x^2-1\) mit der \(x\)-Achse zwischen den Nullstellen ein? (Gib den exakten Wert ein, z. B. als Bruch.)</p>
+      <div class="answer-row">
+        <input class="num" data-answer="1.3333" data-tol="0.01" placeholder="A =" aria-label="Antwort">
+        <button class="act check">Prüfen</button><span class="mark"></span>
+        <span class="feedback"></span>
+      </div>
+      <div class="btnrow"><button class="act ghost" data-sol>Lösung &amp; Erklärung</button></div>
+      <div class="solution">
+        <h4>Lösung</h4>
+        <p class="step">Nullstellen: \(x^2-1=0\Rightarrow x=\pm 1\). Auf \((-1,1)\) liegt \(f\) <em>unter</em> der Achse.</p>
+        <p class="step">\(\displaystyle\int_{-1}^{1}(x^2-1)\,dx=\Big[\tfrac{x^3}{3}-x\Big]_{-1}^{1}=\big(\tfrac13-1\big)-\big(-\tfrac13+1\big)=-\tfrac43\).</p>
+        <p class="step">Flächeninhalt: \(A=\big|-\tfrac43\big|=\tfrac43\approx 1{,}33\).</p>
+        <div class="why">Das Integral ist negativ, weil die Fläche unter der Achse liegt — der Flächeninhalt ist der Betrag. (Eingabe \(4/3\) oder \(1{,}33\).)</div>
+      </div>
+    </div>
+
+    <div class="task" data-id="fl4">
+      <div class="task-head"><span class="task-num">4</span><span class="level mittel">Mittel</span>
+        <label class="done"><input type="checkbox"> erledigt</label></div>
+      <p>Berechne den <strong>Mittelwert</strong> der Funktion \(f(x)=x^2\) über dem Intervall \([0,3]\).</p>
+      <div class="answer-row">
+        <input class="num" data-answer="3" data-tol="0.001" placeholder="Mittelwert =" aria-label="Antwort">
+        <button class="act check">Prüfen</button><span class="mark"></span>
+        <span class="feedback"></span>
+      </div>
+      <div class="btnrow"><button class="act ghost" data-sol>Lösung &amp; Erklärung</button></div>
+      <div class="solution">
+        <h4>Lösung</h4>
+        <p class="step">\(\displaystyle\int_0^3 x^2\,dx=\Big[\tfrac{x^3}{3}\Big]_0^3=9\).</p>
+        <p class="step">\(\bar f=\dfrac{1}{3-0}\cdot 9=3\).</p>
+        <div class="why">Der Mittelwert ist die Höhe eines flächengleichen Rechtecks über \([0,3]\): \(3\cdot 3=9=\int_0^3 f\).</div>
+      </div>
+    </div>
+
+    <div class="task" data-id="fl5">
+      <div class="task-head"><span class="task-num">5</span><span class="level abi">Abitur-Niveau</span>
+        <label class="done"><input type="checkbox"> erledigt</label></div>
+      <p><em>(nach Abitur NRW, Stil/Thema)</em> Die Parabel \(f(x)=4-x^2\) und die \(x\)-Achse begrenzen eine Fläche. Bestimme deren Inhalt. Vergleiche mit der Musterlösung.</p>
+      <div class="btnrow"><button class="act ghost" data-sol>Lösung &amp; Erklärung</button></div>
+      <div class="solution">
+        <h4>Lösung</h4>
+        <p class="step">Nullstellen: \(4-x^2=0\Rightarrow x=\pm 2\). Auf \([-2,2]\) ist \(f\ge 0\).</p>
+        <p class="step">\(A=\displaystyle\int_{-2}^{2}(4-x^2)\,dx=\Big[4x-\tfrac{x^3}{3}\Big]_{-2}^{2}=\big(8-\tfrac83\big)-\big(-8+\tfrac83\big)=\tfrac{32}{3}\approx 10{,}67\).</p>
+        <div class="why">Symmetrie nutzen: \(A=2\int_0^2(4-x^2)\,dx\) spart Rechenarbeit und Vorzeichenfehler. Da \(f\ge 0\), ist hier Integral \(=\) Flächeninhalt.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 2.5 · UNEIGENTLICH & ROTATION ============ -->
+<section id="uneigentlich">
+  <div class="wrap">
+    <span class="section-tag">5 · Uneigentliche Integrale &amp; Rotationskörper</span>
+    <div class="card">
+      <h2>Unendliche Flächen und gedrehte Körper</h2>
+      <p>Zwei typische LK-Vertiefungen: <strong>Uneigentliche Integrale</strong> reichen bis ins Unendliche — man berechnet sie als Grenzwert. Und <strong>Rotationskörper</strong> entstehen, wenn eine Fläche um die \(x\)-Achse rotiert; ihr Volumen ergibt sich aus dem Integral über \(\big(f(x)\big)^2\).</p>
+      <div class="merk">
+        <h4>♾️ Zwei Werkzeuge</h4>
+        <ul>
+          <li><strong>Uneigentliches Integral:</strong> \(\displaystyle\int_a^{\infty} f(x)\,dx=\lim_{b\to\infty}\int_a^b f(x)\,dx\). Existiert der Grenzwert, ist die (unbegrenzte) Fläche endlich.</li>
+          <li><strong>Rotationskörper</strong> (Rotation um die \(x\)-Achse): \(\displaystyle V=\pi\int_a^b \big(f(x)\big)^2\,dx\).</li>
+          <li>Wichtig: erst \(\big(f(x)\big)^2\) bilden, dann integrieren — das umgeht hier komplizierte Integrationsverfahren.</li>
+        </ul>
+      </div>
+
+      <div class="figure">
+        <div id="jxg10" class="jxgbox"></div>
+        <p class="ctrl">Schiebe die obere Grenze \(b\) nach rechts: die Fläche unter \(\tfrac{1}{x^2}\) strebt gegen \(1\).</p>
+        <p class="figcap">Abb. 10 — Uneigentliches Integral \(\int_1^{\infty}\tfrac{1}{x^2}\,dx=1\). Obwohl die Fläche unendlich weit reicht, ist ihr Inhalt endlich.</p>
+      </div>
+
+      <div class="worked">
+        <h4>Durchgerechnetes Beispiel — Rotationskörper</h4>
+        <p><strong>Der Graph von \(f(x)=\sqrt{x}\) rotiert über \([0,4]\) um die \(x\)-Achse. Welches Volumen hat der entstehende Körper?</strong></p>
+        <p class="step"><strong>Formel ansetzen:</strong> \(\displaystyle V=\pi\int_0^4 \big(f(x)\big)^2\,dx\).</p>
+        <p class="step"><strong>Quadrieren:</strong> \(\big(\sqrt{x}\,\big)^2=x\) — aus der Wurzel wird ein einfaches Polynom.</p>
+        <p class="step"><strong>Integrieren:</strong> \(\displaystyle V=\pi\int_0^4 x\,dx=\pi\Big[\tfrac{x^2}{2}\Big]_0^4=\pi\cdot 8=8\pi\approx 25{,}1\).</p>
+        <p class="step"><strong>Anschauung:</strong> Jede Querschnitts-Scheibe an der Stelle \(x\) ist ein Kreis mit Radius \(r=f(x)\) und Fläche \(\pi r^2=\pi\big(f(x)\big)^2\). Das Integral „summiert" diese Scheibenflächen auf — genau das zeigt Abb. 11.</p>
+      </div>
+
+      <div class="figure">
+        <div id="jxg11" class="jxgbox"></div>
+        <p class="ctrl">Bewege den Schieberegler: Die rote Kreisscheibe ist der Querschnitt an der Stelle \(x\) — ihr Radius ist \(f(x)\).</p>
+        <p class="figcap">Abb. 11 — Der Rotationskörper zu \(f(x)=\sqrt{x}\) (Rotation um die \(x\)-Achse). Sein Volumen entsteht, indem die Scheibenflächen \(\pi\big(f(x)\big)^2\) von \(0\) bis \(4\) integriert werden: \(V=8\pi\).</p>
+      </div>
+
+      <div class="fehler">
+        <h4>⚠️ Häufige Stolperfallen</h4>
+        <ul>
+          <li>Beim Rotationsvolumen das \(\pi\) und das <strong>Quadrat</strong> nicht vergessen: \(V=\pi\int (f(x))^2\,dx\), nicht \(\pi\int f(x)\,dx\).</li>
+          <li>Nicht jedes uneigentliche Integral konvergiert — z. B. \(\int_1^\infty \tfrac1x\,dx\) divergiert. Immer den Grenzwert prüfen.</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>Übungen — Uneigentliche Integrale &amp; Rotation</h3>
+
+    <div class="task" data-id="ro1">
+      <div class="task-head"><span class="task-num">1</span><span class="level basal">Basal</span>
+        <label class="done"><input type="checkbox"> erledigt</label></div>
+      <p>Der Graph von \(f(x)=2\) rotiert über \([0,3]\) um die \(x\)-Achse (ein Zylinder). Das Volumen hat die Form \(V=k\cdot\pi\). Gib \(k\) ein.</p>
+      <div class="answer-row">
+        <input class="num" data-answer="12" data-tol="0.001" placeholder="k =" aria-label="Antwort">
+        <button class="act check">Prüfen</button><span class="mark"></span>
+        <span class="feedback"></span>
+      </div>
+      <div class="btnrow"><button class="act ghost" data-sol>Lösung &amp; Erklärung</button></div>
+      <div class="solution">
+        <h4>Lösung</h4>
+        <p class="step">\(V=\pi\displaystyle\int_0^3 2^2\,dx=\pi\int_0^3 4\,dx=\pi\big[4x\big]_0^3=12\pi\), also \(k=12\).</p>
+        <div class="why">Kontrolle mit der Zylinderformel \(V=\pi r^2 h=\pi\cdot 4\cdot 3=12\pi\) ✓ (Radius \(=f=2\), Höhe \(=3\)).</div>
+      </div>
+    </div>
+
+    <div class="task" data-id="ro2">
+      <div class="task-head"><span class="task-num">2</span><span class="level mittel">Mittel</span>
+        <label class="done"><input type="checkbox"> erledigt</label></div>
+      <p>Der Graph von \(f(x)=x\) rotiert über \([0,2]\) um die \(x\)-Achse (ein Kegel). Das Volumen ist \(V=k\cdot\pi\). Gib \(k\) ein (z. B. als Bruch).</p>
+      <div class="answer-row">
+        <input class="num" data-answer="2.6667" data-tol="0.01" placeholder="k =" aria-label="Antwort">
+        <button class="act check">Prüfen</button><span class="mark"></span>
+        <span class="feedback"></span>
+      </div>
+      <div class="btnrow"><button class="act ghost" data-sol>Lösung &amp; Erklärung</button></div>
+      <div class="solution">
+        <h4>Lösung</h4>
+        <p class="step">\(V=\pi\displaystyle\int_0^2 x^2\,dx=\pi\Big[\tfrac{x^3}{3}\Big]_0^2=\tfrac{8}{3}\pi\), also \(k=\tfrac83\approx 2{,}67\).</p>
+        <div class="why">Kontrolle mit der Kegelformel \(V=\tfrac13\pi r^2 h=\tfrac13\pi\cdot 4\cdot 2=\tfrac83\pi\) ✓. (Eingabe \(8/3\) oder \(2{,}67\).)</div>
+      </div>
+    </div>
+
+    <div class="task" data-id="ro3">
+      <div class="task-head"><span class="task-num">3</span><span class="level mittel">Mittel</span>
+        <label class="done"><input type="checkbox"> erledigt</label></div>
+      <p>Berechne das uneigentliche Integral \(\displaystyle\int_1^{\infty}\frac{1}{x^2}\,dx\).</p>
+      <div class="answer-row">
+        <input class="num" data-answer="1" data-tol="0.001" placeholder="Wert =" aria-label="Antwort">
+        <button class="act check">Prüfen</button><span class="mark"></span>
+        <span class="feedback"></span>
+      </div>
+      <div class="btnrow"><button class="act ghost" data-sol>Lösung &amp; Erklärung</button></div>
+      <div class="solution">
+        <h4>Lösung</h4>
+        <p class="step">\(\displaystyle\int_1^{b}x^{-2}\,dx=\Big[-\tfrac{1}{x}\Big]_1^{b}=-\tfrac{1}{b}+1\).</p>
+        <p class="step">Grenzwert: \(\displaystyle\lim_{b\to\infty}\Big(1-\tfrac1b\Big)=1\).</p>
+        <div class="why">Die Fläche reicht zwar bis ins Unendliche, hat aber den endlichen Inhalt \(1\) — ein klassisches Beispiel für Konvergenz.</div>
+      </div>
+    </div>
+
+    <div class="task" data-id="ro4">
+      <div class="task-head"><span class="task-num">4</span><span class="level anspruch">Anspruchsvoll</span>
+        <label class="done"><input type="checkbox"> erledigt</label></div>
+      <p>Berechne \(\displaystyle\int_1^{\infty}\frac{1}{x^3}\,dx\).</p>
+      <div class="answer-row">
+        <input class="num" data-answer="0.5" data-tol="0.001" placeholder="Wert =" aria-label="Antwort">
+        <button class="act check">Prüfen</button><span class="mark"></span>
+        <span class="feedback"></span>
+      </div>
+      <div class="btnrow"><button class="act ghost" data-sol>Lösung &amp; Erklärung</button></div>
+      <div class="solution">
+        <h4>Lösung</h4>
+        <p class="step">\(\displaystyle\int_1^{b}x^{-3}\,dx=\Big[-\tfrac{1}{2x^2}\Big]_1^{b}=-\tfrac{1}{2b^2}+\tfrac12\).</p>
+        <p class="step">Grenzwert: \(\displaystyle\lim_{b\to\infty}\Big(\tfrac12-\tfrac{1}{2b^2}\Big)=\tfrac12\).</p>
+        <div class="why">Je schneller \(f\) gegen \(0\) fällt, desto „kleiner" die unendliche Fläche: \(\tfrac{1}{x^3}\) liefert \(\tfrac12\), \(\tfrac{1}{x^2}\) lieferte \(1\).</div>
+      </div>
+    </div>
+
+    <div class="task" data-id="ro5">
+      <div class="task-head"><span class="task-num">5</span><span class="level abi">Abitur-Niveau</span>
+        <label class="done"><input type="checkbox"> erledigt</label></div>
+      <p><em>(nach Abitur NRW, Stil/Thema)</em> Eine Vase entsteht, indem der Graph von \(f(x)=\sqrt{2x+1}\) über \([0,4]\) um die \(x\)-Achse rotiert. Bestimme das Volumen in der Form \(V=k\cdot\pi\) und gib \(k\) ein.</p>
+      <div class="answer-row">
+        <input class="num" data-answer="20" data-tol="0.001" placeholder="k =" aria-label="Antwort">
+        <button class="act check">Prüfen</button><span class="mark"></span>
+        <span class="feedback"></span>
+      </div>
+      <div class="btnrow"><button class="act ghost" data-sol>Lösung &amp; Erklärung</button></div>
+      <div class="solution">
+        <h4>Lösung</h4>
+        <p class="step"><strong>Quadrieren:</strong> \(\big(f(x)\big)^2=\big(\sqrt{2x+1}\,\big)^2=2x+1\).</p>
+        <p class="step">\(\displaystyle V=\pi\int_0^4 (2x+1)\,dx=\pi\Big[x^2+x\Big]_0^4=\pi\,(16+4)=20\pi\), also \(k=20\).</p>
+        <div class="why">Der Trick: Durch das Quadrieren verschwindet die Wurzel und es bleibt ein einfaches Polynom — das Integral gelingt ganz ohne Substitution. Genau deshalb sind Wurzelfunktionen bei Rotationskörpern so beliebt.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    Mathematik LK · Q1 · Analysis · NRW<br>
+    Alle Eingaben und dein Fortschritt bleiben lokal in deinem Browser — es wird nichts gespeichert oder gesendet.<br>
+    Aufgaben im Stil des Zentralabiturs NRW; Inhalte gemäß Kernlehrplan &amp; Abiturvorgaben 2027.
+  </div>
+</footer>
+
+<script>
+/* ---------- Lesefortschritt ---------- */
+var prog=document.getElementById("progress");
+addEventListener("scroll",function(){var h=document.documentElement;var p=h.scrollTop/(h.scrollHeight-h.clientHeight);prog.style.width=(p*100)+"%";});
+
+/* ---------- Hilfsfunktion: Zahl parsen (Komma, Bruch) ---------- */
+function parseNum(s){
+  s=(s||"").trim().replace(",", ".").replace(/\s+/g,"");
+  if(s==="")return NaN;
+  if(s.indexOf("/")>-1){var p=s.split("/");return parseFloat(p[0])/parseFloat(p[1]);}
+  return parseFloat(s);
+}
+
+/* ---------- Aufgaben-Logik ---------- */
+document.querySelectorAll(".task").forEach(function(task){
+  var fb=task.querySelector(".feedback");
+  var mark=task.querySelector(".mark");
+
+  /* Numerische Prüfung */
+  var checkBtn=task.querySelector(".check");
+  if(checkBtn){
+    checkBtn.addEventListener("click",function(){
+      var inp=task.querySelector("input.num");
+      var ans=parseFloat(inp.dataset.answer);
+      var tol=parseFloat(inp.dataset.tol||"0.001");
+      var v=parseNum(inp.value);
+      if(isNaN(v)){
+        fb.className="feedback show bad";fb.textContent="Bitte eine Zahl eingeben.";
+        mark.textContent="";return;
+      }
+      if(Math.abs(v-ans)<=tol){
+        mark.textContent="✓";
+        fb.className="feedback show good";fb.textContent="Richtig! 🎉";
+      }else{
+        mark.textContent="✗";
+        fb.className="feedback show bad";fb.textContent="Noch nicht — rechne nach oder sieh dir die Lösung an.";
+      }
+    });
+    var inpEl=task.querySelector("input.num");
+    inpEl.addEventListener("keydown",function(e){if(e.key==="Enter")checkBtn.click();});
+  }
+
+  /* Multiple-Choice-Prüfung */
+  var checkMc=task.querySelector(".check-mc");
+  if(checkMc){
+    checkMc.addEventListener("click",function(){
+      var mc=task.querySelector(".mc");
+      var correct=parseInt(mc.dataset.answer,10);
+      var opts=mc.querySelectorAll(".opt");
+      var chosen=-1;
+      opts.forEach(function(o,i){
+        o.classList.remove("correct","incorrect");
+        if(o.querySelector("input").checked)chosen=i+1;
+      });
+      if(chosen===-1){fb.className="feedback show bad";fb.textContent="Bitte eine Option wählen.";mark.textContent="";return;}
+      opts[chosen-1].classList.add(chosen===correct?"correct":"incorrect");
+      if(chosen!==correct)opts[correct-1].classList.add("correct");
+      if(chosen===correct){mark.textContent="✓";fb.className="feedback show good";fb.textContent="Richtig! 🎉";}
+      else{mark.textContent="✗";fb.className="feedback show bad";fb.textContent="Leider falsch — die richtige Option ist markiert.";}
+    });
+  }
+
+  /* Lösung ein-/ausblenden */
+  var solBtn=task.querySelector("[data-sol]");
+  if(solBtn){
+    solBtn.addEventListener("click",function(){
+      var sol=task.querySelector(".solution");
+      var open=sol.classList.toggle("show");
+      if(!solBtn.dataset.label)solBtn.dataset.label=solBtn.textContent;
+      solBtn.textContent=open?"Lösung ausblenden":solBtn.dataset.label;
+    });
+  }
+
+  /* Fortschritt (localStorage) */
+  var cb=task.querySelector(".done input");
+  if(cb){
+    var key="analysisQ1-"+task.dataset.id;
+    try{if(localStorage.getItem(key)==="1")cb.checked=true;}catch(e){}
+    cb.addEventListener("change",function(){
+      try{localStorage.setItem(key,cb.checked?"1":"0");}catch(e){}
+    });
+  }
+});
+
+/* ---------- KaTeX rendern ---------- */
+function renderMath(){
+  if(window.renderMathInElement){
+    renderMathInElement(document.body,{
+      delimiters:[
+        {left:"$$",right:"$$",display:true},
+        {left:"\\(",right:"\\)",display:false},
+        {left:"\\[",right:"\\]",display:true}
+      ],
+      throwOnError:false
+    });
+  }
+}
+window.addEventListener("load",renderMath);
+
+/* ---------- JSXGraph-Abbildungen ---------- */
+function initBoards(){
+  if(!window.JXG){setTimeout(initBoards,60);return;}
+  var col={accent:"#3a5a78",red:"#c0392b",green:"#2e8b57",orange:"#c9821a",grid:"#e3ddd0"};
+  function safe(name,fn){try{fn();}catch(e){console.error("Abbildung "+name+" fehlgeschlagen:",e);}}
+
+  /* Abb.1 — Krümmung: f(x)=1/6 x^3 - x, f''=x */
+  safe("jxg1",function(){
+    var b=JXG.JSXGraph.initBoard("jxg1",{boundingbox:[-4,4,4,-4],axis:true,showCopyright:false,showNavigation:false,keepaspectratio:false});
+    var f=b.create("functiongraph",[function(x){return (1/6)*x*x*x - x;},-3.6,3.6],{strokeColor:col.accent,strokeWidth:2.5});
+    var W=b.create("point",[0,0],{name:"W",size:2,fixed:true,color:col.orange,label:{offset:[6,-14]}});
+    var g=b.create("glider",[1.6,(1/6)*1.6*1.6*1.6-1.6,f],{name:"",size:4,fillColor:col.red,strokeColor:col.red});
+    b.create("text",[ -3.7,3.4,function(){
+      var xx=g.X();
+      if(xx>0.02)return "f''("+xx.toFixed(2)+") = "+xx.toFixed(2)+" > 0  →  linksgekrümmt";
+      if(xx<-0.02)return "f''("+xx.toFixed(2)+") = "+xx.toFixed(2)+" < 0  →  rechtsgekrümmt";
+      return "Wendepunkt: f'' = 0";
+    }],{fontSize:13,cssStyle:"font-family:system-ui,sans-serif"});
+  });
+
+  /* Abb.2 — Funktionsuntersuchung: f(x)=1/4 x^4 - 2x^2 */
+  safe("jxg2",function(){
+    var b=JXG.JSXGraph.initBoard("jxg2",{boundingbox:[-3.6,4.5,3.6,-5.5],axis:true,showCopyright:false,showNavigation:false});
+    b.create("functiongraph",[function(x){return 0.25*x*x*x*x - 2*x*x;},-3.2,3.2],{strokeColor:col.accent,strokeWidth:2.5});
+    b.create("point",[0,0],{name:"H",size:4,color:col.accent,fixed:true,label:{offset:[8,8]}});
+    b.create("point",[2,-4],{name:"T",size:4,color:col.green,fixed:true,label:{offset:[8,-4]}});
+    b.create("point",[-2,-4],{name:"T",size:4,color:col.green,fixed:true,label:{offset:[-14,-4]}});
+    var wx=2/Math.sqrt(3), wy=-20/9;
+    b.create("point",[wx,wy],{name:"W",size:3,color:col.orange,fixed:true,label:{offset:[8,-2]}});
+    b.create("point",[-wx,wy],{name:"W",size:3,color:col.orange,fixed:true,label:{offset:[-16,-2]}});
+    b.create("point",[2*Math.sqrt(2),0],{name:"",size:2,color:col.red,fixed:true});
+    b.create("point",[-2*Math.sqrt(2),0],{name:"",size:2,color:col.red,fixed:true});
+  });
+
+  /* Abb.3 — Steckbrief: f(x)=x^3-3x mit waagerechter Tangente bei x=1 */
+  safe("jxg3",function(){
+    var b=JXG.JSXGraph.initBoard("jxg3",{boundingbox:[-3,4,3,-4.5],axis:true,showCopyright:false,showNavigation:false});
+    b.create("functiongraph",[function(x){return x*x*x-3*x;},-2.4,2.4],{strokeColor:col.accent,strokeWidth:2.5});
+    b.create("line",[[ -3,-2],[3,-2]],{strokeColor:col.green,strokeWidth:1.8,dash:2,straightFirst:true,straightLast:true});
+    b.create("point",[1,-2],{name:"P(1|-2)",size:4,color:col.red,fixed:true,label:{offset:[8,-2],cssStyle:"font-family:system-ui,sans-serif"}});
+  });
+
+  /* Abb.4 — Extremwert: Rechteck unter g(x)=4-x^2, Slider */
+  safe("jxg4",function(){
+    var b=JXG.JSXGraph.initBoard("jxg4",{boundingbox:[-3,5.2,3,-1.6],axis:true,showCopyright:false,showNavigation:false});
+    b.create("functiongraph",[function(x){return 4-x*x;},-2,2],{strokeColor:col.accent,strokeWidth:2.5});
+    var s=b.create("slider",[[-2.6,-1],[2.6,-1],[0.05,1.1547,1.95]],{name:"x",snapWidth:0.01,fillColor:col.red,strokeColor:col.red});
+    var top=function(){var x=s.Value();return 4-x*x;};
+    var a=b.create("point",[function(){return -s.Value();},0],{visible:false}),
+        bb=b.create("point",[function(){return s.Value();},0],{visible:false}),
+        c=b.create("point",[function(){return s.Value();},top],{visible:false}),
+        d=b.create("point",[function(){return -s.Value();},top],{visible:false});
+    b.create("polygon",[a,bb,c,d],{fillColor:col.green,fillOpacity:0.18,borders:{strokeColor:col.green,strokeWidth:2}});
+    b.create("text",[-2.8,4.7,function(){
+      var x=s.Value();var A=2*x*(4-x*x);
+      return "Breite 2x = "+(2*x).toFixed(2)+"   Höhe = "+(4-x*x).toFixed(2)+"   A = "+A.toFixed(2);
+    }],{fontSize:13,cssStyle:"font-family:system-ui,sans-serif"});
+  });
+
+  /* Abb.5 — Schar f_a(x)=x^3-3a^2 x, Ortskurve y=-2x^3 */
+  safe("jxg5",function(){
+    var b=JXG.JSXGraph.initBoard("jxg5",{boundingbox:[-4,6,4,-6],axis:true,showCopyright:false,showNavigation:false});
+    var s=b.create("slider",[[-3.6,-4.6],[3.6,-4.6],[0.4,1.3,2.2]],{name:"a",snapWidth:0.01,fillColor:col.accent,strokeColor:col.accent});
+    b.create("functiongraph",[function(x){var a=s.Value();return x*x*x-3*a*a*x;},-3.4,3.4],{strokeColor:col.accent,strokeWidth:2.5});
+    b.create("text",[-3.8,5.4,function(){var a=s.Value();return "a = "+a.toFixed(2)+"   →   fₐ(x) = x³ − "+(3*a*a).toFixed(2)+"·x";}],
+      {fontSize:14,fixed:true,cssStyle:"font-family:system-ui,sans-serif;font-weight:600"});
+    b.create("text",[-3.8,4.6,function(){var a=s.Value();return "Tiefpunkt T("+a.toFixed(2)+" | "+(-2*a*a*a).toFixed(2)+")";}],
+      {fontSize:13,fixed:true,cssStyle:"font-family:system-ui,sans-serif;color:#2e8b57"});
+    b.create("functiongraph",[function(x){return -2*x*x*x;},-1.9,1.9],{strokeColor:col.green,strokeWidth:1.6,dash:2});
+    b.create("point",[function(){return s.Value();},function(){var a=s.Value();return -2*a*a*a;}],
+      {name:"T",size:4,color:col.green,fixed:true,label:{offset:[8,-2]}});
+    b.create("point",[function(){return -s.Value();},function(){var a=s.Value();return 2*a*a*a;}],
+      {name:"H",size:4,color:col.red,fixed:true,label:{offset:[-14,-2]}});
+  });
+
+  /* Abb.6 — Produktsumme/Riemann: f(x)=0.25x^2+1 auf [0,4] */
+  safe("jxg6",function(){
+    var b=JXG.JSXGraph.initBoard("jxg6",{boundingbox:[-0.6,5,4.6,-1],axis:true,showCopyright:false,showNavigation:false});
+    var f=function(x){return 0.25*x*x+1;};
+    var A0=0, B0=4, exact=28/3;
+    var n=b.create("slider",[[0.4,4.4],[2.2,4.4],[1,4,40]],{name:"n",snapWidth:1,fillColor:col.green,strokeColor:col.green});
+    var rects=b.create("curve",[[0],[0]],{strokeColor:col.green,strokeWidth:1,fillColor:col.green,fillOpacity:0.18});
+    rects.updateDataArray=function(){
+      var N=Math.round(n.Value()),dx=(B0-A0)/N,X=[],Y=[],i,x0,h;
+      for(i=0;i<N;i++){x0=A0+i*dx;h=f(x0);
+        X.push(x0);Y.push(0);X.push(x0);Y.push(h);X.push(x0+dx);Y.push(h);X.push(x0+dx);Y.push(0);}
+      this.dataX=X;this.dataY=Y;
+    };
+    b.create("functiongraph",[f,A0,B0],{strokeColor:col.accent,strokeWidth:2.5});
+    b.create("text",[-0.4,4.7,function(){
+      var N=Math.round(n.Value()),dx=(B0-A0)/N,sum=0,i;
+      for(i=0;i<N;i++)sum+=f(A0+i*dx)*dx;
+      return "n = "+N+"   Produktsumme = "+sum.toFixed(3)+"   →   Integral = "+exact.toFixed(3);
+    }],{fontSize:13,fixed:true,cssStyle:"font-family:system-ui,sans-serif"});
+    b.update();
+  });
+
+  /* Abb.7 — Flächeninhaltsfunktion A(x)=∫_0^x f, f(x)=0.5x+1 */
+  safe("jxg7",function(){
+    var b=JXG.JSXGraph.initBoard("jxg7",{boundingbox:[-0.7,6,5,-1.2],axis:true,showCopyright:false,showNavigation:false});
+    var f=function(x){return 0.5*x+1;};
+    var Acc=function(x){return 0.25*x*x+x;}; // Stammfunktion mit A(0)=0
+    b.create("functiongraph",[Acc,0,4.4],{strokeColor:col.orange,strokeWidth:1.6,dash:2});
+    b.create("functiongraph",[f,0,4.4],{strokeColor:col.accent,strokeWidth:2.5});
+    var xax=b.defaultAxes.x;
+    var P=b.create("glider",[2.4,0,xax],{name:"x",size:4,fillColor:col.red,strokeColor:col.red,label:{offset:[2,-16]}});
+    var area=b.create("curve",[[0],[0]],{strokeColor:col.accent,strokeWidth:0.5,fillColor:col.accent,fillOpacity:0.16});
+    area.updateDataArray=function(){
+      var xe=Math.max(0.001,P.X()),steps=40,dx=xe/steps,X=[0],Y=[0],i,x;
+      for(i=0;i<=steps;i++){x=i*dx;X.push(x);Y.push(f(x));}
+      X.push(xe);Y.push(0);
+      this.dataX=X;this.dataY=Y;
+    };
+    b.create("point",[function(){return P.X();},function(){return Acc(P.X());}],
+      {name:"A(x)",size:3,color:col.orange,fixed:true,label:{offset:[6,2],cssStyle:"font-family:system-ui,sans-serif"}});
+    b.create("text",[-0.5,5.6,function(){return "x = "+P.X().toFixed(2)+"   →   A(x) = "+Acc(P.X()).toFixed(2);}],
+      {fontSize:13,fixed:true,cssStyle:"font-family:system-ui,sans-serif"});
+    b.update();
+  });
+
+  /* Abb.8 — bestimmtes Integral, f(x)=-0.25x^2+2, Slider b */
+  safe("jxg8",function(){
+    var b=JXG.JSXGraph.initBoard("jxg8",{boundingbox:[-0.7,3,5,-2.4],axis:true,showCopyright:false,showNavigation:false});
+    var f=function(x){return -0.25*x*x+2;};
+    var F=function(x){return -x*x*x/12+2*x;};
+    b.create("functiongraph",[f,-0.3,4.4],{strokeColor:col.accent,strokeWidth:2.5});
+    var s=b.create("slider",[[1.6,-1.9],[4.4,-1.9],[0.3,2.4,4]],{name:"b",snapWidth:0.01,fillColor:col.red,strokeColor:col.red});
+    var area=b.create("curve",[[0],[0]],{strokeColor:col.accent,strokeWidth:0.5,fillColor:col.green,fillOpacity:0.2});
+    area.updateDataArray=function(){
+      var xe=s.Value(),steps=48,dx=xe/steps,X=[0],Y=[0],i,x;
+      for(i=0;i<=steps;i++){x=i*dx;X.push(x);Y.push(f(x));}
+      X.push(xe);Y.push(0);
+      this.dataX=X;this.dataY=Y;
+    };
+    b.create("text",[-0.5,2.6,function(){var v=F(s.Value())-F(0);return "∫₀ᵇ f dx = "+v.toFixed(2)+"   (b = "+s.Value().toFixed(2)+")";}],
+      {fontSize:13,fixed:true,cssStyle:"font-family:system-ui,sans-serif"});
+    b.update();
+  });
+
+  /* Abb.9 — Fläche zwischen f(x)=x+2 und g(x)=x^2 */
+  safe("jxg9",function(){
+    var b=JXG.JSXGraph.initBoard("jxg9",{boundingbox:[-2.4,5,3,-0.8],axis:true,showCopyright:false,showNavigation:false});
+    var f=function(x){return x+2;},g=function(x){return x*x;};
+    var between=b.create("curve",[[0],[0]],{strokeColor:"#888",strokeWidth:0.5,fillColor:col.green,fillOpacity:0.18});
+    between.updateDataArray=function(){
+      var a=-1,bb=2,steps=40,dx=(bb-a)/steps,X=[],Y=[],i,x;
+      for(i=0;i<=steps;i++){x=a+i*dx;X.push(x);Y.push(f(x));}
+      for(i=steps;i>=0;i--){x=a+i*dx;X.push(x);Y.push(g(x));}
+      this.dataX=X;this.dataY=Y;
+    };
+    b.create("functiongraph",[f,-2.2,2.8],{strokeColor:col.accent,strokeWidth:2.2});
+    b.create("functiongraph",[g,-2.2,2.2],{strokeColor:col.orange,strokeWidth:2.2});
+    b.create("point",[-1,1],{name:"",size:2,color:col.red,fixed:true});
+    b.create("point",[2,4],{name:"",size:2,color:col.red,fixed:true});
+    b.create("text",[-2.2,4.6,"A = 9/2 = 4,5"],{fontSize:13,fixed:true,cssStyle:"font-family:system-ui,sans-serif;font-weight:600"});
+    b.update();
+  });
+
+  /* Abb.10 — uneigentliches Integral ∫_1^∞ 1/x^2, Slider b */
+  safe("jxg10",function(){
+    var b=JXG.JSXGraph.initBoard("jxg10",{boundingbox:[-0.6,1.6,12,-0.5],axis:true,showCopyright:false,showNavigation:false});
+    var f=function(x){return 1/(x*x);};
+    b.create("functiongraph",[f,1,12],{strokeColor:col.accent,strokeWidth:2.5});
+    var s=b.create("slider",[[3,-0.32],[11,-0.32],[1.2,3,11]],{name:"b",snapWidth:0.1,fillColor:col.red,strokeColor:col.red});
+    var area=b.create("curve",[[0],[0]],{strokeColor:col.accent,strokeWidth:0.5,fillColor:col.green,fillOpacity:0.2});
+    area.updateDataArray=function(){
+      var xe=s.Value(),steps=60,dx=(xe-1)/steps,X=[1],Y=[0],i,x;
+      for(i=0;i<=steps;i++){x=1+i*dx;X.push(x);Y.push(f(x));}
+      X.push(xe);Y.push(0);
+      this.dataX=X;this.dataY=Y;
+    };
+    b.create("text",[0.2,1.45,function(){var v=1-1/s.Value();return "Fläche von 1 bis b = "+v.toFixed(3)+"   →   strebt gegen 1   (b = "+s.Value().toFixed(1)+")";}],
+      {fontSize:13,fixed:true,cssStyle:"font-family:system-ui,sans-serif"});
+    b.update();
+  });
+
+  /* Abb.11 — Rotationskörper: f(x)=√x rotiert um die x-Achse */
+  safe("jxg11",function(){
+    var b=JXG.JSXGraph.initBoard("jxg11",{boundingbox:[-0.9,3.1,5.6,-3.2],axis:true,showCopyright:false,showNavigation:false});
+    var f=function(x){return Math.sqrt(Math.max(0,x));};
+    /* Silhouette des Körpers (zwischen f und -f) */
+    var sil=b.create("curve",[[0],[0]],{strokeWidth:0,fillColor:col.accent,fillOpacity:0.10});
+    sil.updateDataArray=function(){
+      var X=[],Y=[],steps=60,i,x;
+      for(i=0;i<=steps;i++){x=4*i/steps;X.push(x);Y.push(f(x));}
+      for(i=steps;i>=0;i--){x=4*i/steps;X.push(x);Y.push(-f(x));}
+      this.dataX=X;this.dataY=Y;
+    };
+    b.create("functiongraph",[function(x){return f(x);},0,4],{strokeColor:col.accent,strokeWidth:2.5});
+    b.create("functiongraph",[function(x){return -f(x);},0,4],{strokeColor:col.accent,strokeWidth:1.6,dash:2});
+    /* statische Querschnitts-Ellipsen für die 3D-Anmutung */
+    [1,2,3].forEach(function(x0){
+      b.create("curve",[function(t){return x0+0.22*Math.sin(t);},function(t){return f(x0)*Math.cos(t);},0,2*Math.PI],
+        {strokeColor:"#9aa6b5",strokeWidth:1,dash:2});
+    });
+    /* Abschluss-Ellipse am rechten Rand */
+    b.create("curve",[function(t){return 4+0.26*Math.sin(t);},function(t){return 2*Math.cos(t);},0,2*Math.PI],
+      {strokeColor:col.accent,strokeWidth:1.6});
+    /* bewegliche Querschnitts-Scheibe */
+    var s=b.create("slider",[[0.6,-2.7],[3.8,-2.7],[0.2,2.5,4]],{name:"x",snapWidth:0.05,fillColor:col.red,strokeColor:col.red});
+    b.create("curve",[function(t){return s.Value()+0.22*Math.sin(t);},function(t){return f(s.Value())*Math.cos(t);},0,2*Math.PI],
+      {strokeColor:col.red,strokeWidth:2,fillColor:col.red,fillOpacity:0.15});
+    var pA=b.create("point",[function(){return s.Value();},0],{visible:false});
+    var pB=b.create("point",[function(){return s.Value();},function(){return f(s.Value());}],{visible:false});
+    b.create("segment",[pA,pB],{strokeColor:col.red,strokeWidth:2});
+    b.create("text",[-0.7,2.8,function(){
+      var x=s.Value(),r=f(x);
+      return "x = "+x.toFixed(2)+"   Radius r = f(x) = "+r.toFixed(2)+"   Scheibenfläche π·r² = "+(Math.PI*r*r).toFixed(2);
+    }],{fontSize:13,fixed:true,cssStyle:"font-family:system-ui,sans-serif"});
+    b.update();
+  });
+}
+if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",initBoards);}else{initBoards();}
+</script>
+</body>
+</html>
