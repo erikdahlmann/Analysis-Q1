@@ -182,6 +182,8 @@
     <a href="#start">Start</a>
     <a href="#kap1">1 · Differentialrechnung</a>
     <a href="#kap2">2 · Integralrechnung</a>
+    <a href="#kap3">3 · e &amp; ln</a>
+    <a href="#kap4">4 · Zusammengesetzte Funktionen</a>
   </div>
 </nav>
 
@@ -1543,6 +1545,949 @@
   </div>
 </section>
 
+<!-- ============ KAPITEL 3 BAND ============ -->
+<section>
+  <div class="wrap">
+    <div class="chapter-head" id="kap3">
+      <div class="knum">Kapitel 3</div>
+      <h2>Exponential- &amp; Logarithmusfunktionen</h2>
+      <p>Die natürliche Exponentialfunktion \(e^x\) mit ihrer besonderen Eigenschaft \(f'=f\), der natürliche Logarithmus als Umkehrfunktion und die Modellierung von Wachstums- und Zerfallsprozessen.</p>
+      <div class="chapter-toc">
+        <a href="#efunktion">Die e-Funktion</a>
+        <a href="#lnfunktion">Der natürliche Logarithmus</a>
+        <a href="#wachstum">Wachstumsmodelle</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3.1 · E-FUNKTION ============ -->
+<section id="efunktion">
+  <div class="wrap">
+    <span class="section-tag">1 · Die natürliche Exponentialfunktion</span>
+    <div class="card">
+      <h2>Die Funktion, die ihre eigene Ableitung ist</h2>
+      <p>Unter allen Exponentialfunktionen \(b^x\) gibt es genau eine, deren Graph in jedem Punkt so steil ist wie ihr Funktionswert: die <strong>natürliche Exponentialfunktion</strong> \(f(x)=e^x\) mit der <strong>Eulerschen Zahl</strong> \(e\approx 2{,}71828\). Diese Eigenschaft \(f'=f\) macht sie zum wichtigsten Werkzeug für alle Prozesse, deren Änderungsrate proportional zum Bestand ist — Wachstum, Zerfall, Abkühlung.</p>
+      <div class="merk">
+        <h4>🧬 Eigenschaften von \(e^x\)</h4>
+        <ul>
+          <li><strong>Ableitung:</strong> \(\big(e^x\big)'=e^x\) — die Steigung ist überall gleich dem Funktionswert.</li>
+          <li>\(e^x>0\) für alle \(x\) — der Graph liegt komplett oberhalb der \(x\)-Achse, <strong>keine Nullstellen</strong>.</li>
+          <li>Streng monoton steigend; \(e^0=1\), \(e^1=e\).</li>
+          <li><strong>Globalverhalten:</strong> \(x\to-\infty:\ e^x\to 0\) (die \(x\)-Achse ist Asymptote); \(x\to+\infty:\ e^x\to\infty\) — schneller als jede Potenz \(x^n\).</li>
+        </ul>
+      </div>
+
+      <div class="figure">
+        <div id="jxg12" class="jxgbox"></div>
+        <p class="ctrl">Ziehe den roten Punkt: Funktionswert und Tangentensteigung sind an jeder Stelle gleich.</p>
+        <p class="figcap">Abb. 12 — \(f(x)=e^x\) mit Tangente. Die Eigenschaft \(f'(x)=f(x)=e^x\) siehst du live: Steigung \(=\) Funktionswert.</p>
+      </div>
+
+      <div class="fehler">
+        <h4>⚠️ Häufige Stolperfallen</h4>
+        <ul>
+          <li>\(e^x\) ist <strong>nie null</strong> — Gleichungen wie \(e^x=0\) haben keine Lösung. Bei Produkten wie \(x\cdot e^x=0\) kommt die Nullstelle nur vom Faktor \(x\).</li>
+          <li>\(\big(e^x\big)'\neq x\cdot e^{x-1}\) — die Potenzregel gilt nur für \(x^n\) (Variable in der Basis), nicht für \(e^x\) (Variable im Exponenten).</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>Übungen — e-Funktion</h3>
+
+    <div class="task" data-id="ex1">
+      <div class="task-head"><span class="task-num">1</span><span class="level basal">Basal</span>
+        <label class="done"><input type="checkbox"> erledigt</label></div>
+      <p>Welche Aussage über \(f(x)=e^x\) ist <strong>falsch</strong>?</p>
+      <div class="mc" data-answer="3">
+        <label class="opt"><input type="radio" name="mc-ex1"><span>\(f'(x)=e^x\)</span></label>
+        <label class="opt"><input type="radio" name="mc-ex1"><span>\(e^x>0\) für alle \(x\)</span></label>
+        <label class="opt"><input type="radio" name="mc-ex1"><span>\(e^x\) hat bei \(x=0\) eine Nullstelle</span></label>
+        <label class="opt"><input type="radio" name="mc-ex1"><span>\(e^x\to 0\) für \(x\to-\infty\)</span></label>
+      </div>
+      <div class="btnrow"><button class="act check-mc">Prüfen</button><span class="mark"></span>
+        <span class="feedback"></span>
+        <button class="act ghost" data-sol>Lösung &amp; Erklärung</button></div>
+      <div class="solution">
+        <h4>Lösung</h4>
+        <p class="step">Bei \(x=0\) gilt \(e^0=1\neq 0\) — dort liegt der \(y\)-Achsenabschnitt \((0\mid 1)\), keine Nullstelle. \(e^x\) hat überhaupt keine Nullstellen.</p>
+        <div class="why">Der Graph schmiegt sich für \(x\to-\infty\) nur an die \(x\)-Achse an (Asymptote), berührt sie aber nie.</div>
+      </div>
+    </div>
+
+    <div class="task" data-id="ex2">
+      <div class="task-head"><span class="task-num">2</span><span class="level basal">Basal</span>
+        <label class="done"><input type="checkbox"> erledigt</label></div>
+      <p>Berechne die Steigung von \(f(x)=e^x\) an der Stelle \(x=0\).</p>
+      <div class="answer-row">
+        <input class="num" data-answer="1" data-tol="0.001" placeholder="f'(0) =" aria-label="Antwort">
+        <button class="act check">Prüfen</button><span class="mark"></span>
+        <span class="feedback"></span>
+      </div>
+      <div class="btnrow"><button class="act ghost" data-sol>Lösung &amp; Erklärung</button></div>
+      <div class="solution">
+        <h4>Lösung</h4>
+        <p class="step">\(f'(x)=e^x\Rightarrow f'(0)=e^0=1\).</p>
+        <div class="why">Steigung \(=\) Funktionswert: Bei \((0\mid 1)\) steigt der Graph mit Steigung \(1\) — die Tangente dort ist \(y=x+1\).</div>
+      </div>
+    </div>
+
+    <div class="task" data-id="ex3">
+      <div class="task-head"><span class="task-num">3</span><span class="level mittel">Mittel</span>
+        <label class="done"><input type="checkbox"> erledigt</label></div>
+      <p>Gegeben \(f(x)=3e^x\). Berechne \(f'(\ln 2)\).</p>
+      <div class="answer-row">
+        <input class="num" data-answer="6" data-tol="0.01" placeholder="f'(ln 2) =" aria-label="Antwort">
+        <button class="act check">Prüfen</button><span class="mark"></span>
+        <span class="feedback"></span>
+      </div>
+      <div class="btnrow"><button class="act ghost" data-sol>Lösung &amp; Erklärung</button></div>
+      <div class="solution">
+        <h4>Lösung</h4>
+        <p class="step">\(f'(x)=3e^x\) (Faktorregel).</p>
+        <p class="step">\(f'(\ln 2)=3e^{\ln 2}=3\cdot 2=6\).</p>
+        <div class="why">\(e^{\ln 2}=2\), weil \(e^x\) und \(\ln x\) Umkehrfunktionen sind — das brauchst du in Abschnitt 2 ständig.</div>
+      </div>
+    </div>
+
+    <div class="task" data-id="ex4">
+      <div class="task-head"><span class="task-num">4</span><span class="level mittel">Mittel</span>
+        <label class="done"><input type="checkbox"> erledigt</label></div>
+      <p>Welche Steigung hat die Tangente an den Graphen von \(f(x)=e^x\) im Punkt \(P(1\mid e)\)? (Runde auf 3 Dezimalen.)</p>
+      <div class="answer-row">
+        <input class="num" data-answer="2.71828" data-tol="0.01" placeholder="m ≈" aria-label="Antwort">
+        <button class="act check">Prüfen</button><span class="mark"></span>
+        <span class="feedback"></span>
+      </div>
+      <div class="btnrow"><button class="act ghost" data-sol>Lösung &amp; Erklärung</button></div>
+      <div class="solution">
+        <h4>Lösung</h4>
+        <p class="step">\(m=f'(1)=e^1=e\approx 2{,}718\).</p>
+        <div class="why">Wieder \(f'=f\): Im Punkt \(P(1\mid e)\) ist die Steigung genau der Funktionswert \(e\).</div>
+      </div>
+    </div>
+
+    <div class="task" data-id="ex5">
+      <div class="task-head"><span class="task-num">5</span><span class="level anspruch">Anspruchsvoll</span>
+        <label class="done"><input type="checkbox"> erledigt</label></div>
+      <p>An welcher Stelle \(x\) hat der Graph von \(f(x)=e^x\) die Steigung \(5\)? (Runde auf 3 Dezimalen.)</p>
+      <div class="answer-row">
+        <input class="num" data-answer="1.6094" data-tol="0.01" placeholder="x ≈" aria-label="Antwort">
+        <button class="act check">Prüfen</button><span class="mark"></span>
+        <span class="feedback"></span>
+      </div>
+      <div class="btnrow"><button class="act ghost" data-sol>Lösung &amp; Erklärung</button></div>
+      <div class="solution">
+        <h4>Lösung</h4>
+        <p class="step">Ansatz: \(f'(x)=5\Rightarrow e^x=5\).</p>
+        <p class="step">Lösen mit dem natürlichen Logarithmus: \(x=\ln 5\approx 1{,}609\).</p>
+        <div class="why">Hier kündigt sich der \(\ln\) an: Er ist genau das Werkzeug, um „\(e^x=c\)" nach \(x\) aufzulösen — Abschnitt 2.</div>
+      </div>
+    </div>
+
+    <div class="task" data-id="ex6">
+      <div class="task-head"><span class="task-num">6</span><span class="level abi">Abitur-Niveau</span>
+        <label class="done"><input type="checkbox"> erledigt</label></div>
+      <p><em>(nach Abitur NRW, Stil/Thema)</em> Bestimme die Gleichung der Tangente an den Graphen von \(f(x)=e^x\) im Punkt \(P(0\mid 1)\) und berechne, wo diese Tangente die \(x\)-Achse schneidet. Vergleiche mit der Musterlösung.</p>
+      <div class="btnrow"><button class="act ghost" data-sol>Lösung &amp; Erklärung</button></div>
+      <div class="solution">
+        <h4>Lösung</h4>
+        <p class="step"><strong>Steigung:</strong> \(m=f'(0)=e^0=1\).</p>
+        <p class="step"><strong>Tangente</strong> (Punkt-Steigungs-Form): \(y=f(0)+f'(0)\cdot(x-0)=1+x\), also \(t(x)=x+1\).</p>
+        <p class="step"><strong>Schnitt mit der \(x\)-Achse:</strong> \(x+1=0\Rightarrow x=-1\), also im Punkt \((-1\mid 0)\).</p>
+        <div class="why">Die allgemeine Tangentengleichung \(t(x)=f(x_0)+f'(x_0)(x-x_0)\) gehört zum hilfsmittelfreien Standardrepertoire — bei der e-Funktion wird sie besonders elegant, weil \(f=f'\).</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3.2 · LN ============ -->
+<section id="lnfunktion">
+  <div class="wrap">
+    <span class="section-tag">2 · Der natürliche Logarithmus</span>
+    <div class="card">
+      <h2>Die Umkehrung: vom Ergebnis zum Exponenten</h2>
+      <p>Die Gleichung \(e^x=10\) fragt: „Mit welchem Exponenten wird aus \(e\) die Zahl \(10\)?" Die Antwort liefert der <strong>natürliche Logarithmus</strong>: \(x=\ln 10\approx 2{,}303\). Als <strong>Umkehrfunktion</strong> von \(e^x\) macht \(\ln\) genau das rückgängig, was \(e^x\) tut — sein Graph ist das Spiegelbild von \(e^x\) an der Geraden \(y=x\).</p>
+      <div class="merk">
+        <h4>🔁 Rechnen mit ln</h4>
+        <ul>
+          <li><strong>Umkehr-Eigenschaft:</strong> \(\ln\big(e^x\big)=x\) und \(e^{\ln x}=x\) (für \(x>0\)).</li>
+          <li><strong>Definitionsbereich:</strong> \(\ln x\) existiert nur für \(x>0\); \(\ln 1=0\), \(\ln e=1\).</li>
+          <li><strong>Exponentialgleichungen lösen:</strong> \(e^x=c \;\Rightarrow\; x=\ln c\) (für \(c>0\)) — vorher die Gleichung nach \(e^{\dots}\) freistellen!</li>
+          <li><strong>Logarithmusgesetze:</strong> \(\ln(a\cdot b)=\ln a+\ln b\), \(\;\ln\big(\tfrac ab\big)=\ln a-\ln b\), \(\;\ln\big(a^n\big)=n\cdot\ln a\).</li>
+        </ul>
+      </div>
+
+      <div class="worked">
+        <h4>Durchgerechnetes Beispiel — Exponentialgleichung</h4>
+        <p><strong>Löse \(5e^{2x}=40\).</strong></p>
+        <p class="step"><strong>Freistellen:</strong> \(e^{2x}=8\) (beide Seiten durch \(5\)).</p>
+        <p class="step"><strong>Logarithmieren:</strong> \(2x=\ln 8\).</p>
+        <p class="step"><strong>Auflösen:</strong> \(x=\tfrac{\ln 8}{2}\approx 1{,}040\).</p>
+        <p class="step"><strong>Probe</strong> (TR): \(5e^{2\cdot 1{,}0397}\approx 5\cdot 8{,}0\approx 40\) ✓.</p>
+      </div>
+
+      <div class="figure">
+        <div id="jxg13" class="jxgbox"></div>
+        <p class="ctrl">Ziehe den roten Punkt auf \(e^x\): sein Spiegelpunkt (grün) liegt auf \(\ln x\).</p>
+        <p class="figcap">Abb. 13 — \(e^x\) (blau) und \(\ln x\) (orange) sind Spiegelbilder an der Geraden \(y=x\) (gestrichelt): Aus \((a\mid b)\) wird \((b\mid a)\).</p>
+      </div>
+
+      <div class="fehler">
+        <h4>⚠️ Häufige Stolperfallen</h4>
+        <ul>
+          <li><strong>Erst freistellen, dann logarithmieren:</strong> Aus \(5e^{2x}=40\) folgt <em>nicht</em> \(2x=\ln 40-\ln 5\)? Doch — aber nur über \(\ln(5e^{2x})=\ln 5+2x\). Sicherer Weg: erst durch \(5\) teilen, dann \(\ln\).</li>
+          <li>\(\ln(a+b)\neq\ln a+\ln b\) — das Gesetz gilt nur für <em>Produkte</em>.</li>
+          <li>\(\ln x\) für \(x\le 0\) existiert nicht — Lösungen immer auf den Definitionsbereich prüfen.</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>Übungen — Natürlicher Logarithmus</h3>
+
+    <div class="task" data-id="ln1">
+      <div class="task-head"><span class="task-num">1</span><span class="level basal">Basal</span>
+        <label class="done"><input type="checkbox"> erledigt</label></div>
+      <p>Berechne \(\ln 1\).</p>
+      <div class="answer-row">
+        <input class="num" data-answer="0" data-tol="0.001" placeholder="ln 1 =" aria-label="Antwort">
+        <button class="act check">Prüfen</button><span class="mark"></span>
+        <span class="feedback"></span>
+      </div>
+      <div class="btnrow"><button class="act ghost" data-sol>Lösung &amp; Erklärung</button></div>
+      <div class="solution">
+        <h4>Lösung</h4>
+        <p class="step">\(\ln 1=0\), denn \(e^0=1\).</p>
+        <div class="why">„\(\ln c\)" fragt immer: „\(e\) hoch <em>was</em> ergibt \(c\)?" — und \(e^0=1\).</div>
+      </div>
+    </div>
+
+    <div class="task" data-id="ln2">
+      <div class="task-head"><span class="task-num">2</span><span class="level basal">Basal</span>
+        <label class="done"><input type="checkbox"> erledigt</label></div>
+      <p>Löse \(e^x=10\). (Runde auf 3 Dezimalen.)</p>
+      <div class="answer-row">
+        <input class="num" data-answer="2.3026" data-tol="0.01" placeholder="x ≈" aria-label="Antwort">
+        <button class="act check">Prüfen</button><span class="mark"></span>
+        <span class="feedback"></span>
+      </div>
+      <div class="btnrow"><button class="act ghost" data-sol>Lösung &amp; Erklärung</button></div>
+      <div class="solution">
+        <h4>Lösung</h4>
+        <p class="step">\(x=\ln 10\approx 2{,}303\).</p>
+        <div class="why">Direkter Fall: Die Gleichung ist schon nach \(e^x\) freigestellt — einfach beidseitig logarithmieren.</div>
+      </div>
+    </div>
+
+    <div class="task" data-id="ln3">
+      <div class="task-head"><span class="task-num">3</span><span class="level mittel">Mittel</span>
+        <label class="done"><input type="checkbox"> erledigt</label></div>
+      <p>Löse \(4e^{0{,}5x}=12\). (Runde auf 3 Dezimalen.)</p>
+      <div class="answer-row">
+        <input class="num" data-answer="2.1972" data-tol="0.01" placeholder="x ≈" aria-label="Antwort">
+        <button class="act check">Prüfen</button><span class="mark"></span>
+        <span class="feedback"></span>
+      </div>
+      <div class="btnrow"><button class="act ghost" data-sol>Lösung &amp; Erklärung</button></div>
+      <div class="solution">
+        <h4>Lösung</h4>
+        <p class="step"><strong>Freistellen:</strong> \(e^{0{,}5x}=3\).</p>
+        <p class="step"><strong>Logarithmieren:</strong> \(0{,}5x=\ln 3\).</p>
+        <p class="step"><strong>Auflösen:</strong> \(x=2\ln 3\approx 2{,}197\).</p>
+        <div class="why">Immer dieselben drei Schritte: freistellen → logarithmieren → auflösen.</div>
+      </div>
+    </div>
+
+    <div class="task" data-id="ln4">
+      <div class="task-head"><span class="task-num">4</span><span class="level mittel">Mittel</span>
+        <label class="done"><input type="checkbox"> erledigt</label></div>
+      <p>Vereinfache \(\ln\big(x^2\big)\) für \(x>0\). Welcher Term ist gleichwertig?</p>
+      <div class="mc" data-answer="2">
+        <label class="opt"><input type="radio" name="mc-ln4"><span>\(\big(\ln x\big)^2\)</span></label>
+        <label class="opt"><input type="radio" name="mc-ln4"><span>\(2\ln x\)</span></label>
+        <label class="opt"><input type="radio" name="mc-ln4"><span>\(\ln 2+\ln x\)</span></label>
+        <label class="opt"><input type="radio" name="mc-ln4"><span>\(\tfrac12\ln x\)</span></label>
+      </div>
+      <div class="btnrow"><button class="act check-mc">Prüfen</button><span class="mark"></span>
+        <span class="feedback"></span>
+        <button class="act ghost" data-sol>Lösung &amp; Erklärung</button></div>
+      <div class="solution">
+        <h4>Lösung</h4>
+        <p class="step">Potenzgesetz des Logarithmus: \(\ln\big(x^2\big)=2\ln x\).</p>
+        <div class="why">Achtung Verwechslungsgefahr: \(\big(\ln x\big)^2\) ist etwas völlig anderes — dort wird der Logarithmus quadriert, nicht das Argument.</div>
+      </div>
+    </div>
+
+    <div class="task" data-id="ln5">
+      <div class="task-head"><span class="task-num">5</span><span class="level anspruch">Anspruchsvoll</span>
+        <label class="done"><input type="checkbox"> erledigt</label></div>
+      <p>Löse \(2e^{-0{,}5t}=0{,}5\). (Runde auf 3 Dezimalen.)</p>
+      <div class="answer-row">
+        <input class="num" data-answer="2.7726" data-tol="0.01" placeholder="t ≈" aria-label="Antwort">
+        <button class="act check">Prüfen</button><span class="mark"></span>
+        <span class="feedback"></span>
+      </div>
+      <div class="btnrow"><button class="act ghost" data-sol>Lösung &amp; Erklärung</button></div>
+      <div class="solution">
+        <h4>Lösung</h4>
+        <p class="step"><strong>Freistellen:</strong> \(e^{-0{,}5t}=0{,}25\).</p>
+        <p class="step"><strong>Logarithmieren:</strong> \(-0{,}5t=\ln 0{,}25\approx-1{,}386\).</p>
+        <p class="step"><strong>Auflösen:</strong> \(t=\dfrac{\ln 0{,}25}{-0{,}5}=2\ln 4\approx 2{,}773\).</p>
+        <div class="why">\(\ln\) von Zahlen zwischen \(0\) und \(1\) ist <em>negativ</em> — zusammen mit dem negativen Exponenten wird \(t\) wieder positiv. Vorzeichen sauber mitführen!</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3.3 · WACHSTUM ============ -->
+<section id="wachstum">
+  <div class="wrap">
+    <span class="section-tag">3 · Wachstumsmodelle</span>
+    <div class="card">
+      <h2>Exponentiell und begrenzt wachsen</h2>
+      <p>Viele Prozesse ändern sich proportional zu ihrem aktuellen Bestand — Bakterienkulturen, radioaktiver Zerfall, Kapital mit Zinseszins. Sie folgen dem <strong>exponentiellen Modell</strong> \(N(t)=N_0\cdot e^{kt}\). Stößt das Wachstum an eine Grenze (Sättigung \(S\)), beschreibt das <strong>begrenzte Wachstum</strong> die Annäherung an diese Schranke.</p>
+      <div class="merk">
+        <h4>📈 Die beiden Modelle</h4>
+        <ul>
+          <li><strong>Exponentiell:</strong> \(N(t)=N_0\cdot e^{kt}\) — Startwert \(N_0\), Wachstum für \(k>0\), Zerfall für \(k<0\). Kennzeichen: \(N'(t)=k\cdot N(t)\) (Änderungsrate proportional zum Bestand).</li>
+          <li><strong>Verdopplungszeit / Halbwertszeit:</strong> \(T=\dfrac{\ln 2}{|k|}\).</li>
+          <li><strong>Begrenzt:</strong> \(B(t)=S-\big(S-B_0\big)\cdot e^{-kt}\) — nähert sich der Schranke \(S\) an; \(B'(t)=k\cdot\big(S-B(t)\big)\) („je näher an der Grenze, desto langsamer").</li>
+          <li><strong>Vorgriff auf Kapitel 4:</strong> \(\big(e^{kt}\big)'=k\cdot e^{kt}\) — die Regel dahinter (Kettenregel) lernst du im nächsten Kapitel.</li>
+        </ul>
+      </div>
+
+      <div class="figure">
+        <div id="jxg14" class="jxgbox"></div>
+        <p class="ctrl">Verändere die Schranke \(S\) und die Konstante \(k\) und beobachte die Annäherung.</p>
+        <p class="figcap">Abb. 14 — Begrenztes Wachstum \(B(t)=S-(S-1)\,e^{-kt}\) mit Startwert \(B_0=1\). Die gestrichelte Gerade ist die Sättigungsgrenze \(S\).</p>
+      </div>
+
+      <div class="fehler">
+        <h4>⚠️ Häufige Stolperfallen</h4>
+        <ul>
+          <li>Beim Zerfall ist \(k\) <strong>negativ</strong> — wer \(k>0\) ansetzt, bekommt Wachstum statt Zerfall.</li>
+          <li>Begrenztes Wachstum erreicht die Schranke \(S\) <em>nie exakt</em> — Fragen wie „wann ist \(B(t)=S\)?" haben keine Lösung; sinnvoll ist „wann ist \(B(t)=0{,}9\cdot S\)?".</li>
+          <li>Prozent vs. Faktor: „Wachstum um 3 % pro Jahr" heißt Faktor \(1{,}03\), also \(k=\ln 1{,}03\approx 0{,}0296\) — nicht \(k=0{,}03\).</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>Übungen — Wachstum</h3>
+
+    <div class="task" data-id="wa1">
+      <div class="task-head"><span class="task-num">1</span><span class="level basal">Basal</span>
+        <label class="done"><input type="checkbox"> erledigt</label></div>
+      <p>Eine Bakterienkultur wächst gemäß \(N(t)=100\cdot e^{0{,}5t}\) (\(t\) in Stunden). Wie viele Bakterien sind es nach \(2\) Stunden? (Runde auf ganze Zahlen.)</p>
+      <div class="answer-row">
+        <input class="num" data-answer="271.83" data-tol="1" placeholder="N(2) ≈" aria-label="Antwort">
+        <button class="act check">Prüfen</button><span class="mark"></span>
+        <span class="feedback"></span>
+      </div>
+      <div class="btnrow"><button class="act ghost" data-sol>Lösung &amp; Erklärung</button></div>
+      <div class="solution">
+        <h4>Lösung</h4>
+        <p class="step">\(N(2)=100\cdot e^{0{,}5\cdot 2}=100\cdot e^1\approx 271{,}8\), also rund \(272\) Bakterien.</p>
+        <div class="why">Einsetzen und TR: \(e^1=e\approx 2{,}718\). Achte darauf, den Exponenten <em>zuerst</em> komplett zu berechnen.</div>
+      </div>
+    </div>
+
+    <div class="task" data-id="wa2">
+      <div class="task-head"><span class="task-num">2</span><span class="level mittel">Mittel</span>
+        <label class="done"><input type="checkbox"> erledigt</label></div>
+      <p>Wie groß ist die <strong>Verdopplungszeit</strong> beim Wachstum \(N(t)=N_0\cdot e^{0{,}5t}\)? (Runde auf 3 Dezimalen.)</p>
+      <div class="answer-row">
+        <input class="num" data-answer="1.3863" data-tol="0.01" placeholder="T ≈" aria-label="Antwort">
+        <button class="act check">Prüfen</button><span class="mark"></span>
+        <span class="feedback"></span>
+      </div>
+      <div class="btnrow"><button class="act ghost" data-sol>Lösung &amp; Erklärung</button></div>
+      <div class="solution">
+        <h4>Lösung</h4>
+        <p class="step">Ansatz: \(N_0\cdot e^{0{,}5T}=2N_0\Rightarrow e^{0{,}5T}=2\).</p>
+        <p class="step">\(0{,}5T=\ln 2\Rightarrow T=\dfrac{\ln 2}{0{,}5}\approx 1{,}386\) Stunden.</p>
+        <div class="why">Der Startwert \(N_0\) kürzt sich weg — die Verdopplungszeit hängt nur von \(k\) ab. Merkformel: \(T=\ln 2/k\).</div>
+      </div>
+    </div>
+
+    <div class="task" data-id="wa3">
+      <div class="task-head"><span class="task-num">3</span><span class="level mittel">Mittel</span>
+        <label class="done"><input type="checkbox"> erledigt</label></div>
+      <p>Beim begrenzten Wachstum \(B(t)=8-6e^{-0{,}4t}\): Welchem Wert nähert sich \(B(t)\) für \(t\to\infty\)?</p>
+      <div class="answer-row">
+        <input class="num" data-answer="8" data-tol="0.001" placeholder="Grenzwert =" aria-label="Antwort">
+        <button class="act check">Prüfen</button><span class="mark"></span>
+        <span class="feedback"></span>
+      </div>
+      <div class="btnrow"><button class="act ghost" data-sol>Lösung &amp; Erklärung</button></div>
+      <div class="solution">
+        <h4>Lösung</h4>
+        <p class="step">Für \(t\to\infty\) gilt \(e^{-0{,}4t}\to 0\), also \(B(t)\to 8-6\cdot 0=8\).</p>
+        <p class="step">Die Schranke ist \(S=8\); der Startwert ist \(B(0)=8-6=2\).</p>
+        <div class="why">Beim begrenzten Wachstum kannst du \(S\) und \(B_0\) direkt am Funktionsterm ablesen: \(S\) ist die Konstante, \(S-B_0\) der Faktor vor der e-Funktion.</div>
+      </div>
+    </div>
+
+    <div class="task" data-id="wa4">
+      <div class="task-head"><span class="task-num">4</span><span class="level anspruch">Anspruchsvoll</span>
+        <label class="done"><input type="checkbox"> erledigt</label></div>
+      <p>Ein Präparat zerfällt gemäß \(N(t)=50\cdot e^{-0{,}2t}\) (\(t\) in Tagen). Nach welcher Zeit ist nur noch die <strong>Hälfte</strong> vorhanden? (Runde auf 3 Dezimalen.)</p>
+      <div class="answer-row">
+        <input class="num" data-answer="3.4657" data-tol="0.01" placeholder="t ≈" aria-label="Antwort">
+        <button class="act check">Prüfen</button><span class="mark"></span>
+        <span class="feedback"></span>
+      </div>
+      <div class="btnrow"><button class="act ghost" data-sol>Lösung &amp; Erklärung</button></div>
+      <div class="solution">
+        <h4>Lösung</h4>
+        <p class="step">Ansatz: \(50e^{-0{,}2t}=25\Rightarrow e^{-0{,}2t}=0{,}5\).</p>
+        <p class="step">\(-0{,}2t=\ln 0{,}5=-\ln 2\Rightarrow t=\dfrac{\ln 2}{0{,}2}\approx 3{,}466\) Tage.</p>
+        <div class="why">Halbwertszeit-Formel \(T=\ln 2/|k|\) — identische Rechnung wie bei der Verdopplungszeit, nur mit \(0{,}5\) statt \(2\).</div>
+      </div>
+    </div>
+
+    <div class="task" data-id="wa5">
+      <div class="task-head"><span class="task-num">5</span><span class="level abi">Abitur-Niveau</span>
+        <label class="done"><input type="checkbox"> erledigt</label></div>
+      <p><em>(nach Abitur NRW, Stil/Thema — Anwendungsaufgabe)</em> Kaffee kühlt in einem Raum mit \(20\,^\circ\text{C}\) gemäß \(T(t)=20+60\cdot e^{-0{,}1t}\) ab (\(t\) in Minuten). Bestimme die Anfangstemperatur, die langfristige Temperatur und den Zeitpunkt, zu dem der Kaffee \(50\,^\circ\text{C}\) erreicht. Gib den Zeitpunkt ein. (Runde auf 2 Dezimalen.)</p>
+      <div class="answer-row">
+        <input class="num" data-answer="6.93" data-tol="0.05" placeholder="t ≈" aria-label="Antwort">
+        <button class="act check">Prüfen</button><span class="mark"></span><span class="unit">min</span>
+        <span class="feedback"></span>
+      </div>
+      <div class="btnrow"><button class="act ghost" data-sol>Lösung &amp; Erklärung</button></div>
+      <div class="solution">
+        <h4>Lösung</h4>
+        <p class="step"><strong>Anfangstemperatur:</strong> \(T(0)=20+60\cdot e^0=80\,^\circ\text{C}\).</p>
+        <p class="step"><strong>Langfristig:</strong> \(e^{-0{,}1t}\to 0\Rightarrow T(t)\to 20\,^\circ\text{C}\) (Raumtemperatur als Schranke).</p>
+        <p class="step"><strong>Zeitpunkt für \(50\,^\circ\text{C}\):</strong> \(20+60e^{-0{,}1t}=50\Rightarrow 60e^{-0{,}1t}=30\Rightarrow e^{-0{,}1t}=0{,}5\).</p>
+        <p class="step">\(-0{,}1t=\ln 0{,}5\Rightarrow t=\dfrac{\ln 2}{0{,}1}\approx 6{,}93\) Minuten.</p>
+        <div class="why">Das ist begrenzter <em>Zerfall</em> in Richtung Raumtemperatur — Modell und Rechnung sind identisch mit dem begrenzten Wachstum, nur von oben statt von unten. Ein Klassiker in Abitur-Sachaufgaben.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ KAPITEL 4 BAND ============ -->
+<section>
+  <div class="wrap">
+    <div class="chapter-head" id="kap4">
+      <div class="knum">Kapitel 4</div>
+      <h2>Zusammengesetzte Funktionen</h2>
+      <p>Produkt- und Kettenregel, Kurvendiskussion von Produkten und Verkettungen mit der e-Funktion, Funktionenscharen mit Parameter im Exponenten und der Nachweis von Stammfunktionen durch Ableiten — inklusive Anwendungsaufgaben.</p>
+      <div class="chapter-toc">
+        <a href="#regeln">Produkt- &amp; Kettenregel</a>
+        <a href="#kurven">Kurvendiskussion</a>
+        <a href="#escharen">e-Funktionsscharen</a>
+        <a href="#stammpruefen">Stammfunktionen prüfen</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4.1 · REGELN ============ -->
+<section id="regeln">
+  <div class="wrap">
+    <span class="section-tag">1 · Produkt- und Kettenregel</span>
+    <div class="card">
+      <h2>Ableiten von Produkten und Verkettungen</h2>
+      <p>Terme wie \(x\cdot e^{-x}\) oder \(e^{2x}\) lassen sich nicht mehr mit Potenz- und Summenregel allein ableiten. Dafür gibt es zwei neue Regeln — die wichtigsten Werkzeuge der Q1:</p>
+      <div class="merk">
+        <h4>🔗 Die beiden Regeln</h4>
+        <ul>
+          <li><strong>Produktregel:</strong> \(\big(u(x)\cdot v(x)\big)'=u'(x)\cdot v(x)+u(x)\cdot v'(x)\).</li>
+          <li><strong>Kettenregel:</strong> \(\big(u(v(x))\big)'=u'\big(v(x)\big)\cdot v'(x)\) — „<em>äußere Ableitung mal innere Ableitung</em>".</li>
+          <li><strong>Wichtige Spezialfälle:</strong> \(\big(e^{kx}\big)'=k\cdot e^{kx}\), \(\quad\big(e^{g(x)}\big)'=g'(x)\cdot e^{g(x)}\), \(\quad\big((ax+b)^n\big)'=n(ax+b)^{n-1}\cdot a\).</li>
+        </ul>
+      </div>
+
+      <div class="worked">
+        <h4>Durchgerechnetes Beispiel — Produktregel</h4>
+        <p><strong>Leite \(f(x)=x\cdot e^{-x}\) ab.</strong></p>
+        <p class="step"><strong>Zerlegen:</strong> \(u(x)=x\Rightarrow u'(x)=1\); \(\quad v(x)=e^{-x}\Rightarrow v'(x)=-e^{-x}\) (Kettenregel mit innerer Ableitung \(-1\)).</p>
+        <p class="step"><strong>Einsetzen:</strong> \(f'(x)=1\cdot e^{-x}+x\cdot\big(-e^{-x}\big)\).</p>
+        <p class="step"><strong>Ausklammern:</strong> \(f'(x)=(1-x)\,e^{-x}\).</p>
+      </div>
+
+      <div class="worked">
+        <h4>Durchgerechnetes Beispiel — Kettenregel</h4>
+        <p><strong>Leite \(f(x)=e^{-\frac12 x^2}\) ab.</strong></p>
+        <p class="step"><strong>Innen und außen erkennen:</strong> äußere Funktion \(e^{(\dots)}\), innere Funktion \(g(x)=-\tfrac12 x^2\) mit \(g'(x)=-x\).</p>
+        <p class="step"><strong>Kettenregel:</strong> \(f'(x)=g'(x)\cdot e^{g(x)}=-x\cdot e^{-\frac12 x^2}\).</p>
+        <p class="step"><strong>Beobachtung:</strong> \(f'(x)=-x\cdot f(x)\) — genau das zeigt Abb. 15.</p>
+      </div>
+
+      <div class="figure">
+        <div id="jxg15" class="jxgbox"></div>
+        <p class="ctrl">Ziehe den roten Punkt auf der Glockenkurve: die Steigung ist stets \(-x\cdot f(x)\).</p>
+        <p class="figcap">Abb. 15 — Die Glockenkurve \(f(x)=e^{-\frac12x^2}\) mit Tangente. Die Kettenregel liefert \(f'(x)=-x\cdot e^{-\frac12x^2}\).</p>
+      </div>
+
+      <div class="fehler">
+        <h4>⚠️ Häufige Stolperfallen</h4>
+        <ul>
+          <li><strong>Innere Ableitung vergessen:</strong> \(\big(e^{2x}\big)'=2e^{2x}\), nicht \(e^{2x}\). Der Faktor \(2\) kommt aus der Kette.</li>
+          <li><strong>Produkte nicht „faktorweise" ableiten:</strong> \(\big(x\cdot e^x\big)'\neq 1\cdot e^x\) — es braucht beide Summanden der Produktregel.</li>
+          <li>Nach dem Ableiten <strong>ausklammern</strong> (meist die e-Funktion): Nur so findest du anschließend Nullstellen von \(f'\).</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>Übungen — Produkt- &amp; Kettenregel</h3>
+
+    <div class="task" data-id="pk1">
+      <div class="task-head"><span class="task-num">1</span><span class="level basal">Basal</span>
+        <label class="done"><input type="checkbox"> erledigt</label></div>
+      <p>Welche ist die Ableitung von \(f(x)=x\cdot e^{x}\)?</p>
+      <div class="mc" data-answer="2">
+        <label class="opt"><input type="radio" name="mc-pk1"><span>\(f'(x)=e^{x}\)</span></label>
+        <label class="opt"><input type="radio" name="mc-pk1"><span>\(f'(x)=(1+x)\,e^{x}\)</span></label>
+        <label class="opt"><input type="radio" name="mc-pk1"><span>\(f'(x)=x\cdot e^{x-1}\)</span></label>
+        <label class="opt"><input type="radio" name="mc-pk1"><span>\(f'(x)=(1-x)\,e^{x}\)</span></label>
+      </div>
+      <div class="btnrow"><button class="act check-mc">Prüfen</button><span class="mark"></span>
+        <span class="feedback"></span>
+        <button class="act ghost" data-sol>Lösung &amp; Erklärung</button></div>
+      <div class="solution">
+        <h4>Lösung</h4>
+        <p class="step">Produktregel: \(f'(x)=1\cdot e^x+x\cdot e^x=(1+x)\,e^x\).</p>
+        <div class="why">Beide Summanden enthalten \(e^x\) — ausklammern macht das Ergebnis übersichtlich und nullstellen-tauglich.</div>
+      </div>
+    </div>
+
+    <div class="task" data-id="pk2">
+      <div class="task-head"><span class="task-num">2</span><span class="level basal">Basal</span>
+        <label class="done"><input type="checkbox"> erledigt</label></div>
+      <p>Gegeben \(f(x)=e^{3x}\). Berechne \(f'(0)\).</p>
+      <div class="answer-row">
+        <input class="num" data-answer="3" data-tol="0.001" placeholder="f'(0) =" aria-label="Antwort">
+        <button class="act check">Prüfen</button><span class="mark"></span>
+        <span class="feedback"></span>
+      </div>
+      <div class="btnrow"><button class="act ghost" data-sol>Lösung &amp; Erklärung</button></div>
+      <div class="solution">
+        <h4>Lösung</h4>
+        <p class="step">Kettenregel: \(f'(x)=3e^{3x}\).</p>
+        <p class="step">\(f'(0)=3e^0=3\).</p>
+        <div class="why">Die innere Ableitung \(3\) wandert als Faktor nach vorn — der häufigste Anwendungsfall der Kettenregel.</div>
+      </div>
+    </div>
+
+    <div class="task" data-id="pk3">
+      <div class="task-head"><span class="task-num">3</span><span class="level mittel">Mittel</span>
+        <label class="done"><input type="checkbox"> erledigt</label></div>
+      <p>Gegeben \(f(x)=(2x+1)^3\). Berechne \(f'(1)\).</p>
+      <div class="answer-row">
+        <input class="num" data-answer="54" data-tol="0.001" placeholder="f'(1) =" aria-label="Antwort">
+        <button class="act check">Prüfen</button><span class="mark"></span>
+        <span class="feedback"></span>
+      </div>
+      <div class="btnrow"><button class="act ghost" data-sol>Lösung &amp; Erklärung</button></div>
+      <div class="solution">
+        <h4>Lösung</h4>
+        <p class="step">Kettenregel: \(f'(x)=3(2x+1)^2\cdot 2=6(2x+1)^2\).</p>
+        <p class="step">\(f'(1)=6\cdot 3^2=54\).</p>
+        <div class="why">Innere Funktion \(2x+1\), innere Ableitung \(2\) — hilfsmittelfrei schneller als Ausmultiplizieren.</div>
+      </div>
+    </div>
+
+    <div class="task" data-id="pk4">
+      <div class="task-head"><span class="task-num">4</span><span class="level mittel">Mittel</span>
+        <label class="done"><input type="checkbox"> erledigt</label></div>
+      <p>Gegeben \(f(x)=x\cdot e^{-x}\). Berechne \(f'(2)\). (Runde auf 3 Dezimalen.)</p>
+      <div class="answer-row">
+        <input class="num" data-answer="-0.1353" data-tol="0.005" placeholder="f'(2) ≈" aria-label="Antwort">
+        <button class="act check">Prüfen</button><span class="mark"></span>
+        <span class="feedback"></span>
+      </div>
+      <div class="btnrow"><button class="act ghost" data-sol>Lösung &amp; Erklärung</button></div>
+      <div class="solution">
+        <h4>Lösung</h4>
+        <p class="step">Aus dem Beispiel oben: \(f'(x)=(1-x)\,e^{-x}\).</p>
+        <p class="step">\(f'(2)=(1-2)\,e^{-2}=-e^{-2}\approx-0{,}135\).</p>
+        <div class="why">Negatives Ergebnis heißt: Der Graph fällt bei \(x=2\) — plausibel, denn das Maximum liegt bei \(x=1\) (siehe Abschnitt 2).</div>
+      </div>
+    </div>
+
+    <div class="task" data-id="pk5">
+      <div class="task-head"><span class="task-num">5</span><span class="level anspruch">Anspruchsvoll</span>
+        <label class="done"><input type="checkbox"> erledigt</label></div>
+      <p>Welche ist die Ableitung von \(f(x)=e^{x^2}\)?</p>
+      <div class="mc" data-answer="3">
+        <label class="opt"><input type="radio" name="mc-pk5"><span>\(f'(x)=e^{x^2}\)</span></label>
+        <label class="opt"><input type="radio" name="mc-pk5"><span>\(f'(x)=x^2\,e^{x^2-1}\)</span></label>
+        <label class="opt"><input type="radio" name="mc-pk5"><span>\(f'(x)=2x\cdot e^{x^2}\)</span></label>
+        <label class="opt"><input type="radio" name="mc-pk5"><span>\(f'(x)=2e^{x}\)</span></label>
+      </div>
+      <div class="btnrow"><button class="act check-mc">Prüfen</button><span class="mark"></span>
+        <span class="feedback"></span>
+        <button class="act ghost" data-sol>Lösung &amp; Erklärung</button></div>
+      <div class="solution">
+        <h4>Lösung</h4>
+        <p class="step">Innere Funktion \(g(x)=x^2\) mit \(g'(x)=2x\).</p>
+        <p class="step">Kettenregel: \(f'(x)=g'(x)\cdot e^{g(x)}=2x\cdot e^{x^2}\).</p>
+        <div class="why">Merkbild: Die e-Funktion „überlebt" das Ableiten unverändert, die innere Ableitung stellt sich als Faktor davor.</div>
+      </div>
+    </div>
+
+    <div class="task" data-id="pk6">
+      <div class="task-head"><span class="task-num">6</span><span class="level abi">Abitur-Niveau</span>
+        <label class="done"><input type="checkbox"> erledigt</label></div>
+      <p><em>(hilfsmittelfrei, Abitur-Stil)</em> Leite \(f(x)=x^2\cdot e^{2x}\) ab und klammere so weit wie möglich aus. Vergleiche mit der Musterlösung.</p>
+      <div class="btnrow"><button class="act ghost" data-sol>Lösung &amp; Erklärung</button></div>
+      <div class="solution">
+        <h4>Lösung</h4>
+        <p class="step"><strong>Zerlegen:</strong> \(u=x^2\Rightarrow u'=2x\); \(\quad v=e^{2x}\Rightarrow v'=2e^{2x}\) (Kettenregel).</p>
+        <p class="step"><strong>Produktregel:</strong> \(f'(x)=2x\cdot e^{2x}+x^2\cdot 2e^{2x}\).</p>
+        <p class="step"><strong>Ausklammern:</strong> \(f'(x)=2x\,(1+x)\,e^{2x}\).</p>
+        <div class="why">Hier arbeiten beide Regeln zusammen: Produktregel außen, Kettenregel im Faktor \(e^{2x}\). Die ausgeklammerte Form zeigt sofort die Nullstellen von \(f'\): \(x=0\) und \(x=-1\).</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4.2 · KURVENDISKUSSION ============ -->
+<section id="kurven">
+  <div class="wrap">
+    <span class="section-tag">2 · Kurvendiskussion zusammengesetzter Funktionen</span>
+    <div class="card">
+      <h2>Der volle Fahrplan — jetzt mit e-Funktion</h2>
+      <p>Die Funktionsuntersuchung aus Kapitel 1 funktioniert unverändert — nur die Ableitungen kommen jetzt aus Produkt- und Kettenregel. Entscheidender Vorteil: Weil \(e^{\dots}>0\) immer gilt, stammen <strong>alle Nullstellen</strong> (auch die von \(f'\) und \(f''\)) <strong>allein aus dem Polynomfaktor</strong>.</p>
+
+      <div class="worked">
+        <h4>Durchgerechnetes Beispiel</h4>
+        <p><strong>Untersuche \(f(x)=x\cdot e^{-x}\) auf Nullstellen, Extrem- und Wendepunkte sowie das Globalverhalten.</strong></p>
+        <p class="step"><strong>Nullstellen:</strong> \(x\cdot e^{-x}=0\); da \(e^{-x}>0\), bleibt nur \(x=0\).</p>
+        <p class="step"><strong>Ableitungen:</strong> \(f'(x)=(1-x)\,e^{-x}\) und \(f''(x)=(x-2)\,e^{-x}\) (jeweils Produktregel + Ausklammern).</p>
+        <p class="step"><strong>Extrempunkt:</strong> \(f'(x)=0\Rightarrow x=1\). \(f''(1)=-e^{-1}<0\Rightarrow\) Hochpunkt \(H\big(1\mid e^{-1}\big)\), \(e^{-1}\approx 0{,}37\).</p>
+        <p class="step"><strong>Wendepunkt:</strong> \(f''(x)=0\Rightarrow x=2\), Vorzeichenwechsel ✓ \(\Rightarrow W\big(2\mid 2e^{-2}\big)\), \(2e^{-2}\approx 0{,}27\).</p>
+        <p class="step"><strong>Globalverhalten:</strong> \(x\to\infty:\ f(x)\to 0\) (die e-Funktion „gewinnt" gegen \(x\); \(x\)-Achse ist Asymptote); \(x\to-\infty:\ f(x)\to-\infty\).</p>
+      </div>
+
+      <div class="figure">
+        <div id="jxg16" class="jxgbox"></div>
+        <p class="figcap">Abb. 16 — \(f(x)=x\,e^{-x}\) mit Hochpunkt \(H(1\mid e^{-1})\) und Wendepunkt \(W(2\mid 2e^{-2})\). Für \(x\to\infty\) schmiegt sich der Graph an die \(x\)-Achse.</p>
+      </div>
+
+      <div class="fehler">
+        <h4>⚠️ Häufige Stolperfallen</h4>
+        <ul>
+          <li>Beim Nullsetzen von \(f'\) darf der Faktor \(e^{\dots}\) <strong>weggeteilt</strong> werden (er ist nie null) — aber vergiss nicht, das im Aufschrieb zu begründen.</li>
+          <li>Grenzverhalten: \(x\cdot e^{-x}\) für \(x\to\infty\) ist <em>kein</em> „\(\infty\cdot 0\)-Patt" — die e-Funktion dominiert jede Potenz. Merksatz: „<em>e schlägt Polynom</em>".</li>
+          <li>\(y\)-Koordinaten wie \(e^{-1}\) exakt stehen lassen <em>und</em> als Näherung angeben — im hilfsmittelfreien Teil zählt die exakte Form.</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>Übungen — Kurvendiskussion</h3>
+
+    <div class="task" data-id="kd1">
+      <div class="task-head"><span class="task-num">1</span><span class="level basal">Basal</span>
+        <label class="done"><input type="checkbox"> erledigt</label></div>
+      <p>Warum hat \(f(x)=x\cdot e^{-x}\) nur die eine Nullstelle \(x=0\)?</p>
+      <div class="mc" data-answer="2">
+        <label class="opt"><input type="radio" name="mc-kd1"><span>Weil \(f\) streng monoton steigt.</span></label>
+        <label class="opt"><input type="radio" name="mc-kd1"><span>Weil \(e^{-x}>0\) für alle \(x\) gilt — nur der Faktor \(x\) kann null werden.</span></label>
+        <label class="opt"><input type="radio" name="mc-kd1"><span>Weil \(e^{-x}\) bei \(x=0\) eine Nullstelle hat.</span></label>
+      </div>
+      <div class="btnrow"><button class="act check-mc">Prüfen</button><span class="mark"></span>
+        <span class="feedback"></span>
+        <button class="act ghost" data-sol>Lösung &amp; Erklärung</button></div>
+      <div class="solution">
+        <h4>Lösung</h4>
+        <p class="step">Ein Produkt ist null, wenn ein Faktor null ist. \(e^{-x}\) ist nie null — also entscheidet allein \(x=0\).</p>
+        <div class="why">Dieses Argument („\(e^{\dots}>0\), also …") gehört in jede Kurvendiskussion mit e-Funktionen — es spart dir viel Rechenarbeit.</div>
+      </div>
+    </div>
+
+    <div class="task" data-id="kd2">
+      <div class="task-head"><span class="task-num">2</span><span class="level mittel">Mittel</span>
+        <label class="done"><input type="checkbox"> erledigt</label></div>
+      <p>Gegeben \(f(x)=(x-2)\,e^{x}\). Bestimme die Extremstelle.</p>
+      <div class="answer-row">
+        <input class="num" data-answer="1" data-tol="0.001" placeholder="x =" aria-label="Antwort">
+        <button class="act check">Prüfen</button><span class="mark"></span>
+        <span class="feedback"></span>
+      </div>
+      <div class="btnrow"><button class="act ghost" data-sol>Lösung &amp; Erklärung</button></div>
+      <div class="solution">
+        <h4>Lösung</h4>
+        <p class="step">Produktregel: \(f'(x)=1\cdot e^x+(x-2)\,e^x=(x-1)\,e^x\).</p>
+        <p class="step">\(f'(x)=0\): Da \(e^x>0\), folgt \(x=1\).</p>
+        <p class="step">Vorzeichenwechsel von \(-\) nach \(+\) \(\Rightarrow\) Tiefpunkt \(T\big(1\mid -e\big)\).</p>
+        <div class="why">Nach dem Ausklammern steht die Extremstelle direkt im Polynomfaktor — die e-Funktion spielt für die <em>Lage</em> keine Rolle.</div>
+      </div>
+    </div>
+
+    <div class="task" data-id="kd3">
+      <div class="task-head"><span class="task-num">3</span><span class="level mittel">Mittel</span>
+        <label class="done"><input type="checkbox"> erledigt</label></div>
+      <p>An welcher Stelle hat \(f(x)=x\cdot e^{-x}\) seinen Wendepunkt?</p>
+      <div class="answer-row">
+        <input class="num" data-answer="2" data-tol="0.001" placeholder="x =" aria-label="Antwort">
+        <button class="act check">Prüfen</button><span class="mark"></span>
+        <span class="feedback"></span>
+      </div>
+      <div class="btnrow"><button class="act ghost" data-sol>Lösung &amp; Erklärung</button></div>
+      <div class="solution">
+        <h4>Lösung</h4>
+        <p class="step">\(f'(x)=(1-x)\,e^{-x}\); nochmals Produktregel: \(f''(x)=-e^{-x}+(1-x)\cdot\big(-e^{-x}\big)=(x-2)\,e^{-x}\).</p>
+        <p class="step">\(f''(x)=0\Rightarrow x=2\) (mit Vorzeichenwechsel) \(\Rightarrow W\big(2\mid 2e^{-2}\big)\).</p>
+        <div class="why">Beim zweimaligen Ableiten wandert die Nullstelle des Polynomfaktors jeweils um \(1\) nach rechts: \(f\!:0,\ f'\!:1,\ f''\!:2\) — ein hübsches Muster bei \(x\,e^{-x}\).</div>
+      </div>
+    </div>
+
+    <div class="task" data-id="kd4">
+      <div class="task-head"><span class="task-num">4</span><span class="level anspruch">Anspruchsvoll</span>
+        <label class="done"><input type="checkbox"> erledigt</label></div>
+      <p>Welche Aussage über das Verhalten von \(f(x)=x\cdot e^{-x}\) für \(x\to\infty\) ist korrekt?</p>
+      <div class="mc" data-answer="1">
+        <label class="opt"><input type="radio" name="mc-kd4"><span>\(f(x)\to 0\), weil \(e^{-x}\) schneller fällt, als \(x\) wächst.</span></label>
+        <label class="opt"><input type="radio" name="mc-kd4"><span>\(f(x)\to\infty\), weil der Faktor \(x\) unbegrenzt wächst.</span></label>
+        <label class="opt"><input type="radio" name="mc-kd4"><span>Der Grenzwert existiert nicht, weil \(\infty\cdot 0\) unbestimmt ist.</span></label>
+      </div>
+      <div class="btnrow"><button class="act check-mc">Prüfen</button><span class="mark"></span>
+        <span class="feedback"></span>
+        <button class="act ghost" data-sol>Lösung &amp; Erklärung</button></div>
+      <div class="solution">
+        <h4>Lösung</h4>
+        <p class="step">Die e-Funktion dominiert jedes Polynom: \(e^{-x}\) fällt schneller gegen \(0\), als \(x\) wächst — also \(x\,e^{-x}\to 0\).</p>
+        <div class="why">„\(\infty\cdot 0\)" ist zwar formal unbestimmt, aber der Vergleich der Wachstumsgeschwindigkeiten entscheidet: <em>e schlägt Polynom</em>. Mit TR prüfen: \(20\cdot e^{-20}\approx 4\cdot 10^{-8}\).</div>
+      </div>
+    </div>
+
+    <div class="task" data-id="kd5">
+      <div class="task-head"><span class="task-num">5</span><span class="level abi">Abitur-Niveau</span>
+        <label class="done"><input type="checkbox"> erledigt</label></div>
+      <p><em>(nach Abitur NRW, Stil/Thema — Anwendungsaufgabe)</em> Nach Einnahme eines Medikaments wird die Wirkstoffkonzentration im Blut durch \(c(t)=4t\cdot e^{-0{,}5t}\) beschrieben (\(t\) in Stunden, \(c\) in \(\tfrac{\text{mg}}{\text{l}}\)). Zu welchem Zeitpunkt ist die Konzentration maximal? Gib \(t\) ein und vergleiche die vollständige Rechnung mit der Musterlösung.</p>
+      <div class="answer-row">
+        <input class="num" data-answer="2" data-tol="0.01" placeholder="t =" aria-label="Antwort">
+        <button class="act check">Prüfen</button><span class="mark"></span><span class="unit">h</span>
+        <span class="feedback"></span>
+      </div>
+      <div class="btnrow"><button class="act ghost" data-sol>Lösung &amp; Erklärung</button></div>
+      <div class="solution">
+        <h4>Lösung</h4>
+        <p class="step"><strong>Ableiten</strong> (Produkt- + Kettenregel): \(c'(t)=4e^{-0{,}5t}+4t\cdot\big(-0{,}5\,e^{-0{,}5t}\big)=(4-2t)\,e^{-0{,}5t}\).</p>
+        <p class="step"><strong>Nullsetzen:</strong> Da \(e^{-0{,}5t}>0\): \(4-2t=0\Rightarrow t=2\).</p>
+        <p class="step"><strong>Nachweis Maximum:</strong> \(c'\) wechselt bei \(t=2\) von \(+\) nach \(-\) ✓.</p>
+        <p class="step"><strong>Maximale Konzentration:</strong> \(c(2)=8e^{-1}\approx 2{,}94\ \tfrac{\text{mg}}{\text{l}}\).</p>
+        <div class="why">Der Funktionstyp \(a\cdot t\cdot e^{-kt}\) („erst rauf, dann runter mit Auslaufen") ist <em>das</em> Standardmodell für Medikamente, Schadstoffe und Verkaufskurven — im Abitur ein Dauergast.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4.3 · E-SCHAREN ============ -->
+<section id="escharen">
+  <div class="wrap">
+    <span class="section-tag">3 · Funktionenscharen mit e-Funktion</span>
+    <div class="card">
+      <h2>Parameter im Exponenten</h2>
+      <p>Auch mit e-Funktionen bilden Parameter ganze Scharen — jetzt steckt der Parameter oft im Exponenten und streckt oder staucht das Abklingen. Die Methodik aus Kapitel 1 bleibt gleich: Parameter wie eine Konstante behandeln, Ergebnisse in Abhängigkeit vom Parameter angeben, Ortskurven durch Eliminieren des Parameters bestimmen.</p>
+
+      <div class="worked">
+        <h4>Durchgerechnetes Beispiel</h4>
+        <p><strong>Untersuche die Schar \(f_a(x)=x\cdot e^{-ax}\) (\(a>0\)) auf Extrempunkte und bestimme die Ortskurve der Hochpunkte.</strong></p>
+        <p class="step"><strong>Ableiten</strong> (Produkt- + Kettenregel, \(a\) ist Konstante): \(f_a'(x)=e^{-ax}+x\cdot(-a)e^{-ax}=(1-ax)\,e^{-ax}\).</p>
+        <p class="step"><strong>Extremstelle:</strong> \(f_a'(x)=0\); da \(e^{-ax}>0\): \(1-ax=0\Rightarrow x=\dfrac1a\).</p>
+        <p class="step"><strong>Art &amp; Punkt:</strong> Vorzeichenwechsel von \(+\) nach \(-\) \(\Rightarrow\) Hochpunkt. \(f_a\big(\tfrac1a\big)=\tfrac1a\,e^{-1}\Rightarrow H\big(\tfrac1a\mid\tfrac{1}{a\,e}\big)\).</p>
+        <p class="step"><strong>Ortskurve:</strong> Aus \(x=\tfrac1a\) folgt \(a=\tfrac1x\); einsetzen in \(y=\tfrac1a e^{-1}=x\cdot e^{-1}\). Die Hochpunkte liegen also auf der <strong>Geraden</strong> \(y=\dfrac{x}{e}\).</p>
+      </div>
+
+      <div class="figure">
+        <div id="jxg17" class="jxgbox"></div>
+        <p class="ctrl">Verändere den Parameter \(a\): der Hochpunkt wandert auf der Ortskurve \(y=\tfrac{x}{e}\).</p>
+        <p class="figcap">Abb. 17 — Schar \(f_a(x)=x\,e^{-ax}\). Der Hochpunkt \(H\big(\tfrac1a\mid\tfrac{1}{ae}\big)\) (grün) liegt für jedes \(a\) auf der Geraden \(y=\tfrac{x}{e}\) (gestrichelt).</p>
+      </div>
+
+      <div class="fehler">
+        <h4>⚠️ Häufige Stolperfallen</h4>
+        <ul>
+          <li>Bei \(e^{-ax}\) ist die innere Ableitung \(-a\) — nicht \(-x\) und nicht \(-1\). Parameter und Variable sauber auseinanderhalten.</li>
+          <li>Ergebnisse wie \(x=\tfrac1a\) gelten nur mit der Voraussetzung \(a>0\) — Fallunterscheidungen im Blick behalten.</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>Übungen — e-Funktionsscharen</h3>
+
+    <div class="task" data-id="es1">
+      <div class="task-head"><span class="task-num">1</span><span class="level mittel">Mittel</span>
+        <label class="done"><input type="checkbox"> erledigt</label></div>
+      <p>Für die Schar \(f_a(x)=x\cdot e^{-ax}\) mit \(a=2\): An welcher Stelle liegt der Hochpunkt?</p>
+      <div class="answer-row">
+        <input class="num" data-answer="0.5" data-tol="0.001" placeholder="x =" aria-label="Antwort">
+        <button class="act check">Prüfen</button><span class="mark"></span>
+        <span class="feedback"></span>
+      </div>
+      <div class="btnrow"><button class="act ghost" data-sol>Lösung &amp; Erklärung</button></div>
+      <div class="solution">
+        <h4>Lösung</h4>
+        <p class="step">Allgemein liegt der Hochpunkt bei \(x=\tfrac1a\) (siehe Beispiel).</p>
+        <p class="step">Für \(a=2\): \(x=\tfrac12=0{,}5\).</p>
+        <div class="why">Je größer \(a\), desto schneller klingt die Funktion ab — und desto weiter rückt das Maximum nach links.</div>
+      </div>
+    </div>
+
+    <div class="task" data-id="es2">
+      <div class="task-head"><span class="task-num">2</span><span class="level mittel">Mittel</span>
+        <label class="done"><input type="checkbox"> erledigt</label></div>
+      <p>Leite die Schar \(g_t(x)=e^{tx}\) (\(t\neq 0\)) ab und bestimme \(g_t'(0)\) in Abhängigkeit von \(t\). Vergleiche mit der Musterlösung.</p>
+      <div class="btnrow"><button class="act ghost" data-sol>Lösung &amp; Erklärung</button></div>
+      <div class="solution">
+        <h4>Lösung</h4>
+        <p class="step">Kettenregel (innere Ableitung \(t\)): \(g_t'(x)=t\cdot e^{tx}\).</p>
+        <p class="step">\(g_t'(0)=t\cdot e^0=t\).</p>
+        <div class="why">Alle Scharkurven laufen durch \((0\mid 1)\) — aber mit Steigung \(t\). Der Parameter steuert hier direkt die Steilheit im gemeinsamen Punkt.</div>
+      </div>
+    </div>
+
+    <div class="task" data-id="es3">
+      <div class="task-head"><span class="task-num">3</span><span class="level anspruch">Anspruchsvoll</span>
+        <label class="done"><input type="checkbox"> erledigt</label></div>
+      <p>Für welchen Wert von \(a>0\) liegt der Hochpunkt der Schar \(f_a(x)=x\cdot e^{-ax}\) an der Stelle \(x=4\)?</p>
+      <div class="answer-row">
+        <input class="num" data-answer="0.25" data-tol="0.001" placeholder="a =" aria-label="Antwort">
+        <button class="act check">Prüfen</button><span class="mark"></span>
+        <span class="feedback"></span>
+      </div>
+      <div class="btnrow"><button class="act ghost" data-sol>Lösung &amp; Erklärung</button></div>
+      <div class="solution">
+        <h4>Lösung</h4>
+        <p class="step">Hochpunkt bei \(x=\tfrac1a\). Bedingung: \(\tfrac1a=4\Rightarrow a=\tfrac14=0{,}25\).</p>
+        <div class="why">Typische Abitur-Teilaufgabe: erst das allgemeine Ergebnis, dann die Bedingung als Gleichung im Parameter lösen — wie bei den Polynomscharen in Kapitel 1.</div>
+      </div>
+    </div>
+
+    <div class="task" data-id="es4">
+      <div class="task-head"><span class="task-num">4</span><span class="level abi">Abitur-Niveau</span>
+        <label class="done"><input type="checkbox"> erledigt</label></div>
+      <p><em>(nach Abitur NRW, Stil/Thema)</em> Zeige, dass alle Hochpunkte der Schar \(f_a(x)=x\cdot e^{-ax}\) (\(a>0\)) auf einer Ursprungsgeraden liegen, und gib deren Steigung an. (Runde auf 3 Dezimalen.)</p>
+      <div class="answer-row">
+        <input class="num" data-answer="0.3679" data-tol="0.005" placeholder="m ≈" aria-label="Antwort">
+        <button class="act check">Prüfen</button><span class="mark"></span>
+        <span class="feedback"></span>
+      </div>
+      <div class="btnrow"><button class="act ghost" data-sol>Lösung &amp; Erklärung</button></div>
+      <div class="solution">
+        <h4>Lösung</h4>
+        <p class="step">Hochpunkt: \(H\big(\tfrac1a\mid \tfrac1a e^{-1}\big)\), also \(x=\tfrac1a\) und \(y=\tfrac1a\,e^{-1}\).</p>
+        <p class="step"><strong>Parameter eliminieren:</strong> \(y=x\cdot e^{-1}\) — eine Ursprungsgerade.</p>
+        <p class="step"><strong>Steigung:</strong> \(m=e^{-1}=\tfrac1e\approx 0{,}368\).</p>
+        <div class="why">Dass die Ortskurve hier eine <em>Gerade</em> ist, ist eine beliebte Pointe in Abituraufgaben — das exakte Ergebnis \(\tfrac1e\) unbedingt neben der Näherung angeben.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4.4 · STAMMFUNKTIONEN PRÜFEN ============ -->
+<section id="stammpruefen">
+  <div class="wrap">
+    <span class="section-tag">4 · Stammfunktionen nachweisen &amp; Anwendungen</span>
+    <div class="card">
+      <h2>Integrieren durch Ableiten</h2>
+      <p>Für Produkte und Verkettungen mit e-Funktionen gibt es in der Q1 keine eigene Integrationsregel — stattdessen wird eine <strong>vorgegebene Stammfunktion durch Ableiten nachgewiesen</strong>: Ist \(F'(x)=f(x)\), dann ist \(F\) Stammfunktion, und du kannst mit dem Hauptsatz aus Kapitel 2 Flächen und Bestände berechnen.</p>
+      <div class="merk">
+        <h4>✅ Das Nachweis-Rezept</h4>
+        <ul>
+          <li>\(F\) mit Produkt- und Kettenregel <strong>ableiten</strong>.</li>
+          <li>Das Ergebnis <strong>ausklammern und vereinfachen</strong>, bis \(f\) dasteht: \(F'=f\) ✓.</li>
+          <li>Dann wie gewohnt: \(\displaystyle\int_a^b f(x)\,dx=F(b)-F(a)\).</li>
+          <li>Nützlich zum Merken: \(\displaystyle\int e^{kx}\,dx=\tfrac1k\,e^{kx}+C\) (Probe durch Ableiten!).</li>
+        </ul>
+      </div>
+
+      <div class="worked">
+        <h4>Durchgerechnetes Beispiel</h4>
+        <p><strong>Weise nach, dass \(F(x)=(-x-1)\,e^{-x}\) eine Stammfunktion von \(f(x)=x\cdot e^{-x}\) ist, und berechne die Fläche unter dem Graphen von \(f\) über \([0,2]\).</strong></p>
+        <p class="step"><strong>Nachweis</strong> (Produktregel): \(F'(x)=(-1)\cdot e^{-x}+(-x-1)\cdot\big(-e^{-x}\big)=e^{-x}\,\big(-1+x+1\big)=x\,e^{-x}=f(x)\) ✓.</p>
+        <p class="step"><strong>Fläche</strong> (auf \([0,2]\) ist \(f\ge 0\)):</p>
+        <p class="step">\(\displaystyle A=\int_0^2 x\,e^{-x}\,dx=\Big[(-x-1)\,e^{-x}\Big]_0^2=\big(-3e^{-2}\big)-\big(-1\big)=1-\tfrac{3}{e^2}\approx 0{,}594\).</p>
+      </div>
+
+      <div class="fehler">
+        <h4>⚠️ Häufige Stolperfallen</h4>
+        <ul>
+          <li>Beim Nachweis wirklich bis zur Form von \(f\) <strong>vereinfachen</strong> — „sieht ähnlich aus" reicht im Abitur nicht.</li>
+          <li>\(\displaystyle\int x\,e^{-x}\,dx\neq \tfrac{x^2}{2}\cdot(-e^{-x})\) — Produkte darfst du <em>nicht</em> faktorweise integrieren.</li>
+          <li>Vorzeichen bei \(e^{-x}\): \(\big(e^{-x}\big)'=-e^{-x}\) — das doppelte Minus ist die häufigste Fehlerquelle im Nachweis.</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>Übungen — Stammfunktionen &amp; Anwendungen</h3>
+
+    <div class="task" data-id="sp1">
+      <div class="task-head"><span class="task-num">1</span><span class="level mittel">Mittel</span>
+        <label class="done"><input type="checkbox"> erledigt</label></div>
+      <p>Welche Funktion ist eine Stammfunktion von \(f(x)=2x\cdot e^{x^2}\)? (Tipp: Kandidaten ableiten!)</p>
+      <div class="mc" data-answer="1">
+        <label class="opt"><input type="radio" name="mc-sp1"><span>\(F(x)=e^{x^2}\)</span></label>
+        <label class="opt"><input type="radio" name="mc-sp1"><span>\(F(x)=x^2\,e^{x^2}\)</span></label>
+        <label class="opt"><input type="radio" name="mc-sp1"><span>\(F(x)=2e^{x^2}\)</span></label>
+        <label class="opt"><input type="radio" name="mc-sp1"><span>\(F(x)=\tfrac{x^2}{2}\cdot e^{x^2}\)</span></label>
+      </div>
+      <div class="btnrow"><button class="act check-mc">Prüfen</button><span class="mark"></span>
+        <span class="feedback"></span>
+        <button class="act ghost" data-sol>Lösung &amp; Erklärung</button></div>
+      <div class="solution">
+        <h4>Lösung</h4>
+        <p class="step">Probe mit der Kettenregel: \(\big(e^{x^2}\big)'=2x\cdot e^{x^2}=f(x)\) ✓.</p>
+        <div class="why">Wenn der Integrand die Bauform „innere Ableitung mal \(e^{\text{innen}}\)" hat, ist \(e^{\text{innen}}\) selbst die Stammfunktion.</div>
+      </div>
+    </div>
+
+    <div class="task" data-id="sp2">
+      <div class="task-head"><span class="task-num">2</span><span class="level mittel">Mittel</span>
+        <label class="done"><input type="checkbox"> erledigt</label></div>
+      <p>Weise nach, dass \(F(x)=(x-1)\,e^{x}\) eine Stammfunktion von \(f(x)=x\cdot e^{x}\) ist. Vergleiche mit der Musterlösung.</p>
+      <div class="btnrow"><button class="act ghost" data-sol>Lösung &amp; Erklärung</button></div>
+      <div class="solution">
+        <h4>Lösung</h4>
+        <p class="step">Produktregel: \(F'(x)=1\cdot e^x+(x-1)\cdot e^x\).</p>
+        <p class="step">Ausklammern: \(F'(x)=e^x\,(1+x-1)=x\,e^x=f(x)\) ✓.</p>
+        <div class="why">Der komplette Nachweis besteht aus: ableiten → ausklammern → mit \(f\) vergleichen → Häkchen. Genau diese vier Schritte erwartet der Erwartungshorizont.</div>
+      </div>
+    </div>
+
+    <div class="task" data-id="sp3">
+      <div class="task-head"><span class="task-num">3</span><span class="level anspruch">Anspruchsvoll</span>
+        <label class="done"><input type="checkbox"> erledigt</label></div>
+      <p>Mit der Stammfunktion \(F(x)=(-x-1)\,e^{-x}\) von \(f(x)=x\,e^{-x}\): Berechne \(\displaystyle\int_0^1 x\,e^{-x}\,dx\). (Runde auf 3 Dezimalen.)</p>
+      <div class="answer-row">
+        <input class="num" data-answer="0.2642" data-tol="0.005" placeholder="Wert ≈" aria-label="Antwort">
+        <button class="act check">Prüfen</button><span class="mark"></span>
+        <span class="feedback"></span>
+      </div>
+      <div class="btnrow"><button class="act ghost" data-sol>Lösung &amp; Erklärung</button></div>
+      <div class="solution">
+        <h4>Lösung</h4>
+        <p class="step">\(\displaystyle\int_0^1 x\,e^{-x}\,dx=F(1)-F(0)=\big(-2e^{-1}\big)-\big(-1\big)=1-\tfrac2e\approx 0{,}264\).</p>
+        <div class="why">Hauptsatz wie in Kapitel 2 — nur dass die Stammfunktion hier vorgegeben war statt selbst gefunden. \(F(0)=(-1)\cdot e^{0}=-1\) nicht verschlucken!</div>
+      </div>
+    </div>
+
+    <div class="task" data-id="sp4">
+      <div class="task-head"><span class="task-num">4</span><span class="level abi">Abitur-Niveau</span>
+        <label class="done"><input type="checkbox"> erledigt</label></div>
+      <p><em>(nach Abitur NRW, Stil/Thema — Anwendungsaufgabe)</em> In ein Regenrückhaltebecken fließt Wasser mit der Rate \(r(t)=t\cdot e^{-0{,}5t}\) (\(t\) in Stunden, \(r\) in \(\tfrac{\text{Tsd. m}^3}{\text{h}}\)). Weise nach, dass \(R(t)=(-2t-4)\,e^{-0{,}5t}\) eine Stammfunktion von \(r\) ist, und berechne die Wassermenge, die in den ersten \(4\) Stunden zufließt. (Runde auf 3 Dezimalen.)</p>
+      <div class="answer-row">
+        <input class="num" data-answer="2.3767" data-tol="0.01" placeholder="Menge ≈" aria-label="Antwort">
+        <button class="act check">Prüfen</button><span class="mark"></span><span class="unit">Tsd. m³</span>
+        <span class="feedback"></span>
+      </div>
+      <div class="btnrow"><button class="act ghost" data-sol>Lösung &amp; Erklärung</button></div>
+      <div class="solution">
+        <h4>Lösung</h4>
+        <p class="step"><strong>Nachweis</strong> (Produkt- + Kettenregel): \(R'(t)=(-2)\,e^{-0{,}5t}+(-2t-4)\cdot\big(-0{,}5\,e^{-0{,}5t}\big)\)</p>
+        <p class="step">\(=e^{-0{,}5t}\,\big(-2+t+2\big)=t\,e^{-0{,}5t}=r(t)\) ✓.</p>
+        <p class="step"><strong>Wassermenge</strong> (Rate integrieren, Kapitel 2!): \(\displaystyle\int_0^4 r(t)\,dt=R(4)-R(0)=\big(-12e^{-2}\big)-\big(-4\big)=4-\tfrac{12}{e^2}\approx 2{,}377\) Tsd. m³.</p>
+        <div class="why">Diese Aufgabe verbindet alles: Rate→Bestand (Kap. 2), Produkt-/Kettenregel (Kap. 4.1) und Stammfunktions-Nachweis — exakt so sind Abitur-Analysisaufgaben gebaut.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <footer>
   <div class="wrap">
     Mathematik LK · Q1 · Analysis · NRW<br>
@@ -1860,6 +2805,87 @@ function initBoards(){
       return "x = "+x.toFixed(2)+"   Radius r = f(x) = "+r.toFixed(2)+"   Scheibenfläche π·r² = "+(Math.PI*r*r).toFixed(2);
     }],{fontSize:13,fixed:true,cssStyle:"font-family:system-ui,sans-serif"});
     b.update();
+  });
+
+  /* Abb.12 — e^x: Steigung = Funktionswert */
+  safe("jxg12",function(){
+    var b=JXG.JSXGraph.initBoard("jxg12",{boundingbox:[-4,7,2.6,-1.2],axis:true,showCopyright:false,showNavigation:false});
+    var f=b.create("functiongraph",[function(x){return Math.exp(x);},-4,1.9],{strokeColor:col.accent,strokeWidth:2.5});
+    var g=b.create("glider",[0.5,Math.exp(0.5),f],{name:"",size:4,fillColor:col.red,strokeColor:col.red});
+    b.create("tangent",[g],{strokeColor:col.green,strokeWidth:1.8,dash:2});
+    b.create("text",[-3.8,6.4,function(){
+      var x=g.X(),y=Math.exp(x);
+      return "x = "+x.toFixed(2)+"   f(x) = "+y.toFixed(2)+"   Steigung f'(x) = "+y.toFixed(2)+"   →  gleich!";
+    }],{fontSize:13,fixed:true,cssStyle:"font-family:system-ui,sans-serif"});
+  });
+
+  /* Abb.13 — e^x und ln(x) gespiegelt an y=x */
+  safe("jxg13",function(){
+    var b=JXG.JSXGraph.initBoard("jxg13",{boundingbox:[-4.2,4.4,4.6,-4.2],axis:true,showCopyright:false,showNavigation:false});
+    b.create("line",[[0,0],[1,1]],{strokeColor:"#9aa6b5",strokeWidth:1.4,dash:2,straightFirst:true,straightLast:true});
+    var fe=b.create("functiongraph",[function(x){return Math.exp(x);},-4.1,1.42],{strokeColor:col.accent,strokeWidth:2.5});
+    b.create("functiongraph",[function(x){return Math.log(x);},0.02,4.5],{strokeColor:col.orange,strokeWidth:2.5});
+    var g=b.create("glider",[0.7,Math.exp(0.7),fe],{name:"",size:4,fillColor:col.red,strokeColor:col.red});
+    b.create("point",[function(){return Math.exp(g.X());},function(){return g.X();}],
+      {name:"",size:4,fillColor:col.green,strokeColor:col.green,fixed:true});
+    b.create("segment",[g,function(){return [Math.exp(g.X()),g.X()];}],{strokeColor:"#9aa6b5",strokeWidth:1,dash:1});
+    b.create("text",[-4,4,function(){
+      var x=g.X(),y=Math.exp(x);
+      return "auf eˣ: ("+x.toFixed(2)+" | "+y.toFixed(2)+")   →   auf ln x: ("+y.toFixed(2)+" | "+x.toFixed(2)+")";
+    }],{fontSize:13,fixed:true,cssStyle:"font-family:system-ui,sans-serif"});
+  });
+
+  /* Abb.14 — begrenztes Wachstum mit Slidern S und k */
+  safe("jxg14",function(){
+    var b=JXG.JSXGraph.initBoard("jxg14",{boundingbox:[-0.9,9.2,10.8,-2.2],axis:true,showCopyright:false,showNavigation:false});
+    var sS=b.create("slider",[[0.5,-1.1],[4.5,-1.1],[2,6,8]],{name:"S",snapWidth:0.1,fillColor:col.accent,strokeColor:col.accent});
+    var sK=b.create("slider",[[6.2,-1.1],[9.8,-1.1],[0.15,0.5,1.5]],{name:"k",snapWidth:0.01,fillColor:col.green,strokeColor:col.green});
+    b.create("line",[[0,function(){return sS.Value();}],[1,function(){return sS.Value();}]],
+      {strokeColor:col.red,strokeWidth:1.4,dash:2,straightFirst:true,straightLast:true});
+    b.create("functiongraph",[function(t){var S=sS.Value(),k=sK.Value();return S-(S-1)*Math.exp(-k*t);},0,10.5],
+      {strokeColor:col.accent,strokeWidth:2.5});
+    b.create("text",[-0.6,8.7,function(){
+      return "B(t) = "+sS.Value().toFixed(1)+" − "+(sS.Value()-1).toFixed(1)+"·e<sup>−"+sK.Value().toFixed(2)+"·t</sup>   →   Schranke S = "+sS.Value().toFixed(1);
+    }],{fontSize:13,fixed:true,cssStyle:"font-family:system-ui,sans-serif"});
+  });
+
+  /* Abb.15 — Glockenkurve e^(−x²/2), Kettenregel: f' = −x·f */
+  safe("jxg15",function(){
+    var b=JXG.JSXGraph.initBoard("jxg15",{boundingbox:[-3.4,1.6,3.4,-0.7],axis:true,showCopyright:false,showNavigation:false});
+    var fn=function(x){return Math.exp(-0.5*x*x);};
+    var f=b.create("functiongraph",[fn,-3.3,3.3],{strokeColor:col.accent,strokeWidth:2.5});
+    var g=b.create("glider",[1,fn(1),f],{name:"",size:4,fillColor:col.red,strokeColor:col.red});
+    b.create("tangent",[g],{strokeColor:col.green,strokeWidth:1.8,dash:2});
+    b.create("text",[-3.2,1.42,function(){
+      var x=g.X(),y=fn(x);
+      return "x = "+x.toFixed(2)+"   f(x) = "+y.toFixed(3)+"   f'(x) = −x·f(x) = "+(-x*y).toFixed(3);
+    }],{fontSize:13,fixed:true,cssStyle:"font-family:system-ui,sans-serif"});
+  });
+
+  /* Abb.16 — Kurvendiskussion x·e^(−x) */
+  safe("jxg16",function(){
+    var b=JXG.JSXGraph.initBoard("jxg16",{boundingbox:[-1.7,0.9,6.7,-3.6],axis:true,showCopyright:false,showNavigation:false});
+    b.create("functiongraph",[function(x){return x*Math.exp(-x);},-1.15,6.6],{strokeColor:col.accent,strokeWidth:2.5});
+    b.create("point",[0,0],{name:"N",size:3,color:col.red,fixed:true,label:{offset:[-16,-4]}});
+    b.create("point",[1,Math.exp(-1)],{name:"H",size:4,color:col.green,fixed:true,label:{offset:[0,14]}});
+    b.create("point",[2,2*Math.exp(-2)],{name:"W",size:3,color:col.orange,fixed:true,label:{offset:[6,12]}});
+    b.create("text",[3.3,0.62,"H(1 | e⁻¹) ≈ (1 | 0,37)     W(2 | 2e⁻²) ≈ (2 | 0,27)"],
+      {fontSize:13,fixed:true,cssStyle:"font-family:system-ui,sans-serif"});
+  });
+
+  /* Abb.17 — e-Schar f_a(x)=x·e^(−ax) mit Ortskurve y=x/e */
+  safe("jxg17",function(){
+    var b=JXG.JSXGraph.initBoard("jxg17",{boundingbox:[-0.9,1.7,7.2,-1.5],axis:true,showCopyright:false,showNavigation:false});
+    var s=b.create("slider",[[0.6,-1.15],[5.8,-1.15],[0.3,1,2.5]],{name:"a",snapWidth:0.01,fillColor:col.accent,strokeColor:col.accent});
+    b.create("functiongraph",[function(x){var a=s.Value();return x*Math.exp(-a*x);},-0.4,7.1],
+      {strokeColor:col.accent,strokeWidth:2.5});
+    b.create("functiongraph",[function(x){return x*Math.exp(-1);},0,4.2],{strokeColor:col.green,strokeWidth:1.6,dash:2});
+    b.create("point",[function(){return 1/s.Value();},function(){return Math.exp(-1)/s.Value();}],
+      {name:"H",size:4,color:col.green,fixed:true,label:{offset:[6,10]}});
+    b.create("text",[-0.7,1.55,function(){
+      var a=s.Value();
+      return "a = "+a.toFixed(2)+"   →   fₐ(x) = x·e<sup>−"+a.toFixed(2)+"·x</sup>      H(1/a | 1/(a·e)) = ("+(1/a).toFixed(2)+" | "+(Math.exp(-1)/a).toFixed(2)+")";
+    }],{fontSize:13,fixed:true,cssStyle:"font-family:system-ui,sans-serif"});
   });
 }
 if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",initBoards);}else{initBoards();}
