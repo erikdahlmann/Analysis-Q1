@@ -171,52 +171,115 @@
   #progress{height:100%;width:0;background:var(--accent);transition:width .1s}
 
   @media(max-width:560px){header.hero h1{font-size:2rem}.jxgbox{height:320px}.done{margin-left:0;width:100%}}
+
+  /* ================= App-Layout: Sidebar + Inhalt ================= */
+  html,body{height:100%}
+  body{display:flex;overflow:hidden}
+
+  .sidebar{
+    width:308px;flex:none;height:100vh;display:flex;flex-direction:column;
+    background:#efeae0;border-right:1px solid var(--line);z-index:40;
+  }
+  .side-head{padding:22px 22px 16px;border-bottom:1px solid var(--line)}
+  .side-head .brand{font-size:1.5rem;font-weight:700;letter-spacing:.01em}
+  .side-head .brand-sub{font-family:system-ui,sans-serif;font-size:.74rem;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--muted);margin-top:4px}
+  .side-scroll{flex:1;overflow-y:auto;padding:14px 12px 20px}
+  .side-scroll::-webkit-scrollbar{width:7px}
+  .side-scroll::-webkit-scrollbar-thumb{background:#d6cfc0;border-radius:4px}
+  .side-scroll::-webkit-scrollbar-track{background:transparent}
+
+  .nav-group{margin-bottom:16px}
+  .nav-chapter{display:flex;align-items:center;gap:8px;font-family:system-ui,sans-serif;
+    font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;
+    color:var(--muted);padding:6px 10px 8px}
+  .nav-cnum{width:19px;height:19px;border-radius:6px;background:var(--accent);color:#fff;
+    display:grid;place-items:center;font-size:.68rem;flex:none}
+  .nav-item{display:flex;align-items:center;gap:9px;width:100%;text-align:left;
+    font-family:system-ui,sans-serif;font-size:.855rem;line-height:1.3;
+    padding:8px 10px;border-radius:9px;border:1px solid transparent;background:none;
+    color:var(--ink);cursor:pointer;transition:.13s;margin-bottom:2px}
+  .nav-item:hover{background:#e6e0d2}
+  .nav-item.active{background:var(--accent);color:#fff;border-color:var(--accent);font-weight:600}
+  .nav-num{width:21px;height:21px;border-radius:50%;background:#ded7c8;color:var(--muted);
+    display:grid;place-items:center;font-size:.68rem;font-weight:700;flex:none}
+  .nav-item.active .nav-num{background:rgba(255,255,255,.24);color:#fff}
+  .nav-t{flex:1}
+  .nav-count{font-size:.68rem;font-weight:700;color:var(--muted);background:#e6e0d2;
+    padding:2px 6px;border-radius:999px;flex:none}
+  .nav-item.active .nav-count{background:rgba(255,255,255,.22);color:#fff}
+  .nav-count.full{background:#d8f0e0;color:#1f6e43}
+  .nav-item.active .nav-count.full{background:rgba(255,255,255,.3);color:#fff}
+
+  .side-foot{padding:12px 18px 16px;border-top:1px solid var(--line);
+    font-family:system-ui,sans-serif;font-size:.74rem;color:var(--muted)}
+  .pbar{height:5px;background:#ded7c8;border-radius:99px;margin-top:7px;overflow:hidden}
+  #pbar-fill{height:100%;width:0;background:var(--accent);transition:width .25s}
+
+  .content{flex:1;height:100vh;overflow-y:auto;scroll-behavior:smooth}
+  .topic{display:none}
+  .topic.active{display:block;animation:fadeUp .28s ease}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
+
+  .topic-head{background:linear-gradient(135deg,#33506e,#2b3f54);color:#fff;padding:34px 0 30px;
+    margin-bottom:6px;position:relative;overflow:hidden}
+  .topic-head::after{content:"";position:absolute;right:-50px;top:-60px;width:220px;height:220px;
+    background:radial-gradient(circle,rgba(255,255,255,.10),transparent 62%)}
+  .topic-head .crumb{font-family:system-ui,sans-serif;font-size:.72rem;font-weight:700;
+    letter-spacing:.16em;text-transform:uppercase;color:#c3d3e4}
+  .topic-title{font-size:2.15rem;margin:.18em 0 0;color:#fff;font-weight:600}
+
+  .pagenav{display:flex;justify-content:space-between;gap:14px;margin:14px 0 60px;flex-wrap:wrap}
+  .pn{display:flex;flex-direction:column;gap:3px;text-align:left;background:var(--surface);
+    border:1px solid var(--line);border-radius:12px;padding:12px 18px;cursor:pointer;
+    transition:.15s;max-width:47%;box-shadow:var(--shadow);font-family:inherit}
+  .pn:hover{border-color:var(--accent);transform:translateY(-1px)}
+  .pn.next{text-align:right;margin-left:auto}
+  .pn-dir{font-family:system-ui,sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--accent)}
+  .pn-t{font-size:1rem;color:var(--ink)}
+
+  .topic-foot{border-top:1px solid var(--line);padding:22px 0 44px;text-align:center;
+    color:var(--muted);font-family:system-ui,sans-serif;font-size:.8rem;line-height:1.7}
+
+  .menu-btn{display:none;position:fixed;left:12px;top:12px;z-index:60;font-family:system-ui,sans-serif;
+    font-size:.86rem;font-weight:600;background:var(--accent);color:#fff;border:0;
+    padding:9px 15px;border-radius:10px;cursor:pointer;box-shadow:var(--shadow)}
+  .side-backdrop{display:none;position:fixed;inset:0;background:rgba(0,0,0,.35);z-index:39}
+
+  @media(max-width:860px){
+    .menu-btn{display:block}
+    .sidebar{position:fixed;left:0;top:0;bottom:0;transform:translateX(-100%);transition:transform .22s;
+      box-shadow:0 0 40px rgba(0,0,0,.25)}
+    body.side-open .sidebar{transform:none}
+    body.side-open .side-backdrop{display:block}
+    .side-head{padding-top:60px}
+    .content{width:100%}
+    .topic-head{padding-top:62px}
+    .topic-title{font-size:1.7rem}
+    .pn{max-width:100%;flex:1 1 100%}
+    .pn.next{text-align:left;margin-left:0}
+  }
+
 </style>
 </head>
 <body>
-<div class="progress-wrap"><div id="progress"></div></div>
+<button class="menu-btn" id="menu-btn" aria-label="Menü">☰ Themen</button>
+<div class="side-backdrop" id="side-backdrop"></div>
 
-<nav>
-  <div class="wrap">
-    <span class="brand">∫ Analysis · Mathe LK</span>
-    <a href="#start">Start</a>
-    <a href="#kap1">1 · Differentialrechnung</a>
-    <a href="#kap2">2 · Integralrechnung</a>
-    <a href="#kap3">3 · e &amp; ln</a>
-    <a href="#kap4">4 · Zusammengesetzte Funktionen</a>
+<nav class="sidebar" id="sidebar">
+  <div class="side-head">
+    <div class="brand">∫ Analysis</div>
+    <div class="brand-sub">Mathe LK · Q1 · NRW</div>
   </div>
+  <div class="side-scroll" id="nav-container"></div>
+  <div class="side-foot"><span id="progress-label">0 / 0 Aufgaben erledigt</span><div class="pbar"><div id="pbar-fill"></div></div></div>
 </nav>
 
-<header class="hero">
-  <div class="wrap">
-    <div class="kicker">Mathematik · Leistungskurs · Q1 · NRW</div>
-    <h1>Analysis</h1>
-    <p class="lead">Deine Zusammenfassung der Q1-Analysis — jedes Thema erklärt, interaktiv visualisiert und mit gestuften Übungen von basal bis Abitur. Lösungen lassen sich jederzeit einblenden.</p>
-    <div class="chapter-pill">Q1 · 4 Kapitel · interaktiv</div>
-  </div>
-</header>
-
-<!-- ============ KAPITEL 1 BAND ============ -->
+<main class="content" id="main-content">
+<div class="topic" id="t-start" data-topic="start">
+  <div class="topic-head"><div class="wrap"><div class="crumb">Kapitel 1 · Differentialrechnung</div><h1 class="topic-title">Überblick &amp; Ableitungsregeln</h1></div></div>
 <section>
-  <div class="wrap">
-    <div class="chapter-head" id="kap1">
-      <div class="knum">Kapitel 1</div>
-      <h2>Differentialrechnung</h2>
-      <p>Krümmung, vollständige Funktionsuntersuchung, Steckbriefaufgaben, Extremwertprobleme und Funktionenscharen — durchgehend ganzrationale Funktionen.</p>
-      <div class="chapter-toc">
-        <a href="#start">Überblick</a>
-        <a href="#kruemmung">Krümmung</a>
-        <a href="#untersuchung">Funktionsuntersuchung</a>
-        <a href="#steckbrief">Steckbrief</a>
-        <a href="#extremwert">Extremwerte</a>
-        <a href="#scharen">Scharen</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ ÜBERBLICK / MERK ============ -->
-<section id="start">
   <div class="wrap">
     <span class="section-tag">0 · Worum geht es</span>
     <div class="card">
@@ -236,9 +299,13 @@
     </div>
   </div>
 </section>
+  <div class="wrap"><div class="pagenav"><span></span><button class="pn next" data-goto="kruemmung"><span class="pn-dir">Nächstes Thema →</span><span class="pn-t">Krümmung &amp; 2. Ableitung</span></button></div></div>
+  <div class="wrap"><div class="topic-foot">Mathematik LK · Q1 · Analysis · NRW<br>Eingaben und Fortschritt bleiben lokal im Browser — nichts wird gespeichert oder gesendet.<br>Aufgaben im Stil des Zentralabiturs NRW; Inhalte gemäß Kernlehrplan &amp; Abiturvorgaben 2027.</div></div>
+</div>
 
-<!-- ============ 1 · KRÜMMUNG ============ -->
-<section id="kruemmung">
+<div class="topic" id="t-kruemmung" data-topic="kruemmung">
+  <div class="topic-head"><div class="wrap"><div class="crumb">Kapitel 1 · Differentialrechnung</div><h1 class="topic-title">Krümmung &amp; 2. Ableitung</h1></div></div>
+<section>
   <div class="wrap">
     <span class="section-tag">1 · Krümmung & 2. Ableitung</span>
     <div class="card">
@@ -256,7 +323,7 @@
 
       <div class="figure">
         <div id="jxg1" class="jxgbox"></div>
-        <p class="ctrl">Ziehe den roten Punkt entlang der Kurve.</p>
+        <p class="ctrl">Ziehe den blauen Punkt entlang der Kurve — die Tangente zeigt die Steigung.</p>
         <p class="figcap">Abb. 1 — \(f(x)=\tfrac16 x^3 - x\) mit \(f''(x)=x\). Links vom Wendepunkt \((0\mid 0)\) ist der Graph rechtsgekrümmt, rechts davon linksgekrümmt.</p>
       </div>
 
@@ -374,9 +441,13 @@
     </div>
   </div>
 </section>
+  <div class="wrap"><div class="pagenav"><button class="pn prev" data-goto="start"><span class="pn-dir">← Vorheriges Thema</span><span class="pn-t">Überblick &amp; Ableitungsregeln</span></button><button class="pn next" data-goto="untersuchung"><span class="pn-dir">Nächstes Thema →</span><span class="pn-t">Vollständige Funktionsuntersuchung</span></button></div></div>
+  <div class="wrap"><div class="topic-foot">Mathematik LK · Q1 · Analysis · NRW<br>Eingaben und Fortschritt bleiben lokal im Browser — nichts wird gespeichert oder gesendet.<br>Aufgaben im Stil des Zentralabiturs NRW; Inhalte gemäß Kernlehrplan &amp; Abiturvorgaben 2027.</div></div>
+</div>
 
-<!-- ============ 2 · FUNKTIONSUNTERSUCHUNG ============ -->
-<section id="untersuchung">
+<div class="topic" id="t-untersuchung" data-topic="untersuchung">
+  <div class="topic-head"><div class="wrap"><div class="crumb">Kapitel 1 · Differentialrechnung</div><h1 class="topic-title">Vollständige Funktionsuntersuchung</h1></div></div>
+<section>
   <div class="wrap">
     <span class="section-tag">2 · Vollständige Funktionsuntersuchung</span>
     <div class="card">
@@ -514,9 +585,13 @@
     </div>
   </div>
 </section>
+  <div class="wrap"><div class="pagenav"><button class="pn prev" data-goto="kruemmung"><span class="pn-dir">← Vorheriges Thema</span><span class="pn-t">Krümmung &amp; 2. Ableitung</span></button><button class="pn next" data-goto="steckbrief"><span class="pn-dir">Nächstes Thema →</span><span class="pn-t">Steckbriefaufgaben</span></button></div></div>
+  <div class="wrap"><div class="topic-foot">Mathematik LK · Q1 · Analysis · NRW<br>Eingaben und Fortschritt bleiben lokal im Browser — nichts wird gespeichert oder gesendet.<br>Aufgaben im Stil des Zentralabiturs NRW; Inhalte gemäß Kernlehrplan &amp; Abiturvorgaben 2027.</div></div>
+</div>
 
-<!-- ============ 3 · STECKBRIEF ============ -->
-<section id="steckbrief">
+<div class="topic" id="t-steckbrief" data-topic="steckbrief">
+  <div class="topic-head"><div class="wrap"><div class="crumb">Kapitel 1 · Differentialrechnung</div><h1 class="topic-title">Steckbriefaufgaben</h1></div></div>
+<section>
   <div class="wrap">
     <span class="section-tag">3 · Steckbriefaufgaben (Rekonstruktion)</span>
     <div class="card">
@@ -635,9 +710,13 @@
     </div>
   </div>
 </section>
+  <div class="wrap"><div class="pagenav"><button class="pn prev" data-goto="untersuchung"><span class="pn-dir">← Vorheriges Thema</span><span class="pn-t">Vollständige Funktionsuntersuchung</span></button><button class="pn next" data-goto="extremwert"><span class="pn-dir">Nächstes Thema →</span><span class="pn-t">Extremwertprobleme</span></button></div></div>
+  <div class="wrap"><div class="topic-foot">Mathematik LK · Q1 · Analysis · NRW<br>Eingaben und Fortschritt bleiben lokal im Browser — nichts wird gespeichert oder gesendet.<br>Aufgaben im Stil des Zentralabiturs NRW; Inhalte gemäß Kernlehrplan &amp; Abiturvorgaben 2027.</div></div>
+</div>
 
-<!-- ============ 4 · EXTREMWERTE ============ -->
-<section id="extremwert">
+<div class="topic" id="t-extremwert" data-topic="extremwert">
+  <div class="topic-head"><div class="wrap"><div class="crumb">Kapitel 1 · Differentialrechnung</div><h1 class="topic-title">Extremwertprobleme</h1></div></div>
+<section>
   <div class="wrap">
     <span class="section-tag">4 · Extremwertprobleme mit Nebenbedingung</span>
     <div class="card">
@@ -757,9 +836,13 @@
     </div>
   </div>
 </section>
+  <div class="wrap"><div class="pagenav"><button class="pn prev" data-goto="steckbrief"><span class="pn-dir">← Vorheriges Thema</span><span class="pn-t">Steckbriefaufgaben</span></button><button class="pn next" data-goto="scharen"><span class="pn-dir">Nächstes Thema →</span><span class="pn-t">Funktionenscharen</span></button></div></div>
+  <div class="wrap"><div class="topic-foot">Mathematik LK · Q1 · Analysis · NRW<br>Eingaben und Fortschritt bleiben lokal im Browser — nichts wird gespeichert oder gesendet.<br>Aufgaben im Stil des Zentralabiturs NRW; Inhalte gemäß Kernlehrplan &amp; Abiturvorgaben 2027.</div></div>
+</div>
 
-<!-- ============ 5 · SCHAREN ============ -->
-<section id="scharen">
+<div class="topic" id="t-scharen" data-topic="scharen">
+  <div class="topic-head"><div class="wrap"><div class="crumb">Kapitel 1 · Differentialrechnung</div><h1 class="topic-title">Funktionenscharen</h1></div></div>
+<section>
   <div class="wrap">
     <span class="section-tag">5 · Funktionenscharen</span>
     <div class="card">
@@ -885,27 +968,13 @@
     </div>
   </div>
 </section>
+  <div class="wrap"><div class="pagenav"><button class="pn prev" data-goto="extremwert"><span class="pn-dir">← Vorheriges Thema</span><span class="pn-t">Extremwertprobleme</span></button><button class="pn next" data-goto="bestand"><span class="pn-dir">Nächstes Thema →</span><span class="pn-t">Änderungsrate → Bestand</span></button></div></div>
+  <div class="wrap"><div class="topic-foot">Mathematik LK · Q1 · Analysis · NRW<br>Eingaben und Fortschritt bleiben lokal im Browser — nichts wird gespeichert oder gesendet.<br>Aufgaben im Stil des Zentralabiturs NRW; Inhalte gemäß Kernlehrplan &amp; Abiturvorgaben 2027.</div></div>
+</div>
 
-<!-- ============ KAPITEL 2 BAND ============ -->
+<div class="topic" id="t-bestand" data-topic="bestand">
+  <div class="topic-head"><div class="wrap"><div class="crumb">Kapitel 2 · Integralrechnung</div><h1 class="topic-title">Änderungsrate → Bestand</h1></div></div>
 <section>
-  <div class="wrap">
-    <div class="chapter-head" id="kap2">
-      <div class="knum">Kapitel 2</div>
-      <h2>Integralrechnung</h2>
-      <p>Von der Änderungsrate zum Bestand, der Integralbegriff als Grenzwert von Produktsummen, der Hauptsatz, Stammfunktionen, Flächen &amp; Mittelwerte sowie uneigentliche Integrale und Rotationskörper.</p>
-      <div class="chapter-toc">
-        <a href="#bestand">Änderungsrate → Bestand</a>
-        <a href="#stammfunktion">Stammfunktionen</a>
-        <a href="#hauptsatz">Hauptsatz</a>
-        <a href="#flaechen">Flächen &amp; Mittelwert</a>
-        <a href="#uneigentlich">Uneigentlich &amp; Rotation</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ 2.1 · BESTAND ============ -->
-<section id="bestand">
   <div class="wrap">
     <span class="section-tag">1 · Von der Änderungsrate zum Bestand</span>
     <div class="card">
@@ -1007,9 +1076,13 @@
     </div>
   </div>
 </section>
+  <div class="wrap"><div class="pagenav"><button class="pn prev" data-goto="scharen"><span class="pn-dir">← Vorheriges Thema</span><span class="pn-t">Funktionenscharen</span></button><button class="pn next" data-goto="stammfunktion"><span class="pn-dir">Nächstes Thema →</span><span class="pn-t">Stammfunktionen</span></button></div></div>
+  <div class="wrap"><div class="topic-foot">Mathematik LK · Q1 · Analysis · NRW<br>Eingaben und Fortschritt bleiben lokal im Browser — nichts wird gespeichert oder gesendet.<br>Aufgaben im Stil des Zentralabiturs NRW; Inhalte gemäß Kernlehrplan &amp; Abiturvorgaben 2027.</div></div>
+</div>
 
-<!-- ============ 2.2 · STAMMFUNKTIONEN ============ -->
-<section id="stammfunktion">
+<div class="topic" id="t-stammfunktion" data-topic="stammfunktion">
+  <div class="topic-head"><div class="wrap"><div class="crumb">Kapitel 2 · Integralrechnung</div><h1 class="topic-title">Stammfunktionen</h1></div></div>
+<section>
   <div class="wrap">
     <span class="section-tag">2 · Stammfunktionen</span>
     <div class="card">
@@ -1141,9 +1214,13 @@
     </div>
   </div>
 </section>
+  <div class="wrap"><div class="pagenav"><button class="pn prev" data-goto="bestand"><span class="pn-dir">← Vorheriges Thema</span><span class="pn-t">Änderungsrate → Bestand</span></button><button class="pn next" data-goto="hauptsatz"><span class="pn-dir">Nächstes Thema →</span><span class="pn-t">Hauptsatz &amp; bestimmtes Integral</span></button></div></div>
+  <div class="wrap"><div class="topic-foot">Mathematik LK · Q1 · Analysis · NRW<br>Eingaben und Fortschritt bleiben lokal im Browser — nichts wird gespeichert oder gesendet.<br>Aufgaben im Stil des Zentralabiturs NRW; Inhalte gemäß Kernlehrplan &amp; Abiturvorgaben 2027.</div></div>
+</div>
 
-<!-- ============ 2.3 · HAUPTSATZ ============ -->
-<section id="hauptsatz">
+<div class="topic" id="t-hauptsatz" data-topic="hauptsatz">
+  <div class="topic-head"><div class="wrap"><div class="crumb">Kapitel 2 · Integralrechnung</div><h1 class="topic-title">Hauptsatz &amp; bestimmtes Integral</h1></div></div>
+<section>
   <div class="wrap">
     <span class="section-tag">3 · Hauptsatz &amp; bestimmtes Integral</span>
     <div class="card">
@@ -1265,9 +1342,13 @@
     </div>
   </div>
 </section>
+  <div class="wrap"><div class="pagenav"><button class="pn prev" data-goto="stammfunktion"><span class="pn-dir">← Vorheriges Thema</span><span class="pn-t">Stammfunktionen</span></button><button class="pn next" data-goto="flaechen"><span class="pn-dir">Nächstes Thema →</span><span class="pn-t">Flächen &amp; Mittelwert</span></button></div></div>
+  <div class="wrap"><div class="topic-foot">Mathematik LK · Q1 · Analysis · NRW<br>Eingaben und Fortschritt bleiben lokal im Browser — nichts wird gespeichert oder gesendet.<br>Aufgaben im Stil des Zentralabiturs NRW; Inhalte gemäß Kernlehrplan &amp; Abiturvorgaben 2027.</div></div>
+</div>
 
-<!-- ============ 2.4 · FLÄCHEN ============ -->
-<section id="flaechen">
+<div class="topic" id="t-flaechen" data-topic="flaechen">
+  <div class="topic-head"><div class="wrap"><div class="crumb">Kapitel 2 · Integralrechnung</div><h1 class="topic-title">Flächen &amp; Mittelwert</h1></div></div>
+<section>
   <div class="wrap">
     <span class="section-tag">4 · Flächen &amp; Mittelwert</span>
     <div class="card">
@@ -1406,9 +1487,13 @@
     </div>
   </div>
 </section>
+  <div class="wrap"><div class="pagenav"><button class="pn prev" data-goto="hauptsatz"><span class="pn-dir">← Vorheriges Thema</span><span class="pn-t">Hauptsatz &amp; bestimmtes Integral</span></button><button class="pn next" data-goto="uneigentlich"><span class="pn-dir">Nächstes Thema →</span><span class="pn-t">Uneigentliche Integrale &amp; Rotation</span></button></div></div>
+  <div class="wrap"><div class="topic-foot">Mathematik LK · Q1 · Analysis · NRW<br>Eingaben und Fortschritt bleiben lokal im Browser — nichts wird gespeichert oder gesendet.<br>Aufgaben im Stil des Zentralabiturs NRW; Inhalte gemäß Kernlehrplan &amp; Abiturvorgaben 2027.</div></div>
+</div>
 
-<!-- ============ 2.5 · UNEIGENTLICH & ROTATION ============ -->
-<section id="uneigentlich">
+<div class="topic" id="t-uneigentlich" data-topic="uneigentlich">
+  <div class="topic-head"><div class="wrap"><div class="crumb">Kapitel 2 · Integralrechnung</div><h1 class="topic-title">Uneigentliche Integrale &amp; Rotation</h1></div></div>
+<section>
   <div class="wrap">
     <span class="section-tag">5 · Uneigentliche Integrale &amp; Rotationskörper</span>
     <div class="card">
@@ -1544,25 +1629,13 @@
     </div>
   </div>
 </section>
+  <div class="wrap"><div class="pagenav"><button class="pn prev" data-goto="flaechen"><span class="pn-dir">← Vorheriges Thema</span><span class="pn-t">Flächen &amp; Mittelwert</span></button><button class="pn next" data-goto="efunktion"><span class="pn-dir">Nächstes Thema →</span><span class="pn-t">Die e-Funktion</span></button></div></div>
+  <div class="wrap"><div class="topic-foot">Mathematik LK · Q1 · Analysis · NRW<br>Eingaben und Fortschritt bleiben lokal im Browser — nichts wird gespeichert oder gesendet.<br>Aufgaben im Stil des Zentralabiturs NRW; Inhalte gemäß Kernlehrplan &amp; Abiturvorgaben 2027.</div></div>
+</div>
 
-<!-- ============ KAPITEL 3 BAND ============ -->
+<div class="topic" id="t-efunktion" data-topic="efunktion">
+  <div class="topic-head"><div class="wrap"><div class="crumb">Kapitel 3 · Exponential- &amp; Logarithmusfunktionen</div><h1 class="topic-title">Die e-Funktion</h1></div></div>
 <section>
-  <div class="wrap">
-    <div class="chapter-head" id="kap3">
-      <div class="knum">Kapitel 3</div>
-      <h2>Exponential- &amp; Logarithmusfunktionen</h2>
-      <p>Die natürliche Exponentialfunktion \(e^x\) mit ihrer besonderen Eigenschaft \(f'=f\), der natürliche Logarithmus als Umkehrfunktion und die Modellierung von Wachstums- und Zerfallsprozessen.</p>
-      <div class="chapter-toc">
-        <a href="#efunktion">Die e-Funktion</a>
-        <a href="#lnfunktion">Der natürliche Logarithmus</a>
-        <a href="#wachstum">Wachstumsmodelle</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ 3.1 · E-FUNKTION ============ -->
-<section id="efunktion">
   <div class="wrap">
     <span class="section-tag">1 · Die natürliche Exponentialfunktion</span>
     <div class="card">
@@ -1700,9 +1773,13 @@
     </div>
   </div>
 </section>
+  <div class="wrap"><div class="pagenav"><button class="pn prev" data-goto="uneigentlich"><span class="pn-dir">← Vorheriges Thema</span><span class="pn-t">Uneigentliche Integrale &amp; Rotation</span></button><button class="pn next" data-goto="lnfunktion"><span class="pn-dir">Nächstes Thema →</span><span class="pn-t">Natürlicher Logarithmus</span></button></div></div>
+  <div class="wrap"><div class="topic-foot">Mathematik LK · Q1 · Analysis · NRW<br>Eingaben und Fortschritt bleiben lokal im Browser — nichts wird gespeichert oder gesendet.<br>Aufgaben im Stil des Zentralabiturs NRW; Inhalte gemäß Kernlehrplan &amp; Abiturvorgaben 2027.</div></div>
+</div>
 
-<!-- ============ 3.2 · LN ============ -->
-<section id="lnfunktion">
+<div class="topic" id="t-lnfunktion" data-topic="lnfunktion">
+  <div class="topic-head"><div class="wrap"><div class="crumb">Kapitel 3 · Exponential- &amp; Logarithmusfunktionen</div><h1 class="topic-title">Natürlicher Logarithmus</h1></div></div>
+<section>
   <div class="wrap">
     <span class="section-tag">2 · Der natürliche Logarithmus</span>
     <div class="card">
@@ -1838,9 +1915,13 @@
     </div>
   </div>
 </section>
+  <div class="wrap"><div class="pagenav"><button class="pn prev" data-goto="efunktion"><span class="pn-dir">← Vorheriges Thema</span><span class="pn-t">Die e-Funktion</span></button><button class="pn next" data-goto="wachstum"><span class="pn-dir">Nächstes Thema →</span><span class="pn-t">Wachstumsmodelle</span></button></div></div>
+  <div class="wrap"><div class="topic-foot">Mathematik LK · Q1 · Analysis · NRW<br>Eingaben und Fortschritt bleiben lokal im Browser — nichts wird gespeichert oder gesendet.<br>Aufgaben im Stil des Zentralabiturs NRW; Inhalte gemäß Kernlehrplan &amp; Abiturvorgaben 2027.</div></div>
+</div>
 
-<!-- ============ 3.3 · WACHSTUM ============ -->
-<section id="wachstum">
+<div class="topic" id="t-wachstum" data-topic="wachstum">
+  <div class="topic-head"><div class="wrap"><div class="crumb">Kapitel 3 · Exponential- &amp; Logarithmusfunktionen</div><h1 class="topic-title">Wachstumsmodelle</h1></div></div>
+<section>
   <div class="wrap">
     <span class="section-tag">3 · Wachstumsmodelle</span>
     <div class="card">
@@ -1966,26 +2047,13 @@
     </div>
   </div>
 </section>
+  <div class="wrap"><div class="pagenav"><button class="pn prev" data-goto="lnfunktion"><span class="pn-dir">← Vorheriges Thema</span><span class="pn-t">Natürlicher Logarithmus</span></button><button class="pn next" data-goto="regeln"><span class="pn-dir">Nächstes Thema →</span><span class="pn-t">Produkt- &amp; Kettenregel</span></button></div></div>
+  <div class="wrap"><div class="topic-foot">Mathematik LK · Q1 · Analysis · NRW<br>Eingaben und Fortschritt bleiben lokal im Browser — nichts wird gespeichert oder gesendet.<br>Aufgaben im Stil des Zentralabiturs NRW; Inhalte gemäß Kernlehrplan &amp; Abiturvorgaben 2027.</div></div>
+</div>
 
-<!-- ============ KAPITEL 4 BAND ============ -->
+<div class="topic" id="t-regeln" data-topic="regeln">
+  <div class="topic-head"><div class="wrap"><div class="crumb">Kapitel 4 · Zusammengesetzte Funktionen</div><h1 class="topic-title">Produkt- &amp; Kettenregel</h1></div></div>
 <section>
-  <div class="wrap">
-    <div class="chapter-head" id="kap4">
-      <div class="knum">Kapitel 4</div>
-      <h2>Zusammengesetzte Funktionen</h2>
-      <p>Produkt- und Kettenregel, Kurvendiskussion von Produkten und Verkettungen mit der e-Funktion, Funktionenscharen mit Parameter im Exponenten und der Nachweis von Stammfunktionen durch Ableiten — inklusive Anwendungsaufgaben.</p>
-      <div class="chapter-toc">
-        <a href="#regeln">Produkt- &amp; Kettenregel</a>
-        <a href="#kurven">Kurvendiskussion</a>
-        <a href="#escharen">e-Funktionsscharen</a>
-        <a href="#stammpruefen">Stammfunktionen prüfen</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ 4.1 · REGELN ============ -->
-<section id="regeln">
   <div class="wrap">
     <span class="section-tag">1 · Produkt- und Kettenregel</span>
     <div class="card">
@@ -2144,9 +2212,13 @@
     </div>
   </div>
 </section>
+  <div class="wrap"><div class="pagenav"><button class="pn prev" data-goto="wachstum"><span class="pn-dir">← Vorheriges Thema</span><span class="pn-t">Wachstumsmodelle</span></button><button class="pn next" data-goto="kurven"><span class="pn-dir">Nächstes Thema →</span><span class="pn-t">Kurvendiskussion</span></button></div></div>
+  <div class="wrap"><div class="topic-foot">Mathematik LK · Q1 · Analysis · NRW<br>Eingaben und Fortschritt bleiben lokal im Browser — nichts wird gespeichert oder gesendet.<br>Aufgaben im Stil des Zentralabiturs NRW; Inhalte gemäß Kernlehrplan &amp; Abiturvorgaben 2027.</div></div>
+</div>
 
-<!-- ============ 4.2 · KURVENDISKUSSION ============ -->
-<section id="kurven">
+<div class="topic" id="t-kurven" data-topic="kurven">
+  <div class="topic-head"><div class="wrap"><div class="crumb">Kapitel 4 · Zusammengesetzte Funktionen</div><h1 class="topic-title">Kurvendiskussion</h1></div></div>
+<section>
   <div class="wrap">
     <span class="section-tag">2 · Kurvendiskussion zusammengesetzter Funktionen</span>
     <div class="card">
@@ -2276,9 +2348,13 @@
     </div>
   </div>
 </section>
+  <div class="wrap"><div class="pagenav"><button class="pn prev" data-goto="regeln"><span class="pn-dir">← Vorheriges Thema</span><span class="pn-t">Produkt- &amp; Kettenregel</span></button><button class="pn next" data-goto="escharen"><span class="pn-dir">Nächstes Thema →</span><span class="pn-t">e-Funktionsscharen</span></button></div></div>
+  <div class="wrap"><div class="topic-foot">Mathematik LK · Q1 · Analysis · NRW<br>Eingaben und Fortschritt bleiben lokal im Browser — nichts wird gespeichert oder gesendet.<br>Aufgaben im Stil des Zentralabiturs NRW; Inhalte gemäß Kernlehrplan &amp; Abiturvorgaben 2027.</div></div>
+</div>
 
-<!-- ============ 4.3 · E-SCHAREN ============ -->
-<section id="escharen">
+<div class="topic" id="t-escharen" data-topic="escharen">
+  <div class="topic-head"><div class="wrap"><div class="crumb">Kapitel 4 · Zusammengesetzte Funktionen</div><h1 class="topic-title">e-Funktionsscharen</h1></div></div>
+<section>
   <div class="wrap">
     <span class="section-tag">3 · Funktionenscharen mit e-Funktion</span>
     <div class="card">
@@ -2379,9 +2455,13 @@
     </div>
   </div>
 </section>
+  <div class="wrap"><div class="pagenav"><button class="pn prev" data-goto="kurven"><span class="pn-dir">← Vorheriges Thema</span><span class="pn-t">Kurvendiskussion</span></button><button class="pn next" data-goto="stammpruefen"><span class="pn-dir">Nächstes Thema →</span><span class="pn-t">Stammfunktionen nachweisen</span></button></div></div>
+  <div class="wrap"><div class="topic-foot">Mathematik LK · Q1 · Analysis · NRW<br>Eingaben und Fortschritt bleiben lokal im Browser — nichts wird gespeichert oder gesendet.<br>Aufgaben im Stil des Zentralabiturs NRW; Inhalte gemäß Kernlehrplan &amp; Abiturvorgaben 2027.</div></div>
+</div>
 
-<!-- ============ 4.4 · STAMMFUNKTIONEN PRÜFEN ============ -->
-<section id="stammpruefen">
+<div class="topic" id="t-stammpruefen" data-topic="stammpruefen">
+  <div class="topic-head"><div class="wrap"><div class="crumb">Kapitel 4 · Zusammengesetzte Funktionen</div><h1 class="topic-title">Stammfunktionen nachweisen</h1></div></div>
+<section>
   <div class="wrap">
     <span class="section-tag">4 · Stammfunktionen nachweisen &amp; Anwendungen</span>
     <div class="card">
@@ -2487,19 +2567,12 @@
     </div>
   </div>
 </section>
-
-<footer>
-  <div class="wrap">
-    Mathematik LK · Q1 · Analysis · NRW<br>
-    Alle Eingaben und dein Fortschritt bleiben lokal in deinem Browser — es wird nichts gespeichert oder gesendet.<br>
-    Aufgaben im Stil des Zentralabiturs NRW; Inhalte gemäß Kernlehrplan &amp; Abiturvorgaben 2027.
-  </div>
-</footer>
+  <div class="wrap"><div class="pagenav"><button class="pn prev" data-goto="escharen"><span class="pn-dir">← Vorheriges Thema</span><span class="pn-t">e-Funktionsscharen</span></button><span></span></div></div>
+  <div class="wrap"><div class="topic-foot">Mathematik LK · Q1 · Analysis · NRW<br>Eingaben und Fortschritt bleiben lokal im Browser — nichts wird gespeichert oder gesendet.<br>Aufgaben im Stil des Zentralabiturs NRW; Inhalte gemäß Kernlehrplan &amp; Abiturvorgaben 2027.</div></div>
+</div>
+</main>
 
 <script>
-/* ---------- Lesefortschritt ---------- */
-var prog=document.getElementById("progress");
-addEventListener("scroll",function(){var h=document.documentElement;var p=h.scrollTop/(h.scrollHeight-h.clientHeight);prog.style.width=(p*100)+"%";});
 
 /* ---------- Hilfsfunktion: Zahl parsen (Komma, Bruch) ---------- */
 function parseNum(s){
@@ -2596,23 +2669,33 @@ function renderMath(){
 window.addEventListener("load",renderMath);
 
 /* ---------- JSXGraph-Abbildungen ---------- */
+var BOARD_FNS={},BOARD_DONE={};
 function initBoards(){
   if(!window.JXG){setTimeout(initBoards,60);return;}
   var col={accent:"#3a5a78",red:"#c0392b",green:"#2e8b57",orange:"#c9821a",grid:"#e3ddd0"};
-  function safe(name,fn){try{fn();}catch(e){console.error("Abbildung "+name+" fehlgeschlagen:",e);}}
+  function safe(name,fn){BOARD_FNS[name]=fn;}
 
   /* Abb.1 — Krümmung: f(x)=1/6 x^3 - x, f''=x */
   safe("jxg1",function(){
-    var b=JXG.JSXGraph.initBoard("jxg1",{boundingbox:[-4,4,4,-4],axis:true,showCopyright:false,showNavigation:false,keepaspectratio:false});
-    var f=b.create("functiongraph",[function(x){return (1/6)*x*x*x - x;},-3.6,3.6],{strokeColor:col.accent,strokeWidth:2.5});
-    var W=b.create("point",[0,0],{name:"W",size:2,fixed:true,color:col.orange,label:{offset:[6,-14]}});
-    var g=b.create("glider",[1.6,(1/6)*1.6*1.6*1.6-1.6,f],{name:"",size:4,fillColor:col.red,strokeColor:col.red});
-    b.create("text",[ -3.7,3.4,function(){
+    var b=JXG.JSXGraph.initBoard("jxg1",{boundingbox:[-4.2,4.2,4.2,-4.2],axis:true,showCopyright:false,showNavigation:false,keepaspectratio:false});
+    var fn=function(x){return (1/6)*x*x*x - x;};
+    /* Kurve zweifarbig: links vom Wendepunkt rechtsgekrümmt (rot), rechts davon linksgekrümmt (grün) */
+    b.create("functiongraph",[fn,-3.7,0],{strokeColor:col.red,strokeWidth:3});
+    var fR=b.create("functiongraph",[fn,0,3.7],{strokeColor:col.green,strokeWidth:3});
+    var fL=b.create("functiongraph",[fn,-3.7,3.7],{strokeColor:"#00000000",strokeWidth:0,visible:false});
+    b.create("point",[0,0],{name:"W",size:3,fixed:true,color:col.orange,label:{offset:[8,-16],fontSize:13}});
+    var g=b.create("glider",[1.8,fn(1.8),fR],{name:"",size:5,fillColor:col.accent,strokeColor:"#fff",strokeWidth:2});
+    b.create("tangent",[g],{strokeColor:col.accent,strokeWidth:1.6,dash:2});
+    /* Legende */
+    b.create("text",[-4.05,3.35,"■ f'' < 0 · rechtsgekrümmt ⌢"],{fontSize:12,fixed:true,strokeColor:col.red,cssStyle:"font-family:system-ui,sans-serif"});
+    b.create("text",[-4.05,2.9,"■ f'' > 0 · linksgekrümmt ⌣"],{fontSize:12,fixed:true,strokeColor:col.green,cssStyle:"font-family:system-ui,sans-serif"});
+    b.create("text",[-4.05,3.9,function(){
       var xx=g.X();
-      if(xx>0.02)return "f''("+xx.toFixed(2)+") = "+xx.toFixed(2)+" > 0  →  linksgekrümmt";
-      if(xx<-0.02)return "f''("+xx.toFixed(2)+") = "+xx.toFixed(2)+" < 0  →  rechtsgekrümmt";
-      return "Wendepunkt: f'' = 0";
-    }],{fontSize:13,cssStyle:"font-family:system-ui,sans-serif"});
+      if(xx>0.02)return "x = "+xx.toFixed(2)+"   f''(x) = "+xx.toFixed(2)+" > 0   →   linksgekrümmt";
+      if(xx<-0.02)return "x = "+xx.toFixed(2)+"   f''(x) = "+xx.toFixed(2)+" < 0   →   rechtsgekrümmt";
+      return "Wendepunkt:  f''(0) = 0  —  hier wechselt die Krümmung";
+    }],{fontSize:13,fixed:true,cssStyle:"font-family:system-ui,sans-serif;font-weight:600"});
+    b.create("text",[2.5,1.6,"f"],{fontSize:15,fixed:true,strokeColor:col.green,cssStyle:"font-family:Georgia,serif;font-style:italic"});
   });
 
   /* Abb.2 — Funktionsuntersuchung: f(x)=1/4 x^4 - 2x^2 */
@@ -2662,7 +2745,7 @@ function initBoards(){
     b.create("text",[-3.8,5.4,function(){var a=s.Value();return "a = "+a.toFixed(2)+"   →   fₐ(x) = x³ − "+(3*a*a).toFixed(2)+"·x";}],
       {fontSize:14,fixed:true,cssStyle:"font-family:system-ui,sans-serif;font-weight:600"});
     b.create("text",[-3.8,4.6,function(){var a=s.Value();return "Tiefpunkt T("+a.toFixed(2)+" | "+(-2*a*a*a).toFixed(2)+")";}],
-      {fontSize:13,fixed:true,cssStyle:"font-family:system-ui,sans-serif;color:#2e8b57"});
+      {fontSize:13,fixed:true,strokeColor:"#2e8b57",cssStyle:"font-family:system-ui,sans-serif"});
     b.create("functiongraph",[function(x){return -2*x*x*x;},-1.9,1.9],{strokeColor:col.green,strokeWidth:1.6,dash:2});
     b.create("point",[function(){return s.Value();},function(){var a=s.Value();return -2*a*a*a;}],
       {name:"T",size:4,color:col.green,fixed:true,label:{offset:[8,-2]}});
@@ -2745,11 +2828,21 @@ function initBoards(){
       for(i=steps;i>=0;i--){x=a+i*dx;X.push(x);Y.push(g(x));}
       this.dataX=X;this.dataY=Y;
     };
-    b.create("functiongraph",[f,-2.2,2.8],{strokeColor:col.accent,strokeWidth:2.2});
-    b.create("functiongraph",[g,-2.2,2.2],{strokeColor:col.orange,strokeWidth:2.2});
-    b.create("point",[-1,1],{name:"",size:2,color:col.red,fixed:true});
-    b.create("point",[2,4],{name:"",size:2,color:col.red,fixed:true});
-    b.create("text",[-2.2,4.6,"A = 9/2 = 4,5"],{fontSize:13,fixed:true,cssStyle:"font-family:system-ui,sans-serif;font-weight:600"});
+    b.create("functiongraph",[f,-2.2,2.8],{strokeColor:col.accent,strokeWidth:2.4});
+    b.create("functiongraph",[g,-2.2,2.2],{strokeColor:col.orange,strokeWidth:2.4});
+    /* Kurvenbeschriftung */
+    b.create("text",[2.35,4.5,"f(x) = x + 2"],{fontSize:13,fixed:true,strokeColor:col.accent,cssStyle:"font-family:system-ui,sans-serif;font-weight:600"});
+    b.create("text",[-2.25,4.15,"g(x) = x²"],{fontSize:13,fixed:true,strokeColor:col.orange,cssStyle:"font-family:system-ui,sans-serif;font-weight:600"});
+    /* Schnittpunkte beschriftet */
+    b.create("point",[-1,1],{name:"S₁(−1|1)",size:3,color:col.red,fixed:true,label:{offset:[-70,-4],fontSize:12}});
+    b.create("point",[2,4],{name:"S₂(2|4)",size:3,color:col.red,fixed:true,label:{offset:[8,2],fontSize:12}});
+    /* Differenzstrecke „oben minus unten" an einer Stelle */
+    var xd=0.7;
+    b.create("segment",[[xd,g(xd)],[xd,f(xd)]],{strokeColor:col.green,strokeWidth:2.5,
+      lastArrow:{type:2,size:5},firstArrow:{type:2,size:5}});
+    b.create("text",[0.82,1.75,"f(x) − g(x)"],{fontSize:12,fixed:true,strokeColor:"#1f6e43",cssStyle:"font-family:system-ui,sans-serif"});
+    b.create("text",[-2.25,4.72,"A = ∫₋₁² ( f(x) − g(x) ) dx = 9/2 = 4,5"],
+      {fontSize:13,fixed:true,cssStyle:"font-family:system-ui,sans-serif;font-weight:700"});
     b.update();
   });
 
@@ -2864,13 +2957,24 @@ function initBoards(){
 
   /* Abb.16 — Kurvendiskussion x·e^(−x) */
   safe("jxg16",function(){
-    var b=JXG.JSXGraph.initBoard("jxg16",{boundingbox:[-1.7,0.9,6.7,-3.6],axis:true,showCopyright:false,showNavigation:false});
-    b.create("functiongraph",[function(x){return x*Math.exp(-x);},-1.15,6.6],{strokeColor:col.accent,strokeWidth:2.5});
-    b.create("point",[0,0],{name:"N",size:3,color:col.red,fixed:true,label:{offset:[-16,-4]}});
-    b.create("point",[1,Math.exp(-1)],{name:"H",size:4,color:col.green,fixed:true,label:{offset:[0,14]}});
-    b.create("point",[2,2*Math.exp(-2)],{name:"W",size:3,color:col.orange,fixed:true,label:{offset:[6,12]}});
-    b.create("text",[3.3,0.62,"H(1 | e⁻¹) ≈ (1 | 0,37)     W(2 | 2e⁻²) ≈ (2 | 0,27)"],
-      {fontSize:13,fixed:true,cssStyle:"font-family:system-ui,sans-serif"});
+    var b=JXG.JSXGraph.initBoard("jxg16",{boundingbox:[-0.85,0.62,6.9,-0.72],axis:true,showCopyright:false,showNavigation:false});
+    /* Asymptote: x-Achse für x → ∞ */
+    b.create("line",[[0,0],[1,0]],{strokeColor:col.red,strokeWidth:1.4,dash:2,
+      straightFirst:false,straightLast:true,point1:{visible:false},point2:{visible:false}});
+    b.create("functiongraph",[function(x){return x*Math.exp(-x);},-0.45,6.85],{strokeColor:col.accent,strokeWidth:2.8});
+    b.create("point",[0,0],{name:"N(0|0)",size:3,color:col.red,fixed:true,label:{offset:[-52,-8],fontSize:12}});
+    b.create("point",[1,Math.exp(-1)],{name:"H",size:5,color:col.green,fixed:true,label:{offset:[-4,15],fontSize:14}});
+    b.create("point",[2,2*Math.exp(-2)],{name:"W",size:4,color:col.orange,fixed:true,label:{offset:[7,13],fontSize:14}});
+    /* Hilfslinien zum Hochpunkt */
+    b.create("segment",[[1,0],[1,Math.exp(-1)]],{strokeColor:col.green,strokeWidth:1,dash:1});
+    b.create("text",[3.3,0.55,"H(1 | e⁻¹) ≈ (1 | 0,37)"],
+      {fontSize:13,fixed:true,strokeColor:"#1f6e43",cssStyle:"font-family:system-ui,sans-serif;font-weight:600"});
+    b.create("text",[3.3,0.45,"W(2 | 2e⁻²) ≈ (2 | 0,27)"],
+      {fontSize:13,fixed:true,strokeColor:"#8a5a12",cssStyle:"font-family:system-ui,sans-serif;font-weight:600"});
+    b.create("text",[4.15,0.1,"x-Achse ist Asymptote für x → ∞"],
+      {fontSize:11.5,fixed:true,strokeColor:col.red,cssStyle:"font-family:system-ui,sans-serif"});
+    b.create("text",[0.3,-0.42,"f(x) = x · e⁻ˣ"],
+      {fontSize:14,fixed:true,strokeColor:col.accent,cssStyle:"font-family:system-ui,sans-serif;font-weight:700"});
   });
 
   /* Abb.17 — e-Schar f_a(x)=x·e^(−ax) mit Ortskurve y=x/e */
@@ -2889,6 +2993,160 @@ function initBoards(){
   });
 }
 if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",initBoards);}else{initBoards();}
+
+/* ================= Navigation: Kapitel & Themen ================= */
+var CHAPTERS=[
+ {n:1,title:"Differentialrechnung",topics:[
+   {id:"start",title:"Überblick &amp; Ableitungsregeln"},
+   {id:"kruemmung",title:"Krümmung &amp; 2. Ableitung"},
+   {id:"untersuchung",title:"Vollständige Funktionsuntersuchung"},
+   {id:"steckbrief",title:"Steckbriefaufgaben"},
+   {id:"extremwert",title:"Extremwertprobleme"},
+   {id:"scharen",title:"Funktionenscharen"}]},
+ {n:2,title:"Integralrechnung",topics:[
+   {id:"bestand",title:"Änderungsrate → Bestand"},
+   {id:"stammfunktion",title:"Stammfunktionen"},
+   {id:"hauptsatz",title:"Hauptsatz &amp; bestimmtes Integral"},
+   {id:"flaechen",title:"Flächen &amp; Mittelwert"},
+   {id:"uneigentlich",title:"Uneigentliche Integrale &amp; Rotation"}]},
+ {n:3,title:"Exponential- &amp; Logarithmus",topics:[
+   {id:"efunktion",title:"Die e-Funktion"},
+   {id:"lnfunktion",title:"Natürlicher Logarithmus"},
+   {id:"wachstum",title:"Wachstumsmodelle"}]},
+ {n:4,title:"Zusammengesetzte Funktionen",topics:[
+   {id:"regeln",title:"Produkt- &amp; Kettenregel"},
+   {id:"kurven",title:"Kurvendiskussion"},
+   {id:"escharen",title:"e-Funktionsscharen"},
+   {id:"stammpruefen",title:"Stammfunktionen nachweisen"}]}
+];
+var FLAT=[];CHAPTERS.forEach(function(c){c.topics.forEach(function(t){FLAT.push(t.id);});});
+var activeTopic=null;
+
+function renderNav(){
+  var box=document.getElementById("nav-container");
+  box.innerHTML="";
+  var num=0;
+  CHAPTERS.forEach(function(c){
+    var g=document.createElement("div");g.className="nav-group";
+    var h=document.createElement("div");h.className="nav-chapter";
+    h.innerHTML='<span class="nav-cnum">'+c.n+'</span><span>'+c.title+'</span>';
+    g.appendChild(h);
+    c.topics.forEach(function(t){
+      num++;
+      var b=document.createElement("button");
+      b.className="nav-item"+(t.id===activeTopic?" active":"");
+      b.dataset.goto=t.id;
+      var el=document.getElementById("t-"+t.id);
+      var total=el?el.querySelectorAll(".task").length:0;
+      var done=el?el.querySelectorAll(".done input:checked").length:0;
+      var badge=total?'<span class="nav-count'+(done===total&&total>0?" full":"")+'">'+done+'/'+total+'</span>':'';
+      b.innerHTML='<span class="nav-num">'+num+'</span><span class="nav-t">'+t.title+'</span>'+badge;
+      b.onclick=function(){showTopic(t.id);};
+      g.appendChild(b);
+    });
+    box.appendChild(g);
+  });
+}
+
+function initVisibleBoards(){
+  var el=document.querySelector(".topic.active");
+  if(!el||!window.JXG)return;
+  el.querySelectorAll(".jxgbox").forEach(function(bx){
+    var id=bx.id;
+    if(BOARD_DONE[id]||!BOARD_FNS[id])return;
+    BOARD_DONE[id]=true;
+    try{BOARD_FNS[id]();}catch(e){console.error("Abbildung "+id+" fehlgeschlagen:",e);}
+  });
+}
+
+/* Boards an die aktuelle Containergröße anpassen (Fensterwechsel, Tablet drehen,
+   oder Board wurde in einem noch nicht ausgemessenen Container erzeugt) */
+function resizeBoards(){
+  if(!window.JXG)return;
+  for(var k in JXG.boards){
+    var bd=JXG.boards[k],c=bd.containerObj;
+    if(!c||!c.offsetWidth||!c.offsetHeight)continue;
+    var svg=c.querySelector("svg");
+    if(svg&&Math.abs(svg.getBoundingClientRect().width-c.offsetWidth)<2)continue;
+    try{bd.resizeContainer(c.offsetWidth,c.offsetHeight,true);bd.fullUpdate();}catch(e){}
+  }
+}
+window.addEventListener("resize",function(){
+  clearTimeout(window.__rzT);window.__rzT=setTimeout(resizeBoards,120);
+});
+if(window.ResizeObserver){
+  var __ro=new ResizeObserver(function(){
+    clearTimeout(window.__rzT);window.__rzT=setTimeout(resizeBoards,120);
+  });
+  var __mc=document.getElementById("main-content");
+  if(__mc)__ro.observe(__mc);
+}
+
+function showTopic(id,noHash){
+  if(FLAT.indexOf(id)<0)id=FLAT[0];
+  activeTopic=id;
+  document.querySelectorAll(".topic").forEach(function(t){
+    t.classList.toggle("active",t.dataset.topic===id);
+  });
+  renderNav();
+  initVisibleBoards();
+  resizeBoards();
+  var main=document.getElementById("main-content");
+  if(main)main.scrollTop=0;
+  document.body.classList.remove("side-open");
+  if(!noHash){try{history.replaceState(null,"","#"+id);}catch(e){location.hash=id;}}
+  try{localStorage.setItem("analysisQ1-lastTopic",id);}catch(e){}
+}
+
+function updateProgress(){
+  var all=document.querySelectorAll(".task").length;
+  var done=document.querySelectorAll(".done input:checked").length;
+  var lab=document.getElementById("progress-label");
+  var fill=document.getElementById("pbar-fill");
+  if(lab)lab.textContent=done+" / "+all+" Aufgaben erledigt";
+  if(fill)fill.style.width=(all?(done/all*100):0)+"%";
+}
+
+/* Vor-/Zurück-Buttons und alle data-goto-Elemente */
+document.addEventListener("click",function(e){
+  var b=e.target.closest("[data-goto]");
+  if(b){showTopic(b.dataset.goto);}
+});
+
+/* Häkchen aktualisieren Sidebar-Zähler */
+document.addEventListener("change",function(e){
+  if(e.target.closest(".done")){renderNav();updateProgress();}
+});
+
+/* Mobile-Menü */
+(function(){
+  var mb=document.getElementById("menu-btn"),bd=document.getElementById("side-backdrop");
+  if(mb)mb.onclick=function(){document.body.classList.toggle("side-open");};
+  if(bd)bd.onclick=function(){document.body.classList.remove("side-open");};
+})();
+
+/* Tastatur: Pfeiltasten wechseln Themen */
+document.addEventListener("keydown",function(e){
+  if(e.target.matches("input,textarea"))return;
+  var i=FLAT.indexOf(activeTopic);
+  if(e.key==="ArrowRight"&&i<FLAT.length-1)showTopic(FLAT[i+1]);
+  if(e.key==="ArrowLeft"&&i>0)showTopic(FLAT[i-1]);
+});
+
+/* Start */
+(function(){
+  var start=(location.hash||"").replace("#","");
+  if(FLAT.indexOf(start)<0){
+    try{start=localStorage.getItem("analysisQ1-lastTopic")||"";}catch(e){start="";}
+  }
+  if(FLAT.indexOf(start)<0)start=FLAT[0];
+  showTopic(start,true);
+  updateProgress();
+})();
+
 </script>
+</body>
+</html>
+
 </body>
 </html>
