@@ -51,6 +51,7 @@
   a{color:var(--accent)}
   .wrap{max-width:880px;margin:0 auto;padding:0 22px}
   .katex{font-size:1.04em}
+  .card>p,.card>ul,.merk li,.fehler li{max-width:68ch}
 
   /* Navigation */
   nav{position:sticky;top:0;z-index:50;background:rgba(244,241,234,.93);
@@ -82,12 +83,12 @@
     border-left:3px solid var(--line);padding:11px 15px;border-radius:0 8px 8px 0;margin:14px 0}
   .merk{background:linear-gradient(0deg,#eef4f9,#f3f7fb);border:1px solid #cdddea;border-radius:12px;
     padding:16px 20px;margin:18px 0}
-  .merk h4{font-family:system-ui,sans-serif;font-size:.8rem;text-transform:uppercase;letter-spacing:.1em;
+  .merk h3{font-family:system-ui,sans-serif;font-size:.8rem;text-transform:uppercase;letter-spacing:.1em;
     color:var(--accent);margin:0 0 8px;display:flex;align-items:center;gap:8px}
   .merk ul{margin:.3em 0 .2em;padding-left:1.2em}
   .merk li{margin:.35em 0}
   .fehler{background:#fdf3f1;border:1px solid #f1c9c1;border-radius:12px;padding:14px 18px;margin:18px 0}
-  .fehler h4{font-family:system-ui,sans-serif;font-size:.8rem;text-transform:uppercase;letter-spacing:.1em;
+  .fehler h3{font-family:system-ui,sans-serif;font-size:.8rem;text-transform:uppercase;letter-spacing:.1em;
     color:var(--anspruch);margin:0 0 6px;display:flex;align-items:center;gap:8px}
   .fehler ul{margin:.3em 0;padding-left:1.2em;font-size:.96rem}
   .fehler li{margin:.3em 0}
@@ -149,7 +150,7 @@
   .solution .why{font-family:system-ui,sans-serif;font-size:.92rem;color:var(--muted);
     background:var(--paper);border-radius:8px;padding:9px 13px;margin-top:10px}
   .worked{background:var(--paper);border:1px dashed var(--line);border-radius:12px;padding:16px 20px;margin:16px 0}
-  .worked h4{margin:0 0 8px;font-family:system-ui,sans-serif;font-size:.8rem;text-transform:uppercase;
+  .worked h3{margin:0 0 8px;font-family:system-ui,sans-serif;font-size:.8rem;text-transform:uppercase;
     letter-spacing:.1em;color:var(--accent)}
 
   /* Kapitel-Band */
@@ -167,8 +168,6 @@
   .chapter-toc a:hover{background:rgba(255,255,255,.28)}
 
   footer{padding:44px 0;text-align:center;color:var(--muted);font-family:system-ui,sans-serif;font-size:.85rem}
-  .progress-wrap{position:fixed;left:0;top:0;height:3px;width:100%;background:transparent;z-index:60}
-  #progress{height:100%;width:0;background:var(--accent);transition:width .1s}
 
   @media(max-width:560px){header.hero h1{font-size:2rem}.jxgbox{height:320px}.done{margin-left:0;width:100%}}
 
@@ -205,16 +204,21 @@
     display:grid;place-items:center;font-size:.68rem;font-weight:700;flex:none}
   .nav-item.active .nav-num{background:rgba(255,255,255,.24);color:#fff}
   .nav-t{flex:1}
-  .nav-count{font-size:.68rem;font-weight:700;color:var(--muted);background:#e6e0d2;
+  .nav-count{font-size:.68rem;font-weight:700;color:#5b564d;background:#e6e0d2;
     padding:2px 6px;border-radius:999px;flex:none}
   .nav-item.active .nav-count{background:rgba(255,255,255,.22);color:#fff}
   .nav-count.full{background:#d8f0e0;color:#1f6e43}
   .nav-item.active .nav-count.full{background:rgba(255,255,255,.3);color:#fff}
 
+  /* Tastaturbedienung: überall der gleiche sichtbare Fokusring */
+  :focus-visible{outline:3px solid var(--accent);outline-offset:2px;border-radius:4px}
+  .nav-item:focus-visible{outline-offset:-2px}
+
   .side-foot{padding:12px 18px 16px;border-top:1px solid var(--line);
     font-family:system-ui,sans-serif;font-size:.74rem;color:var(--muted)}
   .pbar{height:5px;background:#ded7c8;border-radius:99px;margin-top:7px;overflow:hidden}
-  #pbar-fill{height:100%;width:0;background:var(--accent);transition:width .25s}
+  #pbar-fill{height:100%;width:100%;background:var(--accent);transform:scaleX(0);
+    transform-origin:left;transition:transform .25s ease-out}
 
   .content{flex:1;height:100vh;overflow-y:auto;scroll-behavior:smooth}
   .topic{display:none}
@@ -267,7 +271,7 @@
 <button class="menu-btn" id="menu-btn" aria-label="Menü">☰ Themen</button>
 <div class="side-backdrop" id="side-backdrop"></div>
 
-<nav class="sidebar" id="sidebar">
+<nav class="sidebar" id="sidebar" aria-label="Themen">
   <div class="side-head">
     <div class="brand">∫ Analysis</div>
     <div class="brand-sub">Mathe LK · Q1 · NRW</div>
@@ -281,13 +285,12 @@
   <div class="topic-head"><div class="wrap"><div class="crumb">Kapitel 1 · Differentialrechnung</div><h1 class="topic-title">Überblick &amp; Ableitungsregeln</h1></div></div>
 <section>
   <div class="wrap">
-    <span class="section-tag">0 · Worum geht es</span>
     <div class="card">
       <h2>Die Differentialrechnung weitergedacht</h2>
       <p>Du kennst bereits die <strong>erste Ableitung</strong> \(f'\) als Maß für die <em>Steigung</em> eines Graphen. In Kapitel 1 baust du darauf auf: Mit der <strong>zweiten Ableitung</strong> \(f''\) untersuchst du die <em>Krümmung</em>, führst vollständige Funktionsuntersuchungen durch, rekonstruierst Funktionsterme aus Bedingungen (<em>Steckbriefaufgaben</em>), löst <em>Extremwertprobleme</em> mit Nebenbedingung und untersuchst ganze <em>Funktionenscharen</em>.</p>
       <p>Alle Beispiele beschränken sich auf <strong>ganzrationale Funktionen</strong> (Polynome) — das Werkzeug, mit dem in der Q1 alles beginnt.</p>
       <div class="merk">
-        <h4>🧰 Werkzeugkasten: Ableitungsregeln (Wiederholung)</h4>
+        <h3>🧰 Werkzeugkasten: Ableitungsregeln (Wiederholung)</h3>
         <ul>
           <li><strong>Potenzregel:</strong> \(f(x)=x^n \;\Rightarrow\; f'(x)=n\cdot x^{\,n-1}\)</li>
           <li><strong>Faktorregel:</strong> \(\big(c\cdot f(x)\big)' = c\cdot f'(x)\)</li>
@@ -300,19 +303,17 @@
   </div>
 </section>
   <div class="wrap"><div class="pagenav"><span></span><button class="pn next" data-goto="kruemmung"><span class="pn-dir">Nächstes Thema →</span><span class="pn-t">Krümmung &amp; 2. Ableitung</span></button></div></div>
-  <div class="wrap"><div class="topic-foot">Mathematik LK · Q1 · Analysis · NRW<br>Eingaben und Fortschritt bleiben lokal im Browser — nichts wird gespeichert oder gesendet.<br>Aufgaben im Stil des Zentralabiturs NRW; Inhalte gemäß Kernlehrplan &amp; Abiturvorgaben 2027.</div></div>
 </div>
 
 <div class="topic" id="t-kruemmung" data-topic="kruemmung">
   <div class="topic-head"><div class="wrap"><div class="crumb">Kapitel 1 · Differentialrechnung</div><h1 class="topic-title">Krümmung &amp; 2. Ableitung</h1></div></div>
 <section>
   <div class="wrap">
-    <span class="section-tag">1 · Krümmung & 2. Ableitung</span>
     <div class="card">
       <h2>Wie der Graph sich biegt</h2>
       <p>Die zweite Ableitung \(f''\) entsteht durch nochmaliges Ableiten von \(f'\). Sie beschreibt, <strong>wie sich die Steigung ändert</strong> — also die <strong>Krümmung</strong> des Graphen:</p>
       <div class="merk">
-        <h4>📐 Krümmung erkennen</h4>
+        <h3>📐 Krümmung erkennen</h3>
         <ul>
           <li>\(f''(x) > 0\): Der Graph ist <strong>linksgekrümmt</strong> (konvex, „Tal" \(\smile\)) — die Steigung <em>wächst</em>.</li>
           <li>\(f''(x) < 0\): Der Graph ist <strong>rechtsgekrümmt</strong> (konkav, „Berg" \(\frown\)) — die Steigung <em>fällt</em>.</li>
@@ -328,15 +329,15 @@
       </div>
 
       <div class="fehler">
-        <h4>⚠️ Häufige Stolperfallen</h4>
+        <h3>⚠️ Häufige Stolperfallen</h3>
         <ul>
-          <li>\(f''(x)=0\) <em>allein</em> beweist noch keinen Wendepunkt — der Vorzeichenwechsel (bzw. \(f'''\neq 0\)) muss geprüft werden. Beispiel: \(f(x)=x^4\) hat bei \(0\) ein Minimum, keinen Wendepunkt, obwohl \(f''(0)=0\).</li>
-          <li>„Linksgekrümmt" gehört zu \(f''>0\), nicht zu fallenden Funktionswerten — Krümmung und Monotonie sind verschiedene Dinge.</li>
+          <li>\(f''(x)=0\) <em>allein</em> beweist noch keinen Wendepunkt: der Vorzeichenwechsel (bzw. \(f'''\neq 0\)) muss geprüft werden. Beispiel: \(f(x)=x^4\) hat bei \(0\) ein Minimum, keinen Wendepunkt, obwohl \(f''(0)=0\).</li>
+          <li>„Linksgekrümmt" gehört zu \(f''>0\), nicht zu fallenden Funktionswerten. Krümmung und Monotonie sind verschiedene Dinge.</li>
         </ul>
       </div>
     </div>
 
-    <h3>Übungen — Krümmung</h3>
+    <h3>Übungen</h3>
 
     <div class="task" data-id="k1">
       <div class="task-head"><span class="task-num">1</span><span class="level basal">Basal</span>
@@ -374,7 +375,7 @@
         <h4>Lösung</h4>
         <p class="step">Linksgekrümmt bedeutet \(f''(x)>0\):</p>
         <p class="step">\(6x-6>0 \;\Leftrightarrow\; x>1\)</p>
-        <div class="why">Für \(x>1\) wird die Steigung immer größer — der Graph öffnet sich nach oben (\(\smile\)).</div>
+        <div class="why">Für \(x>1\) wird die Steigung immer größer: der Graph öffnet sich nach oben (\(\smile\)).</div>
       </div>
     </div>
 
@@ -414,7 +415,7 @@
         <p class="step">\(f''(x)=0 \Rightarrow x^2=2 \Rightarrow x=\pm\sqrt{2}\)</p>
         <p class="step">\(f''\) wechselt an beiden Stellen das Vorzeichen (Parabel, nach oben geöffnet) \(\Rightarrow\) <strong>zwei</strong> Wendepunkte.</p>
         <p class="step">\(f(\pm\sqrt2)=\tfrac{1}{12}\cdot 4 - 2 = \tfrac13-2=-\tfrac53\), also \(W_{1,2}\big(\pm\sqrt2 \mid -\tfrac53\big)\).</p>
-        <div class="why">Bei einer nach oben geöffneten Parabel \(f''\) liegt zwischen den Nullstellen ein negativer, außerhalb ein positiver Bereich — an jeder Nullstelle ein echter Vorzeichenwechsel.</div>
+        <div class="why">Bei einer nach oben geöffneten Parabel \(f''\) liegt zwischen den Nullstellen ein negativer, außerhalb ein positiver Bereich, an jeder Nullstelle ein echter Vorzeichenwechsel.</div>
       </div>
     </div>
 
@@ -442,19 +443,17 @@
   </div>
 </section>
   <div class="wrap"><div class="pagenav"><button class="pn prev" data-goto="start"><span class="pn-dir">← Vorheriges Thema</span><span class="pn-t">Überblick &amp; Ableitungsregeln</span></button><button class="pn next" data-goto="untersuchung"><span class="pn-dir">Nächstes Thema →</span><span class="pn-t">Vollständige Funktionsuntersuchung</span></button></div></div>
-  <div class="wrap"><div class="topic-foot">Mathematik LK · Q1 · Analysis · NRW<br>Eingaben und Fortschritt bleiben lokal im Browser — nichts wird gespeichert oder gesendet.<br>Aufgaben im Stil des Zentralabiturs NRW; Inhalte gemäß Kernlehrplan &amp; Abiturvorgaben 2027.</div></div>
 </div>
 
 <div class="topic" id="t-untersuchung" data-topic="untersuchung">
   <div class="topic-head"><div class="wrap"><div class="crumb">Kapitel 1 · Differentialrechnung</div><h1 class="topic-title">Vollständige Funktionsuntersuchung</h1></div></div>
 <section>
   <div class="wrap">
-    <span class="section-tag">2 · Vollständige Funktionsuntersuchung</span>
     <div class="card">
       <h2>Den Graphen Schritt für Schritt entschlüsseln</h2>
       <p>Eine vollständige Funktionsuntersuchung beantwortet immer dieselben Fragen — in fester Reihenfolge:</p>
       <div class="merk">
-        <h4>🗺️ Der Fahrplan</h4>
+        <h3>🗺️ Der Fahrplan</h3>
         <ul>
           <li><strong>Definitionsbereich</strong> (bei Polynomen stets \(\mathbb{R}\)).</li>
           <li><strong>Symmetrie:</strong> nur gerade Exponenten \(\Rightarrow\) achsensymmetrisch (\(f(-x)=f(x)\)); nur ungerade \(\Rightarrow\) punktsymmetrisch zum Ursprung (\(f(-x)=-f(x)\)).</li>
@@ -466,7 +465,7 @@
       </div>
 
       <div class="worked">
-        <h4>Durchgerechnetes Beispiel</h4>
+        <h3>Durchgerechnetes Beispiel</h3>
         <p><strong>Untersuche \(f(x)=\tfrac14 x^4 - 2x^2\) vollständig.</strong></p>
         <p class="step"><strong>Definitionsbereich:</strong> \(D=\mathbb{R}\).</p>
         <p class="step"><strong>Symmetrie:</strong> Nur gerade Exponenten \(\Rightarrow f(-x)=f(x)\), also achsensymmetrisch zur \(y\)-Achse.</p>
@@ -486,7 +485,7 @@
       </div>
 
       <div class="fehler">
-        <h4>⚠️ Häufige Stolperfallen</h4>
+        <h3>⚠️ Häufige Stolperfallen</h3>
         <ul>
           <li>Bei der Symmetrie zählt jeder Term: Schon ein einziger ungerader Exponent zerstört die Achsensymmetrie.</li>
           <li>Biquadratische Gleichungen wie \(x^4-5x^2+4=0\) zuerst <strong>substituieren</strong> (\(u=x^2\)), nicht „die Wurzel ziehen".</li>
@@ -495,7 +494,7 @@
       </div>
     </div>
 
-    <h3>Übungen — Funktionsuntersuchung</h3>
+    <h3>Übungen</h3>
 
     <div class="task" data-id="u1">
       <div class="task-head"><span class="task-num">1</span><span class="level basal">Basal</span>
@@ -512,7 +511,7 @@
       <div class="solution">
         <h4>Lösung</h4>
         <p class="step">Alle Exponenten (\(4,\,2,\,0\)) sind gerade \(\Rightarrow f(-x)=f(x)\) \(\Rightarrow\) achsensymmetrisch zur \(y\)-Achse.</p>
-        <div class="why">Die konstante \(+1\) entspricht \(x^0\) — ebenfalls ein gerader Exponent, stört die Symmetrie also nicht.</div>
+        <div class="why">Die konstante \(+1\) entspricht \(x^0\) — ebenfalls ein gerader Exponent und stört die Symmetrie nicht.</div>
       </div>
     </div>
 
@@ -580,25 +579,23 @@
         <p class="step"><strong>Höchster Punkt:</strong> \(f'(x)=0\Rightarrow x=0\) oder \(x=2\). \(f''(2)=-6<0\Rightarrow\) Hochpunkt \(H(2\mid 4)\). (Bei \(x=0\): \(f''(0)=6>0\Rightarrow\) Tiefpunkt.)</p>
         <p class="step">Also liegt der höchste Punkt bei \(x=2\) (also 200 m), Höhe \(f(2)=-8+12=4\) (400 m).</p>
         <p class="step"><strong>Stärkster Anstieg:</strong> maximale Steigung dort, wo \(f'\) maximal ist, also \(f''(x)=0\Rightarrow x=1\). Das ist der Wendepunkt \(W(1\mid 2)\).</p>
-        <div class="why">„Stärkster Anstieg" \(=\) Maximum der Steigungsfunktion \(f'\) \(=\) Wendestelle. Genau das wird in Sachaufgaben gern gefragt — Wendepunkt als <em>Punkt des stärksten Wachstums</em>.</div>
+        <div class="why">„Stärkster Anstieg" \(=\) Maximum der Steigungsfunktion \(f'\) \(=\) Wendestelle. Genau das wird in Sachaufgaben gern gefragt: der Wendepunkt als <em>Punkt des stärksten Wachstums</em>.</div>
       </div>
     </div>
   </div>
 </section>
   <div class="wrap"><div class="pagenav"><button class="pn prev" data-goto="kruemmung"><span class="pn-dir">← Vorheriges Thema</span><span class="pn-t">Krümmung &amp; 2. Ableitung</span></button><button class="pn next" data-goto="steckbrief"><span class="pn-dir">Nächstes Thema →</span><span class="pn-t">Steckbriefaufgaben</span></button></div></div>
-  <div class="wrap"><div class="topic-foot">Mathematik LK · Q1 · Analysis · NRW<br>Eingaben und Fortschritt bleiben lokal im Browser — nichts wird gespeichert oder gesendet.<br>Aufgaben im Stil des Zentralabiturs NRW; Inhalte gemäß Kernlehrplan &amp; Abiturvorgaben 2027.</div></div>
 </div>
 
 <div class="topic" id="t-steckbrief" data-topic="steckbrief">
   <div class="topic-head"><div class="wrap"><div class="crumb">Kapitel 1 · Differentialrechnung</div><h1 class="topic-title">Steckbriefaufgaben</h1></div></div>
 <section>
   <div class="wrap">
-    <span class="section-tag">3 · Steckbriefaufgaben (Rekonstruktion)</span>
     <div class="card">
       <h2>Vom Steckbrief zum Funktionsterm</h2>
       <p>Bei <strong>Steckbriefaufgaben</strong> ist der Funktionstyp gegeben (z. B. „ganzrational 3. Grades"), aber die Koeffizienten sind unbekannt. Aus den genannten <em>Bedingungen</em> stellst du Gleichungen auf und löst das entstehende <strong>lineare Gleichungssystem (LGS)</strong>.</p>
       <div class="merk">
-        <h4>🔑 Bedingungen in Gleichungen übersetzen</h4>
+        <h3>🔑 Bedingungen in Gleichungen übersetzen</h3>
         <ul>
           <li>„Graph verläuft durch \(P(a\mid b)\)" \(\Rightarrow f(a)=b\)</li>
           <li>„waagerechte Tangente / Extrempunkt bei \(x=a\)" \(\Rightarrow f'(a)=0\)</li>
@@ -609,7 +606,7 @@
       </div>
 
       <div class="worked">
-        <h4>Durchgerechnetes Beispiel</h4>
+        <h3>Durchgerechnetes Beispiel</h3>
         <p><strong>Gesucht ist eine ganzrationale Funktion 3. Grades, deren Graph punktsymmetrisch zum Ursprung ist, bei \(x=1\) eine waagerechte Tangente hat und durch \(P(1\mid -2)\) verläuft.</strong></p>
         <p class="step"><strong>Ansatz mit Symmetrie:</strong> Punktsymmetrie \(\Rightarrow\) nur ungerade Exponenten: \(f(x)=ax^3+cx\), \(f'(x)=3ax^2+c\).</p>
         <p class="step"><strong>Bedingungen:</strong></p>
@@ -625,7 +622,7 @@
       </div>
 
       <div class="fehler">
-        <h4>⚠️ Häufige Stolperfallen</h4>
+        <h3>⚠️ Häufige Stolperfallen</h3>
         <ul>
           <li>Anzahl der Bedingungen muss zur Anzahl der Unbekannten passen (Grad \(n\) \(\Rightarrow\) \(n+1\) Koeffizienten).</li>
           <li>Symmetrie <em>vor</em> dem Aufstellen nutzen — das halbiert oft die Unbekannten.</li>
@@ -634,7 +631,7 @@
       </div>
     </div>
 
-    <h3>Übungen — Steckbriefaufgaben</h3>
+    <h3>Übungen</h3>
 
     <div class="task" data-id="s1">
       <div class="task-head"><span class="task-num">1</span><span class="level basal">Basal</span>
@@ -649,7 +646,7 @@
       <div class="solution">
         <h4>Lösung</h4>
         <p class="step">\(f(0)=a\cdot 0 + b\cdot 0 + c = c\). Aus \(f(0)=3\) folgt \(c=3\).</p>
-        <div class="why">Der \(y\)-Achsenabschnitt ist immer der konstante Term \(c\) — ein Punkt auf der \(y\)-Achse liefert \(c\) direkt.</div>
+        <div class="why">Der \(y\)-Achsenabschnitt ist immer der konstante Term \(c\): ein Punkt auf der \(y\)-Achse liefert \(c\) direkt.</div>
       </div>
     </div>
 
@@ -685,7 +682,7 @@
         <p class="step">Sattelpunkt in \((0\mid 0)\): \(f(0)=0\Rightarrow d=0\); \(f'(0)=0\Rightarrow c=0\); \(f''(0)=0\Rightarrow 2b=0\Rightarrow b=0\).</p>
         <p class="step">Es bleibt \(f(x)=ax^3\). Punkt \(P\): \(f(1)=a=1\).</p>
         <p class="step">\(\Rightarrow f(x)=x^3\).</p>
-        <div class="why">Ein Sattelpunkt vereint drei Bedingungen an einer Stelle (\(f=f'=f''=0\)) — das räumt viele Koeffizienten auf einen Schlag ab.</div>
+        <div class="why">Ein Sattelpunkt vereint drei Bedingungen an einer Stelle (\(f=f'=f''=0\)): das räumt viele Koeffizienten auf einen Schlag ab.</div>
       </div>
     </div>
 
@@ -705,25 +702,23 @@
         <p class="step"><strong>Scheitel:</strong> \(f(0)=4\Rightarrow c=4\).</p>
         <p class="step"><strong>Nullstelle:</strong> \(f(4)=0\Rightarrow 16a+4=0\Rightarrow a=-\tfrac14=-0{,}25\).</p>
         <p class="step">\(\Rightarrow f(x)=-\tfrac14 x^2+4\).</p>
-        <div class="why">Tipp: \(-\tfrac14\) als \(-0{,}25\) oder \(-1/4\) eingeben — das Prüffeld akzeptiert beides. Die Symmetrie spart hier den Term \(bx\) komplett.</div>
+        <div class="why">Tipp: \(-\tfrac14\) als \(-0{,}25\) oder \(-1/4\) eingeben, das Prüffeld akzeptiert beides. Die Symmetrie spart hier den Term \(bx\) komplett.</div>
       </div>
     </div>
   </div>
 </section>
   <div class="wrap"><div class="pagenav"><button class="pn prev" data-goto="untersuchung"><span class="pn-dir">← Vorheriges Thema</span><span class="pn-t">Vollständige Funktionsuntersuchung</span></button><button class="pn next" data-goto="extremwert"><span class="pn-dir">Nächstes Thema →</span><span class="pn-t">Extremwertprobleme</span></button></div></div>
-  <div class="wrap"><div class="topic-foot">Mathematik LK · Q1 · Analysis · NRW<br>Eingaben und Fortschritt bleiben lokal im Browser — nichts wird gespeichert oder gesendet.<br>Aufgaben im Stil des Zentralabiturs NRW; Inhalte gemäß Kernlehrplan &amp; Abiturvorgaben 2027.</div></div>
 </div>
 
 <div class="topic" id="t-extremwert" data-topic="extremwert">
   <div class="topic-head"><div class="wrap"><div class="crumb">Kapitel 1 · Differentialrechnung</div><h1 class="topic-title">Extremwertprobleme</h1></div></div>
 <section>
   <div class="wrap">
-    <span class="section-tag">4 · Extremwertprobleme mit Nebenbedingung</span>
     <div class="card">
       <h2>Das Beste herausholen — Optimieren</h2>
       <p>Bei <strong>Extremwertproblemen</strong> soll eine Größe maximal oder minimal werden (die <em>Zielgröße</em>), während eine <em>Nebenbedingung</em> einschränkt. Der Trick: Mit der Nebenbedingung eine Variable ersetzen, sodass die Zielfunktion <strong>nur noch von einer Variablen</strong> abhängt.</p>
       <div class="merk">
-        <h4>🎯 Der Lösungsweg</h4>
+        <h3>🎯 Der Lösungsweg</h3>
         <ul>
           <li><strong>Zielfunktion</strong> aufstellen (was wird maximal/minimal?) — meist mit zwei Variablen.</li>
           <li><strong>Nebenbedingung</strong> aufstellen und nach einer Variablen auflösen.</li>
@@ -734,7 +729,7 @@
       </div>
 
       <div class="worked">
-        <h4>Durchgerechnetes Beispiel</h4>
+        <h3>Durchgerechnetes Beispiel</h3>
         <p><strong>Aus einem Draht der Länge \(20\text{ cm}\) soll ein Rechteck mit größtmöglichem Flächeninhalt gebogen werden.</strong></p>
         <p class="step"><strong>Zielfunktion:</strong> \(A=x\cdot y\) (Seiten \(x,y\)).</p>
         <p class="step"><strong>Nebenbedingung:</strong> Umfang \(2x+2y=20\Rightarrow y=10-x\).</p>
@@ -750,7 +745,7 @@
       </div>
 
       <div class="fehler">
-        <h4>⚠️ Häufige Stolperfallen</h4>
+        <h3>⚠️ Häufige Stolperfallen</h3>
         <ul>
           <li>Den <strong>Definitionsbereich</strong> nicht vergessen — oft scheidet eine rechnerische Lösung aus geometrischen Gründen aus.</li>
           <li>Mit \(f''\) (oder Vorzeichenwechsel) prüfen, ob wirklich ein <em>Maximum</em> vorliegt — nicht jeder Kandidat ist das Gesuchte.</li>
@@ -759,7 +754,7 @@
       </div>
     </div>
 
-    <h3>Übungen — Extremwertprobleme</h3>
+    <h3>Übungen</h3>
 
     <div class="task" data-id="e1">
       <div class="task-head"><span class="task-num">1</span><span class="level basal">Basal</span>
@@ -837,19 +832,17 @@
   </div>
 </section>
   <div class="wrap"><div class="pagenav"><button class="pn prev" data-goto="steckbrief"><span class="pn-dir">← Vorheriges Thema</span><span class="pn-t">Steckbriefaufgaben</span></button><button class="pn next" data-goto="scharen"><span class="pn-dir">Nächstes Thema →</span><span class="pn-t">Funktionenscharen</span></button></div></div>
-  <div class="wrap"><div class="topic-foot">Mathematik LK · Q1 · Analysis · NRW<br>Eingaben und Fortschritt bleiben lokal im Browser — nichts wird gespeichert oder gesendet.<br>Aufgaben im Stil des Zentralabiturs NRW; Inhalte gemäß Kernlehrplan &amp; Abiturvorgaben 2027.</div></div>
 </div>
 
 <div class="topic" id="t-scharen" data-topic="scharen">
   <div class="topic-head"><div class="wrap"><div class="crumb">Kapitel 1 · Differentialrechnung</div><h1 class="topic-title">Funktionenscharen</h1></div></div>
 <section>
   <div class="wrap">
-    <span class="section-tag">5 · Funktionenscharen</span>
     <div class="card">
       <h2>Eine Funktion — unendlich viele Graphen</h2>
       <p>Eine <strong>Funktionenschar</strong> enthält neben \(x\) noch einen <strong>Parameter</strong> (oft \(a\), \(t\) oder \(k\)). Jeder Parameterwert liefert einen eigenen Graphen. Beim Ableiten und Untersuchen wird der Parameter wie eine <em>Konstante</em> behandelt; die Ergebnisse hängen dann von ihm ab.</p>
       <div class="merk">
-        <h4>🧭 Scharen untersuchen</h4>
+        <h3>🧭 Scharen untersuchen</h3>
         <ul>
           <li>Parameter beim Ableiten als Konstante behandeln: \(\frac{d}{dx}\big(x^3-3a^2x\big)=3x^2-3a^2\).</li>
           <li>Extrem-/Wendestellen ergeben sich <em>in Abhängigkeit vom Parameter</em>.</li>
@@ -859,7 +852,7 @@
       </div>
 
       <div class="worked">
-        <h4>Durchgerechnetes Beispiel</h4>
+        <h3>Durchgerechnetes Beispiel</h3>
         <p><strong>Untersuche die Schar \(f_a(x)=x^3-3a^2x\) (\(a>0\)) auf Extrempunkte und bestimme die Ortskurve der Tiefpunkte.</strong></p>
         <p class="step"><strong>Ableitungen:</strong> \(f_a'(x)=3x^2-3a^2,\quad f_a''(x)=6x\).</p>
         <p class="step"><strong>Extremstellen:</strong> \(f_a'(x)=0\Rightarrow x^2=a^2\Rightarrow x=\pm a\).</p>
@@ -875,16 +868,16 @@
       </div>
 
       <div class="fehler">
-        <h4>⚠️ Häufige Stolperfallen</h4>
+        <h3>⚠️ Häufige Stolperfallen</h3>
         <ul>
           <li>Beim Ableiten nicht den Parameter „mitableiten" — \(a\) ist eine Konstante, kein \(x\).</li>
           <li>Für die Ortskurve den Parameter aus den <em>Koordinaten</em> eliminieren, nicht aus der Funktionsgleichung.</li>
-          <li>Bei „\(a>0\)" oder „\(a\neq 0\)" auf die <strong>Fallunterscheidung</strong> achten — das Vorzeichen entscheidet oft über Hoch- vs. Tiefpunkt.</li>
+          <li>Bei „\(a>0\)" oder „\(a\neq 0\)" auf die <strong>Fallunterscheidung</strong> achten: das Vorzeichen entscheidet oft über Hoch- vs. Tiefpunkt.</li>
         </ul>
       </div>
     </div>
 
-    <h3>Übungen — Funktionenscharen</h3>
+    <h3>Übungen</h3>
 
     <div class="task" data-id="f1">
       <div class="task-head"><span class="task-num">1</span><span class="level basal">Basal</span>
@@ -930,7 +923,7 @@
         <p class="step">\(f_a'(x)=3x^2-3a^2=0\Rightarrow x=\pm a\).</p>
         <p class="step">\(f_a''(x)=6x\): \(f_a''(-a)=-6a<0\Rightarrow\) Hochpunkt; \(f_a''(a)=6a>0\Rightarrow\) Tiefpunkt.</p>
         <p class="step">\(H(-a\mid 2a^3)\), \(T(a\mid -2a^3)\).</p>
-        <div class="why">Da \(f_a\) punktsymmetrisch ist, liegen Hoch- und Tiefpunkt spiegelbildlich zum Ursprung — die \(y\)-Werte unterscheiden sich nur im Vorzeichen.</div>
+        <div class="why">Da \(f_a\) punktsymmetrisch ist, liegen Hoch- und Tiefpunkt spiegelbildlich zum Ursprung, die \(y\)-Werte unterscheiden sich nur im Vorzeichen.</div>
       </div>
     </div>
 
@@ -963,25 +956,23 @@
         <p class="step">Tiefpunkt: \(T(a\mid -2a^3)\). Bedingung: \(y\)-Koordinate \(=-16\).</p>
         <p class="step">\(-2a^3=-16\Rightarrow a^3=8\Rightarrow a=2\) (mit \(a>0\)).</p>
         <p class="step">Probe: \(T(2\mid -2\cdot 8)=T(2\mid -16)\) ✓.</p>
-        <div class="why">Solche Aufgaben verbinden Scharuntersuchung mit einer Zusatzbedingung — erst den allgemeinen Punkt bestimmen, dann die Bedingung als Gleichung im Parameter lösen.</div>
+        <div class="why">Solche Aufgaben verbinden Scharuntersuchung mit einer Zusatzbedingung: erst den allgemeinen Punkt bestimmen, dann die Bedingung als Gleichung im Parameter lösen.</div>
       </div>
     </div>
   </div>
 </section>
   <div class="wrap"><div class="pagenav"><button class="pn prev" data-goto="extremwert"><span class="pn-dir">← Vorheriges Thema</span><span class="pn-t">Extremwertprobleme</span></button><button class="pn next" data-goto="bestand"><span class="pn-dir">Nächstes Thema →</span><span class="pn-t">Änderungsrate → Bestand</span></button></div></div>
-  <div class="wrap"><div class="topic-foot">Mathematik LK · Q1 · Analysis · NRW<br>Eingaben und Fortschritt bleiben lokal im Browser — nichts wird gespeichert oder gesendet.<br>Aufgaben im Stil des Zentralabiturs NRW; Inhalte gemäß Kernlehrplan &amp; Abiturvorgaben 2027.</div></div>
 </div>
 
 <div class="topic" id="t-bestand" data-topic="bestand">
   <div class="topic-head"><div class="wrap"><div class="crumb">Kapitel 2 · Integralrechnung</div><h1 class="topic-title">Änderungsrate → Bestand</h1></div></div>
 <section>
   <div class="wrap">
-    <span class="section-tag">1 · Von der Änderungsrate zum Bestand</span>
     <div class="card">
       <h2>Aufsummieren statt ableiten</h2>
       <p>Die Differentialrechnung fragt: „Wie schnell ändert sich etwas?" Die Integralrechnung dreht den Spieß um: <strong>Aus einer Änderungsrate den Bestand rekonstruieren.</strong> Kennst du die Zuflussrate zu einem See, kannst du die zugeflossene Wassermenge bestimmen — geometrisch ist das die <strong>Fläche</strong> unter dem Graphen der Rate. Die Idee dahinter: den Zeitraum in schmale Streifen zerlegen, jeden durch ein Rechteck „Rate × Streifenbreite" nähern und aufsummieren. Für immer schmalere Streifen strebt diese <strong>Produktsumme</strong> gegen das <strong>Integral</strong>.</p>
       <div class="merk">
-        <h4>∫ Der Integralbegriff</h4>
+        <h3>∫ Der Integralbegriff</h3>
         <ul>
           <li>Das bestimmte Integral \(\displaystyle\int_a^b f(x)\,dx\) ist der <strong>Grenzwert von Produktsummen</strong> \(\sum f(x_i)\cdot\Delta x\).</li>
           <li>Ist \(f(x)\ge 0\), so ist es der <strong>Flächeninhalt</strong> zwischen Graph und \(x\)-Achse über \([a,b]\).</li>
@@ -996,7 +987,7 @@
       </div>
 
       <div class="fehler">
-        <h4>⚠️ Häufige Stolperfallen</h4>
+        <h3>⚠️ Häufige Stolperfallen</h3>
         <ul>
           <li>Eine <em>Rate</em> (z. B. Liter <strong>pro</strong> Minute) ist nicht der Bestand selbst — erst das Integral der Rate liefert die Menge.</li>
           <li>Notation immer vollständig schreiben: \(\displaystyle\int_a^b f(x)\,dx\) — <strong>mit Grenzen und \(dx\)</strong>. Ein Integralzeichen ohne \(dx\) ist unvollständig.</li>
@@ -1004,7 +995,7 @@
       </div>
     </div>
 
-    <h3>Übungen — Änderungsrate &amp; Bestand</h3>
+    <h3>Übungen</h3>
 
     <div class="task" data-id="bg1">
       <div class="task-head"><span class="task-num">1</span><span class="level basal">Basal</span>
@@ -1020,7 +1011,7 @@
         <h4>Lösung</h4>
         <p class="step">Konstante Rate \(\Rightarrow\) Menge \(=\) Rate \(\times\) Zeit \(=3\cdot 5=15\) Liter.</p>
         <p class="step">Geometrisch: Fläche des Rechtecks mit Höhe \(3\) und Breite \(5\): \(\int_0^5 3\,dt=15\).</p>
-        <div class="why">Bei konstanter Rate ist das Integral trivial die Rechteckfläche — der einfachste Spezialfall der Bestandsrekonstruktion.</div>
+        <div class="why">Bei konstanter Rate ist das Integral trivial die Rechteckfläche, der einfachste Spezialfall der Bestandsrekonstruktion.</div>
       </div>
     </div>
 
@@ -1077,19 +1068,17 @@
   </div>
 </section>
   <div class="wrap"><div class="pagenav"><button class="pn prev" data-goto="scharen"><span class="pn-dir">← Vorheriges Thema</span><span class="pn-t">Funktionenscharen</span></button><button class="pn next" data-goto="stammfunktion"><span class="pn-dir">Nächstes Thema →</span><span class="pn-t">Stammfunktionen</span></button></div></div>
-  <div class="wrap"><div class="topic-foot">Mathematik LK · Q1 · Analysis · NRW<br>Eingaben und Fortschritt bleiben lokal im Browser — nichts wird gespeichert oder gesendet.<br>Aufgaben im Stil des Zentralabiturs NRW; Inhalte gemäß Kernlehrplan &amp; Abiturvorgaben 2027.</div></div>
 </div>
 
 <div class="topic" id="t-stammfunktion" data-topic="stammfunktion">
   <div class="topic-head"><div class="wrap"><div class="crumb">Kapitel 2 · Integralrechnung</div><h1 class="topic-title">Stammfunktionen</h1></div></div>
 <section>
   <div class="wrap">
-    <span class="section-tag">2 · Stammfunktionen</span>
     <div class="card">
       <h2>Ableiten rückwärts</h2>
       <p>Eine <strong>Stammfunktion</strong> \(F\) von \(f\) ist eine Funktion, deren Ableitung wieder \(f\) ergibt: \(F'(x)=f(x)\). Da die Ableitung einer Konstanten \(0\) ist, gibt es immer <em>unendlich viele</em> Stammfunktionen, die sich nur um eine Konstante \(C\) unterscheiden. Man schreibt das <strong>unbestimmte Integral</strong> \(\displaystyle\int f(x)\,dx=F(x)+C\).</p>
       <div class="merk">
-        <h4>📋 Grundregeln (ganzrational)</h4>
+        <h3>📋 Grundregeln (ganzrational)</h3>
         <ul>
           <li><strong>Potenzregel rückwärts:</strong> \(\displaystyle\int x^n\,dx=\frac{x^{\,n+1}}{n+1}+C\) (für \(n\neq -1\)).</li>
           <li><strong>Faktor &amp; Summe:</strong> \(\displaystyle\int c\cdot f\,dx=c\int f\,dx\) und \(\displaystyle\int (f+g)\,dx=\int f\,dx+\int g\,dx\).</li>
@@ -1105,7 +1094,7 @@
       </div>
 
       <div class="fehler">
-        <h4>⚠️ Häufige Stolperfallen</h4>
+        <h3>⚠️ Häufige Stolperfallen</h3>
         <ul>
           <li>Beim unbestimmten Integral das \(+C\) nicht vergessen.</li>
           <li>Exponent \(+1\) und durch den <em>neuen</em> Exponenten teilen — nicht durch den alten.</li>
@@ -1114,7 +1103,7 @@
       </div>
     </div>
 
-    <h3>Übungen — Stammfunktionen</h3>
+    <h3>Übungen</h3>
 
     <div class="task" data-id="sf1">
       <div class="task-head"><span class="task-num">1</span><span class="level basal">Basal</span>
@@ -1169,7 +1158,7 @@
         <p class="step">\(F(x)=x^3-2x^2+C\).</p>
         <p class="step">\(F(0)=C=1\Rightarrow F(x)=x^3-2x^2+1\).</p>
         <p class="step">\(F(2)=8-8+1=1\).</p>
-        <div class="why">Die Bedingung \(F(0)=1\) legt die Integrationskonstante \(C\) fest — so wird aus den unendlich vielen Stammfunktionen genau eine.</div>
+        <div class="why">Die Bedingung \(F(0)=1\) legt die Integrationskonstante \(C\) fest: so wird aus den unendlich vielen Stammfunktionen genau eine.</div>
       </div>
     </div>
 
@@ -1209,25 +1198,23 @@
         <p class="step">\(f(x)=\int(6x-2)\,dx=3x^2-2x+C\).</p>
         <p class="step">\(f(1)=3-2+C=1+C=5\Rightarrow C=4\), also \(f(x)=3x^2-2x+4\).</p>
         <p class="step">\(f(0)=4\).</p>
-        <div class="why">Aus der Ableitung die Funktion „zurückgewinnen" ist Integrieren — die Bedingung \(f(1)=5\) fixiert \(C\). Genau dasselbe Prinzip wie bei der Bestandsrekonstruktion.</div>
+        <div class="why">Aus der Ableitung die Funktion „zurückgewinnen" ist Integrieren, die Bedingung \(f(1)=5\) fixiert \(C\). Genau dasselbe Prinzip wie bei der Bestandsrekonstruktion.</div>
       </div>
     </div>
   </div>
 </section>
   <div class="wrap"><div class="pagenav"><button class="pn prev" data-goto="bestand"><span class="pn-dir">← Vorheriges Thema</span><span class="pn-t">Änderungsrate → Bestand</span></button><button class="pn next" data-goto="hauptsatz"><span class="pn-dir">Nächstes Thema →</span><span class="pn-t">Hauptsatz &amp; bestimmtes Integral</span></button></div></div>
-  <div class="wrap"><div class="topic-foot">Mathematik LK · Q1 · Analysis · NRW<br>Eingaben und Fortschritt bleiben lokal im Browser — nichts wird gespeichert oder gesendet.<br>Aufgaben im Stil des Zentralabiturs NRW; Inhalte gemäß Kernlehrplan &amp; Abiturvorgaben 2027.</div></div>
 </div>
 
 <div class="topic" id="t-hauptsatz" data-topic="hauptsatz">
   <div class="topic-head"><div class="wrap"><div class="crumb">Kapitel 2 · Integralrechnung</div><h1 class="topic-title">Hauptsatz &amp; bestimmtes Integral</h1></div></div>
 <section>
   <div class="wrap">
-    <span class="section-tag">3 · Hauptsatz &amp; bestimmtes Integral</span>
     <div class="card">
       <h2>Die Brücke zwischen Ableiten und Integrieren</h2>
       <p>Der <strong>Hauptsatz der Differential- und Integralrechnung (HDI)</strong> verbindet beide Welten: Ein bestimmtes Integral berechnet man, indem man eine <em>beliebige</em> Stammfunktion an den Grenzen auswertet und die Werte subtrahiert.</p>
       <div class="merk">
-        <h4>⭐ Der Hauptsatz</h4>
+        <h3>⭐ Der Hauptsatz</h3>
         <ul>
           <li>\(\displaystyle\int_a^b f(x)\,dx=\Big[F(x)\Big]_a^b=F(b)-F(a)\), wobei \(F'=f\).</li>
           <li>Das Ergebnis ist <strong>unabhängig</strong> von der Wahl der Konstanten \(C\) (sie kürzt sich weg).</li>
@@ -1243,7 +1230,7 @@
       </div>
 
       <div class="fehler">
-        <h4>⚠️ Häufige Stolperfallen</h4>
+        <h3>⚠️ Häufige Stolperfallen</h3>
         <ul>
           <li>Reihenfolge beachten: \(F(b)-F(a)\), nicht umgekehrt.</li>
           <li>Ein Integralwert von \(0\) heißt <em>nicht</em>, dass keine Fläche da ist — positive und negative Anteile können sich aufheben (siehe Flächenberechnung, Abschnitt 4).</li>
@@ -1251,7 +1238,7 @@
       </div>
     </div>
 
-    <h3>Übungen — Hauptsatz</h3>
+    <h3>Übungen</h3>
 
     <div class="task" data-id="hs1">
       <div class="task-head"><span class="task-num">1</span><span class="level basal">Basal</span>
@@ -1343,19 +1330,17 @@
   </div>
 </section>
   <div class="wrap"><div class="pagenav"><button class="pn prev" data-goto="stammfunktion"><span class="pn-dir">← Vorheriges Thema</span><span class="pn-t">Stammfunktionen</span></button><button class="pn next" data-goto="flaechen"><span class="pn-dir">Nächstes Thema →</span><span class="pn-t">Flächen &amp; Mittelwert</span></button></div></div>
-  <div class="wrap"><div class="topic-foot">Mathematik LK · Q1 · Analysis · NRW<br>Eingaben und Fortschritt bleiben lokal im Browser — nichts wird gespeichert oder gesendet.<br>Aufgaben im Stil des Zentralabiturs NRW; Inhalte gemäß Kernlehrplan &amp; Abiturvorgaben 2027.</div></div>
 </div>
 
 <div class="topic" id="t-flaechen" data-topic="flaechen">
   <div class="topic-head"><div class="wrap"><div class="crumb">Kapitel 2 · Integralrechnung</div><h1 class="topic-title">Flächen &amp; Mittelwert</h1></div></div>
 <section>
   <div class="wrap">
-    <span class="section-tag">4 · Flächen &amp; Mittelwert</span>
     <div class="card">
       <h2>Echte Flächen — Vorzeichen im Griff</h2>
       <p>Weil Flächen unter der \(x\)-Achse negativ ins Integral eingehen, muss man beim <strong>Flächeninhalt</strong> aufpassen: An jeder Nullstelle im Intervall wird <em>aufgeteilt</em> und jeder Teil als Betrag genommen. Bei der Fläche <strong>zwischen zwei Kurven</strong> integriert man die Differenz „oben minus unten".</p>
       <div class="merk">
-        <h4>📐 Flächen &amp; Mittelwert</h4>
+        <h3>📐 Flächen &amp; Mittelwert</h3>
         <ul>
           <li><strong>Fläche zur \(x\)-Achse:</strong> An jeder <em>inneren</em> Nullstelle \(x_1\) aufteilen und die Teilintegrale betragsmäßig addieren: \(\displaystyle A=\Big|\int_a^{x_1} f(x)\,dx\Big|+\Big|\int_{x_1}^{b} f(x)\,dx\Big|\) (bei mehreren Nullstellen entsprechend weiter aufteilen).</li>
           <li><strong>Fläche zwischen \(f\) und \(g\)</strong> (mit \(f(x)\ge g(x)\) auf \([a,b]\)): \(\displaystyle A=\int_a^b\big(f(x)-g(x)\big)\,dx\) — „<em>obere minus untere</em> Kurve"; die Grenzen \(a,b\) sind die Schnittstellen (aus \(f(x)=g(x)\)).</li>
@@ -1364,17 +1349,17 @@
       </div>
 
       <div class="worked">
-        <h4>Durchgerechnetes Beispiel — Fläche zur x-Achse</h4>
+        <h3>Durchgerechnetes Beispiel — Fläche zur x-Achse</h3>
         <p><strong>Welchen Flächeninhalt schließt der Graph von \(f(x)=x^2-2x\) mit der \(x\)-Achse über \([0,3]\) ein?</strong></p>
         <p class="step"><strong>Nullstellen bestimmen:</strong> \(x^2-2x=x(x-2)=0\Rightarrow x=0\) und \(x=2\). Im Innern von \([0,3]\) liegt \(x=2\) — dort wird aufgeteilt.</p>
         <p class="step"><strong>Teilintegrale berechnen</strong> (Stammfunktion \(F(x)=\tfrac{x^3}{3}-x^2\)):</p>
         <p class="step">\(\displaystyle\int_0^2 \big(x^2-2x\big)\,dx=F(2)-F(0)=-\tfrac43\qquad\quad \displaystyle\int_2^3 \big(x^2-2x\big)\,dx=F(3)-F(2)=+\tfrac43\)</p>
         <p class="step"><strong>Beträge addieren:</strong> \(A=\Big|-\tfrac43\Big|+\Big|+\tfrac43\Big|=\tfrac83\approx 2{,}67\).</p>
-        <p class="step"><strong>Zum Vergleich:</strong> \(\displaystyle\int_0^3 \big(x^2-2x\big)\,dx=0\) — die Flächenstücke unter- und oberhalb der Achse heben sich auf. <em>Integralwert \(\neq\) Flächeninhalt!</em></p>
+        <p class="step"><strong>Zum Vergleich:</strong> \(\displaystyle\int_0^3 \big(x^2-2x\big)\,dx=0\): die Flächenstücke unter- und oberhalb der Achse heben sich auf. <em>Integralwert \(\neq\) Flächeninhalt!</em></p>
       </div>
 
       <div class="worked">
-        <h4>Durchgerechnetes Beispiel — Fläche zwischen zwei Kurven</h4>
+        <h3>Durchgerechnetes Beispiel — Fläche zwischen zwei Kurven</h3>
         <p><strong>Bestimme den Inhalt der Fläche, die die Graphen von \(f(x)=2x-x^2\) und \(g(x)=x^2\) einschließen.</strong></p>
         <p class="step"><strong>Schnittstellen</strong> (Ansatz \(f(x)=g(x)\)): \(2x-x^2=x^2 \Rightarrow 2x-2x^2=0 \Rightarrow 2x(1-x)=0 \Rightarrow x_1=0,\ x_2=1\).</p>
         <p class="step"><strong>Wer liegt oben?</strong> Testwert \(x=\tfrac12\): \(f\big(\tfrac12\big)=\tfrac34 > g\big(\tfrac12\big)=\tfrac14\) — also liegt \(f\) oben.</p>
@@ -1388,16 +1373,16 @@
       </div>
 
       <div class="fehler">
-        <h4>⚠️ Häufige Stolperfallen</h4>
+        <h3>⚠️ Häufige Stolperfallen</h3>
         <ul>
-          <li>Für den <strong>Flächeninhalt</strong> nicht einfach das Integral nehmen — erst an den Nullstellen aufteilen, sonst heben sich Teile auf.</li>
+          <li>Für den <strong>Flächeninhalt</strong> nicht einfach das Integral nehmen, sondern erst an den Nullstellen aufteilen, sonst heben sich Teile auf.</li>
           <li>Bei Flächen zwischen Kurven zuerst die <strong>Schnittstellen</strong> bestimmen (\(f=g\) setzen) und klären, welche Kurve oben liegt.</li>
           <li>Den Mittelwert nicht mit dem bloßen Integral verwechseln — er ist das Integral <em>geteilt durch die Intervalllänge</em>.</li>
         </ul>
       </div>
     </div>
 
-    <h3>Übungen — Flächen &amp; Mittelwert</h3>
+    <h3>Übungen</h3>
 
     <div class="task" data-id="fl1">
       <div class="task-head"><span class="task-num">1</span><span class="level basal">Basal</span>
@@ -1451,7 +1436,7 @@
         <p class="step">Nullstellen: \(x^2-1=0\Rightarrow x=\pm 1\). Auf \((-1,1)\) liegt \(f\) <em>unter</em> der Achse.</p>
         <p class="step">\(\displaystyle\int_{-1}^{1}(x^2-1)\,dx=\Big[\tfrac{x^3}{3}-x\Big]_{-1}^{1}=\big(\tfrac13-1\big)-\big(-\tfrac13+1\big)=-\tfrac43\).</p>
         <p class="step">Flächeninhalt: \(A=\big|-\tfrac43\big|=\tfrac43\approx 1{,}33\).</p>
-        <div class="why">Das Integral ist negativ, weil die Fläche unter der Achse liegt — der Flächeninhalt ist der Betrag. (Eingabe \(4/3\) oder \(1{,}33\).)</div>
+        <div class="why">Das Integral ist negativ, weil die Fläche unter der Achse liegt: der Flächeninhalt ist der Betrag. (Eingabe \(4/3\) oder \(1{,}33\).)</div>
       </div>
     </div>
 
@@ -1488,19 +1473,17 @@
   </div>
 </section>
   <div class="wrap"><div class="pagenav"><button class="pn prev" data-goto="hauptsatz"><span class="pn-dir">← Vorheriges Thema</span><span class="pn-t">Hauptsatz &amp; bestimmtes Integral</span></button><button class="pn next" data-goto="uneigentlich"><span class="pn-dir">Nächstes Thema →</span><span class="pn-t">Uneigentliche Integrale &amp; Rotation</span></button></div></div>
-  <div class="wrap"><div class="topic-foot">Mathematik LK · Q1 · Analysis · NRW<br>Eingaben und Fortschritt bleiben lokal im Browser — nichts wird gespeichert oder gesendet.<br>Aufgaben im Stil des Zentralabiturs NRW; Inhalte gemäß Kernlehrplan &amp; Abiturvorgaben 2027.</div></div>
 </div>
 
 <div class="topic" id="t-uneigentlich" data-topic="uneigentlich">
   <div class="topic-head"><div class="wrap"><div class="crumb">Kapitel 2 · Integralrechnung</div><h1 class="topic-title">Uneigentliche Integrale &amp; Rotation</h1></div></div>
 <section>
   <div class="wrap">
-    <span class="section-tag">5 · Uneigentliche Integrale &amp; Rotationskörper</span>
     <div class="card">
       <h2>Unendliche Flächen und gedrehte Körper</h2>
       <p>Zwei typische LK-Vertiefungen: <strong>Uneigentliche Integrale</strong> reichen bis ins Unendliche — man berechnet sie als Grenzwert. Und <strong>Rotationskörper</strong> entstehen, wenn eine Fläche um die \(x\)-Achse rotiert; ihr Volumen ergibt sich aus dem Integral über \(\big(f(x)\big)^2\).</p>
       <div class="merk">
-        <h4>♾️ Zwei Werkzeuge</h4>
+        <h3>♾️ Zwei Werkzeuge</h3>
         <ul>
           <li><strong>Uneigentliches Integral:</strong> \(\displaystyle\int_a^{\infty} f(x)\,dx=\lim_{b\to\infty}\int_a^b f(x)\,dx\). Existiert der Grenzwert, ist die (unbegrenzte) Fläche endlich.</li>
           <li><strong>Rotationskörper</strong> (Rotation um die \(x\)-Achse): \(\displaystyle V=\pi\int_a^b \big(f(x)\big)^2\,dx\).</li>
@@ -1515,7 +1498,7 @@
       </div>
 
       <div class="worked">
-        <h4>Durchgerechnetes Beispiel — Rotationskörper</h4>
+        <h3>Durchgerechnetes Beispiel — Rotationskörper</h3>
         <p><strong>Der Graph von \(f(x)=\sqrt{x}\) rotiert über \([0,4]\) um die \(x\)-Achse. Welches Volumen hat der entstehende Körper?</strong></p>
         <p class="step"><strong>Formel ansetzen:</strong> \(\displaystyle V=\pi\int_0^4 \big(f(x)\big)^2\,dx\).</p>
         <p class="step"><strong>Quadrieren:</strong> \(\big(\sqrt{x}\,\big)^2=x\) — aus der Wurzel wird ein einfaches Polynom.</p>
@@ -1530,7 +1513,7 @@
       </div>
 
       <div class="fehler">
-        <h4>⚠️ Häufige Stolperfallen</h4>
+        <h3>⚠️ Häufige Stolperfallen</h3>
         <ul>
           <li>Beim Rotationsvolumen das \(\pi\) und das <strong>Quadrat</strong> nicht vergessen: \(V=\pi\int (f(x))^2\,dx\), nicht \(\pi\int f(x)\,dx\).</li>
           <li>Nicht jedes uneigentliche Integral konvergiert — z. B. \(\int_1^\infty \tfrac1x\,dx\) divergiert. Immer den Grenzwert prüfen.</li>
@@ -1538,7 +1521,7 @@
       </div>
     </div>
 
-    <h3>Übungen — Uneigentliche Integrale &amp; Rotation</h3>
+    <h3>Übungen</h3>
 
     <div class="task" data-id="ro1">
       <div class="task-head"><span class="task-num">1</span><span class="level basal">Basal</span>
@@ -1624,25 +1607,23 @@
         <h4>Lösung</h4>
         <p class="step"><strong>Quadrieren:</strong> \(\big(f(x)\big)^2=\big(\sqrt{2x+1}\,\big)^2=2x+1\).</p>
         <p class="step">\(\displaystyle V=\pi\int_0^4 (2x+1)\,dx=\pi\Big[x^2+x\Big]_0^4=\pi\,(16+4)=20\pi\), also \(k=20\).</p>
-        <div class="why">Der Trick: Durch das Quadrieren verschwindet die Wurzel und es bleibt ein einfaches Polynom — das Integral gelingt ganz ohne Substitution. Genau deshalb sind Wurzelfunktionen bei Rotationskörpern so beliebt.</div>
+        <div class="why">Der Trick: Durch das Quadrieren verschwindet die Wurzel und es bleibt ein einfaches Polynom, das Integral gelingt ganz ohne Substitution. Aus diesem Grund treten Wurzelfunktionen bei Rotationskörpern besonders häufig auf.</div>
       </div>
     </div>
   </div>
 </section>
   <div class="wrap"><div class="pagenav"><button class="pn prev" data-goto="flaechen"><span class="pn-dir">← Vorheriges Thema</span><span class="pn-t">Flächen &amp; Mittelwert</span></button><button class="pn next" data-goto="efunktion"><span class="pn-dir">Nächstes Thema →</span><span class="pn-t">Die e-Funktion</span></button></div></div>
-  <div class="wrap"><div class="topic-foot">Mathematik LK · Q1 · Analysis · NRW<br>Eingaben und Fortschritt bleiben lokal im Browser — nichts wird gespeichert oder gesendet.<br>Aufgaben im Stil des Zentralabiturs NRW; Inhalte gemäß Kernlehrplan &amp; Abiturvorgaben 2027.</div></div>
 </div>
 
 <div class="topic" id="t-efunktion" data-topic="efunktion">
   <div class="topic-head"><div class="wrap"><div class="crumb">Kapitel 3 · Exponential- &amp; Logarithmusfunktionen</div><h1 class="topic-title">Die e-Funktion</h1></div></div>
 <section>
   <div class="wrap">
-    <span class="section-tag">1 · Die natürliche Exponentialfunktion</span>
     <div class="card">
       <h2>Die Funktion, die ihre eigene Ableitung ist</h2>
       <p>Unter allen Exponentialfunktionen \(b^x\) gibt es genau eine, deren Graph in jedem Punkt so steil ist wie ihr Funktionswert: die <strong>natürliche Exponentialfunktion</strong> \(f(x)=e^x\) mit der <strong>Eulerschen Zahl</strong> \(e\approx 2{,}71828\). Diese Eigenschaft \(f'=f\) macht sie zum wichtigsten Werkzeug für alle Prozesse, deren Änderungsrate proportional zum Bestand ist — Wachstum, Zerfall, Abkühlung.</p>
       <div class="merk">
-        <h4>🧬 Eigenschaften von \(e^x\)</h4>
+        <h3>🧬 Eigenschaften von \(e^x\)</h3>
         <ul>
           <li><strong>Ableitung:</strong> \(\big(e^x\big)'=e^x\) — die Steigung ist überall gleich dem Funktionswert.</li>
           <li>\(e^x>0\) für alle \(x\) — der Graph liegt komplett oberhalb der \(x\)-Achse, <strong>keine Nullstellen</strong>.</li>
@@ -1658,7 +1639,7 @@
       </div>
 
       <div class="fehler">
-        <h4>⚠️ Häufige Stolperfallen</h4>
+        <h3>⚠️ Häufige Stolperfallen</h3>
         <ul>
           <li>\(e^x\) ist <strong>nie null</strong> — Gleichungen wie \(e^x=0\) haben keine Lösung. Bei Produkten wie \(x\cdot e^x=0\) kommt die Nullstelle nur vom Faktor \(x\).</li>
           <li>\(\big(e^x\big)'\neq x\cdot e^{x-1}\) — die Potenzregel gilt nur für \(x^n\) (Variable in der Basis), nicht für \(e^x\) (Variable im Exponenten).</li>
@@ -1666,7 +1647,7 @@
       </div>
     </div>
 
-    <h3>Übungen — e-Funktion</h3>
+    <h3>Übungen</h3>
 
     <div class="task" data-id="ex1">
       <div class="task-head"><span class="task-num">1</span><span class="level basal">Basal</span>
@@ -1768,25 +1749,23 @@
         <p class="step"><strong>Steigung:</strong> \(m=f'(0)=e^0=1\).</p>
         <p class="step"><strong>Tangente</strong> (Punkt-Steigungs-Form): \(y=f(0)+f'(0)\cdot(x-0)=1+x\), also \(t(x)=x+1\).</p>
         <p class="step"><strong>Schnitt mit der \(x\)-Achse:</strong> \(x+1=0\Rightarrow x=-1\), also im Punkt \((-1\mid 0)\).</p>
-        <div class="why">Die allgemeine Tangentengleichung \(t(x)=f(x_0)+f'(x_0)(x-x_0)\) gehört zum hilfsmittelfreien Standardrepertoire — bei der e-Funktion wird sie besonders elegant, weil \(f=f'\).</div>
+        <div class="why">Die allgemeine Tangentengleichung \(t(x)=f(x_0)+f'(x_0)(x-x_0)\) gehört zum hilfsmittelfreien Standardrepertoire. Bei der e-Funktion vereinfacht sie sich, weil \(f=f'\) gilt.</div>
       </div>
     </div>
   </div>
 </section>
   <div class="wrap"><div class="pagenav"><button class="pn prev" data-goto="uneigentlich"><span class="pn-dir">← Vorheriges Thema</span><span class="pn-t">Uneigentliche Integrale &amp; Rotation</span></button><button class="pn next" data-goto="lnfunktion"><span class="pn-dir">Nächstes Thema →</span><span class="pn-t">Natürlicher Logarithmus</span></button></div></div>
-  <div class="wrap"><div class="topic-foot">Mathematik LK · Q1 · Analysis · NRW<br>Eingaben und Fortschritt bleiben lokal im Browser — nichts wird gespeichert oder gesendet.<br>Aufgaben im Stil des Zentralabiturs NRW; Inhalte gemäß Kernlehrplan &amp; Abiturvorgaben 2027.</div></div>
 </div>
 
 <div class="topic" id="t-lnfunktion" data-topic="lnfunktion">
   <div class="topic-head"><div class="wrap"><div class="crumb">Kapitel 3 · Exponential- &amp; Logarithmusfunktionen</div><h1 class="topic-title">Natürlicher Logarithmus</h1></div></div>
 <section>
   <div class="wrap">
-    <span class="section-tag">2 · Der natürliche Logarithmus</span>
     <div class="card">
       <h2>Die Umkehrung: vom Ergebnis zum Exponenten</h2>
       <p>Die Gleichung \(e^x=10\) fragt: „Mit welchem Exponenten wird aus \(e\) die Zahl \(10\)?" Die Antwort liefert der <strong>natürliche Logarithmus</strong>: \(x=\ln 10\approx 2{,}303\). Als <strong>Umkehrfunktion</strong> von \(e^x\) macht \(\ln\) genau das rückgängig, was \(e^x\) tut — sein Graph ist das Spiegelbild von \(e^x\) an der Geraden \(y=x\).</p>
       <div class="merk">
-        <h4>🔁 Rechnen mit ln</h4>
+        <h3>🔁 Rechnen mit ln</h3>
         <ul>
           <li><strong>Umkehr-Eigenschaft:</strong> \(\ln\big(e^x\big)=x\) und \(e^{\ln x}=x\) (für \(x>0\)).</li>
           <li><strong>Definitionsbereich:</strong> \(\ln x\) existiert nur für \(x>0\); \(\ln 1=0\), \(\ln e=1\).</li>
@@ -1796,7 +1775,7 @@
       </div>
 
       <div class="worked">
-        <h4>Durchgerechnetes Beispiel — Exponentialgleichung</h4>
+        <h3>Durchgerechnetes Beispiel — Exponentialgleichung</h3>
         <p><strong>Löse \(5e^{2x}=40\).</strong></p>
         <p class="step"><strong>Freistellen:</strong> \(e^{2x}=8\) (beide Seiten durch \(5\)).</p>
         <p class="step"><strong>Logarithmieren:</strong> \(2x=\ln 8\).</p>
@@ -1811,7 +1790,7 @@
       </div>
 
       <div class="fehler">
-        <h4>⚠️ Häufige Stolperfallen</h4>
+        <h3>⚠️ Häufige Stolperfallen</h3>
         <ul>
           <li><strong>Erst freistellen, dann logarithmieren:</strong> Aus \(5e^{2x}=40\) folgt <em>nicht</em> \(2x=\ln 40-\ln 5\)? Doch — aber nur über \(\ln(5e^{2x})=\ln 5+2x\). Sicherer Weg: erst durch \(5\) teilen, dann \(\ln\).</li>
           <li>\(\ln(a+b)\neq\ln a+\ln b\) — das Gesetz gilt nur für <em>Produkte</em>.</li>
@@ -1820,7 +1799,7 @@
       </div>
     </div>
 
-    <h3>Übungen — Natürlicher Logarithmus</h3>
+    <h3>Übungen</h3>
 
     <div class="task" data-id="ln1">
       <div class="task-head"><span class="task-num">1</span><span class="level basal">Basal</span>
@@ -1891,7 +1870,7 @@
       <div class="solution">
         <h4>Lösung</h4>
         <p class="step">Potenzgesetz des Logarithmus: \(\ln\big(x^2\big)=2\ln x\).</p>
-        <div class="why">Achtung Verwechslungsgefahr: \(\big(\ln x\big)^2\) ist etwas völlig anderes — dort wird der Logarithmus quadriert, nicht das Argument.</div>
+        <div class="why">Achtung Verwechslungsgefahr: \(\big(\ln x\big)^2\) ist etwas völlig anderes: dort wird der Logarithmus quadriert, nicht das Argument.</div>
       </div>
     </div>
 
@@ -1916,24 +1895,22 @@
   </div>
 </section>
   <div class="wrap"><div class="pagenav"><button class="pn prev" data-goto="efunktion"><span class="pn-dir">← Vorheriges Thema</span><span class="pn-t">Die e-Funktion</span></button><button class="pn next" data-goto="wachstum"><span class="pn-dir">Nächstes Thema →</span><span class="pn-t">Wachstumsmodelle</span></button></div></div>
-  <div class="wrap"><div class="topic-foot">Mathematik LK · Q1 · Analysis · NRW<br>Eingaben und Fortschritt bleiben lokal im Browser — nichts wird gespeichert oder gesendet.<br>Aufgaben im Stil des Zentralabiturs NRW; Inhalte gemäß Kernlehrplan &amp; Abiturvorgaben 2027.</div></div>
 </div>
 
 <div class="topic" id="t-wachstum" data-topic="wachstum">
   <div class="topic-head"><div class="wrap"><div class="crumb">Kapitel 3 · Exponential- &amp; Logarithmusfunktionen</div><h1 class="topic-title">Wachstumsmodelle</h1></div></div>
 <section>
   <div class="wrap">
-    <span class="section-tag">3 · Wachstumsmodelle</span>
     <div class="card">
       <h2>Exponentiell und begrenzt wachsen</h2>
       <p>Viele Prozesse ändern sich proportional zu ihrem aktuellen Bestand — Bakterienkulturen, radioaktiver Zerfall, Kapital mit Zinseszins. Sie folgen dem <strong>exponentiellen Modell</strong> \(N(t)=N_0\cdot e^{kt}\). Stößt das Wachstum an eine Grenze (Sättigung \(S\)), beschreibt das <strong>begrenzte Wachstum</strong> die Annäherung an diese Schranke.</p>
       <div class="merk">
-        <h4>📈 Die beiden Modelle</h4>
+        <h3>📈 Die beiden Modelle</h3>
         <ul>
           <li><strong>Exponentiell:</strong> \(N(t)=N_0\cdot e^{kt}\) — Startwert \(N_0\), Wachstum für \(k>0\), Zerfall für \(k<0\). Kennzeichen: \(N'(t)=k\cdot N(t)\) (Änderungsrate proportional zum Bestand).</li>
           <li><strong>Verdopplungszeit / Halbwertszeit:</strong> \(T=\dfrac{\ln 2}{|k|}\).</li>
           <li><strong>Begrenzt:</strong> \(B(t)=S-\big(S-B_0\big)\cdot e^{-kt}\) — nähert sich der Schranke \(S\) an; \(B'(t)=k\cdot\big(S-B(t)\big)\) („je näher an der Grenze, desto langsamer").</li>
-          <li><strong>Vorgriff auf Kapitel 4:</strong> \(\big(e^{kt}\big)'=k\cdot e^{kt}\) — die Regel dahinter (Kettenregel) lernst du im nächsten Kapitel.</li>
+          <li><strong>Vorgriff auf Kapitel 4:</strong> \(\big(e^{kt}\big)'=k\cdot e^{kt}\). Die Regel dahinter (Kettenregel) lernst du im nächsten Kapitel.</li>
         </ul>
       </div>
 
@@ -1944,7 +1921,7 @@
       </div>
 
       <div class="fehler">
-        <h4>⚠️ Häufige Stolperfallen</h4>
+        <h3>⚠️ Häufige Stolperfallen</h3>
         <ul>
           <li>Beim Zerfall ist \(k\) <strong>negativ</strong> — wer \(k>0\) ansetzt, bekommt Wachstum statt Zerfall.</li>
           <li>Begrenztes Wachstum erreicht die Schranke \(S\) <em>nie exakt</em> — Fragen wie „wann ist \(B(t)=S\)?" haben keine Lösung; sinnvoll ist „wann ist \(B(t)=0{,}9\cdot S\)?".</li>
@@ -1953,7 +1930,7 @@
       </div>
     </div>
 
-    <h3>Übungen — Wachstum</h3>
+    <h3>Übungen</h3>
 
     <div class="task" data-id="wa1">
       <div class="task-head"><span class="task-num">1</span><span class="level basal">Basal</span>
@@ -2042,25 +2019,23 @@
         <p class="step"><strong>Langfristig:</strong> \(e^{-0{,}1t}\to 0\Rightarrow T(t)\to 20\,^\circ\text{C}\) (Raumtemperatur als Schranke).</p>
         <p class="step"><strong>Zeitpunkt für \(50\,^\circ\text{C}\):</strong> \(20+60e^{-0{,}1t}=50\Rightarrow 60e^{-0{,}1t}=30\Rightarrow e^{-0{,}1t}=0{,}5\).</p>
         <p class="step">\(-0{,}1t=\ln 0{,}5\Rightarrow t=\dfrac{\ln 2}{0{,}1}\approx 6{,}93\) Minuten.</p>
-        <div class="why">Das ist begrenzter <em>Zerfall</em> in Richtung Raumtemperatur — Modell und Rechnung sind identisch mit dem begrenzten Wachstum, nur von oben statt von unten. Ein Klassiker in Abitur-Sachaufgaben.</div>
+        <div class="why">Das ist begrenzter <em>Zerfall</em> in Richtung Raumtemperatur — Modell und Rechnung sind identisch mit dem begrenzten Wachstum, nur von oben statt von unten. Diese Aufgabenform kommt in Abitur-Sachaufgaben regelmäßig vor.</div>
       </div>
     </div>
   </div>
 </section>
   <div class="wrap"><div class="pagenav"><button class="pn prev" data-goto="lnfunktion"><span class="pn-dir">← Vorheriges Thema</span><span class="pn-t">Natürlicher Logarithmus</span></button><button class="pn next" data-goto="regeln"><span class="pn-dir">Nächstes Thema →</span><span class="pn-t">Produkt- &amp; Kettenregel</span></button></div></div>
-  <div class="wrap"><div class="topic-foot">Mathematik LK · Q1 · Analysis · NRW<br>Eingaben und Fortschritt bleiben lokal im Browser — nichts wird gespeichert oder gesendet.<br>Aufgaben im Stil des Zentralabiturs NRW; Inhalte gemäß Kernlehrplan &amp; Abiturvorgaben 2027.</div></div>
 </div>
 
 <div class="topic" id="t-regeln" data-topic="regeln">
   <div class="topic-head"><div class="wrap"><div class="crumb">Kapitel 4 · Zusammengesetzte Funktionen</div><h1 class="topic-title">Produkt- &amp; Kettenregel</h1></div></div>
 <section>
   <div class="wrap">
-    <span class="section-tag">1 · Produkt- und Kettenregel</span>
     <div class="card">
       <h2>Ableiten von Produkten und Verkettungen</h2>
       <p>Terme wie \(x\cdot e^{-x}\) oder \(e^{2x}\) lassen sich nicht mehr mit Potenz- und Summenregel allein ableiten. Dafür gibt es zwei neue Regeln — die wichtigsten Werkzeuge der Q1:</p>
       <div class="merk">
-        <h4>🔗 Die beiden Regeln</h4>
+        <h3>🔗 Die beiden Regeln</h3>
         <ul>
           <li><strong>Produktregel:</strong> \(\big(u(x)\cdot v(x)\big)'=u'(x)\cdot v(x)+u(x)\cdot v'(x)\).</li>
           <li><strong>Kettenregel:</strong> \(\big(u(v(x))\big)'=u'\big(v(x)\big)\cdot v'(x)\) — „<em>äußere Ableitung mal innere Ableitung</em>".</li>
@@ -2069,7 +2044,7 @@
       </div>
 
       <div class="worked">
-        <h4>Durchgerechnetes Beispiel — Produktregel</h4>
+        <h3>Durchgerechnetes Beispiel — Produktregel</h3>
         <p><strong>Leite \(f(x)=x\cdot e^{-x}\) ab.</strong></p>
         <p class="step"><strong>Zerlegen:</strong> \(u(x)=x\Rightarrow u'(x)=1\); \(\quad v(x)=e^{-x}\Rightarrow v'(x)=-e^{-x}\) (Kettenregel mit innerer Ableitung \(-1\)).</p>
         <p class="step"><strong>Einsetzen:</strong> \(f'(x)=1\cdot e^{-x}+x\cdot\big(-e^{-x}\big)\).</p>
@@ -2077,7 +2052,7 @@
       </div>
 
       <div class="worked">
-        <h4>Durchgerechnetes Beispiel — Kettenregel</h4>
+        <h3>Durchgerechnetes Beispiel — Kettenregel</h3>
         <p><strong>Leite \(f(x)=e^{-\frac12 x^2}\) ab.</strong></p>
         <p class="step"><strong>Innen und außen erkennen:</strong> äußere Funktion \(e^{(\dots)}\), innere Funktion \(g(x)=-\tfrac12 x^2\) mit \(g'(x)=-x\).</p>
         <p class="step"><strong>Kettenregel:</strong> \(f'(x)=g'(x)\cdot e^{g(x)}=-x\cdot e^{-\frac12 x^2}\).</p>
@@ -2091,7 +2066,7 @@
       </div>
 
       <div class="fehler">
-        <h4>⚠️ Häufige Stolperfallen</h4>
+        <h3>⚠️ Häufige Stolperfallen</h3>
         <ul>
           <li><strong>Innere Ableitung vergessen:</strong> \(\big(e^{2x}\big)'=2e^{2x}\), nicht \(e^{2x}\). Der Faktor \(2\) kommt aus der Kette.</li>
           <li><strong>Produkte nicht „faktorweise" ableiten:</strong> \(\big(x\cdot e^x\big)'\neq 1\cdot e^x\) — es braucht beide Summanden der Produktregel.</li>
@@ -2100,7 +2075,7 @@
       </div>
     </div>
 
-    <h3>Übungen — Produkt- &amp; Kettenregel</h3>
+    <h3>Übungen</h3>
 
     <div class="task" data-id="pk1">
       <div class="task-head"><span class="task-num">1</span><span class="level basal">Basal</span>
@@ -2213,20 +2188,18 @@
   </div>
 </section>
   <div class="wrap"><div class="pagenav"><button class="pn prev" data-goto="wachstum"><span class="pn-dir">← Vorheriges Thema</span><span class="pn-t">Wachstumsmodelle</span></button><button class="pn next" data-goto="kurven"><span class="pn-dir">Nächstes Thema →</span><span class="pn-t">Kurvendiskussion</span></button></div></div>
-  <div class="wrap"><div class="topic-foot">Mathematik LK · Q1 · Analysis · NRW<br>Eingaben und Fortschritt bleiben lokal im Browser — nichts wird gespeichert oder gesendet.<br>Aufgaben im Stil des Zentralabiturs NRW; Inhalte gemäß Kernlehrplan &amp; Abiturvorgaben 2027.</div></div>
 </div>
 
 <div class="topic" id="t-kurven" data-topic="kurven">
   <div class="topic-head"><div class="wrap"><div class="crumb">Kapitel 4 · Zusammengesetzte Funktionen</div><h1 class="topic-title">Kurvendiskussion</h1></div></div>
 <section>
   <div class="wrap">
-    <span class="section-tag">2 · Kurvendiskussion zusammengesetzter Funktionen</span>
     <div class="card">
       <h2>Der volle Fahrplan — jetzt mit e-Funktion</h2>
       <p>Die Funktionsuntersuchung aus Kapitel 1 funktioniert unverändert — nur die Ableitungen kommen jetzt aus Produkt- und Kettenregel. Entscheidender Vorteil: Weil \(e^{\dots}>0\) immer gilt, stammen <strong>alle Nullstellen</strong> (auch die von \(f'\) und \(f''\)) <strong>allein aus dem Polynomfaktor</strong>.</p>
 
       <div class="worked">
-        <h4>Durchgerechnetes Beispiel</h4>
+        <h3>Durchgerechnetes Beispiel</h3>
         <p><strong>Untersuche \(f(x)=x\cdot e^{-x}\) auf Nullstellen, Extrem- und Wendepunkte sowie das Globalverhalten.</strong></p>
         <p class="step"><strong>Nullstellen:</strong> \(x\cdot e^{-x}=0\); da \(e^{-x}>0\), bleibt nur \(x=0\).</p>
         <p class="step"><strong>Ableitungen:</strong> \(f'(x)=(1-x)\,e^{-x}\) und \(f''(x)=(x-2)\,e^{-x}\) (jeweils Produktregel + Ausklammern).</p>
@@ -2241,16 +2214,16 @@
       </div>
 
       <div class="fehler">
-        <h4>⚠️ Häufige Stolperfallen</h4>
+        <h3>⚠️ Häufige Stolperfallen</h3>
         <ul>
           <li>Beim Nullsetzen von \(f'\) darf der Faktor \(e^{\dots}\) <strong>weggeteilt</strong> werden (er ist nie null) — aber vergiss nicht, das im Aufschrieb zu begründen.</li>
-          <li>Grenzverhalten: \(x\cdot e^{-x}\) für \(x\to\infty\) ist <em>kein</em> „\(\infty\cdot 0\)-Patt" — die e-Funktion dominiert jede Potenz. Merksatz: „<em>e schlägt Polynom</em>".</li>
+          <li>Grenzverhalten: \(x\cdot e^{-x}\) für \(x\to\infty\) ist <em>kein</em> „\(\infty\cdot 0\)-Patt": die e-Funktion dominiert jede Potenz. Merksatz: „<em>e schlägt Polynom</em>".</li>
           <li>\(y\)-Koordinaten wie \(e^{-1}\) exakt stehen lassen <em>und</em> als Näherung angeben — im hilfsmittelfreien Teil zählt die exakte Form.</li>
         </ul>
       </div>
     </div>
 
-    <h3>Übungen — Kurvendiskussion</h3>
+    <h3>Übungen</h3>
 
     <div class="task" data-id="kd1">
       <div class="task-head"><span class="task-num">1</span><span class="level basal">Basal</span>
@@ -2304,7 +2277,7 @@
         <h4>Lösung</h4>
         <p class="step">\(f'(x)=(1-x)\,e^{-x}\); nochmals Produktregel: \(f''(x)=-e^{-x}+(1-x)\cdot\big(-e^{-x}\big)=(x-2)\,e^{-x}\).</p>
         <p class="step">\(f''(x)=0\Rightarrow x=2\) (mit Vorzeichenwechsel) \(\Rightarrow W\big(2\mid 2e^{-2}\big)\).</p>
-        <div class="why">Beim zweimaligen Ableiten wandert die Nullstelle des Polynomfaktors jeweils um \(1\) nach rechts: \(f\!:0,\ f'\!:1,\ f''\!:2\) — ein hübsches Muster bei \(x\,e^{-x}\).</div>
+        <div class="why">Beim zweimaligen Ableiten wandert die Nullstelle des Polynomfaktors jeweils um \(1\) nach rechts: \(f\!:0,\ f'\!:1,\ f''\!:2\) , ein Muster, das für \(x\,e^{-x}\) typisch ist.</div>
       </div>
     </div>
 
@@ -2343,26 +2316,24 @@
         <p class="step"><strong>Nullsetzen:</strong> Da \(e^{-0{,}5t}>0\): \(4-2t=0\Rightarrow t=2\).</p>
         <p class="step"><strong>Nachweis Maximum:</strong> \(c'\) wechselt bei \(t=2\) von \(+\) nach \(-\) ✓.</p>
         <p class="step"><strong>Maximale Konzentration:</strong> \(c(2)=8e^{-1}\approx 2{,}94\ \tfrac{\text{mg}}{\text{l}}\).</p>
-        <div class="why">Der Funktionstyp \(a\cdot t\cdot e^{-kt}\) („erst rauf, dann runter mit Auslaufen") ist <em>das</em> Standardmodell für Medikamente, Schadstoffe und Verkaufskurven — im Abitur ein Dauergast.</div>
+        <div class="why">Der Funktionstyp \(a\cdot t\cdot e^{-kt}\) („erst rauf, dann runter mit Auslaufen") ist <em>das</em> Standardmodell für Medikamente, Schadstoffe und Verkaufskurven. Im Abitur kommt er regelmäßig vor.</div>
       </div>
     </div>
   </div>
 </section>
   <div class="wrap"><div class="pagenav"><button class="pn prev" data-goto="regeln"><span class="pn-dir">← Vorheriges Thema</span><span class="pn-t">Produkt- &amp; Kettenregel</span></button><button class="pn next" data-goto="escharen"><span class="pn-dir">Nächstes Thema →</span><span class="pn-t">e-Funktionsscharen</span></button></div></div>
-  <div class="wrap"><div class="topic-foot">Mathematik LK · Q1 · Analysis · NRW<br>Eingaben und Fortschritt bleiben lokal im Browser — nichts wird gespeichert oder gesendet.<br>Aufgaben im Stil des Zentralabiturs NRW; Inhalte gemäß Kernlehrplan &amp; Abiturvorgaben 2027.</div></div>
 </div>
 
 <div class="topic" id="t-escharen" data-topic="escharen">
   <div class="topic-head"><div class="wrap"><div class="crumb">Kapitel 4 · Zusammengesetzte Funktionen</div><h1 class="topic-title">e-Funktionsscharen</h1></div></div>
 <section>
   <div class="wrap">
-    <span class="section-tag">3 · Funktionenscharen mit e-Funktion</span>
     <div class="card">
       <h2>Parameter im Exponenten</h2>
       <p>Auch mit e-Funktionen bilden Parameter ganze Scharen — jetzt steckt der Parameter oft im Exponenten und streckt oder staucht das Abklingen. Die Methodik aus Kapitel 1 bleibt gleich: Parameter wie eine Konstante behandeln, Ergebnisse in Abhängigkeit vom Parameter angeben, Ortskurven durch Eliminieren des Parameters bestimmen.</p>
 
       <div class="worked">
-        <h4>Durchgerechnetes Beispiel</h4>
+        <h3>Durchgerechnetes Beispiel</h3>
         <p><strong>Untersuche die Schar \(f_a(x)=x\cdot e^{-ax}\) (\(a>0\)) auf Extrempunkte und bestimme die Ortskurve der Hochpunkte.</strong></p>
         <p class="step"><strong>Ableiten</strong> (Produkt- + Kettenregel, \(a\) ist Konstante): \(f_a'(x)=e^{-ax}+x\cdot(-a)e^{-ax}=(1-ax)\,e^{-ax}\).</p>
         <p class="step"><strong>Extremstelle:</strong> \(f_a'(x)=0\); da \(e^{-ax}>0\): \(1-ax=0\Rightarrow x=\dfrac1a\).</p>
@@ -2377,7 +2348,7 @@
       </div>
 
       <div class="fehler">
-        <h4>⚠️ Häufige Stolperfallen</h4>
+        <h3>⚠️ Häufige Stolperfallen</h3>
         <ul>
           <li>Bei \(e^{-ax}\) ist die innere Ableitung \(-a\) — nicht \(-x\) und nicht \(-1\). Parameter und Variable sauber auseinanderhalten.</li>
           <li>Ergebnisse wie \(x=\tfrac1a\) gelten nur mit der Voraussetzung \(a>0\) — Fallunterscheidungen im Blick behalten.</li>
@@ -2385,7 +2356,7 @@
       </div>
     </div>
 
-    <h3>Übungen — e-Funktionsscharen</h3>
+    <h3>Übungen</h3>
 
     <div class="task" data-id="es1">
       <div class="task-head"><span class="task-num">1</span><span class="level mittel">Mittel</span>
@@ -2450,25 +2421,23 @@
         <p class="step">Hochpunkt: \(H\big(\tfrac1a\mid \tfrac1a e^{-1}\big)\), also \(x=\tfrac1a\) und \(y=\tfrac1a\,e^{-1}\).</p>
         <p class="step"><strong>Parameter eliminieren:</strong> \(y=x\cdot e^{-1}\) — eine Ursprungsgerade.</p>
         <p class="step"><strong>Steigung:</strong> \(m=e^{-1}=\tfrac1e\approx 0{,}368\).</p>
-        <div class="why">Dass die Ortskurve hier eine <em>Gerade</em> ist, ist eine beliebte Pointe in Abituraufgaben — das exakte Ergebnis \(\tfrac1e\) unbedingt neben der Näherung angeben.</div>
+        <div class="why">Dass die Ortskurve hier eine <em>Gerade</em> ist, wird in Abituraufgaben gern abgefragt. Das exakte Ergebnis \(\tfrac1e\) unbedingt neben der Näherung angeben.</div>
       </div>
     </div>
   </div>
 </section>
   <div class="wrap"><div class="pagenav"><button class="pn prev" data-goto="kurven"><span class="pn-dir">← Vorheriges Thema</span><span class="pn-t">Kurvendiskussion</span></button><button class="pn next" data-goto="stammpruefen"><span class="pn-dir">Nächstes Thema →</span><span class="pn-t">Stammfunktionen nachweisen</span></button></div></div>
-  <div class="wrap"><div class="topic-foot">Mathematik LK · Q1 · Analysis · NRW<br>Eingaben und Fortschritt bleiben lokal im Browser — nichts wird gespeichert oder gesendet.<br>Aufgaben im Stil des Zentralabiturs NRW; Inhalte gemäß Kernlehrplan &amp; Abiturvorgaben 2027.</div></div>
 </div>
 
 <div class="topic" id="t-stammpruefen" data-topic="stammpruefen">
   <div class="topic-head"><div class="wrap"><div class="crumb">Kapitel 4 · Zusammengesetzte Funktionen</div><h1 class="topic-title">Stammfunktionen nachweisen</h1></div></div>
 <section>
   <div class="wrap">
-    <span class="section-tag">4 · Stammfunktionen nachweisen &amp; Anwendungen</span>
     <div class="card">
       <h2>Integrieren durch Ableiten</h2>
       <p>Für Produkte und Verkettungen mit e-Funktionen gibt es in der Q1 keine eigene Integrationsregel — stattdessen wird eine <strong>vorgegebene Stammfunktion durch Ableiten nachgewiesen</strong>: Ist \(F'(x)=f(x)\), dann ist \(F\) Stammfunktion, und du kannst mit dem Hauptsatz aus Kapitel 2 Flächen und Bestände berechnen.</p>
       <div class="merk">
-        <h4>✅ Das Nachweis-Rezept</h4>
+        <h3>✅ Das Nachweis-Rezept</h3>
         <ul>
           <li>\(F\) mit Produkt- und Kettenregel <strong>ableiten</strong>.</li>
           <li>Das Ergebnis <strong>ausklammern und vereinfachen</strong>, bis \(f\) dasteht: \(F'=f\) ✓.</li>
@@ -2478,7 +2447,7 @@
       </div>
 
       <div class="worked">
-        <h4>Durchgerechnetes Beispiel</h4>
+        <h3>Durchgerechnetes Beispiel</h3>
         <p><strong>Weise nach, dass \(F(x)=(-x-1)\,e^{-x}\) eine Stammfunktion von \(f(x)=x\cdot e^{-x}\) ist, und berechne die Fläche unter dem Graphen von \(f\) über \([0,2]\).</strong></p>
         <p class="step"><strong>Nachweis</strong> (Produktregel): \(F'(x)=(-1)\cdot e^{-x}+(-x-1)\cdot\big(-e^{-x}\big)=e^{-x}\,\big(-1+x+1\big)=x\,e^{-x}=f(x)\) ✓.</p>
         <p class="step"><strong>Fläche</strong> (auf \([0,2]\) ist \(f\ge 0\)):</p>
@@ -2486,16 +2455,16 @@
       </div>
 
       <div class="fehler">
-        <h4>⚠️ Häufige Stolperfallen</h4>
+        <h3>⚠️ Häufige Stolperfallen</h3>
         <ul>
           <li>Beim Nachweis wirklich bis zur Form von \(f\) <strong>vereinfachen</strong> — „sieht ähnlich aus" reicht im Abitur nicht.</li>
           <li>\(\displaystyle\int x\,e^{-x}\,dx\neq \tfrac{x^2}{2}\cdot(-e^{-x})\) — Produkte darfst du <em>nicht</em> faktorweise integrieren.</li>
-          <li>Vorzeichen bei \(e^{-x}\): \(\big(e^{-x}\big)'=-e^{-x}\) — das doppelte Minus ist die häufigste Fehlerquelle im Nachweis.</li>
+          <li>Vorzeichen bei \(e^{-x}\): \(\big(e^{-x}\big)'=-e^{-x}\): das doppelte Minus ist die häufigste Fehlerquelle im Nachweis.</li>
         </ul>
       </div>
     </div>
 
-    <h3>Übungen — Stammfunktionen &amp; Anwendungen</h3>
+    <h3>Übungen</h3>
 
     <div class="task" data-id="sp1">
       <div class="task-head"><span class="task-num">1</span><span class="level mittel">Mittel</span>
@@ -2568,8 +2537,8 @@
   </div>
 </section>
   <div class="wrap"><div class="pagenav"><button class="pn prev" data-goto="escharen"><span class="pn-dir">← Vorheriges Thema</span><span class="pn-t">e-Funktionsscharen</span></button><span></span></div></div>
-  <div class="wrap"><div class="topic-foot">Mathematik LK · Q1 · Analysis · NRW<br>Eingaben und Fortschritt bleiben lokal im Browser — nichts wird gespeichert oder gesendet.<br>Aufgaben im Stil des Zentralabiturs NRW; Inhalte gemäß Kernlehrplan &amp; Abiturvorgaben 2027.</div></div>
 </div>
+<footer class="wrap"><div class="topic-foot">Mathematik LK · Q1 · Analysis · NRW<br>Eingaben und Fortschritt bleiben lokal im Browser, es wird nichts gespeichert oder gesendet.<br>Aufgaben im Stil des Zentralabiturs NRW; Inhalte gemäß Kernlehrplan und Abiturvorgaben 2027.</div></footer>
 </main>
 
 <script>
@@ -2645,6 +2614,10 @@ document.querySelectorAll(".task").forEach(function(task){
   /* Fortschritt (localStorage) */
   var cb=task.querySelector(".done input");
   if(cb){
+    /* Vorlesegeräte: jede Aufgabe eindeutig benennen, nicht 82-mal "erledigt" */
+    var nr=task.querySelector(".task-num"),lvl=task.querySelector(".level");
+    cb.setAttribute("aria-label","Aufgabe "+(nr?nr.textContent.trim():"")+
+      (lvl?" ("+lvl.textContent.trim()+")":"")+" erledigt");
     var key="analysisQ1-"+task.dataset.id;
     try{if(localStorage.getItem(key)==="1")cb.checked=true;}catch(e){}
     cb.addEventListener("change",function(){
@@ -3104,7 +3077,7 @@ function updateProgress(){
   var lab=document.getElementById("progress-label");
   var fill=document.getElementById("pbar-fill");
   if(lab)lab.textContent=done+" / "+all+" Aufgaben erledigt";
-  if(fill)fill.style.width=(all?(done/all*100):0)+"%";
+  if(fill)fill.style.transform="scaleX("+(all?done/all:0)+")";
 }
 
 /* Vor-/Zurück-Buttons und alle data-goto-Elemente */
