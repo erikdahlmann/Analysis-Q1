@@ -109,6 +109,10 @@
     .task{padding:16px 14px}
     .worked,.merk,.fehler{padding-left:14px;padding-right:14px}
   }
+  .datatab{border-collapse:collapse;margin:10px 0;font-family:system-ui,sans-serif;font-size:.92rem}
+  .datatab th,.datatab td{border:1px solid var(--line);padding:5px 10px;text-align:center}
+  .datatab th{background:var(--paper);font-weight:600;text-align:left}
+  .mini-graph{display:block;width:100%;max-width:340px;height:auto;margin:10px 0;background:#fff;border:1px solid var(--line);border-radius:10px}
   .figcap{font-family:system-ui,sans-serif;font-size:.82rem;color:var(--muted);margin-top:8px;text-align:center}
   .ctrl{font-family:system-ui,sans-serif;font-size:.86rem;color:var(--muted);margin:6px 0 0;text-align:center}
 
@@ -344,7 +348,7 @@
         <h3>📐 Krümmung erkennen</h3>
         <ul>
           <li>\(f''(x) > 0\): Der Graph ist <strong>linksgekrümmt</strong> (konvex, „Tal" \(\smile\)) — die Steigung <em>wächst</em>.</li>
-          <li>\(f''(x) < 0\): Der Graph ist <strong>rechtsgekrümmt</strong> (konkav, „Berg" \(\frown\)) — die Steigung <em>fällt</em>.</li>
+          <li>\(f''(x) \lt  0\): Der Graph ist <strong>rechtsgekrümmt</strong> (konkav, „Berg" \(\frown\)) — die Steigung <em>fällt</em>.</li>
           <li><strong>Wendepunkt:</strong> Dort <em>wechselt</em> die Krümmung. n.B.: \(f''(x)=0\); h.B.: zusätzlich Vorzeichenwechsel von \(f''\) (oder \(f'''(x)\neq 0\)).</li>
           <li>Ist an einem Wendepunkt zusätzlich \(f'(x)=0\), so heißt er <strong>Sattel-</strong> bzw. <strong>Terrassenpunkt</strong>.</li>
         </ul>
@@ -391,7 +395,7 @@
         <label class="done"><input type="checkbox"> erledigt</label></div>
       <p>Für eine Funktion gilt \(f''(x)=6x-6\). In welchem Bereich ist der Graph <strong>linksgekrümmt</strong>?</p>
       <div class="mc" data-answer="2">
-        <label class="opt"><input type="radio" name="mc-k2"><span>\(x < 1\)</span></label>
+        <label class="opt"><input type="radio" name="mc-k2"><span>\(x \lt  1\)</span></label>
         <label class="opt"><input type="radio" name="mc-k2"><span>\(x > 1\)</span></label>
         <label class="opt"><input type="radio" name="mc-k2"><span>\(x > 0\)</span></label>
         <label class="opt"><input type="radio" name="mc-k2"><span>für alle \(x\)</span></label>
@@ -487,7 +491,7 @@
           <li><strong>Symmetrie:</strong> nur gerade Exponenten \(\Rightarrow\) achsensymmetrisch (\(f(-x)=f(x)\)); nur ungerade \(\Rightarrow\) punktsymmetrisch zum Ursprung (\(f(-x)=-f(x)\)).</li>
           <li><strong>Nullstellen:</strong> \(f(x)=0\) lösen (ausklammern, Substitution bei biquadratischen Gleichungen).</li>
           <li><strong>Verhalten im Unendlichen:</strong> höchster Exponent bestimmt das Verhalten für \(x\to\pm\infty\).</li>
-          <li><strong>Extrempunkte:</strong> n.B. \(f'(x)=0\); h.B. \(f''(x_0)<0\) Hochpunkt, \(f''(x_0)>0\) Tiefpunkt.</li>
+          <li><strong>Extrempunkte:</strong> n.B. \(f'(x)=0\); h.B. \(f''(x_0)\lt 0\) Hochpunkt, \(f''(x_0)>0\) Tiefpunkt.</li>
           <li><strong>Wendepunkte:</strong> n.B. \(f''(x)=0\); h.B. \(f'''(x_0)\neq 0\) oder Vorzeichenwechsel von \(f''\).</li>
         </ul>
       </div>
@@ -501,10 +505,12 @@
         <p class="step"><strong>Verhalten im Unendlichen:</strong> Leitterm \(\tfrac14 x^4 \Rightarrow f(x)\to +\infty\) für \(x\to\pm\infty\).</p>
         <p class="step"><strong>Ableitungen:</strong> \(f'(x)=x^3-4x=x(x-2)(x+2),\quad f''(x)=3x^2-4\).</p>
         <p class="step"><strong>Extrempunkte:</strong> n.B.: \(f'(x)=0\Rightarrow x\in\{-2,\,0,\,2\}\). h.B.:
-          \(f''(0)=-4<0\Rightarrow\) Hochpunkt \(H(0\mid 0)\);
+          \(f''(0)=-4\lt 0\Rightarrow\) Hochpunkt \(H(0\mid 0)\);
           \(f''(\pm 2)=8>0\Rightarrow\) Tiefpunkte \(T_{1,2}(\pm 2\mid -4)\).</p>
+        <p class="step"><strong>Monotonie:</strong> \(f\) fällt auf \((-\infty;-2)\) und \((0;2)\), steigt auf \((-2;0)\) und \((2;\infty)\).</p>
+        <p class="step"><strong>Wertebereich:</strong> Die Tiefpunkte sind die tiefsten Punkte, nach oben ist \(f\) unbegrenzt: \(W_f=[-4;\infty)\).</p>
         <p class="step"><strong>Wendepunkte:</strong> n.B.: \(f''(x)=0\Rightarrow x=\pm\tfrac{2}{\sqrt3}\approx\pm1{,}15\);
-          \(f\big(\pm\tfrac{2}{\sqrt3}\big)=-\tfrac{20}{9}\approx-2{,}22\), also \(W_{1,2}\big(\pm\tfrac{2}{\sqrt3}\mid -\tfrac{20}{9}\big)\).</p>
+          h.B.: \(f'''(x)=6x\), \(f'''\big(\pm\tfrac{2}{\sqrt3}\big)=\pm4\sqrt3\neq0\). \(f\big(\pm\tfrac{2}{\sqrt3}\big)=-\tfrac{20}{9}\approx-2{,}22\), also \(W_{1,2}\big(\pm\tfrac{2}{\sqrt3}\mid -\tfrac{20}{9}\big)\).</p>
       </div>
 
       <div class="figure">
@@ -582,7 +588,7 @@
         <p class="step"><strong>Symmetrie:</strong> nur ungerade Exponenten \(\Rightarrow f(-x)=-f(x)\), punktsymmetrisch zum Ursprung.</p>
         <p class="step"><strong>Nullstellen:</strong> \(x^3-3x=x(x^2-3)=0\Rightarrow x=0;\ x=\pm\sqrt3\).</p>
         <p class="step"><strong>Ableitungen:</strong> \(f'(x)=3x^2-3,\quad f''(x)=6x\).</p>
-        <p class="step"><strong>Extrempunkte:</strong> \(f'(x)=0\Rightarrow x=\pm1\). \(f''(1)=6>0\Rightarrow\) Tiefpunkt \(T(1\mid -2)\); \(f''(-1)=-6<0\Rightarrow\) Hochpunkt \(H(-1\mid 2)\).</p>
+        <p class="step"><strong>Extrempunkte:</strong> \(f'(x)=0\Rightarrow x=\pm1\). \(f''(1)=6>0\Rightarrow\) Tiefpunkt \(T(1\mid -2)\); \(f''(-1)=-6\lt 0\Rightarrow\) Hochpunkt \(H(-1\mid 2)\).</p>
         <p class="step"><strong>Wendepunkt:</strong> \(f''(x)=0\Rightarrow x=0\); \(f(0)=0\Rightarrow W(0\mid 0)\) (kein Sattel, da \(f'(0)=-3\neq 0\)).</p>
         <div class="why">Bei punktsymmetrischen Funktionen liegen Hoch- und Tiefpunkt stets spiegelbildlich zum Ursprung — eine gute Kontrolle deiner Rechnung.</div>
       </div>
@@ -614,7 +620,7 @@
       <div class="solution">
         <h4>Lösung</h4>
         <p class="step"><strong>Ableitungen:</strong> \(f'(x)=-3x^2+6x=-3x(x-2),\quad f''(x)=-6x+6\).</p>
-        <p class="step"><strong>Höchster Punkt:</strong> \(f'(x)=0\Rightarrow x=0\) oder \(x=2\). \(f''(2)=-6<0\Rightarrow\) Hochpunkt \(H(2\mid 4)\). (Bei \(x=0\): \(f''(0)=6>0\Rightarrow\) Tiefpunkt.)</p>
+        <p class="step"><strong>Höchster Punkt:</strong> \(f'(x)=0\Rightarrow x=0\) oder \(x=2\). \(f''(2)=-6\lt 0\Rightarrow\) Hochpunkt \(H(2\mid 4)\). (Bei \(x=0\): \(f''(0)=6>0\Rightarrow\) Tiefpunkt.)</p>
         <p class="step">Also liegt der höchste Punkt bei \(x=2\) (also 200 m), Höhe \(f(2)=-8+12=4\) (400 m).</p>
         <p class="step"><strong>Stärkster Anstieg:</strong> maximale Steigung dort, wo \(f'\) maximal ist, also \(f''(x)=0\Rightarrow x=1\). Das ist der Wendepunkt \(W(1\mid 2)\).</p>
         <div class="why">„Stärkster Anstieg" \(=\) Maximum der Steigungsfunktion \(f'\) \(=\) Wendestelle. Genau das wird in Sachaufgaben gern gefragt: der Wendepunkt als <em>Punkt des stärksten Wachstums</em>.</div>
@@ -655,7 +661,7 @@
         <p class="step"><strong>Symmetrie:</strong> Es gibt gerade und ungerade Exponenten. Also ist \(f\) weder achsen- noch punktsymmetrisch zum Ursprung.</p>
         <p class="step"><strong>Ableitungen:</strong> \(f'(x)=3x^2-6x,\ f''(x)=6x-6,\ f'''(x)=6\).</p>
         <p class="step"><strong>n.B.:</strong> \(f'(x)=3x(x-2)=0\Rightarrow x=0\) oder \(x=2\).</p>
-        <p class="step"><strong>h.B.:</strong> \(f''(0)=-6<0\Rightarrow H(0\mid 4)\); \(f''(2)=6>0\Rightarrow T(2\mid 0)\).</p>
+        <p class="step"><strong>h.B.:</strong> \(f''(0)=-6\lt 0\Rightarrow H(0\mid 4)\); \(f''(2)=6>0\Rightarrow T(2\mid 0)\).</p>
         <p class="step"><strong>Wendepunkt:</strong> n.B. \(f''(x)=0\Rightarrow x=1\); h.B. \(f'''(1)=6\neq0\Rightarrow W(1\mid 2)\).</p>
         <div class="why">Der Tiefpunkt \(T(2\mid 0)\) liegt auf der \(x\)-Achse: \(x=2\) ist eine doppelte Nullstelle. Die Wendetangente zu diesem Wendepunkt berechnest du im nächsten Thema.</div>
       </div>
@@ -878,8 +884,8 @@
         <p><strong>Aus einem Draht der Länge \(20\text{ cm}\) soll ein Rechteck mit größtmöglichem Flächeninhalt gebogen werden.</strong></p>
         <p class="step"><strong>HB:</strong> \(A=x\cdot y\) (Seiten \(x,y\)).</p>
         <p class="step"><strong>NB:</strong> Umfang \(2x+2y=20\Rightarrow y=10-x\).</p>
-        <p class="step"><strong>ZF:</strong> \(A(x)=x(10-x)=10x-x^2\), sinnvoll für \(0<x<10\).</p>
-        <p class="step"><strong>Extremum:</strong> n.B.: \(A'(x)=10-2x=0\Rightarrow x=5\). h.B.: \(A''(5)=-2<0\Rightarrow\) Maximum.</p>
+        <p class="step"><strong>ZF:</strong> \(A(x)=x(10-x)=10x-x^2\), sinnvoll für \(0\lt x\lt 10\).</p>
+        <p class="step"><strong>Extremum:</strong> n.B.: \(A'(x)=10-2x=0\Rightarrow x=5\). h.B.: \(A''(5)=-2\lt 0\Rightarrow\) Maximum.</p>
         <p class="step"><strong>Antwort:</strong> \(y=10-5=5\) — das Rechteck ist ein <strong>Quadrat</strong> mit Seite \(5\text{ cm}\) und maximaler Fläche \(A=25\text{ cm}^2\).</p>
       </div>
 
@@ -914,7 +920,7 @@
       <div class="solution">
         <h4>Lösung</h4>
         <p class="step">\(x+y=10\Rightarrow y=10-x\). Produkt: \(P(x)=x(10-x)=10x-x^2\).</p>
-        <p class="step">\(P'(x)=10-2x=0\Rightarrow x=5\), \(P''<0\Rightarrow\) Maximum. \(P=5\cdot 5=25\).</p>
+        <p class="step">\(P'(x)=10-2x=0\Rightarrow x=5\), \(P''\lt 0\Rightarrow\) Maximum. \(P=5\cdot 5=25\).</p>
         <div class="why">Das maximale Produkt bei fester Summe ergibt sich stets, wenn beide Zahlen gleich sind.</div>
       </div>
     </div>
@@ -932,8 +938,8 @@
       <div class="solution">
         <h4>Lösung</h4>
         <p class="step">\(2x+2y=24\Rightarrow y=12-x\). \(A(x)=x(12-x)=12x-x^2\).</p>
-        <p class="step">\(A'(x)=12-2x=0\Rightarrow x=6\), \(A''<0\Rightarrow\) Maximum. \(A=6\cdot 6=36\).</p>
-        <div class="why">Auch hier ist das Optimum ein Quadrat (\(6\times 6\)) — typisch für „festes Umfang, maximale Fläche".</div>
+        <p class="step">\(A'(x)=12-2x=0\Rightarrow x=6\), \(A''\lt 0\Rightarrow\) Maximum. \(A=6\cdot 6=36\).</p>
+        <div class="why">Auch hier ist das Optimum ein Quadrat (\(6\times 6\)) — typisch für „fester Umfang, maximale Fläche".</div>
       </div>
     </div>
 
@@ -949,11 +955,11 @@
       <div class="btnrow"><button class="act ghost" data-sol>Lösung &amp; Erklärung</button></div>
       <div class="solution">
         <h4>Lösung</h4>
-        <p class="step"><strong>Volumen:</strong> Grundseite \((12-2x)\), Höhe \(x\): \(V(x)=(12-2x)^2\cdot x\), sinnvoll für \(0<x<6\).</p>
+        <p class="step"><strong>Volumen:</strong> Grundseite \((12-2x)\), Höhe \(x\): \(V(x)=(12-2x)^2\cdot x\), sinnvoll für \(0\lt x\lt 6\).</p>
         <p class="step">Ausmultipliziert: \(V(x)=4x^3-48x^2+144x\).</p>
         <p class="step">\(V'(x)=12x^2-96x+144=12(x^2-8x+12)=12(x-2)(x-6)\).</p>
         <p class="step">\(V'(x)=0\Rightarrow x=2\) oder \(x=6\). \(x=6\) entfällt (Grundseite \(=0\)).</p>
-        <p class="step">\(V''(x)=24x-96\), \(V''(2)=-48<0\Rightarrow\) Maximum bei \(x=2\).</p>
+        <p class="step">\(V''(x)=24x-96\), \(V''(2)=-48\lt 0\Rightarrow\) Maximum bei \(x=2\).</p>
         <p class="step">\(V(2)=(12-4)^2\cdot 2 = 64\cdot 2 = 128\text{ cm}^3\).</p>
         <div class="why">Den Randwert \(x=6\) immer auf Sinnhaftigkeit prüfen: Bei \(x=6\) bliebe keine Grundfläche übrig — geometrisch ausgeschlossen.</div>
       </div>
@@ -967,9 +973,9 @@
       <div class="solution">
         <h4>Lösung</h4>
         <p class="step"><strong>Aufstellen:</strong> Obere Ecken bei \((\pm x\mid 4-x^2)\). Breite \(=2x\), Höhe \(=4-x^2\).</p>
-        <p class="step"><strong>Zielfunktion:</strong> \(A(x)=2x(4-x^2)=8x-2x^3\), sinnvoll für \(0<x<2\).</p>
+        <p class="step"><strong>Zielfunktion:</strong> \(A(x)=2x(4-x^2)=8x-2x^3\), sinnvoll für \(0\lt x\lt 2\).</p>
         <p class="step">\(A'(x)=8-6x^2=0\Rightarrow x^2=\tfrac43\Rightarrow x=\tfrac{2}{\sqrt3}\approx 1{,}15\).</p>
-        <p class="step">\(A''(x)=-12x<0\Rightarrow\) Maximum.</p>
+        <p class="step">\(A''(x)=-12x\lt 0\Rightarrow\) Maximum.</p>
         <p class="step"><strong>Antwort:</strong> Breite \(2x=\tfrac{4}{\sqrt3}\approx 2{,}31\); Höhe \(4-\tfrac43=\tfrac83\); maximale Fläche \(A=\tfrac{32}{3\sqrt3}=\tfrac{32\sqrt3}{9}\approx 6{,}16\).</p>
         <div class="why">Die Zielfunktion \(A(x)=8x-2x^3\) ist selbst ganzrational — Extremwertprobleme führen oft auf genau die Polynome, die du in Abschnitt 1–2 untersucht hast.</div>
       </div>
@@ -999,7 +1005,7 @@
     <div class="task" data-id="e6">
       <div class="task-head"><span class="task-num">6</span><span class="level abi">Abitur-Niveau</span>
         <label class="done"><input type="checkbox"> erledigt</label></div>
-      <p><em>(nach einer LK-Klausur)</em> Ein Online-Shop verkauft täglich \(50\) Paar Gummistiefel zu je \(50\) €. Der Einkauf kostet \(20\) € pro Paar. Pro \(2\) € Ermäßigung wird ein Paar mehr verkauft, pro \(2\) € Erhöhung eines weniger. Welchen <strong>Preis</strong> sollte der Shop verlangen, damit der Gewinn maximal ist?</p>
+      <p><em>(nach einer LK-Klausur)</em> Ein Online-Shop verkauft täglich \(50\) Paar Gummistiefel zu je \(50\) €. Der Einkauf kostet \(20\) € pro Paar. Pro \(2\) € Ermäßigung wird ein Paar mehr verkauft, pro \(2\) € Erhöhung eines weniger. Wir rechnen mit dem durchschnittlichen Absatz und nehmen an, dass er auch zwischen den 2-€-Schritten linear vom Preis abhängt. Welchen <strong>Preis</strong> sollte der Shop verlangen, damit der Gewinn maximal ist?</p>
       <div class="answer-row">
         <input class="num" data-answer="85" data-tol="0.001" placeholder="Preis =" aria-label="Antwort">
         <button class="act check">Prüfen</button><span class="mark"></span><span class="unit">€</span>
@@ -1012,7 +1018,7 @@
         <p class="step"><strong>HB:</strong> Gewinn \(G=N\cdot g\) mit Anzahl \(N\) und Gewinn pro Paar \(g\).</p>
         <p class="step"><strong>NB:</strong> \(N=50+\tfrac{e}{2}\), \(g=30-e\).</p>
         <p class="step"><strong>ZF:</strong> \(G(e)=(30-e)\big(50+\tfrac e2\big)=-\tfrac{e^2}{2}-35e+1500\).</p>
-        <p class="step">n.B.: \(G'(e)=-e-35=0\Rightarrow e=-35\). h.B.: \(G''(e)=-1<0\Rightarrow\) Maximum.</p>
+        <p class="step">n.B.: \(G'(e)=-e-35=0\Rightarrow e=-35\). h.B.: \(G''(e)=-1\lt 0\Rightarrow\) Maximum.</p>
         <p class="step">\(e=-35\) bedeutet: Preis um \(35\) € <strong>erhöhen</strong>, also \(85\) €. Gewinn \(G(-35)=2112{,}50\) € statt \(1500\) €.</p>
         <div class="why">Das negative Ergebnis ist kein Rechenfehler. Es sagt: Der Shop verkauft zu billig. Solche Deutungen im Sachzusammenhang bringen in der Klausur eigene Punkte.</div>
       </div>
@@ -1249,9 +1255,9 @@
         <p><strong>Untersuche die Schar \(f_a(x)=x^3-3a^2x\) (\(a>0\)) auf Extrempunkte und bestimme die Ortskurve der Tiefpunkte.</strong></p>
         <p class="step"><strong>Ableitungen:</strong> \(f_a'(x)=3x^2-3a^2,\quad f_a''(x)=6x\).</p>
         <p class="step"><strong>n.B.:</strong> \(f_a'(x)=0\Rightarrow x^2=a^2\Rightarrow x=\pm a\).</p>
-        <p class="step"><strong>h.B.:</strong> \(f_a''(a)=6a>0\Rightarrow\) Tiefpunkt; \(f_a''(-a)=-6a<0\Rightarrow\) Hochpunkt.</p>
+        <p class="step"><strong>h.B.:</strong> \(f_a''(a)=6a>0\Rightarrow\) Tiefpunkt; \(f_a''(-a)=-6a\lt 0\Rightarrow\) Hochpunkt.</p>
         <p class="step"><strong>Punkte:</strong> \(f_a(a)=a^3-3a^3=-2a^3\Rightarrow T(a\mid -2a^3)\); analog \(H(-a\mid 2a^3)\).</p>
-        <p class="step"><strong>Ortskurve der Tiefpunkte:</strong> Aus \(x=a\) folgt \(a=x\), eingesetzt in \(y=-2a^3\): \(y=-2x^3\).</p>
+        <p class="step"><strong>Ortskurve der Tiefpunkte:</strong> Aus \(x=a\) folgt \(a=x\), eingesetzt in \(y=-2a^3\): \(y=-2x^3\) für \(x>0\) (wegen \(a>0\)).</p>
       </div>
 
       <div class="figure">
@@ -1279,7 +1285,7 @@
       <p>Für welche Werte des Parameters \(a\) besitzt \(f_a(x)=ax^2\) einen <strong>Tiefpunkt</strong> im Scheitel?</p>
       <div class="mc" data-answer="1">
         <label class="opt"><input type="radio" name="mc-f1"><span>\(a>0\)</span></label>
-        <label class="opt"><input type="radio" name="mc-f1"><span>\(a<0\)</span></label>
+        <label class="opt"><input type="radio" name="mc-f1"><span>\(a\lt 0\)</span></label>
         <label class="opt"><input type="radio" name="mc-f1"><span>\(a=0\)</span></label>
         <label class="opt"><input type="radio" name="mc-f1"><span>für alle \(a\)</span></label>
       </div>
@@ -1315,7 +1321,7 @@
       <div class="solution">
         <h4>Lösung</h4>
         <p class="step">\(f_a'(x)=3x^2-3a^2=0\Rightarrow x=\pm a\).</p>
-        <p class="step">\(f_a''(x)=6x\): \(f_a''(-a)=-6a<0\Rightarrow\) Hochpunkt; \(f_a''(a)=6a>0\Rightarrow\) Tiefpunkt.</p>
+        <p class="step">\(f_a''(x)=6x\): \(f_a''(-a)=-6a\lt 0\Rightarrow\) Hochpunkt; \(f_a''(a)=6a>0\Rightarrow\) Tiefpunkt.</p>
         <p class="step">\(H(-a\mid 2a^3)\), \(T(a\mid -2a^3)\).</p>
         <div class="why">Da \(f_a\) punktsymmetrisch ist, liegen Hoch- und Tiefpunkt spiegelbildlich zum Ursprung, die \(y\)-Werte unterscheiden sich nur im Vorzeichen.</div>
       </div>
@@ -1369,7 +1375,7 @@
         <p class="step">\(f_t'(x)=tx-t^2\), \(f_t''(x)=t>0\).</p>
         <p class="step">n.B.: \(tx-t^2=0\Rightarrow x=t\). h.B.: \(f_t''(t)=t>0\Rightarrow\) Tiefpunkt \(T\big(t\mid -\tfrac{t^3}{2}\big)\).</p>
         <p class="step">Der Graph ist eine nach oben offene Parabel. Er liegt oberhalb von \(y=-4\), wenn der Tiefpunkt darüber liegt: \(-\tfrac{t^3}{2}>-4\).</p>
-        <p class="step">\(\Rightarrow t^3<8\Rightarrow t<2\). Also \(0<t<2\).</p>
+        <p class="step">\(\Rightarrow t^3\lt 8\Rightarrow t\lt 2\). Also \(0\lt t\lt 2\).</p>
         <div class="why">Der tiefste Punkt entscheidet. Liegt er oberhalb der Geraden, dann liegt der ganze Graph darüber.</div>
       </div>
     </div>
@@ -1388,7 +1394,7 @@
         <h4>Lösung</h4>
         <p class="step">Aus \(x=\tfrac t6\) folgt \(t=6x\).</p>
         <p class="step">Einsetzen in \(y=\tfrac{t^2}{27}\): \(y=\tfrac{36x^2}{27}=\tfrac43x^2\).</p>
-        <p class="step">Also \(k=\tfrac43\). Die Hochpunkte liegen auf einer Parabel.</p>
+        <p class="step">Also \(k=\tfrac43\). Die Hochpunkte liegen auf der Parabel \(y=\tfrac43x^2\), genauer auf ihrem Teil mit \(x>0\) (wegen \(t>0\)).</p>
         <div class="why">Ortskurve in zwei Zeilen: \(x\)-Koordinate nach dem Parameter auflösen, in die \(y\)-Koordinate einsetzen. Eingabe \(4/3\) wird akzeptiert.</div>
       </div>
     </div>
@@ -1407,8 +1413,8 @@
       <div class="merk">
         <h3>🔢 Potenzfunktionen ableiten</h3>
         <ul>
-          <li><strong>Umschreiben:</strong> \(\dfrac{1}{x^n}=x^{-n}\), \(\quad\sqrt{x}=x^{\frac12}\), \(\quad\sqrt[n]{x^m}=x^{\frac mn}\).</li>
-          <li><strong>Potenzregel</strong> für jeden rationalen Exponenten \(r\): \(\big(x^r\big)'=r\cdot x^{\,r-1}\).</li>
+          <li><strong>Umschreiben:</strong> \(\dfrac{1}{x^n}=x^{-n}\), \(\quad\sqrt{x}=x^{\frac12}\), \(\quad\sqrt[n]{x^m}=x^{\frac mn}\) (für \(x\ge0\)).</li>
+          <li><strong>Potenzregel</strong> für jeden rationalen Exponenten \(r\) (bei gebrochenem \(r\) für \(x>0\)): \(\big(x^r\big)'=r\cdot x^{\,r-1}\).</li>
           <li>Wichtige Ergebnisse: \(\Big(\dfrac1x\Big)'=-\dfrac{1}{x^2}\) und \(\big(\sqrt x\big)'=\dfrac{1}{2\sqrt x}\).</li>
           <li><strong>Definitionsbereich beachten:</strong> \(\tfrac1x\) gibt es nur für \(x\neq0\), \(\sqrt x\) nur für \(x\ge0\) (ableitbar für \(x>0\)).</li>
         </ul>
@@ -1418,7 +1424,7 @@
         <div id="jxg19" class="jxgbox"></div>
         <div class="ctrl-row"><button class="act ghost anim-btn" data-anim="jxg19">▶ Exponenten durchlaufen lassen</button></div>
         <p class="ctrl">Stelle den Exponenten \(r\) ein. Blau: \(f(x)=x^r\). Grün gestrichelt: die Ableitung \(f'(x)=r\cdot x^{r-1}\).</p>
-        <p class="figcap">Abb. 7 — Potenzfunktionen mit ganzen, negativen und gebrochenen Exponenten. Bei gebrochenem Exponenten gibt es den Graphen nur für \(x\ge 0\).</p>
+        <p class="figcap">Abb. 7 — Potenzfunktionen mit ganzen, negativen und gebrochenen Exponenten. Potenzen mit gebrochenem Exponenten sind in der Schule nur für \(x\ge 0\) vereinbart (bei negativem Exponenten nur für \(x>0\)). Deshalb zeigt der Graph dann nur die rechte Hälfte.</p>
       </div>
 
       <h2>Die Wurzelfunktion als Umkehrfunktion</h2>
@@ -1590,7 +1596,7 @@
         <ul>
           <li>Das bestimmte Integral \(\displaystyle\int_a^b f(x)\,dx\) ist der <strong>Grenzwert von Produktsummen</strong> \(\sum f(x_i)\cdot\Delta x\).</li>
           <li>Ist \(f(x)\ge 0\), so ist es der <strong>Flächeninhalt</strong> zwischen Graph und \(x\)-Achse über \([a,b]\).</li>
-          <li>Steht \(f\) für eine <em>Rate</em> (z. B. Zufluss pro Zeit), so ist das Integral der <strong>rekonstruierte Bestand</strong> (z. B. die Gesamtmenge).</li>
+          <li>Steht \(r\) für eine <em>Änderungsrate</em> (z. B. Zufluss pro Zeit), so ist das Integral die <strong>Änderung des Bestands</strong> im Zeitraum. Mit dem Anfangsbestand gilt: \(\displaystyle B(b)=B(a)+\int_a^b r(t)\,dt\).</li>
         </ul>
       </div>
 
@@ -1667,24 +1673,10 @@
       </div>
     </div>
 
-    <div class="task" data-id="bg5">
-      <div class="task-head"><span class="task-num">4</span><span class="level abi">Abitur-Niveau</span>
-        <label class="done"><input type="checkbox"> erledigt</label></div>
-      <p><em>(nach Abitur NRW, Stil/Thema)</em> Die Zuflussrate zu einem Speichersee ist \(z(t)=-t^2+4t\) (in \(\tfrac{\text{Mio m}^3}{\text{Monat}}\)) für \(0\le t\le 4\). Welche Wassermenge fließt in diesen \(4\) Monaten insgesamt zu? Vergleiche mit der Musterlösung.</p>
-      <div class="btnrow"><button class="act ghost" data-sol>Lösung &amp; Erklärung</button></div>
-      <div class="solution">
-        <h4>Lösung</h4>
-        <p class="step">Gesamtmenge \(=\displaystyle\int_0^4 (-t^2+4t)\,dt\).</p>
-        <p class="step">Stammfunktion: \(Z(t)=-\tfrac{t^3}{3}+2t^2\).</p>
-        <p class="step">\(Z(4)-Z(0)=\big(-\tfrac{64}{3}+32\big)-0=\tfrac{32}{3}\approx 10{,}67\) Mio m³.</p>
-        <div class="why">Erst die Rate erkennen, dann integrieren. Die Einheit der Fläche ist \(\tfrac{\text{Mio m}^3}{\text{Monat}}\cdot\text{Monat}=\text{Mio m}^3\) — eine Menge, kein Tempo.</div>
-      </div>
-    </div>
-
     <div class="task" data-id="bg6">
-      <div class="task-head"><span class="task-num">5</span><span class="level mittel">Mittel</span>
+      <div class="task-head"><span class="task-num">4</span><span class="level mittel">Mittel</span>
         <label class="done"><input type="checkbox"> erledigt</label></div>
-      <p>Die Rate \(r(t)\) beschreibt den Wasserfluss in einen Tank (in \(\tfrac{\text{l}}{\text{min}}\)). Zwischen \(t=4\) und \(t=6\) ist \(r(t)<0\). Was bedeutet das?</p>
+      <p>Die Rate \(r(t)\) beschreibt den Wasserfluss in einen Tank (in \(\tfrac{\text{l}}{\text{min}}\)). Zwischen \(t=4\) und \(t=6\) ist \(r(t)\lt 0\). Was bedeutet das?</p>
       <div class="mc" data-answer="2">
         <label class="opt"><input type="radio" name="mc-bg6"><span>Der Tank ist in dieser Zeit leer.</span></label>
         <label class="opt"><input type="radio" name="mc-bg6"><span>In dieser Zeit fließt Wasser <strong>ab</strong>; die Wassermenge im Tank nimmt ab.</span></label>
@@ -1703,7 +1695,7 @@
     </div>
 
     <div class="task" data-id="bg7">
-      <div class="task-head"><span class="task-num">6</span><span class="level anspruch">Anspruchsvoll</span>
+      <div class="task-head"><span class="task-num">5</span><span class="level anspruch">Anspruchsvoll</span>
         <label class="done"><input type="checkbox"> erledigt</label></div>
       <p>Für eine Zuflussrate \(r\) (in \(\tfrac{\text{l}}{\text{min}}\)) gilt \(\displaystyle\int_2^5 r(t)\,dt=30\). Welche Deutung ist richtig?</p>
       <div class="mc" data-answer="2">
@@ -1720,6 +1712,25 @@
         <p class="step">Das Integral einer Rate über \([2;5]\) ist die <strong>Änderung des Bestands</strong> in diesem Zeitraum.</p>
         <p class="step">Über den Bestand <em>zu Beginn</em> sagt es nichts. Deshalb ist „nach 5 Minuten sind 30 Liter im Tank“ falsch.</p>
         <div class="why">Achte auf die Einheit: \(\tfrac{\text{l}}{\text{min}}\cdot\text{min}=\text{l}\). Das Integral ist eine Menge, keine Rate.</div>
+      </div>
+    </div>
+
+    <div class="task" data-id="bg8">
+      <div class="task-head"><span class="task-num">6</span><span class="level mittel">Mittel</span>
+        <label class="done"><input type="checkbox"> erledigt</label></div>
+      <p>Die Zuflussrate in einen Tank wird alle \(2\) Minuten gemessen: <table class="datatab"><tr><th>\(t\) in min</th><td>0</td><td>2</td><td>4</td><td>6</td><td>8</td></tr><tr><th>\(r(t)\) in \(\tfrac{\text{l}}{\text{min}}\)</th><td>3</td><td>5</td><td>8</td><td>6</td><td>2</td></tr></table> Schätze die zugeflossene Wassermenge von \(t=0\) bis \(t=8\) mit einer Produktsumme. Nimm für jedes 2-Minuten-Stück den Messwert am <strong>linken</strong> Rand.</p>
+      <div class="answer-row">
+        <input class="num" data-answer="44" data-tol="0.001" placeholder="Menge =" aria-label="Antwort">
+        <button class="act check">Prüfen</button><span class="mark"></span><span class="unit">l</span>
+        <span class="feedback"></span>
+      </div>
+      <div class="btnrow"><button class="act ghost" data-sol>Lösung &amp; Erklärung</button></div>
+      <div class="solution">
+        <h4>Lösung</h4>
+        <p class="step">Vier Streifen der Breite \(\Delta t=2\) min. Linke Messwerte: \(3;\,5;\,8;\,6\).</p>
+        <p class="step">Produktsumme: \(2\cdot3+2\cdot5+2\cdot8+2\cdot6=2\cdot 22=44\) Liter.</p>
+        <p class="step">Mit den <em>rechten</em> Messwerten wären es \(2\cdot(5+8+6+2)=42\) Liter. Der wahre Wert liegt in der Nähe.</p>
+        <div class="why">Jeder Summand ist „Rate mal Zeitspanne“, also eine Menge. Je enger die Messungen liegen, desto genauer wird die Schätzung.</div>
       </div>
     </div>
   </div>
@@ -1755,7 +1766,7 @@
         <h3>📈 Vom Graphen von \(f\) zum Graphen von \(A\)</h3>
         <ul>
           <li>\(A'=f\). Deshalb liest du am Graphen von \(f\) die <strong>Steigung</strong> von \(A\) ab.</li>
-          <li>\(f>0\): \(A\) steigt. \(\;f<0\): \(A\) fällt.</li>
+          <li>\(f>0\): \(A\) steigt. \(\;f\lt 0\): \(A\) fällt.</li>
           <li><strong>Nullstelle von \(f\) mit Vorzeichenwechsel</strong> \(\Rightarrow\) <strong>Extremstelle</strong> von \(A\) (\(+\to-\): Hochpunkt, \(-\to+\): Tiefpunkt).</li>
           <li><strong>Extremstelle von \(f\)</strong> \(\Rightarrow\) <strong>Wendestelle</strong> von \(A\).</li>
           <li>\(A(0)=0\): Die Flächeninhaltsfunktion startet an der unteren Grenze bei null.</li>
@@ -1905,9 +1916,28 @@
       <div class="solution">
         <h4>Lösung</h4>
         <p class="step">n.B.: \(A'(x)=f(x)=0\Rightarrow x=1\) oder \(x=3\).</p>
-        <p class="step">h.B.: \(A''(x)=f'(x)=2x-4\). \(A''(1)=-2<0\Rightarrow\) Hochpunkt.</p>
+        <p class="step">h.B.: \(A''(x)=f'(x)=2x-4\). \(A''(1)=-2\lt 0\Rightarrow\) Hochpunkt.</p>
         <p class="step">\(A(1)=\tfrac13-2+3=\tfrac43\). Bei \(x=3\) liegt ein Tiefpunkt mit \(A(3)=0\).</p>
         <div class="why">\(A(3)=0\) heißt: Von \(0\) bis \(3\) sind grüne und rote Fläche gleich groß. Sie heben sich genau auf. Eingabe \(4/3\) wird akzeptiert.</div>
+      </div>
+    </div>
+
+    <div class="task" data-id="sf8">
+      <div class="task-head"><span class="task-num">8</span><span class="level anspruch">Anspruchsvoll</span>
+        <label class="done"><input type="checkbox"> erledigt</label></div>
+      <p>Skizziere zum abgebildeten Graphen von \(f\) den Graphen der Flächeninhaltsfunktion \(A(x)=\int_0^x f(t)\,dt\). Der Graph von \(f\) hat die Nullstellen \(1\) und \(4\) und bei \(x=2{,}5\) einen Hochpunkt. <svg class="mini-graph" viewBox="0 0 320 200" role="img" aria-label="Graph von f"><line x1="0" y1="111.9" x2="320" y2="111.9" stroke="#6b665d"/><line x1="17.1" y1="0" x2="17.1" y2="200" stroke="#6b665d"/><line x1="74.3" y1="108.9" x2="74.3" y2="114.9" stroke="#6b665d"/><text x="74.3" y="126.9" font-size="11" text-anchor="middle" fill="#6b665d">1</text><line x1="131.4" y1="108.9" x2="131.4" y2="114.9" stroke="#6b665d"/><text x="131.4" y="126.9" font-size="11" text-anchor="middle" fill="#6b665d">2</text><line x1="188.6" y1="108.9" x2="188.6" y2="114.9" stroke="#6b665d"/><text x="188.6" y="126.9" font-size="11" text-anchor="middle" fill="#6b665d">3</text><line x1="245.7" y1="108.9" x2="245.7" y2="114.9" stroke="#6b665d"/><text x="245.7" y="126.9" font-size="11" text-anchor="middle" fill="#6b665d">4</text><line x1="302.9" y1="108.9" x2="302.9" y2="114.9" stroke="#6b665d"/><text x="302.9" y="126.9" font-size="11" text-anchor="middle" fill="#6b665d">5</text><polyline points="34.3,199.7 37.1,192.3 40.0,185.1 42.9,178.1 45.7,171.2 48.6,164.5 51.4,158.0 54.3,151.6 57.1,145.4 60.0,139.4 62.9,133.6 65.7,127.9 68.6,122.4 71.4,117.0 74.3,111.9 77.1,106.9 80.0,102.0 82.9,97.4 85.7,92.9 88.6,88.6 91.4,84.4 94.3,80.4 97.1,76.6 100.0,73.0 102.9,69.5 105.7,66.2 108.6,63.1 111.4,60.1 114.3,57.3 117.1,54.7 120.0,52.2 122.9,49.9 125.7,47.8 128.6,45.8 131.4,44.1 134.3,42.5 137.1,41.0 140.0,39.7 142.9,38.6 145.7,37.7 148.6,36.9 151.4,36.4 154.3,35.9 157.1,35.7 160.0,35.6 162.9,35.7 165.7,35.9 168.6,36.4 171.4,36.9 174.3,37.7 177.1,38.6 180.0,39.7 182.9,41.0 185.7,42.5 188.6,44.1 191.4,45.8 194.3,47.8 197.1,49.9 200.0,52.2 202.9,54.7 205.7,57.3 208.6,60.1 211.4,63.1 214.3,66.2 217.1,69.5 220.0,73.0 222.9,76.6 225.7,80.4 228.6,84.4 231.4,88.6 234.3,92.9 237.1,97.4 240.0,102.0 242.9,106.9 245.7,111.9 248.6,117.0 251.4,122.4 254.3,127.9 257.1,133.6 260.0,139.4 262.9,145.4 265.7,151.6 268.6,158.0 271.4,164.5 274.3,171.2 277.1,178.1 280.0,185.1 282.9,192.3 285.7,199.7" fill="none" stroke="#3a5a78" stroke-width="2.5"/><circle cx="74.3" cy="111.9" r="3.5" fill="#c0392b"/><text x="79.3" y="105.9" font-size="11" fill="#c0392b">1</text><circle cx="245.7" cy="111.9" r="3.5" fill="#c0392b"/><text x="250.7" y="105.9" font-size="11" fill="#c0392b">4</text><circle cx="160.0" cy="35.6" r="3.5" fill="#2e8b57"/><text x="165.0" y="29.6" font-size="11" fill="#2e8b57">Hochpunkt</text><text x="310" y="16" font-size="14" font-style="italic" font-weight="700" text-anchor="end" fill="#3a5a78">f</text></svg> An welcher Stelle hat \(A\) einen Tiefpunkt? Gib sie ein und vergleiche deine Skizze mit der Musterlösung.</p>
+      <div class="answer-row">
+        <input class="num" data-answer="1" data-tol="0.001" placeholder="x =" aria-label="Antwort">
+        <button class="act check">Prüfen</button><span class="mark"></span>
+        <span class="feedback"></span>
+      </div>
+      <div class="btnrow"><button class="act ghost" data-sol>Lösung &amp; Erklärung</button></div>
+      <div class="solution">
+        <h4>Lösung</h4>
+        <p class="step"><strong>Steigung von \(A\) ablesen:</strong> \(A'=f\). Auf \([0;1)\) ist \(f<0\): \(A\) fällt. Auf \((1;4)\) ist \(f>0\): \(A\) steigt. Ab \(x=4\) fällt \(A\) wieder.</p>
+        <p class="step"><strong>Besondere Punkte:</strong> Tiefpunkt bei \(x=1\) (\(f\) wechselt von \(-\) nach \(+\)), Hochpunkt bei \(x=4\), Wendepunkt bei \(x=2{,}5\) (Hochpunkt von \(f\)). Start: \(A(0)=0\).</p>
+        <p class="step"><svg class="mini-graph" viewBox="0 0 320 200" role="img" aria-label="Graph von A"><line x1="0" y1="111.9" x2="320" y2="111.9" stroke="#6b665d"/><line x1="17.1" y1="0" x2="17.1" y2="200" stroke="#6b665d"/><line x1="74.3" y1="108.9" x2="74.3" y2="114.9" stroke="#6b665d"/><text x="74.3" y="126.9" font-size="11" text-anchor="middle" fill="#6b665d">1</text><line x1="131.4" y1="108.9" x2="131.4" y2="114.9" stroke="#6b665d"/><text x="131.4" y="126.9" font-size="11" text-anchor="middle" fill="#6b665d">2</text><line x1="188.6" y1="108.9" x2="188.6" y2="114.9" stroke="#6b665d"/><text x="188.6" y="126.9" font-size="11" text-anchor="middle" fill="#6b665d">3</text><line x1="245.7" y1="108.9" x2="245.7" y2="114.9" stroke="#6b665d"/><text x="245.7" y="126.9" font-size="11" text-anchor="middle" fill="#6b665d">4</text><line x1="302.9" y1="108.9" x2="302.9" y2="114.9" stroke="#6b665d"/><text x="302.9" y="126.9" font-size="11" text-anchor="middle" fill="#6b665d">5</text><polyline points="17.1,111.9 20.0,118.4 22.9,124.6 25.7,130.3 28.6,135.7 31.4,140.6 34.3,145.2 37.1,149.4 40.0,153.3 42.9,156.8 45.7,159.9 48.6,162.7 51.4,165.2 54.3,167.3 57.1,169.1 60.0,170.7 62.9,171.9 65.7,172.8 68.6,173.5 71.4,173.9 74.3,174.0 77.1,173.9 80.0,173.5 82.9,172.9 85.7,172.1 88.6,171.0 91.4,169.7 94.3,168.3 97.1,166.6 100.0,164.7 102.9,162.7 105.7,160.5 108.6,158.1 111.4,155.6 114.3,153.0 117.1,150.2 120.0,147.3 122.9,144.2 125.7,141.1 128.6,137.8 131.4,134.5 134.3,131.0 137.1,127.5 140.0,124.0 142.9,120.3 145.7,116.6 148.6,112.9 151.4,109.1 154.3,105.4 157.1,101.6 160.0,97.7 162.9,93.9 165.7,90.1 168.6,86.3 171.4,82.6 174.3,78.8 177.1,75.2 180.0,71.5 182.9,68.0 185.7,64.4 188.6,61.0 191.4,57.7 194.3,54.4 197.1,51.3 200.0,48.2 202.9,45.3 205.7,42.5 208.6,39.8 211.4,37.3 214.3,35.0 217.1,32.8 220.0,30.7 222.9,28.9 225.7,27.2 228.6,25.7 231.4,24.5 234.3,23.4 237.1,22.6 240.0,22.0 242.9,21.6 245.7,21.5 248.6,21.6 251.4,22.0 254.3,22.7 257.1,23.6 260.0,24.8 262.9,26.4 265.7,28.2 268.6,30.3 271.4,32.8 274.3,35.6 277.1,38.7 280.0,42.2 282.9,46.1 285.7,50.3 288.6,54.8 291.4,59.8 294.3,65.1 297.1,70.9 300.0,77.0 302.9,83.6" fill="none" stroke="#c9821a" stroke-width="2.5"/><circle cx="74.3" cy="174.0" r="3.5" fill="#c0392b"/><text x="79.3" y="168.0" font-size="11" fill="#c0392b">Tiefpunkt</text><circle cx="160.0" cy="97.7" r="3.5" fill="#2e8b57"/><text x="165.0" y="91.7" font-size="11" fill="#2e8b57">Wendepunkt</text><circle cx="245.7" cy="21.5" r="3.5" fill="#c0392b"/><text x="250.7" y="15.5" font-size="11" fill="#c0392b">Hochpunkt</text><text x="310" y="16" font-size="14" font-style="italic" font-weight="700" text-anchor="end" fill="#c9821a">A</text></svg></p>
+        <div class="why">Du brauchst keine Rechnung: Vorzeichen von \(f\) geben das Steigen und Fallen von \(A\), Extremstellen von \(f\) die Wendestellen von \(A\). Zur Kontrolle: \(f(x)=-(x-1)(x-4)\), \(A(1)=-\tfrac{11}{6}\), \(A(4)=\tfrac83\).</div>
       </div>
     </div>
   </div>
@@ -1935,7 +1965,16 @@
       <div class="figure">
         <div id="jxg8" class="jxgbox"></div>
         <p class="ctrl">Verschiebe die obere Grenze \(b\): der angezeigte Integralwert ist \(F(b)-F(0)\).</p>
-        <p class="figcap">Abb. 11 — Das bestimmte Integral \(\int_0^b f(x)\,dx\) als (orientierte) Fläche unter \(f(x)=-\tfrac14 x^2+2\). Wo \(f<0\) ist, wird die Fläche abgezogen.</p>
+        <p class="figcap">Abb. 11 — Das bestimmte Integral \(\int_0^b f(x)\,dx\) als (orientierte) Fläche unter \(f(x)=-\tfrac14 x^2+2\). Wo \(f\lt 0\) ist, wird die Fläche abgezogen.</p>
+      </div>
+
+      <div class="worked">
+        <h3>Warum gilt der Hauptsatz? Eine anschauliche Begründung</h3>
+        <p><strong>\(f\) sei stetig, das heißt: Der Graph hat keine Sprünge. \(A(x)=\int_a^x f(t)\,dt\) ist die Flächeninhaltsfunktion ab \(a\).</strong></p>
+        <p class="step"><strong>Schmaler Streifen:</strong> \(A(x+h)-A(x)\) ist die Fläche zwischen \(x\) und \(x+h\). Für kleines \(h\) ist sie fast ein Rechteck mit Breite \(h\) und Höhe \(f(x)\): \(A(x+h)-A(x)\approx f(x)\cdot h\).</p>
+        <p class="step"><strong>Durch \(h\) teilen:</strong> \(\dfrac{A(x+h)-A(x)}{h}\approx f(x)\). Je kleiner \(h\), desto besser stimmt das, weil \(f\) stetig ist.</p>
+        <p class="step"><strong>Grenzwert \(h\to0\):</strong> Links steht der Differenzenquotient von \(A\). Also gilt \(A'(x)=f(x)\). Die Flächeninhaltsfunktion ist eine Stammfunktion von \(f\).</p>
+        <p class="step"><strong>Folgerung:</strong> Jede andere Stammfunktion \(F\) unterscheidet sich von \(A\) nur um eine Konstante: \(F=A+C\). Wegen \(A(a)=0\) folgt \(\int_a^b f(x)\,dx=A(b)=A(b)-A(a)=F(b)-F(a)\).</p>
       </div>
 
       <div class="fehler">
@@ -2066,6 +2105,20 @@
         <p class="step">Begründung: \(2500\) ist die Hälfte von \(5000\). Die Fläche von \(x=-100\) bis zum Zaun bei \(x=a\) soll genau die Hälfte sein.</p>
         <p class="step">Ergebnis: Der Zaun steht etwa \(26{,}6\text{ m}\) westlich der \(y\)-Achse.</p>
         <div class="why">Solche „umgekehrten“ Aufgaben prüfen, ob du die Bedeutung eines Integrals verstanden hast. Lies jede Zahl im Ansatz und frage dich: Wofür steht sie?</div>
+      </div>
+    </div>
+
+    <div class="task" data-id="hs8">
+      <div class="task-head"><span class="task-num">8</span><span class="level abi">Abitur-Niveau</span>
+        <label class="done"><input type="checkbox"> erledigt</label></div>
+      <p><em>(nach Abitur NRW, Stil/Thema)</em> Die Zuflussrate zu einem Speichersee ist \(z(t)=-t^2+4t\) (in \(\tfrac{\text{Mio m}^3}{\text{Monat}}\)) für \(0\le t\le 4\). Welche Wassermenge fließt in diesen \(4\) Monaten insgesamt zu? Vergleiche mit der Musterlösung.</p>
+      <div class="btnrow"><button class="act ghost" data-sol>Lösung &amp; Erklärung</button></div>
+      <div class="solution">
+        <h4>Lösung</h4>
+        <p class="step">Gesamtmenge \(=\displaystyle\int_0^4 (-t^2+4t)\,dt\).</p>
+        <p class="step">Stammfunktion: \(Z(t)=-\tfrac{t^3}{3}+2t^2\).</p>
+        <p class="step">\(Z(4)-Z(0)=\big(-\tfrac{64}{3}+32\big)-0=\tfrac{32}{3}\approx 10{,}67\) Mio m³.</p>
+        <div class="why">Erst die Rate erkennen, dann integrieren. Die Einheit der Fläche ist \(\tfrac{\text{Mio m}^3}{\text{Monat}}\cdot\text{Monat}=\text{Mio m}^3\) — eine Menge, kein Tempo.</div>
       </div>
     </div>
   </div>
@@ -2420,7 +2473,7 @@
         <h3>📊 Exponentialfunktionen \(N(t)=N_0\cdot b^t\)</h3>
         <ul>
           <li>\(N_0\) ist der <strong>Anfangswert</strong> (\(t=0\)), \(b>0\) der <strong>Wachstumsfaktor</strong> pro Zeitschritt.</li>
-          <li>\(b>1\): Wachstum. \(\;0<b<1\): Zerfall.</li>
+          <li>\(b>1\): Wachstum. \(\;0\lt b\lt 1\): Zerfall.</li>
           <li><strong>Prozent in Faktor:</strong> Zunahme um \(p\,\%\) heißt \(b=1+\tfrac{p}{100}\). Abnahme um \(p\,\%\) heißt \(b=1-\tfrac{p}{100}\).</li>
           <li><strong>Halbwertszeit \(T_H\)</strong> gegeben: \(N(t)=N_0\cdot 0{,}5^{\,t/T_H}\). Verdopplungszeit \(T_V\): \(N(t)=N_0\cdot 2^{\,t/T_V}\).</li>
           <li><strong>Aus zwei Punkten:</strong> Die beiden Gleichungen durcheinander teilen. Dann fällt \(N_0\) weg und \(b\) bleibt übrig.</li>
@@ -2431,7 +2484,7 @@
         <div id="jxg21" class="jxgbox"></div>
         <div class="ctrl-row"><button class="act ghost anim-btn" data-anim="jxg21">▶ Faktor von Zerfall zu Wachstum</button></div>
         <p class="ctrl">Stelle den Anfangswert \(N_0\) und den Faktor \(b\) ein. Der Punkt markiert die Verdopplungs- bzw. Halbwertszeit.</p>
-        <p class="figcap">Abb. 15 — \(N(t)=N_0\cdot b^t\). Für \(b>1\) wächst der Bestand, für \(b<1\) zerfällt er. Die Verdopplungs- und die Halbwertszeit hängen nur von \(b\) ab, nicht von \(N_0\).</p>
+        <p class="figcap">Abb. 15 — \(N(t)=N_0\cdot b^t\). Für \(b>1\) wächst der Bestand, für \(b\lt 1\) zerfällt er. Die Verdopplungs- und die Halbwertszeit hängen nur von \(b\) ab, nicht von \(N_0\).</p>
       </div>
 
       <div class="worked">
@@ -2536,7 +2589,7 @@
         <label class="done"><input type="checkbox"> erledigt</label></div>
       <p>Eine Kultur hat zu Beginn \(200\) Zellen, nach \(5\) Stunden \(320\). Um wie viel Prozent wächst sie pro Stunde? (Runde auf 2 Dezimalen.)</p>
       <div class="answer-row">
-        <input class="num" data-answer="9.86" data-tol="0.05" placeholder="p =" aria-label="Antwort">
+        <input class="num" data-answer="9.8560543306" data-tol="0.006" placeholder="p =" aria-label="Antwort">
         <button class="act check">Prüfen</button><span class="mark"></span><span class="unit">%</span>
         <span class="feedback"></span>
       </div>
@@ -2554,7 +2607,7 @@
         <label class="done"><input type="checkbox"> erledigt</label></div>
       <p>Eine Stadt hatte 2020 genau \(2000\) Einwohner, 2022 schon \(2420\). Wir nehmen exponentielles Wachstum an. Welche Einwohnerzahl sagt das Modell für 2030 voraus? Gib die Zahl ein und beurteile das Modell in der Musterlösung.</p>
       <div class="answer-row">
-        <input class="num" data-answer="5187.5" data-tol="2" placeholder="N =" aria-label="Antwort">
+        <input class="num" data-answer="5187.4849202" data-tol="0.6" placeholder="N =" aria-label="Antwort">
         <button class="act check">Prüfen</button><span class="mark"></span>
         <span class="feedback"></span>
       </div>
@@ -2600,10 +2653,10 @@
       <div class="merk">
         <h3>🎛️ Transformierte e-Funktion \(f(x)=a\cdot e^{\,b(x-c)}+d\)</h3>
         <ul>
-          <li>\(a\): Streckung in \(y\)-Richtung. Ist \(a<0\), wird an der \(x\)-Achse gespiegelt.</li>
-          <li>\(b\): Streckung in \(x\)-Richtung. Ist \(b<0\), wird an der \(y\)-Achse gespiegelt (Zerfall statt Wachstum).</li>
+          <li>\(a\): Streckung in \(y\)-Richtung. Ist \(a\lt 0\), wird an der \(x\)-Achse gespiegelt.</li>
+          <li>\(b\): Streckung in \(x\)-Richtung. Ist \(b\lt 0\), wird an der \(y\)-Achse gespiegelt (Zerfall statt Wachstum).</li>
           <li>\(c\): Verschiebung nach rechts (\(c>0\)) oder links.</li>
-          <li>\(d\): Verschiebung nach oben oder unten. Die <strong>waagerechte Asymptote</strong> ist \(y=d\).</li>
+          <li>\(d\): Verschiebung nach oben oder unten. Die <strong>waagerechte Asymptote</strong> ist \(y=d\) (für \(a\neq0\) und \(b\neq0\); sonst ist \(f\) konstant).</li>
           <li><strong>Grenzverhalten:</strong> Der e-Teil geht auf einer Seite gegen \(0\). Dort nähert sich \(f\) der Asymptote \(y=d\). Auf der anderen Seite geht \(f\) gegen \(+\infty\) oder \(-\infty\).</li>
         </ul>
       </div>
@@ -2665,18 +2718,18 @@
     <div class="task" data-id="ex3">
       <div class="task-head"><span class="task-num">3</span><span class="level mittel">Mittel</span>
         <label class="done"><input type="checkbox"> erledigt</label></div>
-      <p>Gegeben \(f(x)=3e^x\). Berechne \(f'(\ln 2)\).</p>
+      <p>Gegeben ist \(f(x)=3e^x+x^2\). Berechne \(f'(1)\). (Runde auf 3 Dezimalen.)</p>
       <div class="answer-row">
-        <input class="num" data-answer="6" data-tol="0.01" placeholder="f'(ln 2) =" aria-label="Antwort">
+        <input class="num" data-answer="10.1548454854" data-tol="0.0006" placeholder="f'(1) =" aria-label="Antwort">
         <button class="act check">Prüfen</button><span class="mark"></span>
         <span class="feedback"></span>
       </div>
       <div class="btnrow"><button class="act ghost" data-sol>Lösung &amp; Erklärung</button></div>
       <div class="solution">
         <h4>Lösung</h4>
-        <p class="step">\(f'(x)=3e^x\) (Faktorregel).</p>
-        <p class="step">\(f'(\ln 2)=3e^{\ln 2}=3\cdot 2=6\).</p>
-        <div class="why">\(e^{\ln 2}=2\), weil \(e^x\) und \(\ln x\) Umkehrfunktionen sind — das brauchst du in Abschnitt 2 ständig.</div>
+        <p class="step">\(f'(x)=3e^x+2x\) (Faktor- und Summenregel).</p>
+        <p class="step">\(f'(1)=3e+2\approx 10{,}155\).</p>
+        <div class="why">\(e^x\) bleibt beim Ableiten \(e^x\). Der Faktor \(3\) bleibt einfach stehen.</div>
       </div>
     </div>
 
@@ -2685,7 +2738,7 @@
         <label class="done"><input type="checkbox"> erledigt</label></div>
       <p>Welche Steigung hat die Tangente an den Graphen von \(f(x)=e^x\) im Punkt \(P(1\mid e)\)? (Runde auf 3 Dezimalen.)</p>
       <div class="answer-row">
-        <input class="num" data-answer="2.71828" data-tol="0.01" placeholder="m ≈" aria-label="Antwort">
+        <input class="num" data-answer="2.7182818285" data-tol="0.0006" placeholder="m ≈" aria-label="Antwort">
         <button class="act check">Prüfen</button><span class="mark"></span>
         <span class="feedback"></span>
       </div>
@@ -2702,7 +2755,7 @@
         <label class="done"><input type="checkbox"> erledigt</label></div>
       <p>An welcher Stelle \(x\) hat der Graph von \(f(x)=e^x\) die Steigung \(5\)? (Runde auf 3 Dezimalen.)</p>
       <div class="answer-row">
-        <input class="num" data-answer="1.6094" data-tol="0.01" placeholder="x ≈" aria-label="Antwort">
+        <input class="num" data-answer="1.6094379124" data-tol="0.0006" placeholder="x ≈" aria-label="Antwort">
         <button class="act check">Prüfen</button><span class="mark"></span>
         <span class="feedback"></span>
       </div>
@@ -2854,7 +2907,7 @@
         <label class="done"><input type="checkbox"> erledigt</label></div>
       <p>Löse \(e^x=10\). (Runde auf 3 Dezimalen.)</p>
       <div class="answer-row">
-        <input class="num" data-answer="2.3026" data-tol="0.01" placeholder="x ≈" aria-label="Antwort">
+        <input class="num" data-answer="2.302585093" data-tol="0.0006" placeholder="x ≈" aria-label="Antwort">
         <button class="act check">Prüfen</button><span class="mark"></span>
         <span class="feedback"></span>
       </div>
@@ -2871,7 +2924,7 @@
         <label class="done"><input type="checkbox"> erledigt</label></div>
       <p>Löse \(4e^{0{,}5x}=12\). (Runde auf 3 Dezimalen.)</p>
       <div class="answer-row">
-        <input class="num" data-answer="2.1972" data-tol="0.01" placeholder="x ≈" aria-label="Antwort">
+        <input class="num" data-answer="2.1972245773" data-tol="0.0006" placeholder="x ≈" aria-label="Antwort">
         <button class="act check">Prüfen</button><span class="mark"></span>
         <span class="feedback"></span>
       </div>
@@ -2910,7 +2963,7 @@
         <label class="done"><input type="checkbox"> erledigt</label></div>
       <p>Löse \(2e^{-0{,}5t}=0{,}5\). (Runde auf 3 Dezimalen.)</p>
       <div class="answer-row">
-        <input class="num" data-answer="2.7726" data-tol="0.01" placeholder="t ≈" aria-label="Antwort">
+        <input class="num" data-answer="2.7725887222" data-tol="0.0006" placeholder="t ≈" aria-label="Antwort">
         <button class="act check">Prüfen</button><span class="mark"></span>
         <span class="feedback"></span>
       </div>
@@ -2963,7 +3016,7 @@
         <label class="done"><input type="checkbox"> erledigt</label></div>
       <p>Berechne \(f'(0)\) für \(f(x)=2^x\). (Runde auf 3 Dezimalen.)</p>
       <div class="answer-row">
-        <input class="num" data-answer="0.6931" data-tol="0.005" placeholder="f'(0) =" aria-label="Antwort">
+        <input class="num" data-answer="0.6931471806" data-tol="0.0006" placeholder="f'(0) =" aria-label="Antwort">
         <button class="act check">Prüfen</button><span class="mark"></span>
         <span class="feedback"></span>
       </div>
@@ -2981,7 +3034,7 @@
         <label class="done"><input type="checkbox"> erledigt</label></div>
       <p>Bestimme die Umkehrfunktion von \(f(x)=e^{2x}+1\) und gib \(f^{-1}(5)\) an. (Runde auf 3 Dezimalen.)</p>
       <div class="answer-row">
-        <input class="num" data-answer="0.6931" data-tol="0.005" placeholder="f⁻¹(5) =" aria-label="Antwort">
+        <input class="num" data-answer="0.6931471806" data-tol="0.0006" placeholder="f⁻¹(5) =" aria-label="Antwort">
         <button class="act check">Prüfen</button><span class="mark"></span>
         <span class="feedback"></span>
       </div>
@@ -3009,7 +3062,7 @@
       <div class="merk">
         <h3>📈 Die beiden Modelle</h3>
         <ul>
-          <li><strong>Exponentiell:</strong> \(N(t)=N_0\cdot e^{kt}\) — Startwert \(N_0\), Wachstum für \(k>0\), Zerfall für \(k<0\). Kennzeichen: \(N'(t)=k\cdot N(t)\) (Änderungsrate proportional zum Bestand).</li>
+          <li><strong>Exponentiell:</strong> \(N(t)=N_0\cdot e^{kt}\) — Startwert \(N_0\), Wachstum für \(k>0\), Zerfall für \(k\lt 0\). Kennzeichen: \(N'(t)=k\cdot N(t)\) (Änderungsrate proportional zum Bestand).</li>
           <li><strong>Verdopplungszeit / Halbwertszeit:</strong> \(T=\dfrac{\ln 2}{|k|}\).</li>
           <li><strong>Begrenzt:</strong> \(B(t)=S-\big(S-B_0\big)\cdot e^{-kt}\) — nähert sich der Schranke \(S\) an; \(B'(t)=k\cdot\big(S-B(t)\big)\) („je näher an der Grenze, desto langsamer").</li>
           <li><strong>Umrechnen:</strong> \(N_0\cdot b^t=N_0\cdot e^{kt}\) mit \(k=\ln b\). So wird aus jeder Exponentialfunktion eine e-Funktion.</li><li><strong>Modellqualität beurteilen:</strong> Passen die Modellwerte zu den Messwerten? Wie weit reicht die Prognose? Gibt es eine natürliche Grenze (Platz, Futter, Raumtemperatur)? Dann ist begrenztes Wachstum besser als exponentielles.</li><li><strong>Vorgriff auf Kapitel 4:</strong> \(\big(e^{kt}\big)'=k\cdot e^{kt}\). Die Regel dahinter (Kettenregel) lernst du im nächsten Kapitel.</li>
@@ -3039,7 +3092,7 @@
         <label class="done"><input type="checkbox"> erledigt</label></div>
       <p>Eine Bakterienkultur wächst gemäß \(N(t)=100\cdot e^{0{,}5t}\) (\(t\) in Stunden). Wie viele Bakterien sind es nach \(2\) Stunden? (Runde auf ganze Zahlen.)</p>
       <div class="answer-row">
-        <input class="num" data-answer="271.83" data-tol="1" placeholder="N(2) ≈" aria-label="Antwort">
+        <input class="num" data-answer="271.8281828459" data-tol="0.6" placeholder="N(2) ≈" aria-label="Antwort">
         <button class="act check">Prüfen</button><span class="mark"></span>
         <span class="feedback"></span>
       </div>
@@ -3056,7 +3109,7 @@
         <label class="done"><input type="checkbox"> erledigt</label></div>
       <p>Wie groß ist die <strong>Verdopplungszeit</strong> beim Wachstum \(N(t)=N_0\cdot e^{0{,}5t}\)? (Runde auf 3 Dezimalen.)</p>
       <div class="answer-row">
-        <input class="num" data-answer="1.3863" data-tol="0.01" placeholder="T ≈" aria-label="Antwort">
+        <input class="num" data-answer="1.3862943611" data-tol="0.0006" placeholder="T ≈" aria-label="Antwort">
         <button class="act check">Prüfen</button><span class="mark"></span>
         <span class="feedback"></span>
       </div>
@@ -3092,7 +3145,7 @@
         <label class="done"><input type="checkbox"> erledigt</label></div>
       <p>Ein Präparat zerfällt gemäß \(N(t)=50\cdot e^{-0{,}2t}\) (\(t\) in Tagen). Nach welcher Zeit ist nur noch die <strong>Hälfte</strong> vorhanden? (Runde auf 3 Dezimalen.)</p>
       <div class="answer-row">
-        <input class="num" data-answer="3.4657" data-tol="0.01" placeholder="t ≈" aria-label="Antwort">
+        <input class="num" data-answer="3.4657359028" data-tol="0.0006" placeholder="t ≈" aria-label="Antwort">
         <button class="act check">Prüfen</button><span class="mark"></span>
         <span class="feedback"></span>
       </div>
@@ -3110,7 +3163,7 @@
         <label class="done"><input type="checkbox"> erledigt</label></div>
       <p><em>(nach Abitur NRW, Stil/Thema — Anwendungsaufgabe)</em> Kaffee kühlt in einem Raum mit \(20\,{}^\circ\text{C}\) gemäß \(T(t)=20+60\cdot e^{-0{,}1t}\) ab (\(t\) in Minuten). Bestimme die Anfangstemperatur, die langfristige Temperatur und den Zeitpunkt, zu dem der Kaffee \(50\,{}^\circ\text{C}\) erreicht. Gib den Zeitpunkt ein. (Runde auf 2 Dezimalen.)</p>
       <div class="answer-row">
-        <input class="num" data-answer="6.93" data-tol="0.05" placeholder="t ≈" aria-label="Antwort">
+        <input class="num" data-answer="6.9314718056" data-tol="0.006" placeholder="t ≈" aria-label="Antwort">
         <button class="act check">Prüfen</button><span class="mark"></span><span class="unit">min</span>
         <span class="feedback"></span>
       </div>
@@ -3130,7 +3183,7 @@
         <label class="done"><input type="checkbox"> erledigt</label></div>
       <p>Schreibe \(N(t)=24\cdot 1{,}5^t\) in der Form \(N(t)=24\cdot e^{kt}\). Gib \(k\) ein. (Runde auf 3 Dezimalen.)</p>
       <div class="answer-row">
-        <input class="num" data-answer="0.4055" data-tol="0.005" placeholder="k =" aria-label="Antwort">
+        <input class="num" data-answer="0.4054651081" data-tol="0.0006" placeholder="k =" aria-label="Antwort">
         <button class="act check">Prüfen</button><span class="mark"></span>
         <span class="feedback"></span>
       </div>
@@ -3178,8 +3231,8 @@
         <h3>〰️ Sinusfunktion \(f(x)=a\cdot\sin\big(b\,(x+c)\big)+d\)</h3>
         <ul>
           <li>\(|a|\) ist die <strong>Amplitude</strong>: der größte Abstand von der Mittellinie.</li>
-          <li>Die <strong>Periode</strong> ist \(p=\dfrac{2\pi}{b}\). Nach dieser Länge wiederholt sich der Graph.</li>
-          <li>\(c\) verschiebt nach links (\(c>0\)) oder rechts (\(c<0\)). Aus \(\sin\big(b(x-2)\big)\) wird eine Verschiebung um \(2\) nach rechts.</li>
+          <li>Die <strong>Periode</strong> ist für \(b>0\) gleich \(p=\dfrac{2\pi}{b}\) (allgemein \(\tfrac{2\pi}{|b|}\)). Nach dieser Länge wiederholt sich der Graph.</li>
+          <li>\(c\) verschiebt nach links (\(c>0\)) oder rechts (\(c\lt 0\)). Aus \(\sin\big(b(x-2)\big)\) wird eine Verschiebung um \(2\) nach rechts.</li>
           <li>\(d\) verschiebt nach oben oder unten. \(y=d\) ist die <strong>Mittellinie</strong>. Höchster Wert \(d+|a|\), tiefster Wert \(d-|a|\).</li>
           <li>\(\cos x=\sin\big(x+\tfrac\pi2\big)\): Der Kosinus ist ein verschobener Sinus.</li>
         </ul>
@@ -3226,7 +3279,7 @@
         <label class="done"><input type="checkbox"> erledigt</label></div>
       <p>Welche Periode hat \(f(x)=2\sin(3x)\)? (Runde auf 3 Dezimalen.)</p>
       <div class="answer-row">
-        <input class="num" data-answer="2.0944" data-tol="0.005" placeholder="p =" aria-label="Antwort">
+        <input class="num" data-answer="2.0943951024" data-tol="0.0006" placeholder="p =" aria-label="Antwort">
         <button class="act check">Prüfen</button><span class="mark"></span>
         <span class="feedback"></span>
       </div>
@@ -3299,7 +3352,7 @@
         <label class="done"><input type="checkbox"> erledigt</label></div>
       <p>An welcher Stelle im Intervall \([0;\pi]\) hat \(f(x)=\sin x+\cos x\) eine waagerechte Tangente? (Runde auf 3 Dezimalen.)</p>
       <div class="answer-row">
-        <input class="num" data-answer="0.7854" data-tol="0.005" placeholder="x =" aria-label="Antwort">
+        <input class="num" data-answer="0.7853981634" data-tol="0.0006" placeholder="x =" aria-label="Antwort">
         <button class="act check">Prüfen</button><span class="mark"></span>
         <span class="feedback"></span>
       </div>
@@ -3318,7 +3371,7 @@
         <label class="done"><input type="checkbox"> erledigt</label></div>
       <p>Für den Wasserstand aus dem Beispiel gilt \(h(t)=1{,}5\sin\big(\tfrac\pi6(t-2)\big)+4\). Wie schnell steigt das Wasser höchstens (in m pro Stunde)? (Runde auf 3 Dezimalen.)</p>
       <div class="answer-row">
-        <input class="num" data-answer="0.7854" data-tol="0.005" placeholder="h'max =" aria-label="Antwort">
+        <input class="num" data-answer="0.7853981634" data-tol="0.0006" placeholder="h'max =" aria-label="Antwort">
         <button class="act check">Prüfen</button><span class="mark"></span><span class="unit">m/h</span>
         <span class="feedback"></span>
       </div>
@@ -3447,7 +3500,7 @@
         <label class="done"><input type="checkbox"> erledigt</label></div>
       <p>Gegeben \(f(x)=x\cdot e^{-x}\). Berechne \(f'(2)\). (Runde auf 3 Dezimalen.)</p>
       <div class="answer-row">
-        <input class="num" data-answer="-0.1353" data-tol="0.005" placeholder="f'(2) ≈" aria-label="Antwort">
+        <input class="num" data-answer="-0.1353352832" data-tol="0.0006" placeholder="f'(2) ≈" aria-label="Antwort">
         <button class="act check">Prüfen</button><span class="mark"></span>
         <span class="feedback"></span>
       </div>
@@ -3539,7 +3592,7 @@
         <label class="done"><input type="checkbox"> erledigt</label></div>
       <p><em>(aus einer LK-Klausur, hilfsmittelfrei)</em> Leite \(i(x)=\dfrac{x^3}{e^x}\) ab und berechne \(i'(1)\). (Runde auf 3 Dezimalen.)</p>
       <div class="answer-row">
-        <input class="num" data-answer="0.7358" data-tol="0.005" placeholder="i'(1) =" aria-label="Antwort">
+        <input class="num" data-answer="0.7357588823" data-tol="0.0006" placeholder="i'(1) =" aria-label="Antwort">
         <button class="act check">Prüfen</button><span class="mark"></span>
         <span class="feedback"></span>
       </div>
@@ -3585,7 +3638,7 @@
         <p><strong>Untersuche \(f(x)=x\cdot e^{-x}\) auf Nullstellen, Extrem- und Wendepunkte sowie das Globalverhalten.</strong></p>
         <p class="step"><strong>Nullstellen:</strong> \(x\cdot e^{-x}=0\); da \(e^{-x}>0\), bleibt nur \(x=0\).</p>
         <p class="step"><strong>Ableitungen:</strong> \(f'(x)=(1-x)\,e^{-x}\) und \(f''(x)=(x-2)\,e^{-x}\) (jeweils Produktregel + Ausklammern).</p>
-        <p class="step"><strong>Extrempunkt:</strong> \(f'(x)=0\Rightarrow x=1\). \(f''(1)=-e^{-1}<0\Rightarrow\) Hochpunkt \(H\big(1\mid e^{-1}\big)\), \(e^{-1}\approx 0{,}37\).</p>
+        <p class="step"><strong>Extrempunkt:</strong> \(f'(x)=0\Rightarrow x=1\). \(f''(1)=-e^{-1}\lt 0\Rightarrow\) Hochpunkt \(H\big(1\mid e^{-1}\big)\), \(e^{-1}\approx 0{,}37\).</p>
         <p class="step"><strong>Wendepunkt:</strong> \(f''(x)=0\Rightarrow x=2\), Vorzeichenwechsel ✓ \(\Rightarrow W\big(2\mid 2e^{-2}\big)\), \(2e^{-2}\approx 0{,}27\).</p>
         <p class="step"><strong>Globalverhalten:</strong> \(x\to\infty:\ f(x)\to 0\) (die e-Funktion „gewinnt" gegen \(x\); \(x\)-Achse ist Asymptote); \(x\to-\infty:\ f(x)\to-\infty\).</p>
       </div>
@@ -3707,7 +3760,7 @@
         <label class="done"><input type="checkbox"> erledigt</label></div>
       <p><em>(aus einer LK-Klausur, hilfsmittelfrei)</em> Untersuche \(f(x)=x^2e^{-x}\) auf Grenzverhalten und Schnittpunkte mit den Achsen. Bestimme den Hochpunkt und gib seine \(y\)-Koordinate ein. (Runde auf 3 Dezimalen.)</p>
       <div class="answer-row">
-        <input class="num" data-answer="0.5413" data-tol="0.005" placeholder="y =" aria-label="Antwort">
+        <input class="num" data-answer="0.5413411329" data-tol="0.0006" placeholder="y =" aria-label="Antwort">
         <button class="act check">Prüfen</button><span class="mark"></span>
         <span class="feedback"></span>
       </div>
@@ -3761,7 +3814,7 @@
         <p class="step"><strong>Ableiten</strong> (Produkt- + Kettenregel, \(a\) ist Konstante): \(f_a'(x)=e^{-ax}+x\cdot(-a)e^{-ax}=(1-ax)\,e^{-ax}\).</p>
         <p class="step"><strong>Extremstelle:</strong> \(f_a'(x)=0\); da \(e^{-ax}>0\): \(1-ax=0\Rightarrow x=\dfrac1a\).</p>
         <p class="step"><strong>Art &amp; Punkt:</strong> Vorzeichenwechsel von \(+\) nach \(-\) \(\Rightarrow\) Hochpunkt. \(f_a\big(\tfrac1a\big)=\tfrac1a\,e^{-1}\Rightarrow H\big(\tfrac1a\mid\tfrac{1}{a\,e}\big)\).</p>
-        <p class="step"><strong>Ortskurve:</strong> Aus \(x=\tfrac1a\) folgt \(a=\tfrac1x\); einsetzen in \(y=\tfrac1a e^{-1}=x\cdot e^{-1}\). Die Hochpunkte liegen also auf der <strong>Geraden</strong> \(y=\dfrac{x}{e}\).</p>
+        <p class="step"><strong>Ortskurve:</strong> Aus \(x=\tfrac1a\) folgt \(a=\tfrac1x\); einsetzen in \(y=\tfrac1a e^{-1}=x\cdot e^{-1}\). Die Hochpunkte liegen also auf der <strong>Geraden</strong> \(y=\dfrac{x}{e}\), genauer auf dem Teil mit \(x>0\) (wegen \(a>0\)).</p>
       </div>
 
       <div class="figure">
@@ -3835,7 +3888,7 @@
         <label class="done"><input type="checkbox"> erledigt</label></div>
       <p><em>(nach Abitur NRW, Stil/Thema)</em> Zeige, dass alle Hochpunkte der Schar \(f_a(x)=x\cdot e^{-ax}\) (\(a>0\)) auf einer Ursprungsgeraden liegen, und gib deren Steigung an. (Runde auf 3 Dezimalen.)</p>
       <div class="answer-row">
-        <input class="num" data-answer="0.3679" data-tol="0.005" placeholder="m ≈" aria-label="Antwort">
+        <input class="num" data-answer="0.3678794412" data-tol="0.0006" placeholder="m ≈" aria-label="Antwort">
         <button class="act check">Prüfen</button><span class="mark"></span>
         <span class="feedback"></span>
       </div>
@@ -3843,7 +3896,7 @@
       <div class="solution">
         <h4>Lösung</h4>
         <p class="step">Hochpunkt: \(H\big(\tfrac1a\mid \tfrac1a e^{-1}\big)\), also \(x=\tfrac1a\) und \(y=\tfrac1a\,e^{-1}\).</p>
-        <p class="step"><strong>Parameter eliminieren:</strong> \(y=x\cdot e^{-1}\) — eine Ursprungsgerade.</p>
+        <p class="step"><strong>Parameter eliminieren:</strong> \(y=x\cdot e^{-1}\) für \(x>0\): ein Teil einer Ursprungsgeraden (ein Strahl ohne den Ursprung).</p>
         <p class="step"><strong>Steigung:</strong> \(m=e^{-1}=\tfrac1e\approx 0{,}368\).</p>
         <div class="why">Dass die Ortskurve hier eine <em>Gerade</em> ist, wird in Abituraufgaben gern abgefragt. Das exakte Ergebnis \(\tfrac1e\) unbedingt neben der Näherung angeben.</div>
       </div>
@@ -3854,7 +3907,7 @@
         <label class="done"><input type="checkbox"> erledigt</label></div>
       <p><em>(aus einer LK-Klausur)</em> Für \(f_a(x)=(a^2x+a)\,e^{-ax}\) mit \(a>0\) liegt der Wendepunkt bei \(W_a\big(\tfrac1a\mid\tfrac{2a}{e}\big)\). Die Wendetangente ist \(g_a(x)=-\tfrac{a^2}{e}x+\tfrac{3a}{e}\). Zeige: Sie schließt mit den positiven Achsen ein Dreieck ein, dessen Fläche nicht von \(a\) abhängt. Gib die Fläche ein. (Runde auf 3 Dezimalen.)</p>
       <div class="answer-row">
-        <input class="num" data-answer="1.6555" data-tol="0.005" placeholder="A =" aria-label="Antwort">
+        <input class="num" data-answer="1.6554574853" data-tol="0.0006" placeholder="A =" aria-label="Antwort">
         <button class="act check">Prüfen</button><span class="mark"></span>
         <span class="feedback"></span>
       </div>
@@ -3947,7 +4000,7 @@
         <label class="done"><input type="checkbox"> erledigt</label></div>
       <p>Mit der Stammfunktion \(F(x)=(-x-1)\,e^{-x}\) von \(f(x)=x\,e^{-x}\): Berechne \(\displaystyle\int_0^1 x\,e^{-x}\,dx\). (Runde auf 3 Dezimalen.)</p>
       <div class="answer-row">
-        <input class="num" data-answer="0.2642" data-tol="0.005" placeholder="Wert ≈" aria-label="Antwort">
+        <input class="num" data-answer="0.2642411177" data-tol="0.0006" placeholder="Wert ≈" aria-label="Antwort">
         <button class="act check">Prüfen</button><span class="mark"></span>
         <span class="feedback"></span>
       </div>
@@ -3964,7 +4017,7 @@
         <label class="done"><input type="checkbox"> erledigt</label></div>
       <p><em>(nach Abitur NRW, Stil/Thema — Anwendungsaufgabe)</em> In ein Regenrückhaltebecken fließt Wasser mit der Rate \(r(t)=t\cdot e^{-0{,}5t}\) (\(t\) in Stunden, \(r\) in \(\tfrac{\text{Tsd. m}^3}{\text{h}}\)). Weise nach, dass \(R(t)=(-2t-4)\,e^{-0{,}5t}\) eine Stammfunktion von \(r\) ist, und berechne die Wassermenge, die in den ersten \(4\) Stunden zufließt. (Runde auf 3 Dezimalen.)</p>
       <div class="answer-row">
-        <input class="num" data-answer="2.3767" data-tol="0.01" placeholder="Menge ≈" aria-label="Antwort">
+        <input class="num" data-answer="2.3759766012" data-tol="0.0006" placeholder="Menge ≈" aria-label="Antwort">
         <button class="act check">Prüfen</button><span class="mark"></span><span class="unit">Tsd. m³</span>
         <span class="feedback"></span>
       </div>
@@ -3973,7 +4026,7 @@
         <h4>Lösung</h4>
         <p class="step"><strong>Nachweis</strong> (Produkt- + Kettenregel): \(R'(t)=(-2)\,e^{-0{,}5t}+(-2t-4)\cdot\big(-0{,}5\,e^{-0{,}5t}\big)\)</p>
         <p class="step">\(=e^{-0{,}5t}\,\big(-2+t+2\big)=t\,e^{-0{,}5t}=r(t)\) ✓.</p>
-        <p class="step"><strong>Wassermenge</strong> (Rate integrieren, Kapitel 2!): \(\displaystyle\int_0^4 r(t)\,dt=R(4)-R(0)=\big(-12e^{-2}\big)-\big(-4\big)=4-\tfrac{12}{e^2}\approx 2{,}377\) Tsd. m³.</p>
+        <p class="step"><strong>Wassermenge</strong> (Rate integrieren, Kapitel 2!): \(\displaystyle\int_0^4 r(t)\,dt=R(4)-R(0)=\big(-12e^{-2}\big)-\big(-4\big)=4-\tfrac{12}{e^2}\approx 2{,}376\) Tsd. m³.</p>
         <div class="why">Diese Aufgabe verbindet alles: Rate→Bestand (Kap. 2), Produkt-/Kettenregel (Kap. 4.1) und Stammfunktions-Nachweis — exakt so sind Abitur-Analysisaufgaben gebaut.</div>
       </div>
     </div>
@@ -4008,7 +4061,7 @@
         <ul>
           <li>\(f(t)\): <strong>Zuflussrate</strong>, \(g(t)\): <strong>Abflussrate</strong> (beide in \(\tfrac{\text{m}^3}{\text{h}}\)).</li>
           <li>\(\int_0^t f(x)\,dx\): seit Beginn zugeflossene <strong>Menge</strong> (in \(\text{m}^3\)).</li>
-          <li>\(d(t)=f(t)-g(t)\): <strong>Änderungsrate</strong> der Wassermenge im Becken. \(d>0\): Menge steigt. \(d<0\): Menge sinkt.</li>
+          <li>\(d(t)=f(t)-g(t)\): <strong>Änderungsrate</strong> der Wassermenge im Becken. \(d>0\): Menge steigt. \(d\lt 0\): Menge sinkt.</li>
           <li><strong>Menge maximal</strong>, wenn \(d\) von \(+\) nach \(-\) wechselt, also wo sich \(f\) und \(g\) schneiden.</li>
           <li><strong>Menge steigt am schnellsten</strong>, wo \(d\) maximal ist. Das ist <em>nicht</em> der Zeitpunkt der größten Menge.</li>
         </ul>
@@ -4047,7 +4100,7 @@
         <label class="done"><input type="checkbox"> erledigt</label></div>
       <p>Berechne \(f(20)\) für die Zuflussrate \(f(t)=7200\,t^2e^{-0{,}25t}\) und deute den Wert. (Runde auf ganze Zahlen.)</p>
       <div class="answer-row">
-        <input class="num" data-answer="19405" data-tol="3" placeholder="f(20) =" aria-label="Antwort">
+        <input class="num" data-answer="19405.2873573661" data-tol="0.6" placeholder="f(20) =" aria-label="Antwort">
         <button class="act check">Prüfen</button><span class="mark"></span><span class="unit">m³/h</span>
         <span class="feedback"></span>
       </div>
@@ -4085,7 +4138,7 @@
         <label class="done"><input type="checkbox"> erledigt</label></div>
       <p>Der Abfluss wird durch \(g_a(t)=3600\,a\,t^3e^{-0{,}25t}\) (\(a>0\)) modelliert. Bestimme \(a\) so, dass zum Zeitpunkt \(t=12\) genau \(46\,800\ \tfrac{\text{m}^3}{\text{h}}\) abfließen. (Runde auf 2 Dezimalen.)</p>
       <div class="answer-row">
-        <input class="num" data-answer="0.151" data-tol="0.006" placeholder="a =" aria-label="Antwort">
+        <input class="num" data-answer="0.1511064699" data-tol="0.006" placeholder="a =" aria-label="Antwort">
         <button class="act check">Prüfen</button><span class="mark"></span>
         <span class="feedback"></span>
       </div>
@@ -4103,7 +4156,7 @@
         <label class="done"><input type="checkbox"> erledigt</label></div>
       <p>Mit \(a=0{,}15\) gilt \(g(t)=540\,t^3e^{-0{,}25t}\). Zu welchem Zeitpunkt ist die Wassermenge im Becken am größten? (Runde auf 2 Dezimalen.)</p>
       <div class="answer-row">
-        <input class="num" data-answer="13.333" data-tol="0.05" placeholder="t =" aria-label="Antwort">
+        <input class="num" data-answer="13.3333333333" data-tol="0.006" placeholder="t =" aria-label="Antwort">
         <button class="act check">Prüfen</button><span class="mark"></span><span class="unit">h</span>
         <span class="feedback"></span>
       </div>
@@ -4146,7 +4199,7 @@
         <h4>Lösung</h4>
         <p class="step"><strong>(a)</strong> Über die 40 Stunden ist mehr Wasser zu- als abgeflossen. Am Ende ist mehr Wasser im Becken als zu Beginn (etwa \(98\,000\) m³ mehr).</p>
         <p class="step"><strong>(b)</strong> Gesucht sind 8-Stunden-Zeiträume, in denen die Hälfte des gesamten Zuflusses ins Becken gelangt. \(t_1\) liegt vor Beobachtungsbeginn und entfällt. Sinnvoll sind \(t_2\) und \(t_3\): Von etwa 4,26 h bis 12,26 h oder von 5,06 h bis 13,06 h fließt jeweils die Hälfte zu.</p>
-        <p class="step"><strong>(c)</strong> \(\displaystyle\int_0^{t_0}d(t)\,dt=0\) mit \(0<t_0\le40\).</p>
+        <p class="step"><strong>(c)</strong> \(\displaystyle\int_0^{t_0}d(t)\,dt=0\) mit \(0\lt t_0\le40\).</p>
         <p class="step">Hinweis: Mit \(a=0{,}15\) hat diese Gleichung im Zeitraum keine Lösung. Die Menge steigt bis \(t\approx13{,}3\), sinkt dann, bleibt aber bis \(t=40\) über dem Startwert. Das passt zu (a).</p>
         <div class="why">Diese Teilaufgaben bringen keine Rechenpunkte, sondern Deutungspunkte. Schreibe immer: Was wird berechnet? In welcher Einheit? Was heißt das für das Becken?</div>
       </div>
@@ -4156,55 +4209,86 @@
   <div class="wrap"><div class="pagenav"></div></div>
 </div>
 
-<footer class="wrap"><div class="topic-foot">Mathematik LK · Q1 · Analysis · NRW<br>Eingaben und Fortschritt bleiben lokal im Browser, es wird nichts gespeichert oder gesendet.<br>Aufgaben im Stil des Zentralabiturs NRW; Inhalte gemäß Kernlehrplan und Abiturvorgaben 2027.</div></footer>
+<footer class="wrap"><div class="topic-foot">Mathematik LK · Q1 · Analysis · NRW<br>Erledigt-Häkchen und das zuletzt geöffnete Thema werden nur in diesem Browser gespeichert. Antworten werden nicht gespeichert und nirgendwohin gesendet.<br>Aufgaben im Stil des Zentralabiturs NRW; Inhalte gemäß Kernlehrplan und Abiturvorgaben 2027.</div></footer>
 </main>
 
 <script>
 
 /* ---------- Hilfsfunktion: Zahl parsen (Komma, Bruch) ---------- */
 function parseNum(s){
-  s=(s||"").trim().replace(",", ".").replace(/\s+/g,"");
-  if(s==="")return NaN;
-  if(s.indexOf("/")>-1){var p=s.split("/");return parseFloat(p[0])/parseFloat(p[1]);}
-  return parseFloat(s);
+  /* Erlaubt: Zahl oder ein Bruch, Komma oder Punkt, typografisches Minus. Alles andere ist ungültig. */
+  s=(s||"").trim().replace(/[−‒–—]/g,"-").replace(/\s+/g,"").replace(/,/g,".");
+  var num="[+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+)";
+  var m=s.match(new RegExp("^("+num+")(?:/("+num+"))?$"));
+  if(!m)return NaN;
+  var a=parseFloat(m[1]);
+  if(m[2]===undefined)return a;
+  var b=parseFloat(m[2]);
+  return b===0?NaN:a/b;
+}
+/* Zusätzliche Lesart "19.405" = 19405 (Tausenderpunkt) */
+function parseCandidates(raw){
+  var c=[parseNum(raw)],t=(raw||"").trim().replace(/\s+/g,"");
+  if(/^\d{1,3}(\.\d{3})+$/.test(t))c.push(parseFloat(t.replace(/\./g,"")));
+  return c.filter(function(v){return Number.isFinite(v);});
 }
 
 /* ---------- Aufgaben-Logik ---------- */
-document.querySelectorAll(".task").forEach(function(task){
+document.querySelectorAll(".task").forEach(function(task,ti){
   var fb=task.querySelector(".feedback");
   var mark=task.querySelector(".mark");
+  var nr=task.querySelector(".task-num");
+  var name="Aufgabe "+(nr?nr.textContent.trim():"");
+  var tid=task.dataset.id||("t"+ti);
+  if(fb){fb.setAttribute("role","status");fb.setAttribute("aria-live","polite");fb.id="fb-"+tid;}
+  function reset(){
+    if(mark)mark.textContent="";
+    if(fb){fb.className="feedback";fb.textContent="";}
+    task.querySelectorAll(".mc .opt").forEach(function(o){o.classList.remove("correct","incorrect");});
+  }
 
   /* Numerische Prüfung */
   var checkBtn=task.querySelector(".check");
   if(checkBtn){
+    var inpEl=task.querySelector("input.num");
+    inpEl.setAttribute("aria-label","Antwort zu "+name+(inpEl.placeholder?" ("+inpEl.placeholder+")":""));
+    if(fb)inpEl.setAttribute("aria-describedby",fb.id);
+    inpEl.setAttribute("inputmode","decimal");
     checkBtn.addEventListener("click",function(){
-      var inp=task.querySelector("input.num");
-      var ans=parseFloat(inp.dataset.answer);
-      var tol=parseFloat(inp.dataset.tol||"0.001");
-      var v=parseNum(inp.value);
-      if(isNaN(v)){
-        fb.className="feedback show bad";fb.textContent="Bitte eine Zahl eingeben.";
+      var ans=parseFloat(inpEl.dataset.answer);
+      var tol=parseFloat(inpEl.dataset.tol||"0.001");
+      var c=parseCandidates(inpEl.value);
+      if(!c.length){
+        fb.className="feedback show bad";fb.textContent="Bitte eine Zahl oder einen Bruch eingeben, z. B. 2,5 oder -3/4.";
         mark.textContent="";return;
       }
-      if(Math.abs(v-ans)<=tol){
+      var best=c.reduce(function(m,v){return Math.abs(v-ans)<Math.abs(m-ans)?v:m;},c[0]);
+      var d=Math.abs(best-ans);
+      if(d<=tol){
         mark.textContent="✓";
         fb.className="feedback show good";fb.textContent="Richtig! 🎉";
+      }else if(d<=20*tol&&tol<0.1){
+        mark.textContent="✗";
+        fb.className="feedback show bad";fb.textContent="Fast! Prüfe die Rundung. Wie genau soll das Ergebnis sein?";
       }else{
         mark.textContent="✗";
-        fb.className="feedback show bad";fb.textContent="Noch nicht — rechne nach oder sieh dir die Lösung an.";
+        fb.className="feedback show bad";fb.textContent="Noch nicht. Rechne nach oder sieh dir die Lösung an.";
       }
     });
-    var inpEl=task.querySelector("input.num");
     inpEl.addEventListener("keydown",function(e){if(e.key==="Enter")checkBtn.click();});
+    inpEl.addEventListener("input",reset);
   }
 
   /* Multiple-Choice-Prüfung */
   var checkMc=task.querySelector(".check-mc");
   if(checkMc){
+    var mcBox=task.querySelector(".mc");
+    mcBox.setAttribute("role","radiogroup");
+    mcBox.setAttribute("aria-label","Antwortmöglichkeiten zu "+name);
+    mcBox.addEventListener("change",reset);
     checkMc.addEventListener("click",function(){
-      var mc=task.querySelector(".mc");
-      var correct=parseInt(mc.dataset.answer,10);
-      var opts=mc.querySelectorAll(".opt");
+      var correct=parseInt(mcBox.dataset.answer,10);
+      var opts=mcBox.querySelectorAll(".opt");
       var chosen=-1;
       opts.forEach(function(o,i){
         o.classList.remove("correct","incorrect");
@@ -4214,28 +4298,30 @@ document.querySelectorAll(".task").forEach(function(task){
       opts[chosen-1].classList.add(chosen===correct?"correct":"incorrect");
       if(chosen!==correct)opts[correct-1].classList.add("correct");
       if(chosen===correct){mark.textContent="✓";fb.className="feedback show good";fb.textContent="Richtig! 🎉";}
-      else{mark.textContent="✗";fb.className="feedback show bad";fb.textContent="Leider falsch — die richtige Option ist markiert.";}
+      else{mark.textContent="✗";fb.className="feedback show bad";fb.textContent="Leider falsch. Die richtige Option ist jetzt markiert.";}
     });
   }
 
   /* Lösung ein-/ausblenden */
   var solBtn=task.querySelector("[data-sol]");
   if(solBtn){
+    var sol=task.querySelector(".solution");
+    sol.id="sol-"+tid;
+    solBtn.setAttribute("aria-controls",sol.id);
+    solBtn.setAttribute("aria-expanded","false");
     solBtn.addEventListener("click",function(){
-      var sol=task.querySelector(".solution");
       var open=sol.classList.toggle("show");
       if(!solBtn.dataset.label)solBtn.dataset.label=solBtn.textContent;
       solBtn.textContent=open?"Lösung ausblenden":solBtn.dataset.label;
+      solBtn.setAttribute("aria-expanded",open?"true":"false");
     });
   }
 
   /* Fortschritt (localStorage) */
   var cb=task.querySelector(".done input");
   if(cb){
-    /* Vorlesegeräte: jede Aufgabe eindeutig benennen, nicht 82-mal "erledigt" */
-    var nr=task.querySelector(".task-num"),lvl=task.querySelector(".level");
-    cb.setAttribute("aria-label","Aufgabe "+(nr?nr.textContent.trim():"")+
-      (lvl?" ("+lvl.textContent.trim()+")":"")+" erledigt");
+    var lvl=task.querySelector(".level");
+    cb.setAttribute("aria-label",name+(lvl?" ("+lvl.textContent.trim()+")":"")+" erledigt");
     var key="analysisQ1-"+task.dataset.id;
     try{if(localStorage.getItem(key)==="1")cb.checked=true;}catch(e){}
     cb.addEventListener("change",function(){
@@ -4300,7 +4386,7 @@ function initBoards(){
     var fR=b.create("functiongraph",[fn,0,3.7],{strokeColor:col.green,strokeWidth:3});
     var fL=b.create("functiongraph",[fn,-3.7,3.7],{strokeColor:"#00000000",strokeWidth:0,visible:false});
     b.create("point",[0,0],{name:"W",size:3,fixed:true,color:col.orange,label:{offset:[8,-16],fontSize:13}});
-    var g=b.create("glider",[1.8,fn(1.8),fR],{name:"",size:5,fillColor:col.accent,strokeColor:"#fff",strokeWidth:2});
+    var g=b.create("glider",[1.8,fn(1.8),fL],{name:"",size:5,fillColor:col.accent,strokeColor:"#fff",strokeWidth:2});
     b.create("tangent",[g],{strokeColor:col.accent,strokeWidth:1.6,dash:2});
     /* Legende */
     b.create("text",[-4.05,3.35,"■ f'' < 0 · rechtsgekrümmt ⌢"],{fontSize:12,fixed:true,strokeColor:col.red,cssStyle:"font-family:system-ui,sans-serif"});
@@ -4356,8 +4442,8 @@ function initBoards(){
   /* Abb.5 — Schar f_a(x)=x^3-3a^2 x, Ortskurve y=-2x^3 */
   safe("jxg5",function(){
     var b=JXG.JSXGraph.initBoard("jxg5",{boundingbox:[-4,6,4,-6],axis:true,showCopyright:false,showNavigation:false});
-    var s=b.create("slider",[[-3.6,-4.6],[3.6,-4.6],[0.4,1.3,2.2]],{name:"a",snapWidth:0.01,fillColor:col.accent,strokeColor:col.accent});
-    ANIM.jxg5=function(){sweep(s,b,0.4,2.2,4200,true);};
+    var s=b.create("slider",[[-3.6,-4.6],[3.6,-4.6],[0.4,1.2,1.4]],{name:"a",snapWidth:0.01,fillColor:col.accent,strokeColor:col.accent});
+    ANIM.jxg5=function(){sweep(s,b,0.4,1.4,4200,true);};
     b.create("functiongraph",[function(x){var a=s.Value();return x*x*x-3*a*a*x;},-3.4,3.4],{strokeColor:col.accent,strokeWidth:2.5});
     b.create("text",[-3.8,5.4,function(){var a=s.Value();return "a = "+a.toFixed(2)+"   →   fₐ(x) = x³ − "+(3*a*a).toFixed(2)+"·x";}],
       {fontSize:14,fixed:true,cssStyle:"font-family:system-ui,sans-serif;font-weight:600"});
@@ -4542,7 +4628,7 @@ function initBoards(){
 
   /* Abb.13 — e^x und ln(x) gespiegelt an y=x */
   safe("jxg13",function(){
-    var b=JXG.JSXGraph.initBoard("jxg13",{boundingbox:[-4.2,4.4,4.6,-4.2],axis:true,showCopyright:false,showNavigation:false});
+    var b=JXG.JSXGraph.initBoard("jxg13",{boundingbox:[-4.2,4.4,4.6,-4.2],axis:true,showCopyright:false,showNavigation:false,keepaspectratio:true});
     b.create("line",[[0,0],[1,1]],{strokeColor:"#9aa6b5",strokeWidth:1.4,dash:2,straightFirst:true,straightLast:true});
     var fe=b.create("functiongraph",[function(x){return Math.exp(x);},-4.1,1.42],{strokeColor:col.accent,strokeWidth:2.5});
     b.create("functiongraph",[function(x){return Math.log(x);},0.02,4.5],{strokeColor:col.orange,strokeWidth:2.5});
@@ -4629,7 +4715,7 @@ function initBoards(){
   });
   /* Abb.18 — Sekante wird Tangente, Normale */
   safe("jxg18",function(){
-    var b=JXG.JSXGraph.initBoard("jxg18",{boundingbox:[-1.6,6.4,3.8,-1.9],axis:true,showCopyright:false,showNavigation:false});
+    var b=JXG.JSXGraph.initBoard("jxg18",{boundingbox:[-1.6,6.4,3.8,-1.9],axis:true,showCopyright:false,showNavigation:false,keepaspectratio:true});
     var fn=function(x){return x*x*x-3*x*x+4;},dfn=function(x){return 3*x*x-6*x;};
     var G=b.create("functiongraph",[fn,-1.5,3.7],{strokeColor:col.accent,strokeWidth:2.6});
     var P=b.create("glider",[1,2,G],{name:"P",size:5,fillColor:col.accent,strokeColor:"#fff",strokeWidth:2,label:{offset:[-18,12],fontSize:14}});
@@ -4739,7 +4825,7 @@ function initBoards(){
     var sb=b.create("slider",[[1.0,-5.5],[5.1,-5.5],[-2,1,2]],{name:"b",snapWidth:0.1,fillColor:col.green,strokeColor:col.green});
     var sc=b.create("slider",[[-5.4,-6.6],[-1.3,-6.6],[-3,0,3]],{name:"c",snapWidth:0.1,fillColor:col.orange,strokeColor:col.orange});
     var sd=b.create("slider",[[1.0,-6.6],[5.1,-6.6],[-3,0,3]],{name:"d",snapWidth:0.1,fillColor:col.red,strokeColor:col.red});
-    b.create("line",[[0,function(){return sd.Value();}],[1,function(){return sd.Value();}]],{strokeColor:col.red,strokeWidth:1.4,dash:2});
+    b.create("functiongraph",[function(x){return (Math.abs(sb.Value())<0.05||Math.abs(sa.Value())<0.05)?NaN:sd.Value();},-6,6],{strokeColor:col.red,strokeWidth:1.4,dash:2});
     b.create("functiongraph",[function(x){return sa.Value()*Math.exp(sb.Value()*(x-sc.Value()))+sd.Value();},-6,6],{strokeColor:col.accent,strokeWidth:2.8});
     function n(v){return (v<0?"− ":"+ ")+Math.abs(v).toFixed(1);}
     b.create("text",[-5.8,6.9,function(){
@@ -4747,7 +4833,7 @@ function initBoards(){
     }],{fontSize:15,fixed:true,cssStyle:"font-family:system-ui,sans-serif;font-weight:700"});
     b.create("text",[-5.8,6.0,function(){
       var bb=sb.Value(),d=sd.Value().toFixed(1),a=sa.Value();
-      if(Math.abs(bb)<0.05||Math.abs(a)<0.05)return "Konstante Funktion: y = "+(a+sd.Value()).toFixed(1);
+      if(Math.abs(bb)<0.05||Math.abs(a)<0.05)return "Konstante Funktion y = "+(a+sd.Value()).toFixed(1)+": keine Asymptote";
       var inf=(a*bb>0?"+∞":"−∞"),inf2=(a>0?"+∞":"−∞");
       return bb>0?"x → −∞: f(x) → "+d+"   ·   x → +∞: f(x) → "+inf2
                  :"x → +∞: f(x) → "+d+"   ·   x → −∞: f(x) → "+inf2;
@@ -4769,6 +4855,7 @@ function initBoards(){
       return "f(x) = "+sa.Value().toFixed(1)+" · sin("+sb.Value().toFixed(2)+"·(x "+(c<0?"− ":"+ ")+Math.abs(c).toFixed(1)+")) "+(d<0?"− ":"+ ")+Math.abs(d).toFixed(1);
     }],{fontSize:15,fixed:true,cssStyle:"font-family:system-ui,sans-serif;font-weight:700"});
     b.create("text",[-0.8,5.35,function(){
+      if(Math.abs(sa.Value())<0.05)return "a = 0: konstante Funktion y = "+sd.Value().toFixed(1)+", keine Periode";
       return "Amplitude "+Math.abs(sa.Value()).toFixed(1)+"   ·   Periode 2π/b ≈ "+(2*Math.PI/sb.Value()).toFixed(2)+"   ·   Mittellinie y = "+sd.Value().toFixed(1);
     }],{fontSize:13,fixed:true,strokeColor:"#6b665d",cssStyle:"font-family:system-ui,sans-serif"});
     ANIM.jxg23=function(){sweep(sb,b,0.25,3,6000,true);};
@@ -4816,6 +4903,8 @@ function initBoards(){
     ANIM.jxg24=function(){sweep(st,b,0,40,9000,false);};
   });
 
+  /* Startthema: dessen Grafiken jetzt bauen (beim Laden waren sie noch nicht registriert) */
+  initVisibleBoards();resizeBoards();
 }
 if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",initBoards);}else{initBoards();}
 
@@ -4884,24 +4973,33 @@ function renderNav(){
 
 
 /* Schmale Bildschirme: lange Infotexte aus der Grafik in eine Zeile darunter verschieben */
+function boardOfBox(bx){for(var k in JXG.boards){if(JXG.boards[k].containerObj===bx)return JXG.boards[k];}return null;}
 function mobileReadout(bx){
-  if(window.innerWidth>620||bx.dataset.readout)return;
-  var bd=null;for(var k in JXG.boards){if(JXG.boards[k].containerObj===bx)bd=JXG.boards[k];}
-  if(!bd)return;
-  var long=[];
+  var narrow=bx.offsetWidth>0&&bx.offsetWidth<560;
+  var st=bx._ro;
+  if(!narrow){
+    if(st){ /* zurück zur breiten Darstellung */
+      st.long.forEach(function(o){o.setAttribute({visible:true});});
+      st.sl.forEach(function(o){o.label.setAttribute({visible:true});});
+      if(st.box.parentNode)st.box.parentNode.removeChild(st.box);
+      try{st.bd.off("update",st.sync);}catch(e){}
+      bx._ro=null;st.bd.update();
+    }
+    return;
+  }
+  if(st)return;
+  var bd=boardOfBox(bx);if(!bd)return;
+  var long=[],sl=[];
   for(var id in bd.objects){
     var o=bd.objects[id];
-    if(o.elType!=="text"||!o.rendNode)continue;
-    if((o.rendNode.textContent||"").trim().length>22)long.push(o);
+    if(o.elType==="text"&&o.rendNode&&(o.rendNode.textContent||"").trim().length>22&&o.visProp.visible!==false)long.push(o);
+    if(o.elType==="slider"&&o.label)sl.push(o);
   }
-  var sl=[];
-  for(var id2 in bd.objects){var o2=bd.objects[id2];if(o2.elType==="slider"&&o2.label)sl.push(o2);}
   if(!long.length&&!sl.length)return;
-  bx.dataset.readout="1";
-  sl.forEach(function(o){o.label.setAttribute({visible:false});});
-  var box=document.createElement("div");box.className="jxg-readout";
+  var box=document.createElement("div");box.className="jxg-readout";box.setAttribute("aria-live","polite");
   bx.parentNode.insertBefore(box,bx.nextSibling);
   long.forEach(function(o){o.setAttribute({visible:false});});
+  sl.forEach(function(o){o.label.setAttribute({visible:false});});
   function sync(){
     var top=sl.length?'<span class="ro-sl">'+sl.map(function(o){return (o.name||"")+" = "+o.Value().toFixed(2);}).join("&nbsp;&nbsp;·&nbsp;&nbsp;")+"</span>"+(long.length?"<br>":""):"";
     box.innerHTML=top+long.map(function(o){
@@ -4909,6 +5007,7 @@ function mobileReadout(bx){
       return o.plaintext!==undefined?String(o.plaintext):"";
     }).join("<br>");
   }
+  bx._ro={bd:bd,box:box,long:long,sl:sl,sync:sync};
   bd.on("update",sync);sync();
 }
 function initVisibleBoards(){
@@ -4933,8 +5032,11 @@ function resizeBoards(){
     if(svg&&Math.abs(svg.getBoundingClientRect().width-c.offsetWidth)<2)continue;
     try{bd.resizeContainer(c.offsetWidth,c.offsetHeight,true);bd.fullUpdate();}catch(e){}
   }
+  document.querySelectorAll('.topic.active .jxgbox').forEach(function(bx){if(BOARD_DONE[bx.id])mobileReadout(bx);});
+  if(typeof syncSideInert==="function")syncSideInert();
 }
 window.addEventListener("resize",function(){
+  if(typeof syncSideInert==="function")syncSideInert();
   clearTimeout(window.__rzT);window.__rzT=setTimeout(resizeBoards,120);
 });
 if(window.ResizeObserver){
@@ -4979,7 +5081,13 @@ function showTopic(id,noHash){
   resizeBoards();
   var main=document.getElementById("main-content");
   if(main)main.scrollTop=0;
+  var wasOpen=document.body.classList.contains("side-open");
   document.body.classList.remove("side-open");
+  if(typeof syncSideInert==="function")syncSideInert();
+  if(!noHash){
+    var h1=document.querySelector("#t-"+id+" .topic-title");
+    if(h1){h1.setAttribute("tabindex","-1");try{h1.focus({preventScroll:true});}catch(e){h1.focus();}}
+  }
   if(!noHash){try{history.replaceState(null,"","#"+id);}catch(e){location.hash=id;}}
   try{localStorage.setItem("analysisQ1-lastTopic",id);}catch(e){}
 }
@@ -5005,15 +5113,35 @@ document.addEventListener("change",function(e){
 });
 
 /* Mobile-Menü */
+var MOBILE_MQ=window.matchMedia("(max-width:860px)");
+function syncSideInert(){
+  var sb=document.getElementById("sidebar"),mb=document.getElementById("menu-btn");
+  var open=document.body.classList.contains("side-open");
+  if(sb){if(MOBILE_MQ.matches&&!open)sb.setAttribute("inert","");else sb.removeAttribute("inert");}
+  if(mb)mb.setAttribute("aria-expanded",open?"true":"false");
+}
+function openSide(){
+  document.body.classList.add("side-open");syncSideInert();
+  var a=document.querySelector(".nav-item.active")||document.querySelector(".nav-item");
+  if(a)a.focus();
+}
+function closeSide(refocus){
+  document.body.classList.remove("side-open");syncSideInert();
+  if(refocus){var mb=document.getElementById("menu-btn");if(mb)mb.focus();}
+}
 (function(){
   var mb=document.getElementById("menu-btn"),bd=document.getElementById("side-backdrop");
-  if(mb)mb.onclick=function(){document.body.classList.toggle("side-open");};
-  if(bd)bd.onclick=function(){document.body.classList.remove("side-open");};
+  if(mb){mb.setAttribute("aria-controls","sidebar");mb.onclick=function(){document.body.classList.contains("side-open")?closeSide(true):openSide();};}
+  if(bd)bd.onclick=function(){closeSide(true);};
+  if(MOBILE_MQ.addEventListener)MOBILE_MQ.addEventListener("change",syncSideInert);
+  syncSideInert();
 })();
 
 /* Tastatur: Pfeiltasten wechseln Themen */
 document.addEventListener("keydown",function(e){
-  if(e.target.matches("input,textarea"))return;
+  if(e.key==="Escape"&&document.body.classList.contains("side-open")){closeSide(true);return;}
+  if(e.defaultPrevented||e.altKey||e.ctrlKey||e.metaKey||e.shiftKey)return;
+  if(e.target.closest&&e.target.closest("input,textarea,select,button,.jxgbox,[contenteditable]"))return;
   var i=FLAT.indexOf(activeTopic);
   if(e.key==="ArrowRight"&&i<FLAT.length-1)showTopic(FLAT[i+1]);
   if(e.key==="ArrowLeft"&&i>0)showTopic(FLAT[i-1]);
